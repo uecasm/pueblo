@@ -129,6 +129,8 @@
 											// MCCP options:
 #define TN_COMPRESS		85
 #define TN_COMPRESS2	86
+#define TN_MSP				90
+#define TN_MXP				91
 
 											// Other Telnet codes:
 #define TN_IS				0
@@ -556,6 +558,8 @@ ChWorldConn::ChWorldConn( const ChModuleID& idModule,
 		pstrTelnetLabel[TN_LINEMODE]		= "LINEMODE";
 		pstrTelnetLabel[TN_COMPRESS]		= "COMPRESS1";
 		pstrTelnetLabel[TN_COMPRESS2]		= "COMPRESS2";
+		pstrTelnetLabel[TN_MXP]				= "MXP";
+		pstrTelnetLabel[TN_MSP]				= "MSP";
 		pstrTelnetLabel[TN_EOR]				= "EOR";
 		pstrTelnetLabel[TN_SE]				= "SE";
 		pstrTelnetLabel[TN_NOP]				= "NOP";
@@ -627,6 +631,7 @@ void ChWorldConn::ProcessOutput()
 
 	ASSERT( this );
 
+	//MessageBox(NULL, "ProcessOutput", "debug", MB_OK);
 	if ((luLen = GetBytesAvailable()) > 0)
 	{
 		char*	pstrBuffer;
@@ -671,6 +676,9 @@ void ChWorldConn::InitConnection()
 												mode HTML, rather than <pre> */
 	strOut = "<html>";
 
+	m_mccp.negotiated(ChMCCP::modeUncompressed);
+	UpdateCompressionPanel();
+
 											/* Indicate that we will be using
 												preformatted text */
 	TurnHtmlOff( strOut );
@@ -683,6 +691,9 @@ void ChWorldConn::TermConnection()
 	if (IsConnected())
 	{
 		ChString		strOut;
+
+		m_mccp.negotiated(ChMCCP::modeUncompressed);
+		UpdateCompressionPanel();
 
 		m_state = stateNotConnected;
 		TurnHtmlOn( strOut );
@@ -1729,9 +1740,14 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 							TelnetSend( TN_DO, iOption );
 							m_mccp.negotiated(ChMCCP::modeCompressV1);
 						}
+						else if(m_flTelnetState & telnetStateMCCP2)
+						{
+							// We've already accepted COMPRESS2, so deny COMPRESS
+							TelnetSend( TN_DONT, iOption );
+						}
 						else
 						{
-							// We've already accepted either COMPRESS or COMPRESS2, so ignore WILL COMPRESS
+							// We've already accepted COMPRESS, so ignore WILL COMPRESS
 						}
 					}
 					else
@@ -1752,9 +1768,15 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 							TelnetSend( TN_DO, iOption );
 							m_mccp.negotiated(ChMCCP::modeCompressV2);
 						}
+						else if(m_flTelnetState & telnetStateMCCP1)
+						{
+							// We've already accepted COMPRESS, so deny COMPRESS2
+							// Note that in practice this shouldn't occur (the protocol says it's illegal)
+							TelnetSend( TN_DONT, iOption );
+						}
 						else
 						{
-							// We've already accepted either COMPRESS or COMPRESS2, so ignore WILL COMPRESS2
+							// We've already accepted COMPRESS2, so ignore WILL COMPRESS2
 						}
 					}
 					else
@@ -1945,9 +1967,11 @@ void ChWorldConn::DoTelnetSubnegotiation( int iCommand, const ChString& data )
 	strMessage.Format("neg %s: ", (LPCSTR)GetTelnetLabel(iCommand));
 	for(int byteIndex = 0; byteIndex < data.GetLength(); ++byteIndex)
 	{
-		strMessage.AppendFormat("%02X ", data[byteIndex]);
+		ChString strTemp;
+		strTemp.Format("%02X ", data[byteIndex]);
+		strMessage += strTemp;
 	}
-	strMessage.AppendChar('\n');
+	strMessage += '\n';
 	TelnetDisplay( strMessage );
 	#endif
 }
@@ -1968,7 +1992,15 @@ void ChWorldConn::DoSendTerminalType()
 	}
 
 	ChString reply;
-	reply.Format("%c%c%c%c%s%c%c", TN_IAC, TN_SB, TN_TERMINAL_TYPE, TN_IS, termType, TN_IAC, TN_SE);
+	// UE: unfortunately we can't use Format since it breaks under MFC 6.0 (TN_IS is 0)
+	//reply.Format("%c%c%c%c%s%c%c", TN_IAC, TN_SB, TN_TERMINAL_TYPE, TN_IS, termType, TN_IAC, TN_SE);
+	reply = (char)TN_IAC;
+	reply += (char)TN_SB;
+	reply += (char)TN_TERMINAL_TYPE;
+	reply += (char)TN_IS;
+	reply += termType;
+	reply += (char)TN_IAC;
+	reply += (char)TN_SE;
 	SendBlock((LPCSTR)reply, reply.GetLength());
 
 	#if defined( DUMP_TELNET_CODES )
@@ -2083,6 +2115,9 @@ void ChWorldConn::SetPuebloEnhanced( bool boolEnhanced,
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:19  uecasm
 // Import of source tree as at version 2.53 release.
 //

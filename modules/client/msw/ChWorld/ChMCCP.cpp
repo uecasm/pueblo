@@ -102,10 +102,14 @@ void ChMCCP::grow_inbuf(int needed)
   unsigned int old = m_state.inalloc;
   
   while (m_state.inalloc < m_state.insize + needed)
+	{
     m_state.inalloc *= 2;
+	}
 
   if (old != m_state.inalloc)
+	{
     m_state.inbuf = (unsigned char *)realloc(m_state.inbuf, m_state.inalloc);
+	}
 }
         
 void ChMCCP::grow_outbuf(int needed)
@@ -113,10 +117,14 @@ void ChMCCP::grow_outbuf(int needed)
   unsigned int old = m_state.outalloc;
   
   while (m_state.outalloc < m_state.outsize + needed)
+	{
     m_state.outalloc *= 2;
+	}
 
   if (old != m_state.outalloc)
+	{
     m_state.outbuf = (unsigned char *)realloc(m_state.outbuf, m_state.outalloc);
+	}
 }
 
 void ChMCCP::decompress_inbuf()
@@ -126,7 +134,9 @@ void ChMCCP::decompress_inbuf()
 	/* We are now decompressing from inbuf to outbuf */
 
 	if (!m_state.insize)
+	{
 		return; /* nothing to decompress? */
+	}
 
 	m_state.stream->next_in = m_state.inbuf;
 	m_state.stream->next_out = m_state.outbuf + m_state.outsize;
@@ -326,3 +336,6 @@ void ChMCCP::negotiated(CompressMode newMode)
 }
 
 // $Log$
+// Revision 1.1  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//

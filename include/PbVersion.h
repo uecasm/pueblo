@@ -46,11 +46,11 @@
 // First of all, the version info used by the program code:
 #define VERS_CLIENT_MAJOR			2
 #define VERS_CLIENT_MINOR			60
-#define VERS_CLIENT_COMMENT		"UE"
+#define VERS_CLIENT_COMMENT		"UE (b)"
 
 // And now that for the resource files:
-#define VERS_CLIENT_BINARY		2,6,0,0
-#define VERS_CLIENT_TEXT			"2.60\0"
+#define VERS_CLIENT_BINARY		2,6,0,4
+#define VERS_CLIENT_TEXT			"2.60b\0"
 #define VERS_CLIENT_COMPANY		"Ultra Enterprises\0"
 #define VERS_CLIENT_COPYRIGHT	"Recompiled 2002-03 by Ultra Enterprises\r\nCopyright © 1996-1998 Andromedia Incorporated\0"
 #define VERS_CLIENT_PRODUCT		"Pueblo/UE Application\0"
