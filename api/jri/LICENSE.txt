@@ -1,0 +1,6 @@
+This directory contains header files from the Netscape Navigator 3 Plugin API,
+released for developer use.
+
+They are copyright (C) 1996 by Netscape Communications Corporation, and are no
+doubt similar (but not identical to) files released under the Mozilla
+Public License.

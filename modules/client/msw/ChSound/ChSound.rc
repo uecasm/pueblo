@@ -1,0 +1,257 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include <dlgs.h>
+#include <PbVersion.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (NZ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENZ)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_NZ
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include <dlgs.h>\r\n"
+    "#include <PbVersion.h\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PREF_PAGE_SOUND DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Sound"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Alert Sound:",IDC_ALERT_SOUND,10,30,50,14
+    LTEXT           "Sound name which can be up to three lines long",
+                    IDC_ALERT_SOUND_NAME,65,28,55,24
+    LTEXT           "Don't alert more often than every:",IDC_STATIC_MSG,10,
+                    65,111,8
+    COMBOBOX        IDC_TIME_COUNT,20,77,33,62,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_TIME_UNITS,57,77,48,50,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CTEXT           "",IDC_STATIC_DISABLE_MSG,10,105,230,16
+    GROUPBOX        "Volume",IDC_STATIC_BOX,125,5,115,95
+    CONTROL         "Generic1",IDC_SLIDER_VOLUME_MIDI,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,134,20,21,58
+    CONTROL         "Generic1",IDC_SLIDER_VOLUME_WAVE,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,164,20,21,58
+    CONTROL         "Generic1",IDC_SLIDER_VOLUME_ALERT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,194,20,21,58
+    CTEXT           "Max",IDC_STATIC_MAX,218,25,14,8
+    CTEXT           "Off",IDC_STATIC_OFF,220,66,10,8
+    CTEXT           "Music",IDC_STATIC_MUSIC,135,83,19,8,SS_NOPREFIX
+    CTEXT           "Sound Effects",IDC_STATIC_EFFECTS,162,79,23,16,
+                    SS_NOPREFIX
+    CTEXT           "Alerts",IDC_STATIC_ALERTS,195,83,19,8,SS_NOPREFIX
+    CONTROL         "Disable sound",IDC_CHECK_DISABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,10,105,10
+END
+
+IDD_SOUND_FILE_OPEN DIALOG DISCARDABLE  36, 24, 264, 134
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Open"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &Name:",1090,6,6,76,9
+    EDITTEXT        1152,6,16,90,12,ES_AUTOHSCROLL | ES_OEMCONVERT
+    LISTBOX         1120,6,32,90,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Directories:",-1,110,6,92,9
+    LTEXT           "",1088,110,18,92,9,SS_NOPREFIX
+    LISTBOX         1121,110,32,92,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "&Read Only",1040,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,6,91,50,12
+    LTEXT           "List Files of &Type:",1089,6,104,90,9
+    COMBOBOX        1136,6,114,90,36,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dri&ves:",1091,110,104,92,9
+    COMBOBOX        1137,110,114,92,68,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | 
+                    CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,208,6,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,208,23,50,14,WS_GROUP
+    PUSHBUTTON      "No Sound",IDC_NO_SOUND,208,40,50,14
+    PUSHBUTTON      "Test",IDC_TEST,208,57,50,14
+    PUSHBUTTON      "&Help",1038,208,84,50,14,WS_GROUP
+    PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
+END
+
+IDD_SOUND_FILE_OPEN_95 DIALOG DISCARDABLE  36, 24, 272, 40
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+FONT 8, "Helv"
+BEGIN
+    PUSHBUTTON      "No Sound",IDC_NO_SOUND,222,20,50,14
+    PUSHBUTTON      "Test",IDC_TEST,61,20,50,14
+    LTEXT           "",stc32,0,0,272,20,NOT WS_VISIBLE
+END
+
+IDD_PREF_PAGE_SPEECH DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Speech"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Microphone",IDC_STATIC,10,10,105,93
+    CONTROL         "Generic1",IDC_SLIDER_MIKE_VOLUME,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,20,25,21,58
+    LTEXT           "Max",IDC_STATIC,41,29,20,8
+    LTEXT           "Mute",IDC_STATIC,41,72,20,8
+    CTEXT           "Volume",IDC_STATIC,17,88,30,8,SS_NOPREFIX
+    CONTROL         "Generic1",IDC_SLIDER_MIKE_SENSITIVITY,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,70,25,21,58
+    LTEXT           "Max",IDC_STATIC,91,29,20,8
+    LTEXT           "Min",IDC_STATIC,91,72,20,8
+    CTEXT           "Sensitivity",IDC_STATIC,64,88,35,8,SS_NOPREFIX
+    GROUPBOX        "Speaker",IDC_STATIC,124,10,60,93
+    CONTROL         "Generic1",IDC_SLIDER_VOLUME_SPEECH,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,139,25,21,58
+    LTEXT           "Max",IDC_STATIC,160,29,20,8
+    LTEXT           "Min",IDC_STATIC,160,72,20,8
+    CTEXT           "Volume",IDC_STATIC,134,88,30,8,SS_NOPREFIX
+    CONTROL         "Reject incoming calls",IDC_CHECK_REJECT_CALLS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,110,105,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_PREF_PAGE_SOUND DLGINIT
+BEGIN
+    IDC_TIME_COUNT, 0x403, 2, 0
+0x0035, 
+    IDC_TIME_COUNT, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_TIME_COUNT, 0x403, 3, 0
+0x3531, "\000" 
+    IDC_TIME_COUNT, 0x403, 3, 0
+0x3033, "\000" 
+    IDC_TIME_COUNT, 0x403, 3, 0
+0x3036, "\000" 
+    IDC_TIME_UNITS, 0x403, 8, 0
+//0x6553, 0x6f63, 0x646e, 0x0073, 
+"seconds\0"
+    IDC_TIME_UNITS, 0x403, 8, 0
+//0x694d, 0x756e, 0x6574, 0x0073
+"minutes\0"
+		IDC_TIME_UNITS, 0x403, 6, 0
+"hours\0"
+		0
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERS_CLIENT_BINARY
+ PRODUCTVERSION VERS_CLIENT_BINARY
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "140904b0"
+        BEGIN
+            VALUE "CompanyName", VERS_CLIENT_COMPANY
+            VALUE "FileDescription", "ChSound module\0"
+            VALUE "FileVersion", VERS_CLIENT_TEXT
+            VALUE "InternalName", "ChSound\0"
+            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
+            VALUE "OriginalFilename", "ChSound.dll\0"
+            VALUE "ProductName", VERS_CLIENT_PRODUCT
+            VALUE "ProductVersion", VERS_CLIENT_TEXT
+            VALUE "PuebloModule", "Pueblo/UE External Sound player module\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x1409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NO_SOUND            "<none>"
+    IDS_INVALID_SOUND       "That is an invalid sound file."
+    IDS_PREF_NO_DEVICES     "This page is disabled because no sound device was found on your system."
+END
+
+#endif    // English (NZ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,837 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include <dlgs.h>
+#include <PbVersion.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (NZ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENZ)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_NZ
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERS_CLIENT_BINARY
+ PRODUCTVERSION VERS_CLIENT_BINARY
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "140904b0"
+        BEGIN
+            VALUE "CompanyName", VERS_CLIENT_COMPANY
+            VALUE "FileDescription", "ChWorld module\0"
+            VALUE "FileVersion", VERS_CLIENT_TEXT
+            VALUE "InternalName", "ChWorld\0"
+            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
+            VALUE "OriginalFilename", "ChWorld.dll\0"
+            VALUE "ProductName", VERS_CLIENT_PRODUCT
+            VALUE "ProductVersion", VERS_CLIENT_TEXT
+            VALUE "PuebloModule", "Pueblo/UE World Manager module\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x1409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include <dlgs.h>\r\n"
+    "#include <PbVersion.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WORLD_LIST DIALOG DISCARDABLE  0, 0, 300, 140
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Personal World List"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LISTBOX         IDC_WORLD_LIST,5,10,223,120,LBS_SORT | WS_VSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    DEFPUSHBUTTON   "Okay",IDOK,234,6,60,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,234,23,60,14
+    PUSHBUTTON      "Connect",IDC_LIST_CONNECT,234,45,60,14
+    PUSHBUTTON      "Create Shortcut",IDC_LIST_CREATE_SHORTCUT,234,62,60,14
+    PUSHBUTTON      "&Add",IDC_LIST_ADD,234,84,60,14
+    PUSHBUTTON      "&Edit",IDC_LIST_EDIT,234,101,60,14
+    PUSHBUTTON      "Delete",IDC_LIST_DELETE,234,118,60,14
+END
+
+IDD_PREF_PAGE_WORLD DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Worlds"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Echo Input",IDC_ECHO_INPUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,38,100,10
+    CONTROL         "Bold",IDC_ECHO_BOLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,37,67,45,10
+    CONTROL         "Italic",IDC_ECHO_ITALIC,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,37,82,45,10
+    GROUPBOX        "Echo Style",IDC_ECHO_STYLE_BOX,27,52,60,46
+    CONTROL         "Pause on disconnect",IDC_PAUSE_DISCONNECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,10,100,10
+    CONTROL         "Leave world log open",IDC_PAUSE_INLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,20,100,10
+END
+
+IDD_WORLD_LIST_EDIT DIALOG DISCARDABLE  0, 0, 320, 175
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "World Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Name:",IDC_STATIC,1,13,40,8
+    EDITTEXT        IDC_LIST_NAME,45,10,80,14,ES_AUTOHSCROLL
+    RTEXT           "Host:",IDC_STATIC,130,13,40,8
+    EDITTEXT        IDC_LIST_HOST,173,10,82,14,ES_AUTOHSCROLL
+    RTEXT           "Type:",IDC_STATIC,1,32,40,8
+    COMBOBOX        IDC_WORLD_LIST_TYPE,45,30,80,91,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Port:",IDC_STATIC,130,32,40,8
+    EDITTEXT        IDC_LIST_PORT,173,29,24,14
+    RTEXT           "Username:",IDC_STATIC,1,51,40,8
+    EDITTEXT        IDC_LIST_USERNAME,45,48,80,14,ES_AUTOHSCROLL
+    RTEXT           "Password:",IDC_STATIC,130,51,40,8
+    EDITTEXT        IDC_LIST_PASSWORD,173,48,82,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    RTEXT           "Web page:",IDC_STATIC,1,70,40,8
+    EDITTEXT        IDC_LIST_WEB_PAGE,45,67,210,14,ES_AUTOHSCROLL
+    RTEXT           "Description:",IDC_STATIC,0,86,40,8
+    EDITTEXT        IDC_LIST_DESC,45,86,210,30,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    WS_VSCROLL
+    GROUPBOX        "Login style",IDC_STATIC,10,123,155,45,WS_GROUP
+    CONTROL         "Send the username, then the password",
+                    IDC_RADIO_LOGIN_MUD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,20,137,140,10
+    CONTROL         "Send 'connect username password'",
+                    IDC_RADIO_LOGIN_CONNECT,"Button",BS_AUTORADIOBUTTON,20,
+                    152,140,10
+    LTEXT           "",IDC_STATIC_MESSAGE,175,129,134,36
+    PUSHBUTTON      "Okay",IDOK,264,10,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,264,30,50,14
+END
+
+IDD_PREF_PAGE_NOTIFY DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Notification"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "When Pueblo is iconized and new text arrives:",
+                    IDC_STATIC,10,10,165,100
+    CONTROL         "Don't flash the Pueblo icon",IDC_NOTIFY_NEVER,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,20,25,145,10
+    CONTROL         "Flash the Pueblo icon",IDC_NOTIFY_WHENEVER,"Button",
+                    BS_AUTORADIOBUTTON,20,40,145,10
+    CONTROL         "Flash the Pueblo icon if the text contains:",
+                    IDC_NOTIFY_ON_MATCH,"Button",BS_AUTORADIOBUTTON,20,55,
+                    145,10
+    EDITTEXT        IDC_EDIT_MATCH_TEXT,30,70,135,13,ES_AUTOHSCROLL | 
+                    WS_GROUP
+    CONTROL         "Play the alert sound",IDC_CHECK_ALERT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,92,145,10
+END
+
+IDD_SHORTCUT_WIZ_NAME DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Name"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "This is the Shortcut Wizard.  It will create a shortcut to a world.  The shortcut will appear on your desktop, and you can open the shortcut to connect directly to the world.",
+                    IDC_STATIC,10,10,240,24
+    LTEXT           "First, select a name for the shortcut:",IDC_STATIC,10,
+                    39,240,8
+    EDITTEXT        IDC_SHORTCUT_NAME,20,55,210,12,ES_AUTOHSCROLL
+    CONTROL         "Create the shortcut for the current world",
+                    IDC_CHECK_CURR_WORLD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,80,225,10
+END
+
+IDD_SHORTCUT_WIZ_OPTIONS DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Options"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Select the Program Manager group where you wish to place the shortcut icon:",
+                    IDC_SHORTCUT_MSG,10,10,240,16
+    COMBOBOX        IDC_SHORTCUT_FOLDER,20,36,110,78,CBS_SIMPLE | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SHORTCUT_WIZ_USERNAME DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Username"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "You can add a username and password to automatically log into the world.  To skip automatic login, leave the following fields blank:",
+                    IDC_STATIC,10,10,240,16
+    RTEXT           "Username:",IDC_STATIC,10,39,45,8
+    EDITTEXT        IDC_SHORTCUT_USERNAME,60,37,165,12,ES_AUTOHSCROLL
+    RTEXT           "Password:",IDC_STATIC,10,55,45,8
+    EDITTEXT        IDC_SHORTCUT_PASSWORD,60,53,165,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "Login style",IDC_STATIC_LOGIN_STYLE,60,72,165,40,
+                    WS_GROUP
+    CONTROL         "Send the username, then the password",
+                    IDC_RADIO_LOGIN_MUD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,70,84,140,9
+    CONTROL         "Send 'connect username password'",
+                    IDC_RADIO_LOGIN_CONNECT,"Button",BS_AUTORADIOBUTTON,70,
+                    97,140,9
+END
+
+IDD_SHORTCUT_WIZ_FINISH DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Finished!"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "",IDC_SHORTCUT_MSG_SYSTEM,10,10,240,40
+END
+
+IDD_SHORTCUT_WIZ_SERVER DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "World Server"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Enter information about the World server.  You'll need to know the host name, the port number, and the type of the server.\n\n(If you don't know the server type, guess 'TinyMush' for social worlds and 'LPMud' for combat worlds.)",
+                    IDC_STATIC,10,10,240,40
+    RTEXT           "Host:",IDC_STATIC,10,62,45,8
+    RTEXT           "Port:",IDC_STATIC,10,79,45,8
+    RTEXT           "Server type:",IDC_STATIC,10,102,45,8
+    EDITTEXT        IDC_EDIT_HOST,60,60,140,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PORT,60,77,32,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_TYPES,60,100,100,66,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_LOG_FILE_SAVE_AS DIALOG DISCARDABLE  36, 24, 264, 165
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Open"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &Name:",1090,6,6,76,9
+    EDITTEXT        1152,6,16,90,12,ES_AUTOHSCROLL | ES_OEMCONVERT
+    LISTBOX         1120,6,32,90,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Directories:",IDC_STATIC,110,6,92,9
+    LTEXT           "",1088,110,18,92,9,SS_NOPREFIX
+    LISTBOX         1121,110,32,92,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "&Read Only",1040,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,6,91,50,12
+    LTEXT           "List Files of &Type:",1089,6,104,90,9
+    COMBOBOX        1136,6,114,90,36,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dri&ves:",1091,110,104,92,9
+    COMBOBOX        1137,110,114,92,68,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | 
+                    CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,208,6,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,208,23,50,14,WS_GROUP
+    PUSHBUTTON      "&Help",1038,208,84,50,14,WS_GROUP
+    PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
+    CONTROL         "Include text currently in the output window",
+                    IDC_CHECK_ENTIRE_BUFFER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,110,135,145,10
+    LTEXT           "(A log file with the .htm or .html extension will include HTML received.)",
+                    IDC_STATIC,6,132,95,24
+END
+
+IDD_LOG_FILE_SAVE_AS_95 DIALOG DISCARDABLE  36, 24, 295, 40
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "",1119,0,0,295,15,NOT WS_VISIBLE
+    CONTROL         "Include text currently in the window",
+                    IDC_CHECK_ENTIRE_BUFFER,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,165,16,130,10
+    LTEXT           "(A log file with the .htm or .html extension will include HTML received.)",
+                    IDC_STATIC,11,16,145,17
+END
+
+IDD_PREF_PAGE_TEXT_IN DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Text Input"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Height of the edit window:",IDC_STATIC,10,20,85,8
+    EDITTEXT        IDC_EDIT_LINE_COUNT,102,18,13,13,ES_AUTOHSCROLL
+    CONTROL         "Clear text after it's sent",IDC_CHECK_CLEAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,45,95,10
+    GROUPBOX        "Editing keys",IDC_STATIC,125,10,115,50,WS_GROUP
+    CONTROL         "Windows standard",IDC_RADIO_WINDOWS,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,135,25,87,10
+    CONTROL         "Emacs standard",IDC_RADIO_EMACS,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,135,40,87,10
+    RTEXT           "(in lines)",IDC_STATIC,10,29,85,8
+    PUSHBUTTON      "Select:",IDC_TINTIN_FILE,25,87,45,14
+    LTEXT           "<no file>",IDC_STATIC_TINTIN_FILE,80,90,150,8
+    GROUPBOX        "Initial TinTin command file:",IDC_STATIC,10,70,230,40
+END
+
+IDD_PREF_PAGE_TEXT_OUT DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Text Output"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Scroll-back buffer size (in lines):",IDC_STATIC,10,10,
+                    100,8
+    EDITTEXT        IDC_EDIT_LINES,114,8,24,13,ES_AUTOHSCROLL
+END
+
+IDD_SELECT_TINTIN DIALOG DISCARDABLE  36, 24, 264, 134
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select a TinTin command file"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &Name:",1090,6,6,76,9
+    EDITTEXT        1152,6,16,90,12,ES_AUTOHSCROLL | ES_OEMCONVERT
+    LISTBOX         1120,6,32,90,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Directories:",-1,110,6,92,9
+    LTEXT           "",1088,110,18,92,9,SS_NOPREFIX
+    LISTBOX         1121,110,32,92,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "&Read Only",1040,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,6,91,50,12
+    LTEXT           "List Files of &Type:",1089,6,104,90,9
+    COMBOBOX        1136,6,114,90,36,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dri&ves:",1091,110,104,92,9
+    COMBOBOX        1137,110,114,92,68,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | 
+                    CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,208,6,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,208,23,50,14,WS_GROUP
+    PUSHBUTTON      "None",IDC_NO_TINTIN_FILE,208,40,50,14
+    PUSHBUTTON      "&Help",1038,208,84,50,14,WS_GROUP
+    PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
+END
+
+IDD_SELECT_TINTIN_95 DIALOG DISCARDABLE  36, 24, 272, 40
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+FONT 8, "Helv"
+BEGIN
+    PUSHBUTTON      "&None",IDC_NO_TINTIN_FILE,222,20,50,14
+    LTEXT           "",1119,0,0,272,20,NOT WS_VISIBLE
+END
+
+IDD_TINTIN_INFO DIALOG DISCARDABLE  0, 0, 240, 125
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "TinTin Information"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,95,105,50,14
+    GROUPBOX        "Defined:",IDC_STATIC,10,10,90,80
+    LTEXT           "%3d Actions",IDC_STATIC_ACTIONS,20,25,75,8
+    LTEXT           "%3d Aliases",IDC_STATIC_ALIASES,20,35,75,8
+    LTEXT           "%3d Substitutes",IDC_STATIC_SUBS,20,45,75,8
+    LTEXT           "%3d Antisubstitutes",IDC_STATIC_ANTISUBS,20,55,75,8
+    LTEXT           "%3d Variables",IDC_STATIC_VARS,20,65,75,8
+    LTEXT           "%3d Highlights",IDC_STATIC_HIGHLIGHTS,20,75,75,8
+    GROUPBOX        "Flags:",IDC_STATIC,110,10,119,80
+    LTEXT           "Speedwalking:",IDC_STATIC,120,25,80,8
+    LTEXT           "Ignore actions:",IDC_STATIC,120,40,80,8
+    LTEXT           "off",IDC_STATIC_SPEEDWALKING,202,25,20,8
+    LTEXT           "no",IDC_STATIC_IGNORE_ACTIONS,202,40,20,8
+    LTEXT           "Do substitutes:",IDC_STATIC,120,50,80,8
+    LTEXT           "yes",IDC_STATIC_DO_SUBS,202,50,20,8
+    LTEXT           "Substituted output can trigger actions ('presub'):",
+                    IDC_STATIC,120,68,80,16
+    LTEXT           "yes",IDC_STATIC_PRESUBS,202,76,20,8
+END
+
+IDD_ABOUT_TINTIN DIALOG DISCARDABLE  0, 0, 250, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "TinTin"
+FONT 10, "Arial"
+BEGIN
+    CTEXT           "Pueblo's implementation of TinTin is based on TinTin++",
+                    IDC_STATIC,15,8,230,8
+    CTEXT           "Many people on the Internet contributed to the development and implementation of TinTin.  Those deserving special mention include:",
+                    IDC_STATIC,15,27,230,16
+    CTEXT           "Peter Unold, Bill Reiss, Joann Ellsworth, and Jeremy Jack.",
+                    IDC_STATIC,15,89,230,8
+    CTEXT           "All of the folks who sent in bug reports and suggestions.",
+                    IDC_STATIC,15,78,230,8
+    CTEXT           "The citizens of GrimneDIKU, and especially Nemesis, Urquan, Elvworn, Kare, Merjon, Grumm, Tolebas, Winterblade.",
+                    IDC_STATIC,15,59,230,16
+    CTEXT           "Valgar of Grimne",IDC_STATIC,15,48,230,8
+    CTEXT           "Pueblo implementation by Coyote.",IDC_STATIC,15,111,230,
+                    8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,15,105,230,1
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,15,21,230,1
+END
+
+IDD_QUICKCONNECT DIALOG DISCARDABLE  0, 0, 252, 90
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "QuickConnect!"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Host:",IDC_STATIC,0,13,40,8
+    EDITTEXT        IDC_LIST_HOST,43,10,82,14,ES_AUTOHSCROLL
+    RTEXT           "Port:",IDC_STATIC,130,13,20,8
+    EDITTEXT        IDC_LIST_PORT,154,10,24,14
+    GROUPBOX        "Login style",IDC_STATIC,23,36,155,47,WS_GROUP
+    CONTROL         "Send the username, then the password",
+                    IDC_RADIO_LOGIN_MUD,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,34,50,140,10
+    CONTROL         "Send 'connect username password'",
+                    IDC_RADIO_LOGIN_CONNECT,"Button",BS_AUTORADIOBUTTON,34,
+                    65,140,10
+    PUSHBUTTON      "Connect!",IDOK,194,6,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,194,23,50,14
+END
+
+IDD_CONNECTING_DLG DIALOG DISCARDABLE  0, 0, 176, 63
+STYLE DS_MODALFRAME | WS_CAPTION
+CAPTION "Connection status"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,62,40,50,14
+    CTEXT           "Connecting to blah.blah.com, port %d",
+                    IDC_CONNECT_MESSAGE,38,12,130,24
+    ICON            IDI_CHACO,IDC_STATIC,10,10,18,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_WORLD_LIST2 DLGINIT
+BEGIN
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x6241, 0x7265, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 7, 0
+0x6943, 0x6372, 0x656c, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 4, 0
+0x4744, 0x0044, 
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x6944, 0x756b, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x654d, 0x6372, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x754d, 0x6b63, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x754d, 0x6573, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 5, 0
+0x754d, 0x6873, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 6, 0
+0x504c, 0x754d, 0x0064, 
+    IDC_WORLD_LIST_TYPE, 0x403, 4, 0
+0x6f4d, 0x006f, 
+    IDC_WORLD_LIST_TYPE, 0x403, 9, 0
+0x6954, 0x796e, 0x754d, 0x6873, "\000" 
+    IDC_WORLD_LIST_TYPE, 0x403, 4, 0
+0x6f4d, 0x006f, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_PLANET              ICON    DISCARDABLE     "res\\planet.ico"
+IDI_WHEEL               ICON    DISCARDABLE     "res\\wheel.ico"
+IDI_CHACO               ICON    DISCARDABLE     "res\\chaco.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+ID_MENU_LOG MENU DISCARDABLE 
+BEGIN
+    POPUP " "
+    BEGIN
+        MENUITEM "Copy",                        ID_EDIT_COPY
+        MENUITEM "Copy to input window",        ID_EDIT_COPY_TO_INPUT
+        MENUITEM SEPARATOR
+        MENUITEM "Add to personal list",        ID_MENU_WORLD_ADD
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MENU_WORLD_LIST     "Edit personal list..."
+    IDS_MENU_WORLD_DISCON   "Disconnect"
+    IDS_MENU_WORLD_LIST_TXT "Display a dialog that allows you to edit your personal world list"
+    IDS_MENU_WORLD_DISCON_TXT "Disconnect from the current world"
+    IDS_MENU_WORLD          "Worlds"
+    IDS_ADD                 "Add"
+    IDS_CHANGE              "Change"
+    IDS_PERSONAL_LIST_TITLE "<html><center><h2>Personal World List</h2></center><hr>"
+    IDS_PERSONAL_LIST_EMPTY "<p>You haven't specified any personal worlds.  To do so, click on the link below, or select <b>Edit personal list...</b> from the <b>Worlds</b> menu in the menu bar. </p> "
+    IDS_HOST_NAME_ERROR     "The host name '%s' could not be found in your domain database.  The host name may be wrong, or you may not have access to this site."
+    IDS_CONNECT_ERROR       "The host %s rejected the connection.  This world may be temporarily unavailable, and you might want to try a little later."
+    IDS_MENU_ADD            "Add to personal list"
+    IDS_MENU_ADD_TXT        "Add the current world to your personal list of worlds"
+    IDS_STATUS_CONNECTING_FMT "Connecting to '%s'..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HINT_JUMP           "Surf to this web page: %s"
+    IDS_MENU_CREATE_SHORTCUT_CONNECTED_TXT 
+                            "Create a new shortcut file for the current world"
+    IDS_PERSONAL_LIST_JUMP1 "<dt><a href=""pueblo:world-list-edit"" target=""_self"" xch_hint=""Edit your personal world list""><img src=""%s/pointrt.gif"" border=0 width=18 height=16> Edit your personal list</a><p></p>"
+    IDS_PERSONAL_LIST_JUMP2 "<dt><a href=""pueblo:world-list"" target=""_self"" xch_hint=""Jump to the top level of the Pueblo/UE world list""><img src=""%s/hand.gif"" border=0 width=18 height=16> Jump to the Pueblo/UE world list</a><p></p>"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STATUS_CONNECTED_FMT "Connection to '%s' successful"
+    IDS_MENU_VIEW_PREV      "Previous"
+    IDS_MENU_VIEW_PREV_TXT  "Flip back to the main world list"
+    IDS_CMD_NOT_CONNECTED		"You cannot send commands to the world, as you are no longer connected."
+    IDS_FMT_DISCONNECT_MSG  "The world '%s' has disconnected."
+    IDS_FMT_INLINE_HEAD_MSG "<br><center><hr width=""80%%""><font size=+2><b>%s</b><br>"
+    IDS_INLINE_RETURN_MSG "<br><a href=""pueblo:disconnect"" xch_hint=""Close the world log window and return to the world list"" target=""_self"">Return to the world list</a><br>"
+    IDS_INLINE_RECONNECT_MSG "<br><a href=""pueblo:reconnect"" xch_hint=""Clear the world log window and reconnect to this world"" target=""_self"">Reconnect to this world</a><br>"
+    IDS_INLINE_FOOT_MSG "</font><hr width=""80%%""></center><br>"
+    IDS_PERSONAL_LIST_HDR   "<p>To add new worlds to your personal list click on the link below, or select <b>Edit personal list...</b> from the <b>Worlds</b> menu in the menu bar.</p> "
+    IDS_HINT_JUMP_SELF      "Jump to another page of the world list"
+    IDS_HINT_MISC           "Click me!"
+    IDS_HINT_CONNECT_PREFIX "Connect to "
+    IDS_PERSONAL_LIST_PREFETCH "<xch_prefetch xch_prob=0.8 href=""%s"">"
+    IDS_GRAPHICS_LOAD_ERROR "The graphics module couldn't be loaded.\n\nPueblo will continue operating, but graphics won't be displayed.  If you cannot figure out why this is happening, send email to 'uecasm@users.sourceforge.net' and we'll try to help you."
+    IDS_SOUND_LOAD_ERROR    "The sound module couldn't be loaded.\n\nPueblo will continue operating, but you won't hear sound effects and music.  If you cannot figure out why this is happening, send email to 'uecasm@users.sourceforge.net' and we'll try to help you."
+    IDS_LOAD_ERROR_CAPTION  "Load Error!"
+    IDS_MENU_FILE_LOGGING   "Start logging..."
+    IDS_MENU_FILE_LOGGING_TXT "Starts saving world text output to a file"
+    IDS_MENU_CREATE_SHORTCUT "Create shortcut..."
+    IDS_MENU_CREATE_SHORTCUT_TXT "Create a new shortcut file"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TEXT_INPUT_EDIT     "Enter Pueblo commands in this edit field\nCommands"
+    IDS_WND_MENU_INPUT_TXT  "Sets focus to the Command input window"
+    IDS_WND_MENU_INPUT      "Input window"
+    IDS_WND_MENU_INPUT_ACC  "I (only first char is used)"
+    IDS_JUMP_HINT           "Click this label to jump to the page"
+    IDS_MENU_HELP_PUEBLO_BUG_REPORT "&Submit Bug Report"
+    IDS_MENU_HELP_PUEBLO_BUG_REPORT_TXT "Submit bug or enhancement requests"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_WARNING_WORLD_TYPE_MISSING 
+                            "Warning:  Automatic login will not work properly unless the Type field is filled in."
+    IDS_WARNING_MUSH_TYPE   "Warning:  Automatic login will not work for this login style unless both the Username and Password fields are filled in correctly."
+    IDS_WARNING_NO_PASSWORD "Warning: You haven't specified a password.  Your user name will be automatically sent to the world, but you will still be required to enter a password."
+    IDS_MUSH_LOGIN_FORMAT   "connect %s %s"
+    IDS_MENU_VIEW_STOP      "Stop &Loading"
+    IDS_MENU_VIEW_STOP_TXT  "Cancel world connect\nStop"
+    IDS_FILEERR_DISK_FULL   "The disk is full.  You can delete some files and try again, or try saving to a different disk."
+    IDS_FILEERR_SHARING     "The file is in use by another application.  Try selecting a different name."
+    IDS_FILEERR_DISK        "An unexpected disk error occurred.  Bleah.  (Cause is %d, and path is '%s'.)"
+    IDS_FILEERR_CAPTION     "File error"
+    IDS_SHORTCUT_WIZARD     "Shortcut Wizard"
+    IDS_SHORTCUT_DIR        "Shortcut"
+    IDS_SHORTCUT_EXISTS     "A shortcut already exists with the name '%s'.  Do you wish to overwrite it?"
+    IDS_SHORTCUT_EXISTS_CAPTION "Warning..."
+    IDS_APP_NAME            "Pueblo"
+    IDS_GROUP_NAME          "Pueblo Shortcuts"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SHORTCUT_EXTENSION  "pbl"
+    IDS_SHORTCUT_FINISH_PROGMAN 
+                            "That's it!  When you press the Finish button, a Program Manager icon named '%s' will be created in the '%s' group."
+    IDS_SHORTCUT_FINISH_WIN95 
+                            "That's it!  When you press the Finish button, a shortcut icon named '%s' will be created in the '%s' folder.\n\nThe '%s' folder is located in the Start menu under 'Programs'."
+    IDS_SHORTCUT_INVALID_SERVER_PORT "The port number may not be zero."
+    IDS_SHORTCUT_INVALID_SERVER_HOST 
+                            "In order to create a shortcut, you must supply a host name."
+    IDS_SHORTCUT_INVALID_SERVER_CAPTION "Invalid Server"
+    IDS_SHORTCUT_INVALID_SERVER_TYPE 
+                            "In order to create a shortcut, you must supply a server type."
+    IDS_ALL_TYPES           "<All world types>"
+    IDS_SHORTCUT_INVALID_NAME "You must supply a name for the shortcut."
+    IDS_MENU_WORLD_LOGGING  "Log to a file"
+    IDS_MENU_WORLD_LOGGING_TXT "Save incoming text to a specified file"
+    IDS_MENU_WORLD_LOGGING_OFF_TXT "Stop saving incoming text to a file"
+    IDS_HINT_SEND_MAIL      "Send mail to %s"
+    IDS_LINES_OUT_OF_RANGE  "Please select a height of between 1 and %d lines."
+    IDS_TINTIN_NO_FILE      "<no file>"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OPEN_TINTIN_TITLE   "Select a TinTin command file"
+    IDS_OPEN_TINTIN_FILTER  "TinTin command file (*.txt)|*.txt|All Files (*.*)|*.*||"
+    IDS_TINTIN_KILLALL      "# Lists cleared."
+    IDS_TINTIN_WIZLIST      "# The wizards list is in the Pueblo about box (under the Help menu item.)"
+    IDS_TINTIN_SPEEDWALK_ON "# Speedwalk is now on."
+    IDS_TINTIN_SPEEDWALK_OFF "# Speedwalk is now off."
+    IDS_TINTIN_STARTQUOTES_ON "# Initial double-quotes are now processed."
+    IDS_TINTIN_STARTQUOTES_OFF 
+                            "# Initial double-quotes are sent to the world."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_VERBATIM_ON  "# All text is now sent 'as is'."
+    IDS_TINTIN_VERBATIM_OFF "# Text is no longer sent 'as is'."
+    IDS_TINTIN_VERBATIM_PARAM_ERR 
+                            "# Error - Parameter to #verbatim must be 'on' or 'off'."
+    IDS_TINTIN_ECHO_ON      "# Echo is now on."
+    IDS_TINTIN_ECHO_OFF     "# Echo is now off."
+    IDS_TINTIN_IGNORE_ON    "# Actions are ignored from now on."
+    IDS_TINTIN_IGNORE_OFF   "# Actions are no longer ignored."
+    IDS_TINTIN_ACTION_LIST_HDR "# Defined actions:"
+    IDS_TINTIN_ACTION_LIST_EMPTY "# No defined actions."
+    IDS_TINTIN_PATHDIR_LIST_HDR "# These path directions have been defined:"
+    IDS_TINTIN_PATHDIR_LIST_EMPTY "# No path directions have been defined."
+    IDS_TINTIN_NO_MATCHES   "# No match(es) found for {%s}."
+    IDS_TINTIN_NEW_ACTION   "# Ok.  {%s} now triggers {%s} at priority {%s}."
+    IDS_TINTIN_UNACTION     "# Ok.  {%s} is no longer a trigger."
+    IDS_TINTIN_UNACTION_PARAM_ERR 
+                            "# Error - Please specify the name of the trigger to delete."
+    IDS_TINTIN_UNALIAS_PARAM_ERR 
+                            "# Error - Please specify the name of the alias to delete."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_ACTION_ECHO_FMT "[ACTION: %s]"
+    IDS_TINTIN_LOG_ERROR    "# Error - The specified file name is not valid (%s)."
+    IDS_TINTIN_LOG_ON       "# Now logging to the file %s."
+    IDS_TINTIN_LOG_OFF      "# No longer logging to a file."
+    IDS_TINTIN_MARK         "# Beginning of path marked."
+    IDS_TINTIN_PATH_HDR     "# Path:  "
+    IDS_TINTIN_VAR_LIST_HDR "# Defined variables:"
+    IDS_TINTIN_NEW_PATHDIR  "# Ok.  {%s} is marked in #path.  {%s} is it's #return."
+    IDS_TINTIN_SAVEPATH_NO_NAME "# Error - An alias name was not specified."
+    IDS_TINTIN_SAVEPATH_EMPTY "# Error - There is no path to save."
+    IDS_TINTIN_SAVEPATH_FMT "%calias {%s}"
+    IDS_TINTIN_PATH_EMPTY   "# Error - There is no path."
+    IDS_TINTIN_UNPATH_OK    "# Ok.  Forgot the last move (%s)."
+    IDS_TINTIN_NO_FILE_NAME "# Error - You must specify a file name."
+    IDS_TINTIN_FILE_OPEN_ERR "# Error - The file '%s' couldn't be opened."
+    IDS_TINTIN_WRITE_OK     "# Ok.  The commands were written to {%s}."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_ZAP          "# Zzzzzzzaaaaaaaapppp!  Let's get outta here!"
+    IDS_TINTIN_LOOP_PARAM_ERR 
+                            "# Error - Wrong number of arguments in loop command."
+    IDS_TINTIN_VAR_LIST_EMPTY "# No defined variables."
+    IDS_TINTIN_NEW_VAR      "# Ok.  $%s is now set to {%s}."
+    IDS_TINTIN_UNVAR_PARAM_ERR 
+                            "# Error - Please specify the name of the variable to delete."
+    IDS_TINTIN_UNVAR_OK     "# Ok.  $%s is no longer defined."
+    IDS_TINTIN_CASE_PARAM_ERR "# Syntax:  #%s {variable} {text}"
+    IDS_TINTIN_PLAY_EMPTY   "# Error - You must specify a wave file to play."
+    IDS_TINTIN_PLAY_ERROR   "# Error - The sound file could not be played (%s)."
+    IDS_TINTIN_VERSION      "# You are using TinTin++ %s (the Pueblo edition)"
+    IDS_TINTIN_END          "# You have to enter '#end' - no more and no less - to terminate."
+    IDS_TINTIN_END_VERIFY   "Are you sure you wish to quit Pueblo?  (This will cause you to terminate your connection to the world.)"
+    IDS_TINTIN_END_VERIFY_TITLE "Warning!"
+    IDS_TINTIN_MESSAGE_ERR  "# Error - Invalid message type to toggle {%s}."
+    IDS_TINTIN_MESSAGE_OK   "# Ok.  Messages concerning %s are now %s."
+    IDS_TINTIN_SUBS_ON      "# Substitutions will no longer be ignored."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_SUBS_OFF     "# Substitutions will now be ignored."
+    IDS_TINTIN_TICK_EVENT   "# TICK. (%s)"
+    IDS_TINTIN_TICK_EVENT_10 "# 10 seconds to TICK. (%s)"
+    IDS_TINTIN_TICK_OFF     "# Error - The ticker is currently off.  Use #tickon to turn it back on."
+    IDS_TINTIN_TICK_LEFT_FMT "There are now %d seconds until the next tick."
+    IDS_TINTIN_TICK_SET_OFF "# The ticker is now off."
+    IDS_TINTIN_TICK_SET_ON  "# The ticker is now on (%d seconds)."
+    IDS_TINTIN_TICK_ALLOC_ERR 
+                            "# Error - There are no system timers available."
+    IDS_TINTIN_TICK_SIZE_SET "# Ok.  New tick size set."
+    IDS_TINTIN_TICK_SIZE_SET_ERR 
+                            "# Error - Please specify a number of seconds from 1-%d."
+    IDS_TINTIN_TICK_SIZE_SET_USAGE 
+                            "# Error - Please specify the number of seconds per tick."
+    IDS_TINTIN_RANDOM_USAGE "# Syntax:  #random {variable} {maximum}"
+    IDS_TINTIN_RANDOM_SIZE_ERR 
+                            "# Error - Please enter a value between 1 and %ld."
+    IDS_TINTIN_MBOX_TITLE   "Message"
+    IDS_PERSONAL_LIST_HOMEPAGE_PREFIX "<font size=-1>[<a href="""
+    IDS_PERSONAL_LIST_HOMEPAGE_SUFFIX 
+                            """ xch_hint=""Surf to this world's website"">Website</a>]</font>"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_TICK_KEY     "# The ticker key is currently {%s}."
+    IDS_TINTIN_TICK_KEY_SET "# Ok.  Ticker key set to {%s}."
+    IDS_TINTIN_SESSION_LIST_HDR "# The following sessions have been defined:"
+    IDS_TINTIN_SESSION_LIST_EMPTY "# Error - That session is not defined."
+    IDS_TINTIN_SESSION_PARAM_ERR 
+                            "# Error - Please specify the host name and port for the new session."
+    IDS_TINTIN_SESSION_PORT_ERR 
+                            "# Error - The port number must be a numeric value."
+    IDS_TINTIN_SUBS_LIST_HDR "# The following substitutes have been defined:"
+    IDS_TINTIN_SUBS_LIST_EMPTY "# No defined substitutes."
+    IDS_TINTIN_SUBS_OK      "#Ok.  {%s} now replaces {%s}."
+    IDS_TINTIN_GAG_OK       "#Ok.  {%s} is now gagged."
+    IDS_TINTIN_SUBS_MATCHES "# The following substitutes match {%s}:"
+    IDS_TINTIN_ACTION_MATCHES "# The following actions match {%s}:"
+    IDS_TINTIN_ALIAS_MATCHES "# The following aliases match {%s}:"
+    IDS_TINTIN_NEW_ALIAS    "# Ok.  {%s} aliases {%s}."
+    IDS_TINTIN_ALIAS_LIST_HDR "# Defined aliases:"
+    IDS_TINTIN_ALIAS_LIST_EMPTY "# No defined aliases."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_TINTIN_VAR_MATCHES  "# The following variables match {%s}:"
+    IDS_TINTIN_UNSUB_PARAM_ERR 
+                            "# Error - Please specify the substitution to delete."
+    IDS_TINTIN_UNGAG_OK     "# Ok.  {%s} is no longer gagged."
+    IDS_TINTIN_UNSUB_OK     "# Ok.  {%s} is no longer substituted."
+    IDS_TINTIN_SESSION_LIST_ITEM "     %-20s  %s"
+    IDS_TINTIN_SESSION_LIST_NAMELESS "<unnamed>"
+    IDS_TINTIN_SESSION_NAME_IN_USE 
+                            "# Error - A session already exists with the name {%s}."
+    IDS_TINTIN_UNKNOWN_CMD  "# Unknown command!  {%s}"
+    IDS_TINTIN_SESSION_NOT_CONNECTED 
+                            "# Error - The session {%s} is not connected to a world."
+    IDS_TINTIN_ALL_NO_SESSIONS 
+                            "# Error - There are no sessions that are connected to worlds."
+    IDS_TINTIN_NAME_OK      "# Ok.  This session is now named {%s}."
+    IDS_TINTIN_NAME_PARAM_ERR 
+                            "# Error - You must specify a name for the session."
+    IDS_TINTIN_VAR_NAME_ERR "# Error - Variable names may contain only letters, numbers, and underscores.  {%s}"
+    IDS_TINTIN_MATH_PARAM_ERR 
+                            "# Error - Please specify a variable name and an expression to evaluate."
+    IDS_MENU_QUICK_CONNECT  "QuickConnect..."
+    IDS_MENU_QUICK_CONNECT_TXT 
+                            "Quickly connect to a world using the host name and port"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_OFFLINE             "Offline"
+    IDS_ONLINE              "Online"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ONCONNECT_URL       "http://pueblo.sourceforge.net/events.php?e=connect&v=%s"
+    IDS_ONDISCONNECT_URL    "http://pueblo.sourceforge.net/events.php?e=disconnect&v=%s"
+    IDS_PUEBLOENHANCED_URL  "http://pueblo.sourceforge.net/events.php?e=enhanced&v=%s"
+    IDS_PUEBLO_CLIENT_110_FMT "PUEBLOCLIENT %s md5=""%s"""
+    IDS_RAW_DATA_PANE_NAME  "__xch_raw_data_pane_"
+    IDS_RAW_DATA_PANE_TITLE "Unformatted Data"
+    IDS_WARNING_OLD_PANE_FORMAT 
+                            "Using old xch_pane format.  See help file for new format."
+    IDS_CONNECT_STATUS_MSG  "Connecting to %s, port %d..."
+    IDS_LOOKUP_STATUS_MSG   "Looking up the address for %s..."
+    IDS_ERR_DNS_LOOKUP      "Pueblo wasn't able to locate the host named '%s'.\n\nThe machine does not have a DNS entry.  You may want to check the name and try again."
+    IDS_ERR_DNS_NETDOWN     "The host named '%s' could not be found in your domain database because of a network failure."
+    IDS_TINTIN_CHAR_BACKSLASH_ERR 
+                            "# Error - You cannot use the backslash ('\\' is used to escape entire lines.)"
+    IDS_TINTIN_CHAR_ERR     "# Error - Please specify a punctuation character, like # or /"
+    IDS_TINTIN_CHAR_OK      "# OK.  The TinTin command character is now {%c}"
+    IDS_TINTIN_RECURSE_ERR  "# Error - Your TinTin code seems to be recursing.  You probably have an alias that calls itself."
+    IDS_STATUS_WORLD_ADDED  "'%s' has been added to your personal world list"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_COPY            "Copy the selected text to the clipboard"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_COPY_TO_INPUT   "Copy the selected text to the input window"
+    ID_MENU_WORLD_ADD       "Add the current world to your personal list of worlds"
+END
+
+#endif    // English (NZ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,3 @@
+Pueblo may contain patented Lempel-Ziv-Welch (LZW) compression technology (in
+the GIF rendering code).  Use of this code without a proper Unisys license may
+be unlawful.

@@ -1,0 +1,981 @@
+//Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include <PbVersion.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include <PbVersion.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""res\\Chaco.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  \011// Standard components\r\n"
+    "#include ""afxprint.rc""\011// printing/print preview resources\r\n"
+    "\0"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Resource type definition
+//
+#ifndef HTML
+	#define HTML 23
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\idr_main.ico"
+IDR_SHORTCUT            ICON    DISCARDABLE     "res\\idr_sho2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New Pueblo window\tCtrl+N",  ID_FILE_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "&Close\tCtrl+W",              ID_FILE_CLOSE
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Preferences...",              ID_EDIT_PREFERENCES
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Previous",                    ID_VIEW_PREVIOUS
+        MENUITEM "Stop &Loading\tEsc",          ID_VIEW_STOP_LOADING
+        MENUITEM SEPARATOR
+        MENUITEM "Toggle pane orientation",     ID_VIEW_TOGGLE_ORIENTATION
+        MENUITEM "Swap panes",                  ID_VIEW_SWAP_PANES
+        MENUITEM SEPARATOR
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Trace window",                ID_VIEW_TRACE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Index",                      ID_HELP_INDEX
+        MENUITEM "&Using Help",                 ID_HELP_USING
+        MENUITEM SEPARATOR
+        MENUITEM "&About Pueblo...",            ID_HELP_ABOUT_PUEBLO
+        MENUITEM "&Register Pueblo...",         ID_HELP_REGISTER_PUEBLO
+        MENUITEM SEPARATOR
+        MENUITEM "Submit &world list entry...", 
+                                                ID_HELP_PUEBLO_WORLD_LIST_ENTRY
+				MENUITEM "Submit &feedback...", 				ID_HELP_PUEBLO_BUG_REPORT
+
+        MENUITEM SEPARATOR
+        MENUITEM "About &Chaco...",             ID_HELP_ABOUT_CHACO
+        MENUITEM "About U&E...",								ID_HELP_ABOUT_UE
+        MENUITEM "More about Pueblo...",        ID_HELP_MORE_PUEBLO
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_ESCAPE,      ID_VIEW_STOP_LOADING,   VIRTKEY, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "W",            ID_FILE_CLOSE,          VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SPLASH DIALOG DISCARDABLE  0, 0, 165, 182
+STYLE DS_MODALFRAME | WS_POPUP
+FONT 9, "Arial"
+BEGIN
+    CTEXT           "Pueblo/UE\231 version %s",IDC_VERSION_STRING,0,112,165,12,
+                    NOT WS_GROUP
+    CTEXT           "Copyright \251 2001-03, Ultra Enterprises\nOriginal ver \251 1996-1998, Andromedia Inc.",
+                    IDC_COPYRIGHT1,0,126,165,16,NOT WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,5,147,155,1
+    CONTROL         "",IDC_CHACO_LOGO,"Button",BS_OWNERDRAW | WS_DISABLED | 
+                    WS_TABSTOP,47,5,70,100
+    CTEXT           "This software contains trade secrets of Andromedia Incorporated.  Terms and conditions of use, duplication, and disclosure are detailed in the About box.",
+                    IDC_COPYRIGHT2,5,152,155,30
+END
+
+IDD_LOGIN DIALOG DISCARDABLE  0, 0, 260, 85
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Pueblo Login"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&User Name :",IDC_STATIC,10,12,45,8,NOT WS_GROUP
+    COMBOBOX        IDC_LOGIN_USERNAME,60,10,158,63,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Password :",IDC_STATIC,10,30,45,8,NOT WS_GROUP
+    EDITTEXT        IDC_LOGIN_PASSWORD,60,28,145,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    CONTROL         "Remember password",IDC_LOGIN_REMEMBER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,60,47,85,10
+    DEFPUSHBUTTON   "Sign on",IDC_LOGIN_SIGN_ON,8,65,50,14
+    PUSHBUTTON      "&Create New Account",IDC_LOGIN_NEW_ACCOUNT,65,65,73,14
+    PUSHBUTTON      "Cancel",IDCANCEL,145,65,50,14
+    PUSHBUTTON      "&Help",ID_HELP,202,65,50,14
+END
+
+IDD_PREF_DEBUG DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Debug"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Don't download modules",IDC_USE_LOCAL_MODULES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,10,100,10
+END
+
+IDD_ABOUT_DISCLAIMER DIALOGEX DISCARDABLE  0, 0, 250, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Privacy"
+FONT 10, "Arial"
+BEGIN
+    CONTROL         "",IDC_STATIC_PLACEHOLDER,"Static",SS_SIMPLE | NOT 
+                    WS_VISIBLE | WS_GROUP,10,5,245,115
+END
+
+IDD_ABOUT_TEAM DIALOGEX DISCARDABLE  0, 0, 250, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Chaco Team"
+FONT 10, "Arial"
+BEGIN
+    CONTROL         "",IDC_CHACO_LOGO,"Button",BS_OWNERDRAW | WS_DISABLED | 
+                    WS_TABSTOP,5,10,80,105
+    LTEXT           "The Chaco Pueblo Team:",IDC_TEAM_TITLE,105,10,135,12,SS_NOPREFIX
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,105,25,139,1
+    RTEXT           "",IDC_NAME_1,140,33,100,12,SS_NOPREFIX
+    RTEXT           "",IDC_NAME_2,140,50,100,12,SS_NOPREFIX
+    RTEXT           "",IDC_NAME_3,140,67,100,12,SS_NOPREFIX
+    RTEXT           "",IDC_NAME_4,140,84,100,12,SS_NOPREFIX
+    RTEXT           "",IDC_NAME_5,140,101,100,12,SS_NOPREFIX
+END
+
+IDD_PREF_FONT DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Fonts"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Proportional Font:",IDC_STATIC,10,12,75,8
+    LTEXT           "Times New Roman",IDC_STAT_PROPORTIONAL,91,12,83,8
+    PUSHBUTTON      "Change...",IDC_CHOOSE_PROPORTIONAL,181,9,49,14
+    RTEXT           "Fixed Font:",IDC_STATIC,10,32,75,8
+    LTEXT           "Terminal",IDC_STAT_FIXED,91,32,83,8
+    PUSHBUTTON      "Change...",IDC_CHOOSE_FIXED,181,29,49,14
+END
+
+IDD_ACCOUNT_PERSONAL DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Personal"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Tell us a little personal information about yourself.  Don't worry, we won't tell anyone your birthday.",
+                    IDC_STATIC,10,10,220,16
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | WS_GROUP,10,32,
+                    240,1
+    RTEXT           "Birthdate %s:",IDC_BIRTHDAY_LABEL,5,44,76,8
+    EDITTEXT        IDC_EDIT_BIRTHDATE,84,42,44,13,ES_AUTOHSCROLL | WS_GROUP
+    GROUPBOX        "Gender",IDC_NAME_GENDER,145,38,80,40,WS_GROUP
+    CONTROL         "Female",IDC_RADIO_SEX_FEMALE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,155,51,60,10
+    CONTROL         "Male",IDC_RADIO_SEX_MALE,"Button",BS_AUTORADIOBUTTON,
+                    155,63,60,10
+    RTEXT           "(Please enter the full four-digit year.)",IDC_STATIC,5,
+                    58,123,8
+END
+
+IDD_ACCOUNT_NAME DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Name"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Please enter the name you use in real life.",IDC_STATIC,
+                    10,10,220,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,10,25,240,1
+    RTEXT           "First:",IDC_NAME_FIRST,5,37,23,8
+    EDITTEXT        IDC_EDIT_FIRST_NAME,33,35,99,13,ES_AUTOHSCROLL
+    RTEXT           "Middle Initial:",IDC_NAME_MIDDLE,135,38,49,8,NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_EDIT_MIDDLE_NAME,187,35,24,13,ES_AUTOHSCROLL
+    RTEXT           "Last:",IDC_NAME_LAST,5,54,23,8,NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_LAST_NAME,33,52,99,13,ES_AUTOHSCROLL
+END
+
+IDD_ACCOUNT_ADDRESS DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Address"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "Please enter your postal address and email address.  And don't worry, we won't sell your name to another company or bury you in junk mail.", 
+                    -1, 10, 10, 235, 16
+    LTEXT           "If it makes you feel better, you don't even need to enter your street address (but we would like to know your city, etc).  We're not going to use it, anyway! :)", 
+                    -1, 10, 27, 235, 16
+    CONTROL         "", -1, "Static", SS_BLACKFRAME, 10, 46, 240, 1
+    RTEXT           "Street:", IDC_NAME_STREET, 6, 53, 27, 8
+    EDITTEXT        IDC_EDIT_STREET, 37, 51, 127, 13, ES_AUTOHSCROLL
+    RTEXT           "Apt:", IDC_NAME_APT, 168, 53, 22, 8, NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_APT, 193, 51, 31, 13, ES_AUTOHSCROLL
+    RTEXT           "City:", IDC_NAME_CITY, 6, 70, 27, 8, NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_CITY, 37, 68, 69, 13, ES_AUTOHSCROLL
+    RTEXT           "State/Province:", IDC_NAME_STATE, 107, 70, 56, 8, NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_EDIT_STATE, 167, 68, 57, 13, ES_AUTOHSCROLL
+    RTEXT           "Zip:", IDC_NAME_ZIP, 6, 87, 27, 8, NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_ZIP, 37, 85, 57, 13, ES_AUTOHSCROLL
+    RTEXT           "Country:", IDC_NAME_COUNTRY, 107, 87, 56, 8, NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_EDIT_COUNTRY, 167, 85, 57, 13, ES_AUTOHSCROLL
+    CONTROL         "", -1, "Static", SS_BLACKFRAME, 10, 103, 240, 1
+    RTEXT           "EMail:", IDC_NAME_EMAIL, 5, 109, 27, 8
+    EDITTEXT        IDC_EDIT_EMAIL, 36, 107, 187, 13, ES_AUTOHSCROLL
+END
+
+IDD_PREF_CACHE DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Cache "
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "&Disk Cache:",IDC_STATIC,3,18,68,8
+    EDITTEXT        IDC_CACHE_SIZE,75,16,35,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Clear Cache",IDC_CLR_CACHE,179,15,61,14
+    RTEXT           "Disk Cache Di&rectory:",IDC_STATIC,3,42,68,8
+    EDITTEXT        IDC_CACHE_DIR,75,40,165,13,ES_AUTOHSCROLL
+    LTEXT           "Kilobytes",IDC_STATIC,114,18,37,9
+    RTEXT           "Verify Documents:",IDC_STATIC,3,64,68,8
+    CONTROL         "&Once per Session",IDC_VRFY_SESSION,"Button",
+                    BS_AUTORADIOBUTTON,75,63,70,10
+    CONTROL         "&Every Time",IDC_VRFY_EVERYTIME,"Button",
+                    BS_AUTORADIOBUTTON,150,63,50,10
+    CONTROL         "&Never",IDC_VRFY_NEVER,"Button",BS_AUTORADIOBUTTON,205,
+                    63,35,10
+END
+
+IDD_NETWORK DIALOG DISCARDABLE  0, 0, 250, 100
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Network"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "Connections: ",IDC_STATIC,10,18,45,8
+    EDITTEXT        IDC_MAX_CONN,60,15,31,14,ES_AUTOHSCROLL
+    LTEXT           "(Maximum number of simultaneous network connections)",
+                    IDC_STATIC,100,14,139,17
+END
+
+IDD_LIC_AGREEMENT DIALOG DISCARDABLE  0, 0, 300, 250
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Pueblo/UE License Agreement"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "&Accept",IDOK,92,230,50,14
+    PUSHBUTTON      "Reject",IDCANCEL,158,230,50,14
+    CONTROL         "",IDC_TEXT_PLACEHOLDER,"Static",SS_BLACKFRAME,5,5,290,
+                    215
+END
+
+IDD_VERIFY_PASSWORD DIALOG DISCARDABLE  0, 0, 260, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Pueblo Login"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Type it again:",IDC_STATIC,10,48,49,8,NOT WS_GROUP
+    EDITTEXT        IDC_LOGIN_PASSWORD_VERIFY,62,46,145,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    PUSHBUTTON      "Okay",IDOK,39,75,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,105,75,50,14
+    PUSHBUTTON      "&Help",ID_HELP,171,75,50,14
+    CTEXT           "Please type your password again to ensure that you typed it correctly.",
+                    IDC_STATIC,0,10,259,8
+    LTEXT           "&Password :",IDC_STATIC,10,30,49,8,NOT WS_GROUP
+    EDITTEXT        IDC_LOGIN_PASSWORD,62,28,145,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+END
+
+IDD_CLIENT_OUTDATED DIALOG DISCARDABLE  0, 0, 342, 148
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Outdated Pueblo Client"
+FONT 8, "MS Sans Serif"
+BEGIN
+		DEFPUSHBUTTON   "Go to &Update Site",IDC_UPDATE_NOW,251,126,80,14,WS_GROUP
+    PUSHBUTTON      "&Ask me later",IDC_UPDATE_LATER,167,126,80,14
+    PUSHBUTTON      "&Shutdown",IDC_SHUTDOWN,82,126,80,14
+    PUSHBUTTON      "&Help",IDHELP,11,126,50,14
+    LTEXT           "A new version of Pueblo/UE has been released, and your current version is now out of date.  You can elect to shut down Pueblo/UE and update immediately, continue using your current version, or just close Pueblo/UE without going to the website.",
+                    IDC_STATIC,11,10,320,30
+    EDITTEXT        IDC_EDIT_REASON,11,44,320,74,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL | WS_GROUP
+END
+
+
+IDD_ABOUT_BOX DIALOGEX DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Pueblo"
+FONT 10, "Arial"
+BEGIN
+    CTEXT           "Original Pueblo copyright \251 1996,\nby Andromedia Incorporated.",
+                    IDC_COPYRIGHT1,105,38,150,16,SS_NOPREFIX
+    CTEXT           "Pueblo/UE copyright \251 2001-03,\nby Ultra Enterprises",
+                    IDC_COPYRIGHT2,105,56,150,16,SS_NOPREFIX
+    CTEXT           "All rights reserved.",
+                    IDC_COPYRIGHT3,105,74,150,8,SS_NOPREFIX
+    CTEXT           "RESTRICTED RIGHTS LEGEND",IDC_LEGEND,100,90,150,8,
+                    SS_NOPREFIX
+    CTEXT           "Use, duplication, or disclosure by the Government is subject to restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in Technical Data and Computer Software clause at DFARS 252.227-7013.",
+                    IDC_CLAUSE,105,99,150,40,SS_NOPREFIX
+    CONTROL         "",IDC_CHACO_LOGO,"Button",BS_OWNERDRAW | WS_TABSTOP,10,
+                    10,70,104
+    LTEXT           "Pueblo/UE",IDC_PROD_NAME,105,8,150,12,SS_NOPREFIX
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,105,23,150,1
+    RTEXT           "version number",IDC_STATIC_VERSION,105,25,150,8,
+                    SS_NOPREFIX
+END
+
+IDD_ABOUT_UE DIALOGEX 0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "UE"
+FONT 10, "Arial"
+BEGIN
+ CTEXT "Ultra Enterprises", IDC_PROD_NAME, 105,10,150,12, SS_CENTER | SS_NOPREFIX | WS_GROUP
+ CONTROL "", IDC_STATIC, "Static", SS_BLACKRECT | WS_CHILD | WS_VISIBLE, 105,25,150,1
+ CTEXT "The Pueblo/UE client is an Open Source release, produced by Ultra Enterprises.", -1, 105, 33, 150, 16, SS_CENTER | SS_NOPREFIX | WS_GROUP
+ CTEXT "For more information, visit the\nPueblo/UE website:", -1, 105, 61, 150, 20, SS_CENTER | SS_NOPREFIX | WS_GROUP
+ CTEXT "http://pueblo.sf.net/", IDC_UE_WEBSITE, 105, 76, 150, 10, SS_CENTER | SS_NOPREFIX | WS_GROUP
+ CTEXT "Pueblo/UE was first released in April of 2002.", -1, 105, 97, 150, 20, SS_CENTER | SS_NOPREFIX | WS_GROUP
+ CONTROL "", IDC_UE_LOGO, "Button", BS_OWNERDRAW | WS_TABSTOP, 10, 10, 75, 56
+ CTEXT "Gavin Lambert\nuecasm@users.sf.net", -1, 10, 86, 75, 16
+END
+
+IDD_PREF_COLORS DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Colors"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Normal Text",IDC_SAMPLE_TEXT,"Button",BS_OWNERDRAW | 
+                    WS_DISABLED | WS_TABSTOP,182,42,50,12
+    CONTROL         "Links",IDC_SAMPLE_LINK,"Button",BS_OWNERDRAW | 
+                    WS_DISABLED | WS_TABSTOP,182,59,50,12
+    CONTROL         "Followed",IDC_SAMPLE_FLINK,"Button",BS_OWNERDRAW | 
+                    WS_DISABLED | WS_TABSTOP,182,76,50,12
+    CONTROL         "Prefetched",IDC_SAMPLE_PLINK,"Button",BS_OWNERDRAW | 
+                    WS_DISABLED | WS_TABSTOP,182,93,50,12
+    CONTROL         "",IDC_SAMPLE_BACK,"Button",BS_OWNERDRAW | WS_DISABLED | 
+                    WS_TABSTOP,180,20,55,90
+    GROUPBOX        "Sample",IDC_STATIC,175,7,65,108
+    RTEXT           "Background:",IDC_STATIC,10,27,65,8
+    COMBOBOX        IDC_COMBO_BACK_COLOR,81,25,83,100,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Text:",IDC_STATIC,10,44,65,8
+    COMBOBOX        IDC_COMBO_TEXT_COLOR,81,42,83,100,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Links:",IDC_STATIC,10,61,65,8
+    COMBOBOX        IDC_COMBO_LINK_COLOR,81,59,83,100,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Followed links:",IDC_STATIC,10,78,65,8
+    COMBOBOX        IDC_COMBO_FLINK_COLOR,81,76,83,100,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Prefetched links:",IDC_STATIC,10,95,65,8
+    COMBOBOX        IDC_COMBO_PLINK_COLOR,81,93,83,100,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+END
+
+/*
+IDD_ACCOUNT_CONNECTION DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Internet Connection"
+FONT 9, "Arial"
+BEGIN
+    GROUPBOX        "How do you connect to the Internet?",IDC_STATIC,10,10,
+                    130,100,WS_GROUP
+    CONTROL         "Direct internet service provider",IDC_RADIO_CONN_DIRECT,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,20,25,115,10
+    CONTROL         "University/academic connection",IDC_RADIO_CONN_SCHOOL,
+                    "Button",BS_AUTORADIOBUTTON,20,38,115,10
+    CONTROL         "Prodigy",IDC_RADIO_CONN_PRODIGY,"Button",
+                    BS_AUTORADIOBUTTON,20,51,115,10
+    CONTROL         "AOL",IDC_RADIO_CONN_AOL,"Button",BS_AUTORADIOBUTTON,20,
+                    64,115,10
+    CONTROL         "Compuserve",IDC_RADIO_CONN_COMPUSERVE,"Button",
+                    BS_AUTORADIOBUTTON,20,77,115,10
+    CONTROL         "Other",IDC_RADIO_CONN_OTHER,"Button",BS_AUTORADIOBUTTON,
+                    20,90,115,10
+    GROUPBOX        "And at what speed?",IDC_STATIC,150,10,100,100,WS_GROUP
+    CONTROL         "9600 Baud or slower",IDC_RADIO_CONN_9600,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,160,25,85,10
+    CONTROL         "14400 Baud",IDC_RADIO_CONN_144,"Button",
+                    BS_AUTORADIOBUTTON,160,38,85,10
+    CONTROL         "28800 Baud",IDC_RADIO_CONN_288,"Button",
+                    BS_AUTORADIOBUTTON,160,51,85,10
+    CONTROL         "ISDN",IDC_RADIO_CONN_ISDN,"Button",BS_AUTORADIOBUTTON,
+                    160,64,85,10
+    CONTROL         "Fractional T1",IDC_RADIO_CONN_FRACT_T1,"Button",
+                    BS_AUTORADIOBUTTON,160,77,85,10
+    CONTROL         "T1 or faster",IDC_RADIO_CONN_T1,"Button",
+                    BS_AUTORADIOBUTTON,160,89,85,10
+END
+*/
+IDD_ACCOUNT_CONNECTION DIALOG 0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Internet Connection"
+FONT 9, "Arial"
+{
+ LTEXT "How do you connect to the Internet?", IDC_STATIC, 50, 22, 150, 8
+ COMBOBOX IDC_COMBO_CONN_HOW, 60, 37, 120, 84, CBS_DROPDOWNLIST | WS_TABSTOP
+ LTEXT "And at what speed?", IDC_STATIC, 50, 65, 150, 8
+ COMBOBOX IDC_COMBO_CONN_SPEED, 60, 81, 120, 84, CBS_DROPDOWNLIST | WS_TABSTOP
+}
+
+IDD_ACCOUNT_SURVEY1 DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Survey"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "How did you find out about Pueblo?",IDC_STATIC,10,10,
+                    240,8
+    CONTROL         "I saw a pointer to your page on the Web",
+                    IDC_RADIO_POINTER,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    20,22,230,10
+    CONTROL         "From a magazine article",IDC_RADIO_MAG_ARTICLE,"Button",
+                    BS_AUTORADIOBUTTON,20,34,230,10
+    CONTROL         "From a friend",IDC_RADIO_FRIEND,"Button",
+                    BS_AUTORADIOBUTTON,20,46,230,10
+    CONTROL         "From a newsgroup article",IDC_RADIO_NEWS_ARTICLE,
+                    "Button",BS_AUTORADIOBUTTON,20,58,230,10
+    CONTROL         "From a mailing list article",IDC_RADIO_LIST_ARTICLE,
+                    "Button",BS_AUTORADIOBUTTON,20,70,230,10
+    CONTROL         "Other",IDC_RADIO_OTHER,"Button",BS_AUTORADIOBUTTON,20,
+                    82,230,10
+    RTEXT           "How?",IDC_STATIC_HOW,10,100,95,8
+    EDITTEXT        IDC_EDIT_ADDITIONAL_INFO,110,98,130,12,ES_AUTOHSCROLL | 
+                    WS_GROUP
+END
+
+IDD_ACCOUNT_SURVEY2 DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Survey"
+FONT 9, "Arial"
+BEGIN
+	LTEXT "Chaco was accepting advertising to help pay for further development of the free client.  We're interested in how you feel about this.  Here are some options:", IDC_STATIC, 10,10,240,24
+	CONTROL "Advertising doesn't bug me.  Go for it.", IDC_RADIO_SURVEY_GOFORIT, "Button", BS_AUTORADIOBUTTON | WS_GROUP, 20,42,230,10
+	CONTROL "Advertising bugs me.  I'd donate some money to aid", IDC_RADIO_SURVEY_WILLPAY, "Button", BS_AUTORADIOBUTTON, 20,55,230,10
+	LTEXT "development, and avoid the advertising.", IDC_STATIC, 30,65,220,8, NOT WS_GROUP
+	CONTROL "Advertising bugs me, but I don't have a measly few bucks", IDC_RADIO_SURVEY_WONTPAY, "Button", BS_AUTORADIOBUTTON, 20,75,230,10
+	LTEXT "to my name.  At least not for you.", IDC_STATIC, 30,85,220,8, NOT WS_GROUP
+END
+
+IDD_ACCOUNT_INTRO DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "This is the Pueblo registration wizard.  In order to register you, we need to ask a few questions.",
+                    IDC_STATIC,10,10,210,16
+    LTEXT           "The information we're collecting is to help us make Pueblo a better product for you.  We won't share your information with others, except in statistical form.",
+                    IDC_STATIC,10,32,210,24
+    LTEXT           "You must register your copy of Pueblo within 30 days of when you start using it.  Don't worry, though... it won't take long to go through the registration wizard.",
+                    IDC_STATIC,10,62,210,32
+END
+
+IDD_ACCOUNT_INCOME DIALOG DISCARDABLE  0, 0, 260, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Income"
+FONT 9, "Arial"
+BEGIN
+    LTEXT           "What is your current household income in U.S. dollars?",
+                    IDC_STATIC,10,10,220,8
+    CONTROL         "I live in a box",IDC_RADIO_IN_A_BOX,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,20,25,100,10
+    CONTROL         "Under $15,000",IDC_RADIO_UNDER_15,"Button",
+                    BS_AUTORADIOBUTTON,20,37,100,10
+    CONTROL         "$15,000 to $24,999",IDC_RADIO_15_25,"Button",
+                    BS_AUTORADIOBUTTON,20,49,100,10
+    CONTROL         "$25,000 to $34,999",IDC_RADIO_25_35,"Button",
+                    BS_AUTORADIOBUTTON,20,61,100,10
+    CONTROL         "$35,000 to $49,999",IDC_RADIO_35_50,"Button",
+                    BS_AUTORADIOBUTTON,20,73,100,10
+    CONTROL         "$50,000 to $74,999",IDC_RADIO_50_75,"Button",
+                    BS_AUTORADIOBUTTON,125,25,100,10
+    CONTROL         "$75,000 to $99,999",IDC_RADIO_75_100,"Button",
+                    BS_AUTORADIOBUTTON,125,37,100,10
+    CONTROL         "$100,000 to $149,999",IDC_RADIO_100_150,"Button",
+                    BS_AUTORADIOBUTTON,125,49,100,10
+    CONTROL         "$150,000 or more",IDC_RADIO_OVER_150,"Button",
+                    BS_AUTORADIOBUTTON,125,61,100,10
+    CONTROL         "I am Bill Gates",IDC_RADIO_BILL_GATES,"Button",
+                    BS_AUTORADIOBUTTON,125,73,100,10
+    CONTROL         "I'd rather not say",IDC_RADIO_NO_ANSWER2,"Button",
+                    BS_AUTORADIOBUTTON,125,85,100,10
+END
+
+IDD_SELECT_WEB_BROWSER_95 DIALOG DISCARDABLE  36, 24, 272, 40
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+FONT 8, "Helv"
+BEGIN
+    PUSHBUTTON      "&Use Internal",IDC_INTERNAL,222,20,50,14
+    LTEXT           "",stc32,0,0,272,20,NOT WS_VISIBLE
+END
+
+IDD_SELECT_WEB_BROWSER DIALOG DISCARDABLE  36, 24, 264, 134
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select a web browser application"
+FONT 8, "Helv"
+BEGIN
+    LTEXT           "File &Name:",1090,6,6,76,9
+    EDITTEXT        1152,6,16,90,12,ES_AUTOHSCROLL | ES_OEMCONVERT
+    LISTBOX         1120,6,32,90,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Directories:",-1,110,6,92,9
+    LTEXT           "",1088,110,18,92,9,SS_NOPREFIX
+    LISTBOX         1121,110,32,92,68,LBS_SORT | LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_DISABLENOSCROLL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "&Read Only",1040,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,6,91,50,12
+    LTEXT           "List Files of &Type:",1089,6,104,90,9
+    COMBOBOX        1136,6,114,90,36,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Dri&ves:",1091,110,104,92,9
+    COMBOBOX        1137,110,114,92,68,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | 
+                    CBS_AUTOHSCROLL | CBS_SORT | CBS_HASSTRINGS | WS_BORDER | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,208,6,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,208,23,50,14,WS_GROUP
+    PUSHBUTTON      "&Use Internal",IDC_INTERNAL,208,40,50,14
+    PUSHBUTTON      "&Help",1038,208,84,50,14,WS_GROUP
+    PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
+END
+
+IDD_PREF_APPS DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Apps"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Supporting Applications",IDC_STATIC,5,8,240,44
+    PUSHBUTTON      "Web Browser:",IDC_BROWSE,15,25,55,14
+    LTEXT           "<Internal Web Browser>",IDC_STATIC_BROWSER,80,28,160,8
+END
+
+IDD_PREF_PROXIES DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Proxies"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "A network proxy is a conduit between your computer and the Internet and is used to access the Internet through a firewall.  If you have a direct connection to the Internet, then you do not need to configure proxies.",
+                    IDC_STATIC,10,10,230,24
+    CONTROL         "No proxies",IDC_RADIO_NO_PROXIES,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,20,40,110,10
+    CONTROL         "Use the following proxies:",IDC_RADIO_MANUAL,"Button",
+                    BS_AUTORADIOBUTTON,20,55,110,10
+    GROUPBOX        "",IDC_STATIC,30,65,202,70,WS_GROUP
+    LTEXT           "&HTTP Proxy:",IDC_STATIC_HTTP_PROXY,35,77,46,8
+    EDITTEXT        IDC_EDIT_HTTP_PROXY,85,75,85,13,ES_AUTOHSCROLL | 
+                    WS_GROUP
+    LTEXT           "Port:",IDC_STATIC_HTTP_PORT,173,77,20,8
+    EDITTEXT        IDC_EDIT_HTTP_PORT,196,75,25,13,ES_AUTOHSCROLL | 
+                    WS_GROUP
+    LTEXT           "&FTP Proxy:",IDC_STATIC_FTP_PROXY,36,97,46,8
+    EDITTEXT        IDC_EDIT_FTP_PROXY,85,95,85,13,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Port:",IDC_STATIC_FTP_PORT,173,97,20,8
+    EDITTEXT        IDC_EDIT_FTP_PORT,196,95,25,13,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "SOC&KS Proxy:",IDC_STATIC_SOCKS_PROXY,35,117,46,8
+    EDITTEXT        IDC_EDIT_SOCKS_PROXY,85,115,85,13,ES_AUTOHSCROLL | 
+                    WS_GROUP
+    LTEXT           "Port:",IDC_STATIC_SOCKS_PORT,173,117,20,8
+    EDITTEXT        IDC_EDIT_SOCKS_PORT,196,115,25,13,ES_AUTOHSCROLL | 
+                    WS_GROUP
+END
+
+IDD_PREF_TRACE DIALOG DISCARDABLE  0, 0, 250, 150
+STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Trace"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "This page allows you to select what sorts of output you will see when the 'trace' window is open.  (You can open the trace window by selecting 'Trace window' from the 'View' menu.)",
+                    IDC_STATIC,10,10,230,24
+    CONTROL         "Unformatted text from the world",IDC_CHECK_HTML,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,45,210,10
+    CONTROL         "Errors",IDC_CHECK_ERRORS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,57,109,10
+    CONTROL         "Miscellaneous messages",IDC_CHECK_MISC_ERRS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,81,134,10
+    CONTROL         "Warnings",IDC_CHECK_WARNINGS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,20,69,98,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERS_CLIENT_BINARY
+ PRODUCTVERSION VERS_CLIENT_BINARY
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "140904b0"
+        BEGIN
+            VALUE "CompanyName", VERS_CLIENT_COMPANY
+            VALUE "FileDescription", "Pueblo/UE MU* client\0"
+            VALUE "FileVersion", VERS_CLIENT_TEXT
+            VALUE "InternalName", "PUEBLO\0"
+            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
+            VALUE "OriginalFilename", "Pueblo.exe\0"
+            VALUE "ProductName", VERS_CLIENT_PRODUCT
+            VALUE "ProductVersion", VERS_CLIENT_TEXT
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x1409, 1200
+    END
+END
+
+// NOTE: Don't forget to modify the version details in ChClInfo.cpp as well!
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+IDR_DISCLAIMER          HTML    DISCARDABLE     "res\\idr_disc.htm"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DIB
+//
+
+IDR_CHACO_DIB           DIB     DISCARDABLE     "res\\chaco.dib"
+IDR_UE_DIB              DIB     DISCARDABLE     "res\\uelogo.dib"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "Pueblo/UE\n\nPueblo\nPueblo Shortcuts (*.pbl)\n.PBL\nPueblo.Shortcut\nPueblo Shortcut"
+END
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Pueblo"
+    AFX_IDS_IDLEMESSAGE     "For Help, press F1"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new top level Pueblo window\nNew window"
+    ID_FILE_CLOSE           "Close the current Pueblo window (and terminate the connection)\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_EXIT             "Close all Pueblo windows and exit\nExit"
+    ID_HELP_INDEX           "List Help topics\nHelp Index"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+    IDS_TITLE_PREFS_DLG     "Preferences"
+    IDS_ABOUT_TITLE         "About..."
+    IDS_ACCOUNT_TITLE_FMT   "Account information for %s"
+    IDS_ACCOUNT_NAME_ERROR  "Please enter your first and your last name."
+    IDS_ACCOUNT_ADDRESS_ERROR 
+                            "Please fill in your address, including your city, state or province, and zip or postal code."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_PREFERENCES     "Change user preferences for the Pueblo client"
+    ID_VIEW_PREVIOUS        "Moves back to the previous page\nPrevious"
+    ID_VIEW_HORIZONTAL      "Use horizontally-oriented window panes\nUse horizontal panes"
+    ID_VIEW_ROTATE          "Switches the positions"
+    ID_VIEW_SWAP_PANES      "Switches panes when two panes are visible\nSwap panes"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ACCOUNT_INVALID     "The account name and password you gave Pueblo are not registered.  Please try again.  If you don't have an account with Pueblo, you may create one with the 'Create New Account' button."
+    IDS_ACCOUNT_IN_USE      "The account name that you've requested is in use.  Try another.  Be creative!  (Note that account names aren't case sensitive.)"
+    IDS_ACCOUNT_NOT_COMPLETE 
+                            "Please complete each page of the account information dialog."
+    IDS_PREV_PANE           "<< Back"
+    IDS_NEXT_PANE           "Next >>"
+    IDS_DONE                "Done"
+    IDS_TEAM_GLENN          "Glenn Crocker"
+    IDS_TEAM_JIM            "Jim Doubek"
+    IDS_TEAM_PRITHAM        "Pritham Shetty"
+    IDS_TEAM_RON            "Ron 'Coyote' Lussier"
+    IDS_TEAM_DAN            "Dan Greening"
+    IDS_INVALID_CACHE_DIR   "Disk cache directory: %s is invalid."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABORT_HTTP          "The connection to the  server was broken.  Please check your network connection. If they are correct, the server may be temporarily unavailable.  Please try again later."
+    IDS_INTERNAL_ERROR      "An internal error has occured due to a bad network connection.  Please check your network connection. If they are correct, the server may be temporarily unavailable.  Please try again later."
+    IDS_URL_NOT_FOUND       "The requested URL was not found.  This is an error in the code, and we're very sorry about it."
+    IDS_WEIRD_UPDATE_ERROR  "An unexplained error occurred while updating the Pueblo client.  The client will shut down."
+    IDS_SYS_COLOR           "(system color)"
+    IDS_TEXT_COLOR          "(default color)"
+    IDS_SURVEY_WHICH_SITE   "Which web site?"
+    IDS_SURVEY_WHICH_MAG    "Which magazine?"
+    IDS_SURVEY_WHICH_FRIEND "What is their email address?"
+    IDS_SURVEY_WHICH_NEWS   "Which newsgroup?"
+    IDS_SURVEY_WHICH_LIST   "Which mailing list?"
+    IDS_SURVEY_WHAT         "So, how did you find us?"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_VERTICAL        "Use vertically-oriented window panes\nVertical panes"
+    ID_VIEW_TOGGLE_ORIENTATION 
+                            "Toggle between horizontal and vertical window panes\nToggle pane orientation"
+    ID_HELP_BUGREPORT       "Submit problems and enhancement requests"
+    IDS_MENU_HELP_PUEBLO_BUG_REPORT "Submit bug or enhancement request"
+    ID_VIEW_STOP_LOADING    "Cancel all pending connects and HTTP transfers\nStop"
+    ID_HELP_MORE_PUEBLO     "Displays a lot more information about Pueblo\nMore Pueblo"
+    ID_HELP_ABOUT_CHACO     "Displays information about Chaco/Andromedia Incorporated.\nAndromedia"
+    ID_HELP_ABOUT_PUEBLO    "Display program information, version number and copyright\nAbout"
+    ID_HELP_REGISTER_PUEBLO "Product registration"
+    ID_HELP_PUEBLO_WORLD_LIST_ENTRY 
+                            "Submit new or updated information on a world for the Pueblo/UE world list\nSubmit world entry"
+    ID_VIEW_TRACE           "Displays a window containing data from the world and debugging messages"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ACCOUNT_WIZARD      "Account Wizard"
+    IDS_INCOME_NOT_A_BOX    "Cardboard box?  Luxury.  At Chaco we worked in a brown paper bag in a septic tank.   We get up at six o'clock in the morning, clean the bag, eat a crust of stale bread, and program for fourteen hours a day week in-week out.\n\n(Please select something else.)"
+    IDS_INCOME_NOT_BILL_GATES "You're not Bill Gates!  You're %s %s!"
+    IDS_INCOME_IS_BILL_GATES "Welcome to Pueblo, Mr. Gates.  Now be nice."
+    IDS_ACCOUNT_BIRTHDAY_ERROR 
+                            "You entered an incorrect birthdate.  Please enter the date you were born in the form '%s'."
+    IDS_PAGE_TITLE          "Web Tracker"
+    IDS_ACCOUNT_AGE_TOO_YOUNG 
+                            "C'mon.  You shouldn't be using Pueblo until you're at LEAST 2 years old!  Spend time time gurgling and burping, before you're too old!\n\n(Please enter your real birthday.)"
+    IDS_ACCOUNT_AGE_TOO_OLD "You're not really %d years old.  (The world record is just about 121 years.)  Please enter your real birthday."
+    IDS_OPEN_WEB_BROWSER_TITLE "Select a web browser application"
+    IDS_OPEN_WEB_BROWSER_FILTER 
+                            "Executable (*.exe )|*.exe|All Files (*.*)|*.*||"
+    IDS_WEB_BROWSER_INTERNAL "<Internal web browser>"
+    IDS_MAILTO_NOT_SUPPORTED 
+                            "You can only send electronic mail through Pueblo if you are using an external web browser such as NetManage WebSurfer or Netscape Navigator.\n\nYou can tell Pueblo to use an external browser by selecting the 'Apps' tab in the Preferences dialog box."
+    ID_SESSION_PANE         "                              "
+    ID_TIME_PANE            "                    "
+    ID_PROGRESS_PANE        "                                "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_UPDATE_URL          "http://pueblo.sourceforge.net/update.php?v=%s"
+    IDS_STARTUP_URL         "http://pueblo.sourceforge.net/events.php?e=startup&v=%s"
+    IDS_QUIT_URL            "http://pueblo.sourceforge.net/events.php?e=quit&v=%s"
+    IDS_REGISTER_URL        "http://pueblo.sourceforge.net/events.php?e=register&v=%s"
+    IDS_ABOUT_CHACO_URL     "http://pueblo.sf.net/about/chaco/"
+    IDS_ABOUT_PUEBLO_URL    "http://pueblo.sf.net/about/pueblo/"
+    IDS_ABOUT_UE_URL				"http://pueblo.sf.net/about/ue/"
+//    IDS_ABOUT_VRSCOUT_URL   "http://www.chaco.com/about/vrscout/"
+    IDS_FEEDBACK_URL        "http://pueblo.sf.net/bugs.php"
+    IDS_REGISTRATION_WARNING 
+                            "It has been more 30 days since the installation of Pueblo, to continue using Pueblo you must register now. You can register by selecting ""Register Pueblo"" under the help menu."
+    IDS_REGINFO_FILE        "_reginfo.txt"
+    IDS_REGISTER_AGAIN      "This copy has already been registered. Do you want to register again ?"
+    IDS_URL_WORLD_LIST_ENTRY "http://pueblo.sf.net/worlds2.php"
+    IDS_TITLE_OUTOFDATE     "Reminder"
+    IDS_MESSAGE_OUTOFDATE   "This version of Pueblo/UE is out of date.  You should update it as soon as possible.\r\n\r\nWould you like to visit the update site now?"
+END
+
+STRINGTABLE
+BEGIN
+	IDS_ACCOUNT_DIRECT, "Direct internet service provider"
+	IDS_ACCOUNT_UNI, "University/academic connection"
+	IDS_ACCOUNT_PRODIGY, "Prodigy"
+	IDS_ACCOUNT_AOL, "AOL"
+	IDS_ACCOUNT_COMPUSERVE, "Compuserve"
+	IDS_ACCOUNT_OTHER, "Other"
+	IDS_ACCOUNT_9600, "9600 bps or slower"
+	IDS_ACCOUNT_14400, "14400 bps"
+	IDS_ACCOUNT_28800, "28800 bps"
+	IDS_ACCOUNT_33600, "33600 bps"
+	IDS_ACCOUNT_56000, "56000 bps or faster"
+	IDS_ACCOUNT_DSL, "DSL (or ADSL)"
+	IDS_ACCOUNT_SAT, "Satellite"
+	IDS_ACCOUNT_ISDN, "ISDN"
+	IDS_ACCOUNT_PARTT1, "Fractional T1"
+	IDS_ACCOUNT_T1, "T1 or faster"
+	IDS_ACCOUNT_UNKNOWN, "Unknown"
+END
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "res\Chaco.rc2"  // non-Microsoft Visual C++ edited resources
+
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  	// Standard components
+#include "afxprint.rc"	// printing/print preview resources
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
