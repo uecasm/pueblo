@@ -24,19 +24,20 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL;ZLIB_INTERNAL"
 				RuntimeLibrary="3"
 				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\PbUtil32.pch"
+				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\PbUtil32.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -44,7 +45,7 @@
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="lz32.lib winmm.lib"
 				OutputFile="$(OutDir)\PbUtil32.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
@@ -84,8 +85,8 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL;ZLIB_INTERNAL"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
@@ -98,7 +99,8 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\PbUtil32.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -111,6 +113,7 @@
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
 				ProgramDatabaseFile="$(OutDir)\PbUtil32.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				BaseAddress="0x18000000"
 				ImportLibrary="$(OutDir)\PbUtil32.lib"/>
@@ -254,6 +257,9 @@
 			</File>
 			<File
 				RelativePath=".\PbUtil32.rc">
+			</File>
+			<File
+				RelativePath="res\PbUtil32.rc2">
 			</File>
 			<File
 				RelativePath="res\gray.pal">

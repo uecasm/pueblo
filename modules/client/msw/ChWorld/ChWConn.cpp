@@ -366,7 +366,7 @@ void ChAnsiState::Reset( ChString& strHTML )
 	}
 											/* ANSI reset sets the terminal to
 												white-on-black */
-	strHTML += "<body bgcolor=#000000>\n";
+	//strHTML += "<body bgcolor=#000000>\n";
 	ChooseDefaultColors(strHTML);
 }
 
@@ -855,7 +855,7 @@ void ChWorldConn::ParseIncomingData( ChString& strData, int iLen )
 	strData.ReleaseBuffer( iLen );
 	ASSERT( iLen == available );
 
-	if (0 < (available = m_mccp.pending()))
+	while (0 < (available = m_mccp.pending()))
 	{
 		// retrieving some decompressed text freed up some more, so read that in too
 		ChString additional;
@@ -2115,6 +2115,9 @@ void ChWorldConn::SetPuebloEnhanced( bool boolEnhanced,
 // End: ***
 
 // $Log$
+// Revision 1.3  2003/07/05 08:32:15  uecasm
+// Fix for MFC6 Format() incompatibility (affected send of TTYPE)
+//
 // Revision 1.2  2003/07/04 11:26:42  uecasm
 // Update to 2.60 (see help file for details)
 //

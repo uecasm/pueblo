@@ -9,7 +9,6 @@
 //
 #include "afxres.h"
 #include <dlgs.h>
-#include <PbVersion.h>
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -38,12 +37,12 @@ END
 BEGIN
     "#include ""afxres.h""\r\n"
     "#include <dlgs.h>\r\n"
-    "#include <PbVersion.h\r\n"
     "\0"
 END
 
 3 TEXTINCLUDE DISCARDABLE 
 BEGIN
+    "#include ""res\\ChSound.rc2""\r\n"
     "\r\n"
     "\0"
 END
@@ -185,49 +184,6 @@ BEGIN
 END
 
 
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION VERS_CLIENT_BINARY
- PRODUCTVERSION VERS_CLIENT_BINARY
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x40004L
- FILETYPE 0x2L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "140904b0"
-        BEGIN
-            VALUE "CompanyName", VERS_CLIENT_COMPANY
-            VALUE "FileDescription", "ChSound module\0"
-            VALUE "FileVersion", VERS_CLIENT_TEXT
-            VALUE "InternalName", "ChSound\0"
-            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
-            VALUE "OriginalFilename", "ChSound.dll\0"
-            VALUE "ProductName", VERS_CLIENT_PRODUCT
-            VALUE "ProductVersion", VERS_CLIENT_TEXT
-            VALUE "PuebloModule", "Pueblo/UE External Sound player module\0"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x1409, 1200
-    END
-END
-
-#endif    // !_MAC
-
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
@@ -250,6 +206,7 @@ END
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
+#include "res\ChSound.rc2"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -89,6 +89,7 @@ BEGIN_MESSAGE_MAP( ChPrefs, CPropertySheet )
 		ON_BN_CLICKED(IDOK, OnOK)
 		ON_BN_CLICKED(IDCANCEL, OnCancel)
 	ON_WM_CLOSE()
+	ON_WM_CREATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -96,6 +97,13 @@ END_MESSAGE_MAP()
 /*----------------------------------------------------------------------------
 	ChPrefs message handlers
 ----------------------------------------------------------------------------*/
+
+int ChPrefs::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	lpCreateStruct->style |= PSH_NOAPPLYNOW;
+	
+	return CPropertySheet::OnCreate(lpCreateStruct);
+}
 
 void ChPrefs::OnOK() 
 {											/* Grab the data for the current
@@ -137,6 +145,9 @@ void ChPrefs::OnClose()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:32  uecasm
 // Import of source tree as at version 2.53 release.
 //

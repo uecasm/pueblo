@@ -70,11 +70,14 @@ KeyMapEntry		ChKeyMapType::m_windowsKeyMap[] =
 								{ VK_NEXT, 0, ACTION_LOG_PAGE_DOWN, actLogPageDown },
 								{ VK_NEXT, ACTION_MOD_CONTROL, ACTION_LOG_END, actLogEnd },
 								{ 'T', ACTION_MOD_CONTROL, ACTION_TRANSPOSE, actTranspose },
-								{ 'P', ACTION_MOD_CONTROL, ACTION_HISTORY_PREV, actHistoryPrev },
-								{ 'N', ACTION_MOD_CONTROL, ACTION_HISTORY_NEXT, actHistoryNext },
 								{ VK_ESCAPE, 0, ACTION_DELETE_TEXT, actDeleteText },
 								{ VK_UP, 0, ACTION_CURSOR_UP, actCursorUp },
-								{ VK_DOWN, 0, ACTION_CURSOR_DOWN, actCursorDown } };
+								{ VK_DOWN, 0, ACTION_CURSOR_DOWN, actCursorDown },
+								{ VK_UP, ACTION_MOD_ALT, ACTION_HISTORY_PREV, actHistoryPrev },
+								{ VK_DOWN, ACTION_MOD_ALT, ACTION_HISTORY_NEXT, actHistoryNext },
+								{ VK_UP, ACTION_MOD_CONTROL, ACTION_CURSOR_UP_WITHINCMD, actCursorUpWithinCmd },
+								{ VK_DOWN, ACTION_MOD_CONTROL, ACTION_CURSOR_DOWN_WITHINCMD, actCursorDownWithinCmd },
+							};
 
 KeyMapEntry		ChKeyMapType::m_emacsKeyMap[] =
 							{	{ VK_RETURN, 0, ACTION_SEND, actSend },
@@ -198,6 +201,9 @@ void ChKeyMapType::CreateMap( ChKeyMap& keyMap )
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:09  uecasm
 // Import of source tree as at version 2.53 release.
 //

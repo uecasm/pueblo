@@ -912,13 +912,13 @@ int ChMainFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 	}
 	#endif	// defined( CH_MSW )
 
-	#if defined( WIN32 )
-	{
-		m_wndToolBar.EnableDocking( CBRS_ALIGN_ANY );
-		EnableDocking( CBRS_ALIGN_ANY );
-		DockControlBar( &m_wndToolBar );
-	}
-	#endif	// defined( WIN32 )
+	//#if defined( WIN32 )
+	//{
+	//	m_wndToolBar.EnableDocking( CBRS_ALIGN_ANY );
+	//	EnableDocking( CBRS_ALIGN_ANY );
+	//	DockControlBar( &m_wndToolBar );
+	//}
+	//#endif	// defined( WIN32 )
 
 	#ifdef CH_MSW
 	m_wndToolBar.SetBarStyle( m_wndToolBar.GetBarStyle() |
@@ -1062,22 +1062,25 @@ void ChMainFrame::OnSecondTick( time_t timeCurr )
 		m_wndStatusBar.SetPaneText( CH_STATUS_TIME_PANE, strTime );
 	}
 	#endif	// defined( CH_MSW )
-												/* Flash the icon if some module
-												   has requested to do so*/
-	#if defined( CH_MSW )
+
+	if (GetPuebloCore())
 	{
+		/* Flash the icon if some module
+				has requested to do so*/
+		#if defined( CH_MSW )
 		if (GetPuebloCore()->IsFlashWindow())
 		{
 											// This only flashes the icon once:
-			FlashWindow( true );
+			FlashWindow( TRUE );
 		}
-	}
-	#endif	// defined( CH_MSW )
+		else if (GetPuebloCore()->WasFlashWindow())
+		{
+			FlashWindow( FALSE );
+		}
+		#endif	// defined( CH_MSW )
 
-	if (GetPuebloCore())
-	{										/* Notify the client core of a
-												second's passing */
-
+		/* Notify the client core of a
+			 second's passing */
 		GetPuebloCore()->OnSecondTick( timeCurr );
 	}
 }
@@ -1248,6 +1251,9 @@ void ChMainFrame::OnCloseWindow()
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:28  uecasm
 // Import of source tree as at version 2.53 release.
 //

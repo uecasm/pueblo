@@ -37,7 +37,8 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\Pueblo32.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -49,6 +50,7 @@
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\Pueblo32.def"
 				ProgramDatabaseFile="$(OutDir)\Pueblo32.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				BaseAddress="0x10000000"
 				ImportLibrary="$(OutDir)\Pueblo32.lib"/>
@@ -93,12 +95,13 @@
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\Pueblo32.pch"
+				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\Pueblo32.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -106,7 +109,7 @@
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="wsock32.lib lz32.lib winmm.lib version.lib"
 				OutputFile="$(OutDir)\Pueblo32.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\Pueblo32.def"
 				GenerateDebugInformation="TRUE"
@@ -644,6 +647,9 @@
 			Filter="">
 			<File
 				RelativePath=".\Pueblo.rc">
+			</File>
+			<File
+				RelativePath="res\Pueblo.rc2">
 			</File>
 			<File
 				RelativePath=".\Pueblo32.def">

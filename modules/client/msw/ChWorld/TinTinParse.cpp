@@ -421,7 +421,13 @@ void TinTin::ParseTinTinCommand( const ChString& strCommand, ChString& strArgs )
 
 			case ttPlaySound:
 			{
-				DoPlaySound( strArgs );
+				DoPlaySound( strArgs, false );
+				break;
+			}
+
+			case ttPlaySoundBg:
+			{
+				DoPlaySound( strArgs, true );
 				break;
 			}
 
@@ -458,6 +464,12 @@ void TinTin::ParseTinTinCommand( const ChString& strCommand, ChString& strArgs )
 			case ttShowme:
 			{
 				DoShowMe( strArgs );
+				break;
+			}
+
+			case ttShowmeHtml:
+			{
+				DoShowMeHtml( strArgs );
 				break;
 			}
 
@@ -1020,6 +1032,9 @@ const char* TinTin::SpaceOut( const char* pstrText )
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:40  uecasm
 // Import of source tree as at version 2.53 release.
 //

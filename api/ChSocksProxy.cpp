@@ -90,15 +90,15 @@ void sockinetbuf::SOCKSconnect( const char* host_name,
 
 void sockinetbuf::SOCKSconnect( sockAddr& sa )
 {  
-	if (!ChChacoSocket::IsSOCKSInited() && ChChacoSocket::IsUsingSOCKS())
-	{
-		m_pSocket->InitSOCKSAddress();
-	}
-
 	if (ChChacoSocket::IsUsingSOCKS())
-	{										// Connect to socks server
+	{
+		if (!ChChacoSocket::IsSOCKSInited())
+		{
+			m_pSocket->InitSOCKSAddress();
+		}
 
-	    connect( ChChacoSocket::m_saSOCKS );// Will throw exception if it fails
+		// Connect to socks server
+	  connect( ChChacoSocket::m_saSOCKS );// Will throw exception if it fails
 
 											/* If I get here the we have
 												connected to the SOCKS server.
@@ -183,3 +183,6 @@ void sockinetbuf::EstablishSOCKSconnect( sockAddr& sa )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:38  uecasm
+// Import of source tree as at version 2.53 release.
+//

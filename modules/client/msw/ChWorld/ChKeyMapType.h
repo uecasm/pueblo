@@ -62,6 +62,8 @@
 #define ACTION_CURSOR_END			"cursor end"
 #define ACTION_CURSOR_START_LINE	"cursor start line"
 #define ACTION_CURSOR_END_LINE		"cursor end line"
+#define ACTION_CURSOR_UP_WITHINCMD	"cursor up within cmd"
+#define ACTION_CURSOR_DOWN_WITHINCMD	"cursor down within cmd"
 
 #define ACTION_SEND					"send"
 #define ACTION_TAB_COMPLETION		"tab completion"
@@ -81,6 +83,7 @@
 
 #define ACTION_MOD_SHIFT			(1L << 0)
 #define ACTION_MOD_CONTROL			(1L << 1)
+#define ACTION_MOD_ALT				(1L << 2)
 
 
 /*----------------------------------------------------------------------------
@@ -92,7 +95,7 @@ typedef enum { actCursorUp, actCursorDown, actCursorLeft, actCursorRight,
 				actCursorEndLine, actSend, actTabCompletion, actTranspose,
 				actDeleteText, actDeleteNextChar, actDeleteToEndOfBuffer,
 				actHistoryPrev, actHistoryNext, actLogPageUp, actLogPageDown,
-				actLogHome, actLogEnd } KeyAction;
+				actLogHome, actLogEnd, actCursorUpWithinCmd, actCursorDownWithinCmd } KeyAction;
 
 
 /*----------------------------------------------------------------------------
@@ -161,3 +164,6 @@ class ChKeyMapType
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:09  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -9,7 +9,6 @@
 //
 #include "afxres.h"
 #include <dlgs.h>
-#include <..\..\..\..\Include\PbVersion.h>
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
@@ -23,70 +22,27 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_NZ
 #pragma code_page(1252)
 #endif //_WIN32
 
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION VERS_CLIENT_BINARY
- PRODUCTVERSION VERS_CLIENT_BINARY
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x40004L
- FILETYPE 0x2L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "140904b0"
-        BEGIN
-            VALUE "CompanyName", VERS_CLIENT_COMPANY
-            VALUE "FileDescription", "ChWorld module\0"
-            VALUE "FileVersion", VERS_CLIENT_TEXT
-            VALUE "InternalName", "ChWorld\0"
-            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
-            VALUE "OriginalFilename", "ChWorld.dll\0"
-            VALUE "ProductName", VERS_CLIENT_PRODUCT
-            VALUE "ProductVersion", VERS_CLIENT_TEXT
-            VALUE "PuebloModule", "Pueblo/UE World Manager module\0"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x1409, 1200
-    END
-END
-
-#endif    // !_MAC
-
-
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "#include <dlgs.h>\r\n"
-    "#include <..\\..\\..\\..\\Include\\PbVersion.h>\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
+    "#include ""res\\ChWorld.rc2""\r\n"
     "\r\n"
     "\0"
 END
@@ -174,7 +130,7 @@ END
 IDD_PREF_PAGE_NOTIFY DIALOGEX 0, 0, 250, 125
 STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Notification"
-FONT 8, "MS Sans Serif", 0, 0
+FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "When new text arrives and Pueblo is:",IDC_STATIC,8,5,
                     165,37
@@ -313,7 +269,7 @@ BEGIN
                     IDC_STATIC,11,16,145,17
 END
 
-IDD_PREF_PAGE_TEXT_IN DIALOG  0, 0, 250, 125
+IDD_PREF_PAGE_TEXT_IN DIALOGEX 0, 0, 250, 125
 STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Text Input"
 FONT 8, "MS Sans Serif"
@@ -328,15 +284,17 @@ BEGIN
     CONTROL         "Emacs standard",IDC_RADIO_EMACS,"Button",
                     BS_AUTORADIOBUTTON | WS_TABSTOP,135,40,87,10
     RTEXT           "(in lines)",IDC_STATIC,10,29,85,8
-    PUSHBUTTON      "Select:",IDC_TINTIN_FILE,25,87,45,14
-    LTEXT           "<no file>",IDC_STATIC_TINTIN_FILE,80,90,150,8
-    GROUPBOX        "Initial TinTin command file:",IDC_STATIC,10,70,230,40
+    PUSHBUTTON      "Select:",IDC_TINTIN_FILE,25,78,45,14
+    LTEXT           "<no file>",IDC_STATIC_TINTIN_FILE,80,81,150,8
+    GROUPBOX        "Initial TinTin command file:",IDC_STATIC,10,65,230,52
+    LTEXT           "Note: if you select a different file, or modify the contents of the file, you will have to restart Pueblo for your changes to take effect.",
+                    IDC_STATIC,14,96,221,17
 END
 
 IDD_PREF_PAGE_TEXT_OUT DIALOGEX 0, 0, 250, 125
 STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Text Output"
-FONT 8, "MS Sans Serif", 0, 0
+FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "Scroll-back buffer size (in lines):",IDC_STATIC,10,10,
                     100,8
@@ -465,7 +423,7 @@ END
 IDD_PREF_PAGE_PROTOCOL DIALOGEX 0, 0, 250, 125
 STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Protocols"
-FONT 8, "MS Sans Serif", 0, 0
+FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "Allow MCCP (compressed) connections",IDC_ALLOW_MCCP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,149,10
@@ -512,16 +470,18 @@ END
 // Icon
 //
 
-IDI_PLANET              ICON    DISCARDABLE     "res\\planet.ico"
-IDI_WHEEL               ICON    DISCARDABLE     "res\\wheel.ico"
-IDI_CHACO               ICON    DISCARDABLE     "res\\chaco.ico"
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PLANET              ICON                    "res\\planet.ico"
+IDI_WHEEL               ICON                    "res\\wheel.ico"
+IDI_CHACO               ICON                    "res\\chaco.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-ID_MENU_LOG MENU DISCARDABLE 
+ID_MENU_LOG MENU 
 BEGIN
     POPUP " "
     BEGIN
@@ -538,7 +498,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_MENU_WORLD_LIST     "Edit personal list..."
     IDS_MENU_WORLD_DISCON   "Disconnect"
@@ -555,38 +515,27 @@ BEGIN
     IDS_STATUS_CONNECTING_FMT "Connecting to '%s'..."
 END
 
-#ifdef UE_PRERELEASE
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_PERSONAL_LIST_TITLE "<html><center><h1><font color=""#FF0000"">PRERELEASE VERSION</font></h1>\n<hr>\n<h2>Personal World List</h2></center><hr>"
-END
-#else
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_PERSONAL_LIST_TITLE "<html><center><h2>Personal World List</h2></center><hr>"
-END
-#endif
-
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_HINT_JUMP           "Surf to this web page: %s"
     IDS_MENU_CREATE_SHORTCUT_CONNECTED_TXT 
                             "Create a new shortcut file for the current world"
     IDS_PERSONAL_LIST_JUMP1 "<dt><a href=""pueblo:world-list-edit"" target=""_self"" xch_hint=""Edit your personal world list""><img src=""%s/pointrt.gif"" border=0 width=18 height=16> Edit your personal list</a><p></p>"
     IDS_PERSONAL_LIST_JUMP2 "<dt><a href=""pueblo:world-list"" target=""_self"" xch_hint=""Jump to the top level of the Pueblo/UE world list""><img src=""%s/hand.gif"" border=0 width=18 height=16> Jump to the Pueblo/UE world list</a><p></p>"
+    IDS_FMT_INLINE_HEAD_MSG "<body><br><center><hr width=""80%%""><font size=+2><b>%s</b><br>"
+    IDS_INLINE_RETURN_MSG   "<br><a href=""pueblo:disconnect"" xch_hint=""Close the world log window and return to the world list"" target=""_self"">Return to the world list</a><br>"
+    IDS_INLINE_RECONNECT_MSG 
+                            "<br><a href=""pueblo:reconnect"" xch_hint=""Clear the world log window and reconnect to this world"" target=""_self"">Reconnect to this world</a><br>"
+    IDS_INLINE_FOOT_MSG     "</font><hr width=""80%%""></center><br>"
+    IDS_CMD_NOT_CONNECTED   "You cannot send commands to the world, as you are no longer connected."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_STATUS_CONNECTED_FMT "Connection to '%s' successful"
     IDS_MENU_VIEW_PREV      "Previous"
     IDS_MENU_VIEW_PREV_TXT  "Flip back to the main world list"
-    IDS_CMD_NOT_CONNECTED		"You cannot send commands to the world, as you are no longer connected."
     IDS_FMT_DISCONNECT_MSG  "The world '%s' has disconnected."
-    IDS_FMT_INLINE_HEAD_MSG "<br><center><hr width=""80%%""><font size=+2><b>%s</b><br>"
-    IDS_INLINE_RETURN_MSG "<br><a href=""pueblo:disconnect"" xch_hint=""Close the world log window and return to the world list"" target=""_self"">Return to the world list</a><br>"
-    IDS_INLINE_RECONNECT_MSG "<br><a href=""pueblo:reconnect"" xch_hint=""Clear the world log window and reconnect to this world"" target=""_self"">Reconnect to this world</a><br>"
-    IDS_INLINE_FOOT_MSG "</font><hr width=""80%%""></center><br>"
     IDS_PERSONAL_LIST_HDR   "<p>To add new worlds to your personal list click on the link below, or select <b>Edit personal list...</b> from the <b>Worlds</b> menu in the menu bar.</p> "
     IDS_HINT_JUMP_SELF      "Jump to another page of the world list"
     IDS_HINT_MISC           "Click me!"
@@ -601,7 +550,7 @@ BEGIN
     IDS_MENU_CREATE_SHORTCUT_TXT "Create a new shortcut file"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TEXT_INPUT_EDIT     "Enter Pueblo commands in this edit field\nCommands"
     IDS_WND_MENU_INPUT_TXT  "Sets focus to the Command input window"
@@ -638,7 +587,7 @@ BEGIN
     IDS_GROUP_NAME          "Pueblo Shortcuts"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_SHORTCUT_EXTENSION  "pbl"
     IDS_SHORTCUT_FINISH_PROGMAN 
@@ -661,7 +610,7 @@ BEGIN
     IDS_TINTIN_NO_FILE      "<no file>"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_OPEN_TINTIN_TITLE   "Select a TinTin command file"
     IDS_OPEN_TINTIN_FILTER  "TinTin command file (*.txt)|*.txt|All Files (*.*)|*.*||"
@@ -674,7 +623,7 @@ BEGIN
                             "# Initial double-quotes are sent to the world."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_VERBATIM_ON  "# All text is now sent 'as is'."
     IDS_TINTIN_VERBATIM_OFF "# Text is no longer sent 'as is'."
@@ -697,7 +646,7 @@ BEGIN
                             "# Error - Please specify the name of the alias to delete."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_ACTION_ECHO_FMT "[ACTION: %s]"
     IDS_TINTIN_LOG_ERROR    "# Error - The specified file name is not valid (%s)."
@@ -717,7 +666,7 @@ BEGIN
     IDS_TINTIN_WRITE_OK     "# Ok.  The commands were written to {%s}."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_ZAP          "# Zzzzzzzaaaaaaaapppp!  Let's get outta here!"
     IDS_TINTIN_LOOP_PARAM_ERR 
@@ -739,7 +688,7 @@ BEGIN
     IDS_TINTIN_SUBS_ON      "# Substitutions will no longer be ignored."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_SUBS_OFF     "# Substitutions will now be ignored."
     IDS_TINTIN_TICK_EVENT   "# TICK. (%s)"
@@ -764,7 +713,7 @@ BEGIN
                             """ xch_hint=""Surf to this world's website"">Website</a>]</font>"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_TICK_KEY     "# The ticker key is currently {%s}."
     IDS_TINTIN_TICK_KEY_SET "# Ok.  Ticker key set to {%s}."
@@ -786,7 +735,7 @@ BEGIN
     IDS_TINTIN_ALIAS_LIST_EMPTY "# No defined aliases."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_TINTIN_VAR_MATCHES  "# The following variables match {%s}:"
     IDS_TINTIN_UNSUB_PARAM_ERR 
@@ -813,13 +762,13 @@ BEGIN
                             "Quickly connect to a world using the host name and port"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_OFFLINE             "Offline"
     IDS_ONLINE              "Online"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_ONCONNECT_URL       "http://pueblo.sourceforge.net/events.php?e=connect&v=%s"
     IDS_ONDISCONNECT_URL    "http://pueblo.sourceforge.net/events.php?e=disconnect&v=%s"
@@ -841,18 +790,18 @@ BEGIN
     IDS_STATUS_WORLD_ADDED  "'%s' has been added to your personal world list"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_EDIT_COPY            "Copy the selected text to the clipboard"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_EDIT_COPY_TO_INPUT   "Copy the selected text to the input window"
     ID_MENU_WORLD_ADD       "Add the current world to your personal list of worlds"
 END
 
-#endif    // English (NZ) resources
+#endif    // English (New Zealand) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -862,6 +811,7 @@ END
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
+#include "res\ChWorld.rc2"
 
 
 /////////////////////////////////////////////////////////////////////////////

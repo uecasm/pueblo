@@ -33,10 +33,10 @@
 
 					Wrote and designed original codebase.
 
-------------------------------------------------------------------------------
+		 Ultra Enterprises:    Gavin Lambert
 
-	This file contains the implementation of the ChHTTPConn class, used to
-	manage a connection for downloading modules and data from the server.
+		      Added many more MIME types, and rewrote the classes so they
+					could store multiple actual MIME types per logical filetype.
 
 ----------------------------------------------------------------------------*/
 
@@ -61,23 +61,25 @@ class ChMimeInfo
 		ChMimeInfo( int iType, const ChString& strMimeType, 
 								const ChString& strFileExtent, const ChString& strFileDesc ) :
 							 m_iType( iType ),
-							 m_strMimeType( strMimeType ),
+							 //m_strMimeType( strMimeType ),
 							 m_strFileExtent( strFileExtent ),
 							 m_strFileDesc( strFileDesc ) 
 							 {
+								 m_listMimeTypes.AddTail(strMimeType);
 							 }
 		int 		  GetType()			{ return m_iType; }
-		const ChString& GetMimeType()		{ return m_strMimeType; }
+		//const ChString& GetMimeType()		{ return m_strMimeType; }
+		ChList<ChString>& GetMimeTypes()		{ return m_listMimeTypes; }
 		const ChString& GetFileExtn()		{ return m_strFileExtent; }
 		const ChString& GetFileOpenDesc()	{ return m_strFileDesc; }
 
 		void  SetFileOpenDesc( const ChString& strDesc )			{ m_strFileDesc = strDesc; }
 
-		
 
 	private :
 		int			m_iType;
-		ChString 	 	m_strMimeType;
+		ChList<ChString>	m_listMimeTypes;
+		//ChString 	 	m_strMimeType;
 		ChString 	 	m_strFileExtent;
 		ChString 	 	m_strFileDesc;		 
 };
@@ -128,16 +130,9 @@ void ChMimeListManager::Init()
 
 	ChMimeInfo* pInfo;
 
-	pInfo = new ChMimeInfo( ChHTTPConn::typeHTML, MIME_HTML, "htm", "HTML(*.html)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeHTML, MIME_HTML, "htm,html", "HTML(*.html,*.htm)" );
 	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-
-	pInfo = new ChMimeInfo( ChHTTPConn::typeHTML, MIME_HTML, "html", "HTML(*.htm)" );
-	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-
-	pInfo = new ChMimeInfo( ChHTTPConn::typeHTML, MIME_HTML2, "htm", "HTML(*.htm)" );
-	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("text/htm");
 	m_mimeList.AddTail( (chparam)pInfo );
 
 	pInfo = new ChMimeInfo( ChHTTPConn::typeText, MIME_TEXT, "txt", "Text(*.txt)" );
@@ -148,59 +143,65 @@ void ChMimeListManager::Init()
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
 
-	pInfo = new ChMimeInfo( ChHTTPConn::typeJPEG, MIME_JPEG, "jpg", "JPEG Image(*.gif)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeJPEG, MIME_JPEG, "jpg,jpeg,jpe", "JPEG Image(*.jpg,*.jpeg)" );
 	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("image/jpg");
+	pInfo->GetMimeTypes().AddTail("application/jpg");
+	pInfo->GetMimeTypes().AddTail("application/x-jpg");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
 	pInfo = new ChMimeInfo( ChHTTPConn::typeBMP, MIME_BMP, "bmp", "Windows Bitmap(*.bmp)" );
 	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("image/bmp");
+	pInfo->GetMimeTypes().AddTail("image/x-bitmap");
+	pInfo->GetMimeTypes().AddTail("image/x-win-bitmap");
+	pInfo->GetMimeTypes().AddTail("image/x-windows-bmp");
+	pInfo->GetMimeTypes().AddTail("image/ms-bmp");
+	pInfo->GetMimeTypes().AddTail("image/x-ms-bmp");
+	pInfo->GetMimeTypes().AddTail("application/bmp");
+	pInfo->GetMimeTypes().AddTail("application/x-bmp");
+	pInfo->GetMimeTypes().AddTail("application/x-win-bitmap");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_PNG, "png", "Portable Network Graphic(*.png)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, "image/png", "png", "Portable Network Graphic(*.png)" );
 	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("application/png");
+	pInfo->GetMimeTypes().AddTail("application/x-png");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_MNG, "mng", "Multi-image Network Graphic(*.mng)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, "video/x-mng", "mng", "Multi-image Network Graphic(*.mng)" );
 	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("video/mng");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_MNG2, "mng", "Multi-image Network Graphic(*.mng)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, "image/x-jng", "jng", "JPEG Network Graphic(*.jng)" );
 	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("image/jng");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_JNG, "jng", "JPEG Network Graphic(*.jng)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeMidi, "audio/x-midi", "mid,midi", "MIDI(*.mid)" );
 	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_JNG2, "jng", "JPEG Network Graphic(*.jng)" );
-	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeMidi, MIME_MIDI, "mid", "MIDI(*.mid)" );
-	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("audio/mid");
+	pInfo->GetMimeTypes().AddTail("audio/midi");
+	pInfo->GetMimeTypes().AddTail("audio/x-midi");
+	pInfo->GetMimeTypes().AddTail("application/x-midi");
 	m_mimeList.AddTail( (chparam)pInfo );
 
-	pInfo = new ChMimeInfo( ChHTTPConn::typeMidi, MIME_MIDI1, "midi", "MIDI(*.midi)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeWave, "audio/x-wav", "wav", "Wave(*.wav)" );
 	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeMidi, MIME_MIDI2, "mid", "MIDI(*.mid)" );
-	ASSERT( pInfo );
-	m_mimeList.AddTail( (chparam)pInfo );
-	
-	pInfo = new ChMimeInfo( ChHTTPConn::typeWave, MIME_WAVE, "wav", "Wave(*.wav)" );
-	ASSERT( pInfo );
+	pInfo->GetMimeTypes().AddTail("audio/wav");
+	pInfo->GetMimeTypes().AddTail("audio/wave");
 	m_mimeList.AddTail( (chparam)pInfo );
 	
 	pInfo = new ChMimeInfo( ChHTTPConn::typeVRML, MIME_VRML, "wrl", "VRML Worlds (*.wrl)" );
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
 
-	pInfo = new ChMimeInfo( ChHTTPConn::typeVox, MIME_VOX, "vox", "Vox files (*.vox)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeVox, "audio/voxware", "vox", "Vox files (*.vox)" );
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
 
-	pInfo = new ChMimeInfo( ChHTTPConn::typeWorld, MIME_WORLD, "pbl", "Pueblo World files (*.pbl)" );
+	pInfo = new ChMimeInfo( ChHTTPConn::typeWorld, "application/x-pueblo-world", "pbl", "Pueblo World files (*.pbl)" );
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
 }
@@ -236,14 +237,22 @@ void ChMimeListManager::AddMimeType( const ChString& strMime, const ChString& st
 	{
 		ChMimeInfo *pInfo = (ChMimeInfo*)m_mimeList.GetNext( pos );
 
-		if ( pInfo->GetMimeType() == strMime )
+		ChPosition mimePos = pInfo->GetMimeTypes().Find(strMime);
+		if ( mimePos )
 		{
 			iType = pInfo->GetType();
 
 			if (pInfo->GetFileExtn() == strFileExtn )
-			{ // repalce this  
-				boolAdd = false;
-				pInfo->SetFileOpenDesc( strDesc );	
+			{ // replace this
+				if (pInfo->GetMimeTypes().GetCount() == 1)
+				{
+					boolAdd = false;
+					pInfo->SetFileOpenDesc( strDesc );	
+				}
+				else
+				{
+					pInfo->GetMimeTypes().Remove(mimePos);
+				}
 				break;
 			}
 		}
@@ -300,7 +309,8 @@ int ChHTTPConn::GetMimeType( const ChString& strType )
 	{
 		ChMimeInfo *pInfo = (ChMimeInfo*)mimeLstMgr.GetMimeList().GetNext( pos );
 
-		if ( pInfo->GetMimeType() == strMimeType )
+		ChPosition mimePos = pInfo->GetMimeTypes().Find(strMimeType);
+		if ( mimePos )
 		{
 			return pInfo->GetType();
 		}
@@ -354,7 +364,7 @@ void ChHTTPConn::GetMimeTypeByFileExtn( const char* pstrFile,
 			{
 				if ( strTemp.CompareNoCase( pstrExtn) == 0 )
 				{
-					strMimeType = pInfo->GetMimeType();
+					strMimeType = pInfo->GetMimeTypes().GetHead();
 					return;
 				}
 				else
@@ -367,7 +377,7 @@ void ChHTTPConn::GetMimeTypeByFileExtn( const char* pstrFile,
 			  	ChString strExtn( strTemp.Left( iExtnIndex ) );
 				if ( strExtn.CompareNoCase( pstrExtn) == 0 )
 				{
-					strMimeType = pInfo->GetMimeType();
+					strMimeType = pInfo->GetMimeTypes().GetHead();
 					return;
 				}
 
@@ -447,6 +457,9 @@ void ChHTTPConn::TermMimeManager( )
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:41  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:54:24  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -88,8 +88,8 @@ typedef enum { ttUnknown = -1, ttAction = 0, ttAlert, ttAlias, ttAll,
 				ttEnd, ttGag, ttHelp, ttHighlight, ttHistory, ttIf,
 				ttIgnore, ttInfo, ttKillall, ttLog, ttLoop, ttMap, ttMath,
 				ttMark, ttMbox, ttMessage, ttName, ttNop, ttPath,
-				ttPathdir, ttPlaySound, ttPresub, ttRandom, ttRedraw,
-				ttRetab, ttReturn, ttRead, ttSavepath, ttSession, ttShowme,
+				ttPathdir, ttPlaySound, ttPlaySoundBg, ttPresub, ttRandom, ttRedraw,
+				ttRetab, ttReturn, ttRead, ttSavepath, ttSession, ttShowme, ttShowmeHtml,
 				ttSpeedwalk, ttSplit, ttSubstitute, ttTextin,
 				ttTick, ttTickkey, ttTickoff, ttTickon, ttTickset, ttTicksize,
 				ttTolower, ttTogglesub, ttToupper, ttUnaction, ttUnalias,
@@ -257,7 +257,7 @@ class TinTin
 
 		virtual void SendToWorld( const ChString& strOutput );
 		virtual void Display( const ChString& strOutput,
-								bool boolPreformatted ) const;
+								bool boolPreformatted, bool boolRenderHtml = false ) const;
 		void Reset();
 
 		void ParseInput( const ChString& strInput );
@@ -468,9 +468,10 @@ class TinTin
 		void DoLoop( const ChString& strArgs );
 		void DoMbox( const ChString& strArgs );
 		void DoMessage( const ChString& strArgs );
-		void DoPlaySound( const ChString& strArgs );
+		void DoPlaySound( const ChString& strArgs, bool async );
 		void DoRandom( const ChString& strArgs );
 		void DoShowMe( const ChString& strArgs );
+		void DoShowMeHtml( const ChString& strArgs );
 		void DoSplit( const ChString& strArgs );
 		void DoVersion();
 		void DoWizList();
@@ -568,3 +569,6 @@ class TinTin
 #endif	// !defined( TINTIN_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:35  uecasm
+// Import of source tree as at version 2.53 release.
+//

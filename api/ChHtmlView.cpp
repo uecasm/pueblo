@@ -1016,10 +1016,10 @@ void ChHtmlView::LoadInlineImage( const ChString& strURL, ChObjInline *pInLine )
 			}
 			else
 			{ // display broken image
-				if (pInLine->GetType() == ChTextObject::objectImage)
-				{
+				//if (pInLine->GetType() == ChTextObject::objectImage)
+				//{
 					pInLine->CreateBrokenImagePlaceholder();
-				}
+				//}
 			}
 		}
 	}
@@ -1157,6 +1157,9 @@ void ChHtmlView::ChangeCursor(tagCursors newCursor) {
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:41  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:54:12  uecasm
 // Import of source tree as at version 2.53 release.
 //

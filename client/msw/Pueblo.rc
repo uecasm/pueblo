@@ -1,4 +1,4 @@
-//Microsoft Visual C++ generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -8,11 +8,18 @@
 // Generated from the TEXTINCLUDE 2 resource.
 //
 #include "afxres.h"
-#include <PbVersion.h>
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
+/////////////////////////////////////////////////////////////////////////////
+// English (New Zealand) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENZ)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_NZ
+#pragma code_page(1252)
+#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -20,63 +27,57 @@
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
-    "#include <PbVersion.h>\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
-    "#include ""res\\Chaco.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""res\\Pueblo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
     "#define _AFX_NO_TRACKER_RESOURCES\r\n"
     "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
-    "#include ""afxres.rc""  \011// Standard components\r\n"
-    "#include ""afxprint.rc""\011// printing/print preview resources\r\n"
+    "#include ""afxres.rc""  \t// Standard components\r\n"
+    "#include ""afxprint.rc""\t// printing/print preview resources\r\n"
     "\0"
 END
 
-/////////////////////////////////////////////////////////////////////////////
 #endif    // APSTUDIO_INVOKED
 
 
-/////////////////////////////////////////////////////////////////////////////
-//
-// Resource type definition
-//
-#ifndef HTML
-	#define HTML 23
-#endif
+1 RT_MANIFEST "res\\app.manifest"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
 //
 
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\idr_main.ico"
-IDR_SHORTCUT            ICON    DISCARDABLE     "res\\idr_sho2.ico"
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\idr_main.ico"
+IDR_SHORTCUT            ICON                    "res\\idr_sho2.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\toolbar.bmp"
+IDR_MAINFRAME           BITMAP                  "res\\toolbar.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+IDR_MAINFRAME MENU 
 BEGIN
     POPUP "&File"
     BEGIN
@@ -116,13 +117,12 @@ BEGIN
         MENUITEM "&About Pueblo...",            ID_HELP_ABOUT_PUEBLO
         MENUITEM "&Register Pueblo...",         ID_HELP_REGISTER_PUEBLO
         MENUITEM SEPARATOR
-        MENUITEM "Submit &world list entry...", 
-                                                ID_HELP_PUEBLO_WORLD_LIST_ENTRY
-				MENUITEM "Submit &feedback...", 				ID_HELP_PUEBLO_BUG_REPORT
+        MENUITEM "Submit &world list entry...", ID_HELP_PUEBLO_WORLD_LIST_ENTRY
 
+        MENUITEM "Submit &feedback...",         ID_HELP_PUEBLO_BUG_REPORT
         MENUITEM SEPARATOR
         MENUITEM "About &Chaco...",             ID_HELP_ABOUT_CHACO
-        MENUITEM "About U&E...",								ID_HELP_ABOUT_UE
+        MENUITEM "About U&E...",                ID_HELP_ABOUT_UE
         MENUITEM "More about Pueblo...",        ID_HELP_MORE_PUEBLO
     END
 END
@@ -133,7 +133,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS PRELOAD MOVEABLE PURE 
+IDR_MAINFRAME ACCELERATORS 
 BEGIN
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
@@ -153,13 +153,13 @@ END
 // Dialog
 //
 
-IDD_SPLASH DIALOG DISCARDABLE  0, 0, 165, 182
-STYLE DS_MODALFRAME | WS_POPUP
+IDD_SPLASH DIALOG  0, 0, 165, 182
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP
 FONT 9, "Arial"
 BEGIN
-    CTEXT           "Pueblo/UE\231 version %s",IDC_VERSION_STRING,0,112,165,12,
+    CTEXT           "Pueblo/UE™ version %s",IDC_VERSION_STRING,0,112,165,12,
                     NOT WS_GROUP
-    CTEXT           "Copyright \251 2001-03, Ultra Enterprises\nOriginal ver \251 1996-1998, Andromedia Inc.",
+    CTEXT           "Copyright © 2001-04, Ultra Enterprises\nOriginal ver © 1996-1998, Andromedia Inc.",
                     IDC_COPYRIGHT1,0,126,165,16,NOT WS_GROUP
     CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,5,147,155,1
     CONTROL         "",IDC_CHACO_LOGO,"Button",BS_OWNERDRAW | WS_DISABLED | 
@@ -168,8 +168,9 @@ BEGIN
                     IDC_COPYRIGHT2,5,152,155,30
 END
 
-IDD_LOGIN DIALOG DISCARDABLE  0, 0, 260, 85
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_LOGIN DIALOG  0, 0, 260, 85
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "Pueblo Login"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -187,8 +188,8 @@ BEGIN
     PUSHBUTTON      "&Help",ID_HELP,202,65,50,14
 END
 
-IDD_PREF_DEBUG DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_DEBUG DIALOG  0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Debug"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -196,8 +197,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,10,100,10
 END
 
-IDD_ABOUT_DISCLAIMER DIALOGEX DISCARDABLE  0, 0, 250, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ABOUT_DISCLAIMER DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Privacy"
 FONT 10, "Arial"
 BEGIN
@@ -205,14 +206,15 @@ BEGIN
                     WS_VISIBLE | WS_GROUP,10,5,245,115
 END
 
-IDD_ABOUT_TEAM DIALOGEX DISCARDABLE  0, 0, 250, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ABOUT_TEAM DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Chaco Team"
 FONT 10, "Arial"
 BEGIN
     CONTROL         "",IDC_CHACO_LOGO,"Button",BS_OWNERDRAW | WS_DISABLED | 
                     WS_TABSTOP,5,10,80,105
-    LTEXT           "The Chaco Pueblo Team:",IDC_TEAM_TITLE,105,10,135,12,SS_NOPREFIX
+    LTEXT           "The Chaco Pueblo Team:",IDC_TEAM_TITLE,105,10,135,12,
+                    SS_NOPREFIX
     CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,105,25,139,1
     RTEXT           "",IDC_NAME_1,140,33,100,12,SS_NOPREFIX
     RTEXT           "",IDC_NAME_2,140,50,100,12,SS_NOPREFIX
@@ -221,8 +223,8 @@ BEGIN
     RTEXT           "",IDC_NAME_5,140,101,100,12,SS_NOPREFIX
 END
 
-IDD_ABOUT_COMPONENTS DIALOGEX DISCARDABLE  0, 0, 250, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ABOUT_COMPONENTS DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Components"
 FONT 10, "Arial"
 BEGIN
@@ -230,8 +232,8 @@ BEGIN
                     WS_VISIBLE | WS_GROUP,10,5,245,115
 END
 
-IDD_PREF_FONT DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_FONT DIALOG  0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Fonts"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -243,8 +245,8 @@ BEGIN
     PUSHBUTTON      "Change...",IDC_CHOOSE_FIXED,181,29,49,14
 END
 
-IDD_ACCOUNT_PERSONAL DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_PERSONAL DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Personal"
 FONT 9, "Arial"
 BEGIN
@@ -263,8 +265,8 @@ BEGIN
                     58,123,8
 END
 
-IDD_ACCOUNT_NAME DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_NAME DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Name"
 FONT 9, "Arial"
 BEGIN
@@ -280,37 +282,36 @@ BEGIN
     EDITTEXT        IDC_EDIT_LAST_NAME,33,52,99,13,ES_AUTOHSCROLL
 END
 
-IDD_ACCOUNT_ADDRESS DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_ADDRESS DIALOGEX 0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Address"
 FONT 9, "Arial"
 BEGIN
-    LTEXT           "Please enter your postal address and email address.  And don't worry, we won't sell your name to another company or bury you in junk mail.", 
-                    -1, 10, 10, 235, 16
-    LTEXT           "If it makes you feel better, you don't even need to enter your street address (but we would like to know your city, etc).  We're not going to use it, anyway! :)", 
-                    -1, 10, 27, 235, 16
-    CONTROL         "", -1, "Static", SS_BLACKFRAME, 10, 46, 240, 1
-    RTEXT           "Street:", IDC_NAME_STREET, 6, 53, 27, 8
-    EDITTEXT        IDC_EDIT_STREET, 37, 51, 127, 13, ES_AUTOHSCROLL
-    RTEXT           "Apt:", IDC_NAME_APT, 168, 53, 22, 8, NOT WS_GROUP
-    EDITTEXT        IDC_EDIT_APT, 193, 51, 31, 13, ES_AUTOHSCROLL
-    RTEXT           "City:", IDC_NAME_CITY, 6, 70, 27, 8, NOT WS_GROUP
-    EDITTEXT        IDC_EDIT_CITY, 37, 68, 69, 13, ES_AUTOHSCROLL
-    RTEXT           "State/Province:", IDC_NAME_STATE, 107, 70, 56, 8, NOT 
+    LTEXT           "Please enter your postal address and email address.  And don't worry, we won't sell your name to another company or bury you in junk mail.",
+                    -1,10,2,235,16
+    LTEXT           "The ""street"" field is here only because some people feel uncomfortable entering an address without it.  It does not get sent to us, as quite frankly it's not interesting :)",
+                    -1,10,19,235,24
+    CONTROL         "",-1,"Static",SS_BLACKFRAME,10,46,240,1
+    RTEXT           "Street:",IDC_NAME_STREET,6,53,27,8
+    EDITTEXT        IDC_EDIT_STREET,37,51,127,13,ES_AUTOHSCROLL
+    RTEXT           "Apt:",IDC_NAME_APT,168,53,22,8,NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_APT,193,51,31,13,ES_AUTOHSCROLL
+    RTEXT           "City:",IDC_NAME_CITY,6,70,27,8,NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_CITY,37,68,69,13,ES_AUTOHSCROLL
+    RTEXT           "State/Province:",IDC_NAME_STATE,107,70,56,8,NOT 
                     WS_GROUP
-    EDITTEXT        IDC_EDIT_STATE, 167, 68, 57, 13, ES_AUTOHSCROLL
-    RTEXT           "Zip:", IDC_NAME_ZIP, 6, 87, 27, 8, NOT WS_GROUP
-    EDITTEXT        IDC_EDIT_ZIP, 37, 85, 57, 13, ES_AUTOHSCROLL
-    RTEXT           "Country:", IDC_NAME_COUNTRY, 107, 87, 56, 8, NOT 
-                    WS_GROUP
-    EDITTEXT        IDC_EDIT_COUNTRY, 167, 85, 57, 13, ES_AUTOHSCROLL
-    CONTROL         "", -1, "Static", SS_BLACKFRAME, 10, 103, 240, 1
-    RTEXT           "EMail:", IDC_NAME_EMAIL, 5, 109, 27, 8
-    EDITTEXT        IDC_EDIT_EMAIL, 36, 107, 187, 13, ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STATE,167,68,57,13,ES_AUTOHSCROLL
+    RTEXT           "Zip:",IDC_NAME_ZIP,6,87,27,8,NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_ZIP,37,85,57,13,ES_AUTOHSCROLL
+    RTEXT           "Country:",IDC_NAME_COUNTRY,107,87,56,8,NOT WS_GROUP
+    EDITTEXT        IDC_EDIT_COUNTRY,167,85,57,13,ES_AUTOHSCROLL
+    CONTROL         "",-1,"Static",SS_BLACKFRAME,10,103,240,1
+    RTEXT           "EMail:",IDC_NAME_EMAIL,5,109,27,8
+    EDITTEXT        IDC_EDIT_EMAIL,36,107,187,13,ES_AUTOHSCROLL
 END
 
-IDD_PREF_CACHE DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_CACHE DIALOGEX 0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Cache "
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -329,8 +330,8 @@ BEGIN
                     63,35,10
 END
 
-IDD_NETWORK DIALOG DISCARDABLE  0, 0, 250, 100
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_NETWORK DIALOG  0, 0, 250, 100
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Network"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -340,8 +341,9 @@ BEGIN
                     IDC_STATIC,100,14,139,17
 END
 
-IDD_LIC_AGREEMENT DIALOG DISCARDABLE  0, 0, 300, 250
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_LIC_AGREEMENT DIALOG  0, 0, 300, 250
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "Pueblo/UE License Agreement"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -351,8 +353,9 @@ BEGIN
                     215
 END
 
-IDD_VERIFY_PASSWORD DIALOG DISCARDABLE  0, 0, 260, 95
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_VERIFY_PASSWORD DIALOG  0, 0, 260, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "Pueblo Login"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -369,32 +372,34 @@ BEGIN
                     ES_AUTOHSCROLL
 END
 
-IDD_CLIENT_OUTDATED DIALOG DISCARDABLE  0, 0, 342, 148
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_CLIENT_OUTDATED DIALOG  0, 0, 342, 148
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "Outdated Pueblo Client"
 FONT 8, "MS Sans Serif"
 BEGIN
-		DEFPUSHBUTTON   "Go to &Update Site",IDC_UPDATE_NOW,251,126,80,14,WS_GROUP
+    DEFPUSHBUTTON   "Go to &Update Site",IDC_UPDATE_NOW,251,126,80,14,
+                    WS_GROUP
     PUSHBUTTON      "&Ask me later",IDC_UPDATE_LATER,167,126,80,14
     PUSHBUTTON      "&Shutdown",IDC_SHUTDOWN,82,126,80,14
     PUSHBUTTON      "&Help",IDHELP,11,126,50,14
     LTEXT           "A new version of Pueblo/UE has been released, and your current version is now out of date.  You can elect to shut down Pueblo/UE and update immediately, continue using your current version, or just close Pueblo/UE without going to the website.",
                     IDC_STATIC,11,10,320,30
-    EDITTEXT        IDC_EDIT_REASON,11,44,320,74,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL | WS_GROUP
+    EDITTEXT        IDC_EDIT_REASON,11,44,320,74,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | WS_VSCROLL | WS_GROUP
 END
 
-
-IDD_ABOUT_BOX DIALOGEX DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ABOUT_BOX DIALOGEX 0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Pueblo"
 FONT 10, "Arial"
 BEGIN
-    CTEXT           "Original Pueblo copyright \251 1996,\nby Andromedia Incorporated.",
+    CTEXT           "Original Pueblo copyright © 1996,\nby Andromedia Incorporated.",
                     IDC_COPYRIGHT1,105,38,150,16,SS_NOPREFIX
-    CTEXT           "Pueblo/UE copyright \251 2001-03,\nby Ultra Enterprises",
+    CTEXT           "Pueblo/UE copyright © 2001-04,\nby Ultra Enterprises",
                     IDC_COPYRIGHT2,105,56,150,16,SS_NOPREFIX
-    CTEXT           "All rights reserved.",
-                    IDC_COPYRIGHT3,105,74,150,8,SS_NOPREFIX
+    CTEXT           "All rights reserved.",IDC_COPYRIGHT3,105,74,150,8,
+                    SS_NOPREFIX
     CTEXT           "RESTRICTED RIGHTS LEGEND",IDC_LEGEND,100,90,150,8,
                     SS_NOPREFIX
     CTEXT           "Use, duplication, or disclosure by the Government is subject to restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in Technical Data and Computer Software clause at DFARS 252.227-7013.",
@@ -408,22 +413,29 @@ BEGIN
 END
 
 IDD_ABOUT_UE DIALOGEX 0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "UE"
 FONT 10, "Arial"
 BEGIN
- CTEXT "Ultra Enterprises", IDC_PROD_NAME, 105,10,150,12, SS_CENTER | SS_NOPREFIX | WS_GROUP
- CONTROL "", IDC_STATIC, "Static", SS_BLACKRECT | WS_CHILD | WS_VISIBLE, 105,25,150,1
- CTEXT "The Pueblo/UE client is an Open Source release, produced by Ultra Enterprises.", -1, 105, 33, 150, 16, SS_CENTER | SS_NOPREFIX | WS_GROUP
- CTEXT "For more information, visit the\nPueblo/UE website:", -1, 105, 61, 150, 20, SS_CENTER | SS_NOPREFIX | WS_GROUP
- CTEXT "http://pueblo.sf.net/", IDC_UE_WEBSITE, 105, 76, 150, 10, SS_CENTER | SS_NOPREFIX | WS_GROUP
- CTEXT "Pueblo/UE was first released in April of 2002.", -1, 105, 97, 150, 20, SS_CENTER | SS_NOPREFIX | WS_GROUP
- CONTROL "", IDC_UE_LOGO, "Button", BS_OWNERDRAW | WS_TABSTOP, 10, 10, 75, 56
- CTEXT "Gavin Lambert\nuecasm@users.sf.net", -1, 10, 86, 75, 16
+    CTEXT           "Ultra Enterprises",IDC_PROD_NAME,105,10,150,12,
+                    SS_NOPREFIX
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,105,25,150,1
+    CTEXT           "The Pueblo/UE client is an Open Source release, produced by Ultra Enterprises.",
+                    IDC_STATIC,105,33,150,16,SS_NOPREFIX
+    CTEXT           "For more information, visit the\nPueblo/UE website:",
+                    IDC_STATIC,105,61,150,20,SS_NOPREFIX
+    CTEXT           "http://pueblo.sf.net/",IDC_UE_WEBSITE,105,76,150,10,
+                    SS_NOPREFIX
+    CTEXT           "Pueblo/UE was first released in April of 2002.",
+                    IDC_STATIC,105,97,150,20,SS_NOPREFIX
+    CONTROL         "",IDC_UE_LOGO,"Button",BS_OWNERDRAW | WS_TABSTOP,10,10,
+                    75,56
+    CTEXT           "Gavin Lambert\nuecasm@users.sf.net",IDC_STATIC,10,86,75,
+                    16
 END
 
-IDD_PREF_COLORS DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_COLORS DIALOG  0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -455,54 +467,22 @@ BEGIN
                     CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
 END
 
-/*
-IDD_ACCOUNT_CONNECTION DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_CONNECTION DIALOGEX 0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Internet Connection"
 FONT 9, "Arial"
 BEGIN
-    GROUPBOX        "How do you connect to the Internet?",IDC_STATIC,10,10,
-                    130,100,WS_GROUP
-    CONTROL         "Direct internet service provider",IDC_RADIO_CONN_DIRECT,
-                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,20,25,115,10
-    CONTROL         "University/academic connection",IDC_RADIO_CONN_SCHOOL,
-                    "Button",BS_AUTORADIOBUTTON,20,38,115,10
-    CONTROL         "Prodigy",IDC_RADIO_CONN_PRODIGY,"Button",
-                    BS_AUTORADIOBUTTON,20,51,115,10
-    CONTROL         "AOL",IDC_RADIO_CONN_AOL,"Button",BS_AUTORADIOBUTTON,20,
-                    64,115,10
-    CONTROL         "Compuserve",IDC_RADIO_CONN_COMPUSERVE,"Button",
-                    BS_AUTORADIOBUTTON,20,77,115,10
-    CONTROL         "Other",IDC_RADIO_CONN_OTHER,"Button",BS_AUTORADIOBUTTON,
-                    20,90,115,10
-    GROUPBOX        "And at what speed?",IDC_STATIC,150,10,100,100,WS_GROUP
-    CONTROL         "9600 Baud or slower",IDC_RADIO_CONN_9600,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,160,25,85,10
-    CONTROL         "14400 Baud",IDC_RADIO_CONN_144,"Button",
-                    BS_AUTORADIOBUTTON,160,38,85,10
-    CONTROL         "28800 Baud",IDC_RADIO_CONN_288,"Button",
-                    BS_AUTORADIOBUTTON,160,51,85,10
-    CONTROL         "ISDN",IDC_RADIO_CONN_ISDN,"Button",BS_AUTORADIOBUTTON,
-                    160,64,85,10
-    CONTROL         "Fractional T1",IDC_RADIO_CONN_FRACT_T1,"Button",
-                    BS_AUTORADIOBUTTON,160,77,85,10
-    CONTROL         "T1 or faster",IDC_RADIO_CONN_T1,"Button",
-                    BS_AUTORADIOBUTTON,160,89,85,10
+    LTEXT           "How do you connect to the Internet?",IDC_STATIC,50,22,
+                    150,8
+    COMBOBOX        IDC_COMBO_CONN_HOW,60,37,120,84,CBS_DROPDOWNLIST | 
+                    WS_TABSTOP
+    LTEXT           "And at what speed?",IDC_STATIC,50,65,150,8
+    COMBOBOX        IDC_COMBO_CONN_SPEED,60,81,120,84,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
 END
-*/
-IDD_ACCOUNT_CONNECTION DIALOG 0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Internet Connection"
-FONT 9, "Arial"
-{
- LTEXT "How do you connect to the Internet?", IDC_STATIC, 50, 22, 150, 8
- COMBOBOX IDC_COMBO_CONN_HOW, 60, 37, 120, 84, CBS_DROPDOWNLIST | WS_TABSTOP
- LTEXT "And at what speed?", IDC_STATIC, 50, 65, 150, 8
- COMBOBOX IDC_COMBO_CONN_SPEED, 60, 81, 120, 84, CBS_DROPDOWNLIST | WS_TABSTOP
-}
 
-IDD_ACCOUNT_SURVEY1 DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_SURVEY1 DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Survey"
 FONT 9, "Arial"
 BEGIN
@@ -515,8 +495,8 @@ BEGIN
                     BS_AUTORADIOBUTTON,20,34,230,10
     CONTROL         "From a friend",IDC_RADIO_FRIEND,"Button",
                     BS_AUTORADIOBUTTON,20,46,230,10
-    CONTROL         "From a newsgroup article",IDC_RADIO_NEWS_ARTICLE,
-                    "Button",BS_AUTORADIOBUTTON,20,58,230,10
+    CONTROL         "From a newsgroup article",IDC_RADIO_NEWS_ARTICLE,"Button",
+                    BS_AUTORADIOBUTTON,20,58,230,10
     CONTROL         "From a mailing list article",IDC_RADIO_LIST_ARTICLE,
                     "Button",BS_AUTORADIOBUTTON,20,70,230,10
     CONTROL         "Other",IDC_RADIO_OTHER,"Button",BS_AUTORADIOBUTTON,20,
@@ -526,21 +506,30 @@ BEGIN
                     WS_GROUP
 END
 
-IDD_ACCOUNT_SURVEY2 DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_SURVEY2 DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Survey"
 FONT 9, "Arial"
 BEGIN
-	LTEXT "Chaco was accepting advertising to help pay for further development of the free client.  We're interested in how you feel about this.  Here are some options:", IDC_STATIC, 10,10,240,24
-	CONTROL "Advertising doesn't bug me.  Go for it.", IDC_RADIO_SURVEY_GOFORIT, "Button", BS_AUTORADIOBUTTON | WS_GROUP, 20,42,230,10
-	CONTROL "Advertising bugs me.  I'd donate some money to aid", IDC_RADIO_SURVEY_WILLPAY, "Button", BS_AUTORADIOBUTTON, 20,55,230,10
-	LTEXT "development, and avoid the advertising.", IDC_STATIC, 30,65,220,8, NOT WS_GROUP
-	CONTROL "Advertising bugs me, but I don't have a measly few bucks", IDC_RADIO_SURVEY_WONTPAY, "Button", BS_AUTORADIOBUTTON, 20,75,230,10
-	LTEXT "to my name.  At least not for you.", IDC_STATIC, 30,85,220,8, NOT WS_GROUP
+    LTEXT           "Chaco was accepting advertising to help pay for further development of the free client.  We're interested in how you feel about this.  Here are some options:",
+                    IDC_STATIC,10,10,240,24
+    CONTROL         "Advertising doesn't bug me.  Go for it.",
+                    IDC_RADIO_SURVEY_GOFORIT,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,20,42,230,10
+    CONTROL         "Advertising bugs me.  I'd donate some money to aid",
+                    IDC_RADIO_SURVEY_WILLPAY,"Button",BS_AUTORADIOBUTTON,20,
+                    55,230,10
+    LTEXT           "development, and avoid the advertising.",IDC_STATIC,30,
+                    65,220,8,NOT WS_GROUP
+    CONTROL         "Advertising bugs me, but I don't have a measly few bucks",
+                    IDC_RADIO_SURVEY_WONTPAY,"Button",BS_AUTORADIOBUTTON,20,
+                    75,230,10
+    LTEXT           "to my name.  At least not for you.",IDC_STATIC,30,85,
+                    220,8,NOT WS_GROUP
 END
 
-IDD_ACCOUNT_INTRO DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_INTRO DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 FONT 9, "Arial"
 BEGIN
     LTEXT           "This is the Pueblo registration wizard.  In order to register you, we need to ask a few questions.",
@@ -551,8 +540,8 @@ BEGIN
                     IDC_STATIC,10,62,210,32
 END
 
-IDD_ACCOUNT_INCOME DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ACCOUNT_INCOME DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Income"
 FONT 9, "Arial"
 BEGIN
@@ -582,16 +571,16 @@ BEGIN
                     BS_AUTORADIOBUTTON,125,85,100,10
 END
 
-IDD_SELECT_WEB_BROWSER_95 DIALOG DISCARDABLE  36, 24, 272, 40
-STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+IDD_SELECT_WEB_BROWSER_95 DIALOG  36, 24, 272, 40
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
 FONT 8, "Helv"
 BEGIN
     PUSHBUTTON      "&Use Internal",IDC_INTERNAL,222,20,50,14
     LTEXT           "",stc32,0,0,272,20,NOT WS_VISIBLE
 END
 
-IDD_SELECT_WEB_BROWSER DIALOG DISCARDABLE  36, 24, 264, 134
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_SELECT_WEB_BROWSER DIALOG  36, 24, 264, 134
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Select a web browser application"
 FONT 8, "Helv"
 BEGIN
@@ -621,18 +610,23 @@ BEGIN
     PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
 END
 
-IDD_PREF_APPS DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_APPS DIALOGEX 0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Apps"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "Supporting Applications",IDC_STATIC,5,8,240,44
-    PUSHBUTTON      "Web Browser:",IDC_BROWSE,15,25,55,14
-    LTEXT           "<Internal Web Browser>",IDC_STATIC_BROWSER,80,28,160,8
+    GROUPBOX        "Supporting Applications",IDC_STATIC,5,8,240,72
+    GROUPBOX        "Web Browser",IDC_STATIC,14,19,222,51
+    CONTROL         "Use system default web browser",IDC_USEDEFAULTBROWSER,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,21,31,207,10
+    CONTROL         "Use specified web browser",IDC_USESPECIFICBROWSER,
+                    "Button",BS_AUTORADIOBUTTON,21,41,207,10
+    PUSHBUTTON      "Browse:",IDC_BROWSE,32,51,37,14
+    LTEXT           "<Internal Web Browser>",IDC_STATIC_BROWSER,72,54,157,8
 END
 
-IDD_PREF_PROXIES DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_PROXIES DIALOG  0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Proxies"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -661,15 +655,15 @@ BEGIN
                     WS_GROUP
 END
 
-IDD_PREF_TRACE DIALOG DISCARDABLE  0, 0, 250, 150
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_TRACE DIALOG  0, 0, 250, 150
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Trace"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "This page allows you to select what sorts of output you will see when the 'trace' window is open.  (You can open the trace window by selecting 'Trace window' from the 'View' menu.)",
                     IDC_STATIC,10,10,230,24
-    CONTROL         "Unformatted text from the world",IDC_CHECK_HTML,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,20,45,210,10
+    CONTROL         "Unformatted text from the world",IDC_CHECK_HTML,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,45,210,10
     CONTROL         "Errors",IDC_CHECK_ERRORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,20,57,109,10
     CONTROL         "Miscellaneous messages",IDC_CHECK_MISC_ERRS,"Button",
@@ -681,79 +675,30 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION VERS_CLIENT_BINARY
- PRODUCTVERSION VERS_CLIENT_BINARY
- FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
- FILEFLAGS 0x1L
-#else
- FILEFLAGS 0x0L
-#endif
- FILEOS 0x4L
- FILETYPE 0x1L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "140904b0"
-        BEGIN
-            VALUE "CompanyName", VERS_CLIENT_COMPANY
-            VALUE "FileDescription", "Pueblo/UE MU* client\0"
-            VALUE "FileVersion", VERS_CLIENT_TEXT
-            VALUE "InternalName", "PUEBLO\0"
-            VALUE "LegalCopyright", VERS_CLIENT_COPYRIGHT
-            VALUE "OriginalFilename", "Pueblo.exe\0"
-            VALUE "ProductName", VERS_CLIENT_PRODUCT
-            VALUE "ProductVersion", VERS_CLIENT_TEXT
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x1409, 1200
-    END
-END
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// HTML
-//
-
-IDR_DISCLAIMER          HTML    DISCARDABLE     "res\\idr_disc.htm"
-
-#ifdef UE_PRERELEASE
-IDR_PRERELEASE_LICENSE	HTML		DISCARDABLE			"res\\idr_prelic.htm"
-#endif
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // DIB
 //
 
-IDR_CHACO_DIB           DIB     DISCARDABLE     "res\\chaco.dib"
-IDR_UE_DIB              DIB     DISCARDABLE     "res\\uelogo.dib"
+IDR_CHACO_DIB           DIB                     "res\\chaco.dib"
+IDR_UE_DIB              DIB                     "res\\uelogo.dib"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDR_MAINFRAME           "Pueblo/UE\n\nPueblo\nPueblo Shortcuts (*.pbl)\n.PBL\nPueblo.Shortcut\nPueblo Shortcut"
 END
 
-STRINGTABLE PRELOAD DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "Pueblo"
     AFX_IDS_IDLEMESSAGE     "For Help, press F1"
     AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -763,7 +708,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_FILE_NEW             "Create a new top level Pueblo window\nNew window"
     ID_FILE_CLOSE           "Close the current Pueblo window (and terminate the connection)\nClose"
@@ -775,7 +720,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_APP_EXIT             "Close all Pueblo windows and exit\nExit"
     ID_HELP_INDEX           "List Help topics\nHelp Index"
@@ -784,7 +729,7 @@ BEGIN
     ID_HELP                 "Display help for current task or command\nHelp"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "Open this document"
     ID_FILE_MRU_FILE2       "Open this document"
@@ -792,18 +737,18 @@ BEGIN
     ID_FILE_MRU_FILE4       "Open this document"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
     ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
@@ -818,13 +763,13 @@ BEGIN
     ID_EDIT_REDO            "Redo the previously undone action\nRedo"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCSIZE          "Change the window size"
     AFX_IDS_SCMOVE          "Change the window position"
@@ -835,13 +780,13 @@ BEGIN
     AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_SCRESTORE       "Restore the window to normal size"
     AFX_IDS_SCTASKLIST      "Activate Task List"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
     IDS_TITLE_PREFS_DLG     "Preferences"
@@ -852,7 +797,7 @@ BEGIN
                             "Please fill in your address, including your city, state or province, and zip or postal code."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_EDIT_PREFERENCES     "Change user preferences for the Pueblo client"
     ID_VIEW_PREVIOUS        "Moves back to the previous page\nPrevious"
@@ -861,7 +806,7 @@ BEGIN
     ID_VIEW_SWAP_PANES      "Switches panes when two panes are visible\nSwap panes"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_ACCOUNT_INVALID     "The account name and password you gave Pueblo are not registered.  Please try again.  If you don't have an account with Pueblo, you may create one with the 'Create New Account' button."
     IDS_ACCOUNT_IN_USE      "The account name that you've requested is in use.  Try another.  Be creative!  (Note that account names aren't case sensitive.)"
@@ -878,7 +823,7 @@ BEGIN
     IDS_INVALID_CACHE_DIR   "Disk cache directory: %s is invalid."
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_ABORT_HTTP          "The connection to the  server was broken.  Please check your network connection. If they are correct, the server may be temporarily unavailable.  Please try again later."
     IDS_INTERNAL_ERROR      "An internal error has occured due to a bad network connection.  Please check your network connection. If they are correct, the server may be temporarily unavailable.  Please try again later."
@@ -894,7 +839,7 @@ BEGIN
     IDS_SURVEY_WHAT         "So, how did you find us?"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     ID_VIEW_VERTICAL        "Use vertically-oriented window panes\nVertical panes"
     ID_VIEW_TOGGLE_ORIENTATION 
@@ -911,7 +856,7 @@ BEGIN
     ID_VIEW_TRACE           "Displays a window containing data from the world and debugging messages"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     IDS_ACCOUNT_WIZARD      "Account Wizard"
     IDS_INCOME_NOT_A_BOX    "Cardboard box?  Luxury.  At Chaco we worked in a brown paper bag in a septic tank.   We get up at six o'clock in the morning, clean the bag, eat a crust of stale bread, and program for fourteen hours a day week in-week out.\n\n(Please select something else.)"
@@ -928,66 +873,72 @@ BEGIN
                             "Executable (*.exe )|*.exe|All Files (*.*)|*.*||"
     IDS_WEB_BROWSER_INTERNAL "<Internal web browser>"
     IDS_MAILTO_NOT_SUPPORTED 
-                            "You can only send electronic mail through Pueblo if you are using an external web browser such as NetManage WebSurfer or Netscape Navigator.\n\nYou can tell Pueblo to use an external browser by selecting the 'Apps' tab in the Preferences dialog box."
-		ID_COMPRESSION_PANE			"            "
+                            "You can only send electronic mail through Pueblo if you are using an external web browser such as Mozilla or Netscape Navigator.\n\nYou can tell Pueblo to use an external browser by selecting the 'Apps' tab in the Preferences dialog box."
+    IDS_STARTUP_URL         "http://pueblo.sourceforge.net/events.php?e=startup&v=%s"
+    IDS_SHELLSECURITY_FILESCHEME 
+                            "Pueblo/UE will not permit opening a file:// URL with the ""use default browser"" setting enabled, as it represents a very high security risk.\nIf you are certain that you need to use such URLs, then you will need to explicitly select a browser application on the Apps page of the Preferences.\n\nFor your information, the URL that you just attempted to browse to was:\n  %s"
+END
+
+STRINGTABLE 
+BEGIN
     ID_SESSION_PANE         "                              "
     ID_TIME_PANE            "                    "
     ID_PROGRESS_PANE        "                                "
+    ID_COMPRESSION_PANE     "            "
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
+    IDS_ACCOUNT_9600        "9600 bps or slower"
+    IDS_ACCOUNT_14400       "14400 bps"
+    IDS_ACCOUNT_28800       "28800 bps"
+    IDS_ACCOUNT_33600       "33600 bps"
+    IDS_ACCOUNT_56000       "56000 bps or faster"
+    IDS_ACCOUNT_ISDN        "ISDN"
+    IDS_ACCOUNT_PARTT1      "Fractional T1"
+    IDS_ACCOUNT_T1          "T1 or faster"
+    IDS_ACCOUNT_DSL         "DSL (or ADSL)"
+    IDS_ACCOUNT_SAT         "Satellite"
+    IDS_ACCOUNT_UNKNOWN     "Unknown"
     IDS_UPDATE_URL          "http://pueblo.sourceforge.net/update.php?v=%s"
-    IDS_STARTUP_URL         "http://pueblo.sourceforge.net/events.php?e=startup&v=%s"
+    IDS_TITLE_OUTOFDATE     "Reminder"
+    IDS_MESSAGE_OUTOFDATE   "This version of Pueblo/UE is out of date.  You should update it as soon as possible.\r\n\r\nWould you like to visit the update site now?"
+    IDS_COMPONENTS_HEADER   "<html>\r\n  <body text=""#000000"" bgcolor=""#FFFFFF"">\r\n    <center><h3>\r\n        Third Party Components\r\n      </h3>\r\n    </center>\r\n    <hr>\r\n"
+    IDS_COMPONENTS_FOOTER   "\r\n  <hr>\r\n  <p>\r\n    <font size=""-1"">We would like to thank the developers of these components, without whom support for various features in Pueblo/UE would not have been possible.</font>\r\n  </p>\r\n  </body>\r\n</html>\r\n"
+END
+
+STRINGTABLE 
+BEGIN
     IDS_QUIT_URL            "http://pueblo.sourceforge.net/events.php?e=quit&v=%s"
     IDS_REGISTER_URL        "http://pueblo.sourceforge.net/events.php?e=register&v=%s"
     IDS_ABOUT_CHACO_URL     "http://pueblo.sf.net/about/chaco/"
     IDS_ABOUT_PUEBLO_URL    "http://pueblo.sf.net/about/pueblo/"
-    IDS_ABOUT_UE_URL				"http://pueblo.sf.net/about/ue/"
-//    IDS_ABOUT_VRSCOUT_URL   "http://www.chaco.com/about/vrscout/"
+    IDS_ABOUT_UE_URL        "http://pueblo.sf.net/about/ue/"
     IDS_FEEDBACK_URL        "http://pueblo.sf.net/bugs.php"
     IDS_REGISTRATION_WARNING 
                             "It has been more 30 days since the installation of Pueblo, to continue using Pueblo you must register now. You can register by selecting ""Register Pueblo"" under the help menu."
     IDS_REGINFO_FILE        "_reginfo.txt"
     IDS_REGISTER_AGAIN      "This copy has already been registered. Do you want to register again ?"
     IDS_URL_WORLD_LIST_ENTRY "http://pueblo.sf.net/worlds2.php"
+    IDS_ACCOUNT_DIRECT      "Direct internet service provider"
+    IDS_ACCOUNT_UNI         "University/academic connection"
+    IDS_ACCOUNT_PRODIGY     "Prodigy"
+    IDS_ACCOUNT_AOL         "AOL"
+    IDS_ACCOUNT_COMPUSERVE  "Compuserve"
+    IDS_ACCOUNT_OTHER       "Other"
 END
 
-STRINGTABLE DISCARDABLE
-BEGIN
-    IDS_TITLE_OUTOFDATE     "Reminder"
-    IDS_MESSAGE_OUTOFDATE   "This version of Pueblo/UE is out of date.  You should update it as soon as possible.\r\n\r\nWould you like to visit the update site now?"
-		IDS_COMPONENTS_HEADER		"<html>\r\n  <body text=""#000000"" bgcolor=""#FFFFFF"">\r\n    <center><h3>\r\n        Third Party Components\r\n      </h3>\r\n    </center>\r\n    <hr>\r\n"
-		IDS_COMPONENTS_FOOTER		"\r\n  <hr>\r\n  <p>\r\n    <font size=""-1"">We would like to thank the developers of these components, without whom support for various features in Pueblo/UE would not have been possible.</font>\r\n  </p>\r\n  </body>\r\n</html>\r\n"
-END
+#endif    // English (New Zealand) resources
+/////////////////////////////////////////////////////////////////////////////
 
-STRINGTABLE
-BEGIN
-	IDS_ACCOUNT_DIRECT, "Direct internet service provider"
-	IDS_ACCOUNT_UNI, "University/academic connection"
-	IDS_ACCOUNT_PRODIGY, "Prodigy"
-	IDS_ACCOUNT_AOL, "AOL"
-	IDS_ACCOUNT_COMPUSERVE, "Compuserve"
-	IDS_ACCOUNT_OTHER, "Other"
-	IDS_ACCOUNT_9600, "9600 bps or slower"
-	IDS_ACCOUNT_14400, "14400 bps"
-	IDS_ACCOUNT_28800, "28800 bps"
-	IDS_ACCOUNT_33600, "33600 bps"
-	IDS_ACCOUNT_56000, "56000 bps or faster"
-	IDS_ACCOUNT_DSL, "DSL (or ADSL)"
-	IDS_ACCOUNT_SAT, "Satellite"
-	IDS_ACCOUNT_ISDN, "ISDN"
-	IDS_ACCOUNT_PARTT1, "Fractional T1"
-	IDS_ACCOUNT_T1, "T1 or faster"
-	IDS_ACCOUNT_UNKNOWN, "Unknown"
-END
+
 
 #ifndef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 3 resource.
 //
-#include "res\Chaco.rc2"  // non-Microsoft Visual C++ edited resources
+#include "res\Pueblo.rc2"  // non-Microsoft Visual C++ edited resources
 
 #define _AFX_NO_OLE_RESOURCES
 #define _AFX_NO_TRACKER_RESOURCES
@@ -997,3 +948,4 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+

@@ -882,8 +882,7 @@ int ChTextInputEdit::GetEndOfLineIndex( int iLine ) const
 }
 
 
-void ChTextInputEdit::SendKeyDown( UINT uiKey, LPARAM lParam,
-									bool boolStripCtrl )
+void ChTextInputEdit::SendKeyDown( UINT uiKey, LPARAM lParam, chflag32 flMods )
 {
 											/* This function will send a key to
 												the edit control, first
@@ -891,34 +890,43 @@ void ChTextInputEdit::SendKeyDown( UINT uiKey, LPARAM lParam,
 												if it is pressed */
 	static BYTE	bKeyStateArray[256];
 
-	bool		boolControlWasPressed;
-	BYTE		bControlBack;
+	bool		boolStripControl, boolStripAlt;
+	bool		boolControlWasPressed, boolAltWasPressed;
+	BYTE		bControlBack, bAltBack;
 
-	if (boolStripCtrl)
+	boolStripControl = !!(flMods & ACTION_MOD_CONTROL);
+	boolStripAlt = !!(flMods & ACTION_MOD_ALT);
+
+	// turn off the keys if required
+	if (boolStripControl || boolStripAlt)
 	{
-		GetKeyboardState( bKeyStateArray );
-
+		GetKeyboardState(bKeyStateArray);
 		bControlBack = bKeyStateArray[VK_CONTROL];
+		bAltBack = bKeyStateArray[VK_MENU];
+		boolControlWasPressed = !!(bControlBack & 0x80);
+		boolAltWasPressed = !!(bAltBack & 0x80);
 
-		if (boolControlWasPressed = !!(bControlBack & 0x80))
-		{
-											// Turn off the control key
-
+		if (boolStripControl && boolControlWasPressed)
 			bKeyStateArray[VK_CONTROL] &= ~0x80;
-			SetKeyboardState( bKeyStateArray );
-		}
+		if (boolStripAlt && boolAltWasPressed)
+			bKeyStateArray[VK_MENU] &= ~0x80;
+		if (boolControlWasPressed || boolAltWasPressed)
+			SetKeyboardState(bKeyStateArray);
 	}
-											// Send the key
+
+	// Send the key
 	SendMessage( WM_KEYDOWN, uiKey, lParam );
 
-	if (boolStripCtrl && boolControlWasPressed)
-	{										// Restore the control key
-		
-		bKeyStateArray[VK_CONTROL] = bControlBack;
-		SetKeyboardState( bKeyStateArray );
+	// turn the keys back on
+	if (boolStripControl || boolStripAlt)
+	{
+		if (boolControlWasPressed)
+			bKeyStateArray[VK_CONTROL] = bControlBack;
+		if (boolAltWasPressed)
+			bKeyStateArray[VK_MENU] = bAltBack;
+		SetKeyboardState(bKeyStateArray);
 	}
 }
-
 
 bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 {
@@ -926,17 +934,9 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 	bool		boolInTabCompletion = false;
 	ChPosition	pos;
 	chflag32	flMods = 0;
-	bool		boolStripControl;
 
-	if (GetKeyState( VK_CONTROL ) & 0x8000)
-	{
-		boolStripControl = true;
-		flMods |= ACTION_MOD_CONTROL;
-	}
-	else
-	{
-		boolStripControl = false;
-	}
+	if (GetKeyState( VK_CONTROL ) & 0x8000) flMods |= ACTION_MOD_CONTROL;
+	if (GetKeyState( VK_MENU ) & 0x8000) flMods |= ACTION_MOD_ALT;
 
 	pos = m_keyMap.FindItem( uiChar, flMods );
 	if (pos)
@@ -1005,13 +1005,13 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 
 			case actCursorLeft:
 			{
-				SendKeyDown( VK_LEFT, lParam, boolStripControl );
+				SendKeyDown( VK_LEFT, lParam, flMods );
 				break;
 			}
 
 			case actCursorRight:
 			{
-				SendKeyDown( VK_RIGHT, lParam, boolStripControl );
+				SendKeyDown( VK_RIGHT, lParam, flMods );
 				break;
 			}
 
@@ -1031,13 +1031,13 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 
 			case actCursorStartLine:
 			{
-				SendKeyDown( VK_HOME, lParam, boolStripControl );
+				SendKeyDown( VK_HOME, lParam, flMods );
 				break;
 			}
 
 			case actCursorEndLine:
 			{
-				SendKeyDown( VK_END, lParam, boolStripControl );
+				SendKeyDown( VK_END, lParam, flMods );
 				break;
 			}
 
@@ -1049,7 +1049,7 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 				}
 				else
 				{
-					SendKeyDown( VK_UP, lParam, boolStripControl );
+					SendKeyDown( VK_UP, lParam, flMods );
 				}
 				break;
 			}
@@ -1064,7 +1064,26 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 				}
 				else
 				{
-					SendKeyDown( VK_DOWN, lParam, boolStripControl );
+					SendKeyDown( VK_DOWN, lParam, flMods );
+				}
+				break;
+			}
+
+			case actCursorUpWithinCmd:
+			{
+				if (0 < LineFromChar())
+				{
+					SendKeyDown( VK_UP, lParam, flMods );
+				}
+				break;
+			}
+
+			case actCursorDownWithinCmd:
+			{
+				int		iLastLineIndex = GetLineCount() - 1;
+				if (iLastLineIndex > LineFromChar())
+				{
+					SendKeyDown( VK_DOWN, lParam, flMods );
 				}
 				break;
 			}
@@ -1181,31 +1200,21 @@ bool ChTextInputEdit::ProcessKey( UINT& uiChar, LPARAM lParam )
 #if !defined( CH_PUEBLO_PLUGIN )
 BOOL ChTextInputEdit::PreTranslateMessage( MSG* pMsg )
 {
-	BOOL boolCancel;
+	BOOL boolCancel = FALSE;
 
-	if (WM_KEYDOWN == pMsg->message)
+	if ((WM_KEYDOWN == pMsg->message) || (WM_SYSKEYDOWN == pMsg->message))
 	{
-		if (ProcessKey( pMsg->wParam, pMsg->lParam ))
-		{
-			boolCancel = CEdit::PreTranslateMessage( pMsg );
-		}
-		else
-		{
-			boolCancel = TRUE;
-		}
+		boolCancel = !ProcessKey( pMsg->wParam, pMsg->lParam );
 	}
 	else if (WM_KEYUP == pMsg->message)
 	{
-		if (VK_RETURN == pMsg->wParam)
-		{
-			boolCancel = TRUE;
-		}
+		boolCancel = (VK_RETURN == pMsg->wParam);
 	}
-	else
+
+	if (boolCancel == FALSE)
 	{
 		boolCancel = CEdit::PreTranslateMessage( pMsg );
 	}
-
 	return boolCancel;
 }
 #endif
@@ -1384,6 +1393,9 @@ TruncateMenuString( ChString& strText )
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:14  uecasm
 // Import of source tree as at version 2.53 release.
 //

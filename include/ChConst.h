@@ -89,6 +89,7 @@
 #define CH_APP_WEBBROWSER_DEF		""
 #define	CH_APP_WEBTRACKER			"WebTracker"
 #define CH_APP_WEBTRACKER_DEF			0
+#define	CH_APP_DEFAULTBROWSER			"ShellDefault"
 
 #define CH_LOGIN_GROUP				"Login"
 #define CH_LOGIN_LAST_NAME				"Last_Login_Name"
@@ -260,5 +261,8 @@
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:35  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _CHCONST_H )

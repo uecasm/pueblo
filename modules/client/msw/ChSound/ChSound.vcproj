@@ -26,7 +26,6 @@
 				GlobalOptimizations="TRUE"
 				EnableIntrinsicFunctions="TRUE"
 				FavorSizeOrSpeed="2"
-				OmitFramePointers="TRUE"
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="2"
@@ -39,7 +38,8 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\ChSound.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -51,6 +51,7 @@
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ChSound.def"
 				ProgramDatabaseFile="$(OutDir)\modules\ChSound.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				BaseAddress="0x24000000"
 				ImportLibrary="$(OutDir)\modules\ChSound.lib"/>
@@ -96,13 +97,14 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChSound.pch"
+				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\ChSound.pdb"
 				BrowseInformation="1"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -110,7 +112,7 @@
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib"
 				OutputFile="$(OutDir)\modules\ChSound.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				ModuleDefinitionFile=".\ChSound.def"
 				GenerateDebugInformation="TRUE"
@@ -240,6 +242,9 @@
 			</File>
 			<File
 				RelativePath=".\ChSound.rc">
+			</File>
+			<File
+				RelativePath="res\ChSound.rc2">
 			</File>
 			<File
 				RelativePath="resource.h">

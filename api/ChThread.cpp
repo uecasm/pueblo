@@ -46,6 +46,7 @@
 
 #if defined( CH_MSW )
 
+	#include "PbError.h"
 	#include <io.h>
 
 #endif
@@ -967,6 +968,9 @@ UINT HTTPRequestThread( LPVOID pData )
 
 	ChHttpThreadMgr* pMgr = (ChHttpThreadMgr*)pData;
 
+#ifdef PBERROR_API
+	PbError::SetThreadName("HTTP Request Thread");
+#endif
 	//TRACE( "Start request thread\n" );
 
 	while (WAIT_FAILED !=
@@ -1107,6 +1111,9 @@ UINT HTTPProcessDownload( LPVOID pData )
 	ChHttpThread*	pThread = (ChHttpThread*)pData;
 	
 	TRACE( "Starting new Read thread\n" );
+#ifdef PBERROR_API
+	PbError::SetThreadName("HTTP Process Download");
+#endif
 
 	while ( true )
 	{
@@ -1168,3 +1175,6 @@ UINT HTTPProcessDownload( LPVOID pData )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:50  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -10,7 +10,7 @@
 CSM=$(INTDIR)\libmng.csm
 DEF_FILE=
 RES_FILE=
-NCDEFS=-tWD -DMNG_BUILD_DLL -DZLIB_DLL -DUSE_WINDOWS_MESSAGEBOX -w!- -E$(ASM)
+NCDEFS=-tWD -DZLIB_DLL;ZLIB_INTERNAL;XMD_H;USE_WINDOWS_MESSAGEBOX -w!- -E$(ASM)
 NRDEFS=
 NLDEFS=/Gi /b:0x40000000 /Tpd
 
@@ -52,8 +52,8 @@ LIB32_OBJ1= \
   pfx_libmng_zlib.obj \
   pfx_libmng_jpeg.obj \
   pfx_libmng_cms.obj  \
-  pfx_adler32.obj pfx_compress.obj pfx_crc32.obj pfx_deflate.obj pfx_infblock.obj pfx_infcodes.obj \
-  pfx_inffast.obj pfx_inflate.obj pfx_inftrees.obj pfx_infutil.obj pfx_trees.obj pfx_uncompr.obj \
+  pfx_adler32.obj pfx_compress.obj pfx_crc32.obj pfx_deflate.obj pfx_infback.obj pfx_gzio.obj \
+  pfx_inffast.obj pfx_inflate.obj pfx_inftrees.obj pfx_trees.obj pfx_uncompr.obj \
   pfx_zutil.obj pfx_jquant2.obj pfx_jcapistd.obj pfx_jccoefct.obj pfx_jccolor.obj pfx_jcdctmgr.obj \
   pfx_jchuff.obj pfx_jcinit.obj pfx_jcmainct.obj pfx_jcmarker.obj pfx_jcmaster.obj pfx_jcomapi.obj \
   pfx_jcparam.obj pfx_jcphuff.obj pfx_jcprepct.obj pfx_jcsample.obj pfx_jctrans.obj pfx_jdapistd.obj \
@@ -64,7 +64,7 @@ LIB32_OBJ1= \
   pfx_jmemmgr.obj pfx_jmemnobs.obj pfx_jquant1.obj pfx_jcapimin.obj pfx_jutils.obj pfx_jdapimin.obj \
   pfx_cmscam97.obj pfx_cmscnvrt.obj pfx_cmserr.obj pfx_cmsgamma.obj pfx_cmsgmt.obj pfx_cmsintrp.obj \
   pfx_cmsio1.obj pfx_cmslut.obj pfx_cmsmatsh.obj pfx_cmsmtrx.obj pfx_cmspack.obj pfx_cmspcs.obj \
-  pfx_cmssamp.obj pfx_cmswtpnt.obj pfx_cmsxform.obj  
+  pfx_cmssamp.obj pfx_cmswtpnt.obj pfx_cmsxform.obj pfx_cmsvirt.obj pfx_cmsnamed.obj
 
 #HACK: for some unknown reason $(INTDIR) isn't expanding in the _OBJS
 #      substitution, so I've put the value in directly.

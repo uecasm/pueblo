@@ -80,11 +80,12 @@ IMPLEMENT_DYNCREATE( ChPrefsApps, ChPropertyPage )
 ChPrefsApps::ChPrefsApps() :
 				ChPropertyPage( ChPrefsApps::IDD, 0, hInstApp ),
 				m_reg( CH_APPS_GROUP ),
-				m_boolInitialized( false )
-{
+				m_boolInitialized( false ),
+				m_boolInternal( false ),
+				m_strBrowser(_T(""))
+				{
 	//{{AFX_DATA_INIT(ChPrefsApps)
-	m_strBrowser = _T("");
-	m_boolInternal = FALSE;
+	m_iRadioBrowsers = -1;
 	//}}AFX_DATA_INIT
 }
 
@@ -98,8 +99,21 @@ void ChPrefsApps::DoDataExchange( CDataExchange* pDX )
 {
 	ChPropertyPage::DoDataExchange( pDX );
 
+	if (!pDX->m_bSaveAndValidate)
+	{
+		m_iRadioBrowsers = m_boolUseDefaultBrowser ? 0 : 1;
+	}
+
 	//{{AFX_DATA_MAP(ChPrefsApps)
+	DDX_Control(pDX, IDC_BROWSE, m_buttonBrowse);
+	DDX_Control(pDX, IDC_STATIC_BROWSER, m_staticBrowser);
+	DDX_Radio(pDX, IDC_USEDEFAULTBROWSER, m_iRadioBrowsers);
 	//}}AFX_DATA_MAP
+
+	if (pDX->m_bSaveAndValidate)
+	{
+		m_boolUseDefaultBrowser = (0 == m_iRadioBrowsers);
+	}
 }
 
 
@@ -112,6 +126,8 @@ BOOL ChPrefsApps::OnSetActive()
 	if (!m_boolInitialized)
 	{
 		ReadRegistry();
+		UpdateData( FALSE );
+		UpdateButtons();
 											/* Set the initialized flag so
 												that we don't do this again */
 		m_boolInitialized = true;
@@ -125,6 +141,7 @@ void ChPrefsApps::OnCommit()
 {
 	if (m_boolInitialized)
 	{
+		m_reg.WriteBool( CH_APP_DEFAULTBROWSER, m_boolUseDefaultBrowser );
 		m_reg.WriteBool( CH_APP_WEBTRACKER, m_boolInternal );
 		m_reg.Write( CH_APP_WEBBROWSER, m_strBrowser );
 	}     
@@ -134,6 +151,8 @@ void ChPrefsApps::OnCommit()
 BEGIN_MESSAGE_MAP( ChPrefsApps, ChPropertyPage )
 	//{{AFX_MSG_MAP(ChPrefsApps)
 	ON_BN_CLICKED(IDC_BROWSE, OnBrowse)
+	ON_BN_CLICKED(IDC_USEDEFAULTBROWSER, OnRadioDefaultBrowser)
+	ON_BN_CLICKED(IDC_USESPECIFICBROWSER2, OnRadioSpecifiedBrowser)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -146,10 +165,11 @@ void ChPrefsApps::ReadRegistry()
 {
 	m_reg.Read( CH_APP_WEBBROWSER, m_strBrowser, CH_APP_WEBBROWSER_DEF );
 	m_reg.ReadBool( CH_APP_WEBTRACKER, m_boolInternal, CH_APP_WEBTRACKER_DEF );
+	m_reg.ReadBool( CH_APP_DEFAULTBROWSER, m_boolUseDefaultBrowser, m_strBrowser.IsEmpty() );
 
 	DisplayBrowserName( m_strBrowser );
 	
-	if (m_strBrowser.IsEmpty() || m_boolInternal)
+	if (m_strBrowser.IsEmpty())
 	{
 		m_boolInternal = true;	
 	}
@@ -157,8 +177,6 @@ void ChPrefsApps::ReadRegistry()
 
 void ChPrefsApps::DisplayBrowserName( const ChString& strName )
 {
-	CStatic*	pStatic = (CStatic*)GetDlgItem( IDC_STATIC_BROWSER );
-
 	if (strName.GetLength())
 	{
 		ChString		strBrowserName( strName );
@@ -169,21 +187,38 @@ void ChPrefsApps::DisplayBrowserName( const ChString& strName )
 			strBrowserName = strBrowserName.Mid( iIndex + 1 );
 		}
 
-		pStatic->SetWindowText( strBrowserName );
+		m_staticBrowser.SetWindowText( strBrowserName );
 	}
 	else
 	{	
 		ChString		strTag;
 
 		LOADSTRING( IDS_WEB_BROWSER_INTERNAL, strTag );
-		pStatic->SetWindowText( strTag );
+		m_staticBrowser.SetWindowText( strTag );
 	}
 }
 
+void ChPrefsApps::UpdateButtons()
+{
+	UpdateData();
+
+	m_buttonBrowse.EnableWindow(!m_boolUseDefaultBrowser);
+	m_staticBrowser.EnableWindow(!m_boolUseDefaultBrowser);
+}
 
 /*----------------------------------------------------------------------------
 	ChPrefsApps message handlers
 ----------------------------------------------------------------------------*/
+
+void ChPrefsApps::OnRadioDefaultBrowser()
+{
+	UpdateButtons();
+}
+
+void ChPrefsApps::OnRadioSpecifiedBrowser()
+{
+	UpdateButtons();
+}
 
 void ChPrefsApps::OnBrowse() 
 {
@@ -320,6 +355,9 @@ void ChWebBrowserSelectFileDlg::OnInternal()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:31  uecasm
 // Import of source tree as at version 2.53 release.
 //

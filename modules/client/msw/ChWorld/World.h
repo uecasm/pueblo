@@ -128,7 +128,7 @@ class ChWorldTinTin : public TinTin
 
 		virtual void SendToWorld( const ChString& strOutput );
 		virtual void Display( const ChString& strOutput,
-								bool boolPreformatted = false ) const;
+								bool boolPreformatted = false, bool boolRenderHtml = false ) const;
 };
 
 
@@ -275,7 +275,7 @@ class ChWorldMainInfo : public ChMainInfo
 		void Send( const ChString& strDefaultCmd,
 					const ChString& strMD5, const ChString& strOverrideCmd,
 					const ChString& strParams, bool boolEcho = true );
-		void Display( const ChString& strText, bool boolPreformatted );
+		void Display( const ChString& strText, bool boolPreformatted, bool boolRenderHtml = false );
 
 		void Initialize();
 		void ShowModule( bool boolShow );
@@ -482,6 +482,9 @@ class ChWorldMainInfo : public ChMainInfo
 #endif	// !defined( _WORLD_H )
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:43  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:43  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -123,7 +123,7 @@ void TinTin::SendToWorld( const ChString& strOutput )
 }
 
 
-void TinTin::Display( const ChString& strOutput, bool boolPreformatted ) const
+void TinTin::Display( const ChString& strOutput, bool boolPreformatted, bool boolRenderHtml ) const
 {
 }
 
@@ -176,6 +176,9 @@ void TinTin::ReadGlobalFile()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:38  uecasm
 // Import of source tree as at version 2.53 release.
 //

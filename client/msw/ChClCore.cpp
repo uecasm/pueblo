@@ -714,10 +714,11 @@ void ChClientCore::DisplayWebPage( const ChString& strURL, int iBrowser )
 {
 	ChRegistry			regApps( CH_APPS_GROUP );
 	ChString				strBrowser;
-	bool				boolInternal;
+	bool				boolInternal, boolUseDefault;
 
 	regApps.Read( CH_APP_WEBBROWSER, strBrowser, CH_APP_WEBBROWSER_DEF );
 	regApps.ReadBool( CH_APP_WEBTRACKER, boolInternal, CH_APP_WEBTRACKER_DEF );
+	regApps.ReadBool( CH_APP_DEFAULTBROWSER, boolUseDefault, strBrowser.IsEmpty() );
 
 #ifdef _DEBUG
 	afxDump << "ChClientCore::DisplayWebPage(\"" << strURL << "\", " << iBrowser
@@ -725,7 +726,7 @@ void ChClientCore::DisplayWebPage( const ChString& strURL, int iBrowser )
 					<< "\n  strBrowser == \"" << strBrowser << "\"\n";
 #endif
 
-	if (!boolInternal && strBrowser.IsEmpty())
+	if (!boolInternal && !boolUseDefault && strBrowser.IsEmpty())
 	{										/* Ask user how he wants the URL
 												to be displayed */
 		ChString		strFilter;
@@ -745,6 +746,7 @@ void ChClientCore::DisplayWebPage( const ChString& strURL, int iBrowser )
 		regApps.Read( CH_APP_WEBBROWSER, strBrowser, CH_APP_WEBBROWSER_DEF );
 		regApps.ReadBool( CH_APP_WEBTRACKER, boolInternal,
 							CH_APP_WEBTRACKER_DEF );
+		regApps.ReadBool( CH_APP_DEFAULTBROWSER, boolUseDefault, strBrowser.IsEmpty() );
 	}
 
 	if ( boolInternal && iBrowser == ChCore::browserExternal && !strBrowser.IsEmpty() )
@@ -752,7 +754,29 @@ void ChClientCore::DisplayWebPage( const ChString& strURL, int iBrowser )
 	 	boolInternal = false;
 	}
 
-	if (boolInternal || iBrowser == ChCore::browserWebTracker || strBrowser.IsEmpty() )
+	if (boolUseDefault)
+	{
+		ChURLParts url;
+		if (url.GetURLParts(strURL))
+		{
+			if (url.GetScheme() == ChURLParts::typeFile)
+			{
+				ChString strFormat, strError;
+				LOADSTRING(IDS_SHELLSECURITY_FILESCHEME, strFormat);
+				strError.Format(strFormat, LPCSTR(strURL));
+				AfxMessageBox(strError, MB_OK | MB_ICONEXCLAMATION);
+			}
+			else if((int)ShellExecute(m_pFrame->GetSafeHwnd(), "open", strURL, NULL, NULL, SW_SHOW) <= 32)
+			{
+				AfxMessageBox("Failed to open URL using default browser.", MB_OK | MB_ICONEXCLAMATION);
+			}
+		}
+		else
+		{
+			AfxMessageBox("You appear to have selected a malformed URL.", MB_OK | MB_ICONEXCLAMATION);
+		}
+	}
+	else if (boolInternal || iBrowser == ChCore::browserWebTracker || strBrowser.IsEmpty() )
 	{
 #ifndef CH_NO_WEBTRACKER
 		if (0 == strURL.Find( MAILTO_URL_PREFIX ))
@@ -1098,6 +1122,9 @@ bool ChClientCore::DoRegistration()
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:24  uecasm
 // Import of source tree as at version 2.53 release.
 //

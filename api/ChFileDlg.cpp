@@ -76,7 +76,13 @@ ChFileDialog::ChFileDialog( BOOL bLoad,
 
 	// BFC by default uses the Windows 2000 structure size for OPENFILENAME;
 	// we need to alter that so that it's compatible with Windows 9x.
+#if (_WIN32_WINNT >= 0x0500)
 	m_ofn.lStructSize = OPENFILENAME_SIZE_VERSION_400;
+#else
+	// OPENFILENAME_SIZE_VERSION_400 isn't defined, but the OPENFILENAME structure should be the
+	// correct size now...
+	m_ofn.lStructSize = sizeof(OPENFILENAME);
+#endif
 
 	if (flSysProps & CH_PROP_WIN95) {
 		m_ofn.Flags |= OFN_EXPLORER;
@@ -208,3 +214,6 @@ BEGIN_MESSAGE_MAP( ChFileDialog, CFileDialog )
 END_MESSAGE_MAP()
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:01  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -152,8 +152,15 @@ class ChClientCore : public ChCore
 		virtual ChSplitter* GetSplitter();
 
 		virtual bool IsFlashWindow()		
-						{ 
+						{
+							if (m_boolFlashWindow) { m_boolWasFlashWindow = true; }
 							return m_boolFlashWindow; 
+						}
+		virtual bool WasFlashWindow()
+						{
+							bool wasFlash = m_boolWasFlashWindow;
+							m_boolWasFlashWindow = false;
+							return wasFlash;
 						}
 		virtual void EnableFlashWindow( bool boolFlash = true )
 						{
@@ -240,6 +247,7 @@ class ChClientCore : public ChCore
 		ChString						m_strSessionText;
 		bool						m_boolTrackTime;
 		bool						m_boolFlashWindow;
+		bool						m_boolWasFlashWindow;
 		ChMainFrame*				m_pFrame;
 		ChRMenuMgr*					m_pMenuMgr;
 		ChPuebloModuleManager*		m_pModuleMgr;
@@ -262,3 +270,6 @@ class ChClientCore : public ChCore
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:25  uecasm
+// Import of source tree as at version 2.53 release.
+//

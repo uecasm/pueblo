@@ -82,22 +82,11 @@
 
 #define MIME_TEXT					"text/plain"
 #define MIME_HTML					"text/html"
-#define MIME_HTML2					"text/htm"
 #define MIME_GIF					"image/gif"
 #define MIME_BMP					"image/x-bmp"
 #define MIME_JPEG					"image/jpeg"
-#define MIME_PNG					"image/png"
-#define MIME_MNG					"video/x-mng"
-#define MIME_MNG2					"video/mng"
-#define MIME_JNG					"image/x-jng"
-#define MIME_JNG2					"image/jng"
-#define MIME_MIDI					"audio/x-midi"
-#define MIME_MIDI1					"audio/x-mid"
-#define MIME_MIDI2					"audio/midi"
-#define MIME_WAVE					"audio/x-wav"
-#define MIME_VOX					"audio/voxware"
 #define MIME_VRML					"x-world/x-vrml"
-#define MIME_WORLD					"application/x-pueblo-world"
+// more MIME types are defined in ChHtUtil.cpp
 
 //#define MIME_AVI		"video/x-msvideo"
 //#define MIME_REALAUDIO	"audio/x-pn-realaudio-plugin"
@@ -320,6 +309,9 @@ class CH_EXPORT_CLASS ChHTTPConn
 #endif
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:55:41  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -1142,7 +1142,7 @@ void ChComponentsAbout::DisplayMNGComponents()
 	text += temp;
 	temp.Format("      <li>jpeglib version %d.%d</li>\r\n", JPEG_LIB_VERSION / 10, JPEG_LIB_VERSION % 10);
 	text += temp;
-	text += "      <li>lcms version 1.09d</li>\r\n";
+	text += "      <li>lcms version 1.11b</li>\r\n";
 	text += "    </ul></li>\r\n";
 	
 	m_htmlWnd.AppendText(text);
@@ -1178,6 +1178,9 @@ BOOL ChComponentsAbout::OnInitDialog()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:20  uecasm
 // Import of source tree as at version 2.53 release.
 //

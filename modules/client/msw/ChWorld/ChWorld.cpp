@@ -259,14 +259,14 @@ void ChWorldTinTin::SendToWorld( const ChString& strOutput )
 
 
 void ChWorldTinTin::Display( const ChString& strOutput,
-								bool boolPreformatted ) const
+								bool boolPreformatted, bool boolRenderHtml ) const
 {
 	if (IsOnline())
 	{										/* This function doesn't apply
 												any tintin processing to the
 												string that it is sending */
 
-		GetMainInfo()->Display( strOutput, boolPreformatted );
+		GetMainInfo()->Display( strOutput, boolPreformatted, boolRenderHtml );
 	}
 }
 
@@ -493,7 +493,7 @@ void ChWorldMainInfo::Send( const ChString& strDefaultCmd,
 }
 
 
-void ChWorldMainInfo::Display( const ChString& strText, bool boolPreformatted )
+void ChWorldMainInfo::Display( const ChString& strText, bool boolPreformatted, bool boolRenderHtml /*= false*/ )
 {
 	ChString		strTextOut( strText );
 	ChString		strOut;
@@ -509,11 +509,13 @@ void ChWorldMainInfo::Display( const ChString& strText, bool boolPreformatted )
 	//     against a black background).
 	strOut += "<b><font text=\"#C0C000\">";
 
+	if (boolRenderHtml == false)
+	{
 								/* Strip out HTML from the users'
 									text and append it to the
 									output buffer */
-
-	ChHtmlWnd::EscapeForHTML( strTextOut );
+		ChHtmlWnd::EscapeForHTML( strTextOut );
+	}
 	strOut += strTextOut;
 
 	if (boolPreformatted)
@@ -3967,6 +3969,10 @@ FormatHint( ChString& strHint )
 			strHint = strArgs + " (";
 			strHint += strHintArg + ")";
 		}
+		else if (href == command)
+		{
+			strHint = strHintArg + " <" + strArgs + ">";
+		}
 		else
 		{
 			strHint = strHintArg;
@@ -4096,6 +4102,9 @@ FormatHint( ChString& strHint )
 // End: ***
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:28  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -553,7 +553,7 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 					// Set the image object
 					pImage->GetImageData()->SetImage( pDib );
 					pImage->GetImageSize( sizeNew );
-					pView->UpdateObject( pImage, (sizeOld != sizeNew) != FALSE );
+					pView->UpdateObject( pImage, true ); //(sizeOld != sizeNew) != FALSE );
 
 					if (m_pPaneMgr && (sizeOld != sizeNew))
 					{
@@ -760,6 +760,9 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:41  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:54:13  uecasm
 // Import of source tree as at version 2.53 release.
 //

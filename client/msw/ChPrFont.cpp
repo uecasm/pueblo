@@ -163,7 +163,7 @@ void ChPrefsFontPage::OnChooseFixedFont()
 		LOGFONT		lf;
 		HDC			hDC = ::GetDC( ::GetDesktopWindow() );
 		int			iPixelY = -1 * ::GetDeviceCaps( hDC, LOGPIXELSY );
-		const DWORD	dwFlags = (CF_FIXEDPITCHONLY | CF_SCREENFONTS |
+		const DWORD	dwFlags = (CF_FIXEDPITCHONLY | CF_SCREENFONTS | CF_NOSCRIPTSEL |
 								  CF_LIMITSIZE | CF_INITTOLOGFONTSTRUCT);
 
 		::ReleaseDC(::GetDesktopWindow(), hDC );
@@ -213,7 +213,7 @@ void ChPrefsFontPage::OnChooseProportionalFont()
 		LOGFONT		lf;
 		HDC			hDC = ::GetDC( ::GetDesktopWindow() );
 		int			iPixelY = -1 * ::GetDeviceCaps( hDC, LOGPIXELSY );
-		const DWORD	dwFlags = (CF_SCALABLEONLY | CF_SCREENFONTS |
+		const DWORD	dwFlags = (CF_SCALABLEONLY | CF_SCREENFONTS | CF_NOSCRIPTSEL |
 								  CF_LIMITSIZE | CF_INITTOLOGFONTSTRUCT);
 
 		::ReleaseDC( ::GetDesktopWindow(), hDC );
@@ -226,7 +226,7 @@ void ChPrefsFontPage::OnChooseProportionalFont()
 		lf.lfOutPrecision 	= OUT_STROKE_PRECIS;
 		lf.lfClipPrecision 	= CLIP_STROKE_PRECIS;
 		lf.lfQuality 		= DEFAULT_QUALITY;
-		lf.lfPitchAndFamily = FIXED_PITCH | FF_MODERN;
+		lf.lfPitchAndFamily = VARIABLE_PITCH | FF_SWISS;
 		lstrcpy( lf.lfFaceName, m_strProportionalFont );/* Should we get the name
 														from the preference
 														file ??? */
@@ -895,6 +895,9 @@ void ChPrefsColorPage::OnSelchangeComboPlinkColor()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:34  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -393,7 +393,7 @@ void TinTin::DoMessage( const ChString& strArgs )
 }
 
 
-void TinTin::DoPlaySound( const ChString& strArgs )
+void TinTin::DoPlaySound( const ChString& strArgs, bool async )
 {
 	ChString			strFilepath;
 											// Validate the path
@@ -409,7 +409,9 @@ void TinTin::DoPlaySound( const ChString& strArgs )
 	}
 	else
 	{
-		if (!PlaySound( strFilepath, 0, SND_FILENAME ))
+		DWORD flags = SND_FILENAME;
+		if(async) flags |= SND_ASYNC;
+		if (!PlaySound( strFilepath, 0, flags ))
 		{
 			ChString		strFormat;
 			ChString		strMessage;
@@ -495,6 +497,18 @@ void TinTin::DoShowMe( const ChString& strArgs )
 	Message( strResult );
 }
 
+void TinTin::DoShowMeHtml( const ChString& strArgs )
+{
+	ChString	strResult;
+
+	GetArgInBraces( strArgs, strResult, true );
+
+	PrepareActionAlias( strResult, strResult );
+	if (IsMessages())
+	{
+		Display( strResult, false, true );
+	}
+}
 
 /*----------------------------------------------------------------------------
 	TinTin::DoSplit
@@ -999,6 +1013,9 @@ void tab_delete(arg)
 #endif	// 0
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:39  uecasm
 // Import of source tree as at version 2.53 release.
 //

@@ -136,7 +136,7 @@ class ChTextInputEdit : public CEdit
 		void ConstructRightButtonMenu( CMenu& menu );
 
 		int GetEndOfLineIndex( int iLine ) const;
-		void SendKeyDown( UINT uiKey, LPARAM lParam, bool boolStripCtrl );
+		void SendKeyDown( UINT uiKey, LPARAM lParam, chflag32	flMods );
 		bool ProcessKey( UINT& uiChar, LPARAM lParam );
 
 	protected:
@@ -242,6 +242,9 @@ class ChTextInput
 #endif	// !defined( _CHTEXTINPUT_H )
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:53:15  uecasm
 // Import of source tree as at version 2.53 release.
 //

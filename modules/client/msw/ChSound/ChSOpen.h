@@ -88,6 +88,7 @@ class ChSoundOpenFileDlg : public ChFileDialog
 	protected:
 											// Generated message map functions
 		//{{AFX_MSG(ChSoundOpenFileDlg)
+		afx_msg void OnSize(UINT, int, int);
 		afx_msg void OnNoSound();
 		afx_msg void OnTest();
 		//}}AFX_MSG
@@ -107,3 +108,6 @@ class ChSoundOpenFileDlg : public ChFileDialog
 #endif	// !defined( _CHSOPEN_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:59  uecasm
+// Import of source tree as at version 2.53 release.
+//

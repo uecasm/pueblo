@@ -46,6 +46,8 @@
 #if !defined( _HEADERS_H )
 #define _HEADERS_H
 
+#include <PbSysVersion.h>
+
 #if defined( CH_MSW )
 
 	#include <afxwin.h>						// MFC core and std components
@@ -103,5 +105,8 @@
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:46  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _HEADERS_H )

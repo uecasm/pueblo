@@ -135,6 +135,7 @@ void ChSoundOpenFileDlg::DoDataExchange( CDataExchange* pDX )
 
 BEGIN_MESSAGE_MAP( ChSoundOpenFileDlg, ChFileDialog )
 	//{{AFX_MSG_MAP(ChSoundOpenFileDlg)
+	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_NO_SOUND, OnNoSound)
 	ON_BN_CLICKED(IDC_TEST, OnTest)
 	//}}AFX_MSG_MAP
@@ -144,6 +145,22 @@ END_MESSAGE_MAP()
 /*----------------------------------------------------------------------------
 	ChSoundOpenFileDlg message handlers
 ----------------------------------------------------------------------------*/
+
+void ChSoundOpenFileDlg::OnSize(UINT nType, int cx, int cy)
+{
+	ChFileDialog::OnSize(nType, cx, cy);
+
+	CRect okRect, noSoundRect;
+
+	GetParent()->GetDlgItem(IDOK)->GetWindowRect(okRect);
+	GetDlgItem(IDC_NO_SOUND)->GetWindowRect(noSoundRect);
+
+	noSoundRect.left = okRect.left;
+	noSoundRect.right = okRect.right;
+
+	ScreenToClient(noSoundRect);
+	GetDlgItem(IDC_NO_SOUND)->MoveWindow(noSoundRect);
+}
 
 void ChSoundOpenFileDlg::OnNoSound() 
 {
@@ -194,6 +211,9 @@ void ChSoundOpenFileDlg::OnTest()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:59  uecasm
 // Import of source tree as at version 2.53 release.
 //

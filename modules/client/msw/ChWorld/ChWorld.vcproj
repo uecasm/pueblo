@@ -26,10 +26,9 @@
 				GlobalOptimizations="TRUE"
 				EnableIntrinsicFunctions="TRUE"
 				FavorSizeOrSpeed="2"
-				OmitFramePointers="TRUE"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;$(SolutionDir)zlib"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;ZLIB_DLL"
 				RuntimeLibrary="2"
 				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
@@ -54,6 +53,7 @@
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\ChWorld.def"
 				ProgramDatabaseFile="$(OutDir)\modules\ChWorld.pdb"
+				GenerateMapFile="TRUE"
 				SubSystem="2"
 				BaseAddress="0x20000000"
 				ImportLibrary="$(OutDir)\modules\ChWorld.lib"/>
@@ -93,18 +93,19 @@
 				Optimization="0"
 				OptimizeForProcessor="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;$(SolutionDir)zlib"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;ZLIB_DLL"
 				RuntimeLibrary="3"
 				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChWorld.pch"
+				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\ChWorld.pdb"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -112,7 +113,7 @@
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="winmm.lib"
 				OutputFile="$(OutDir)\modules\ChWorld.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\ChWorld.def"
@@ -285,6 +286,9 @@
 			</File>
 			<File
 				RelativePath=".\ChWorld.rc">
+			</File>
+			<File
+				RelativePath="res\ChWorld.rc2">
 			</File>
 			<File
 				RelativePath="resource.h">

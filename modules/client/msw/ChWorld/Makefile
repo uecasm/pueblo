@@ -4,7 +4,7 @@
 CSM=$(INTDIR)\ChWorld.csm
 DEF_FILE=ChWorld.def
 RES_FILE=$(INTDIR)\ChWorld.res
-NCDEFS=-tWD
+NCDEFS=-tWD -DZLIB_DLL
 NRDEFS=
 NLDEFS=/b:0x20000000 /Tpd
 

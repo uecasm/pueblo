@@ -42,6 +42,8 @@
 
 // $Header$
 
+#include <PbSysVersion.h>
+
 #if defined( CH_MSW )
 
 	#include <afxwin.h>						// MFC core and std components

@@ -55,7 +55,7 @@ RDEFS=-d$(CDEFS:;= /d)
 CPP_NWARN=*hid *pia *aus *par *inl *pch
 CPP_WARN=$(CPP_NWARN:*=-w-)
 CPP_COMMON=-5 -a8 -b -D$(CDEFS) -I$(INCLUDE) -H=$(CSM) -Hh=headers.h -Hc \
-  -tW -tWM -VF -VM -K -g0 -X- -w! $(CPP_WARN) $(NCDEFS)
+  -tW -tWM -VF -VM -K -g0 -X- $(CPP_WARN) $(NCDEFS)
 !IF $(DEBUG)==0
 # CPP_PROJ=$(CPP_COMMON) /O2 /Oi -v- /DNDEBUG
 CPP_PROJ=$(CPP_COMMON) -v -O2 -Oi -OS -r /DNDEBUG

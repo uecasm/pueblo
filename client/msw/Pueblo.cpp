@@ -52,6 +52,7 @@ This file includes the code for the main Pueblo client app.
 #include "ChClCore.h"
 #include <ChPblDoc.h>
 #include <ChRMenu.h>
+#include <PbError.h>
 
 #if defined( CH_MSW )
 #include <ChSock.h>
@@ -138,7 +139,15 @@ ChApp::ChApp() :
 	hInstApp = 0;
 	TRACE("Constructed application.");
 
-	::CreateMutex(NULL, FALSE, "PuebloUE_RunningMutex");
+	SECURITY_DESCRIPTOR descriptor;
+	SECURITY_ATTRIBUTES attributes;
+	InitializeSecurityDescriptor(&descriptor, SECURITY_DESCRIPTOR_REVISION);
+	SetSecurityDescriptorDacl(&descriptor, TRUE, NULL, FALSE);
+	attributes.nLength = sizeof(SECURITY_ATTRIBUTES);
+	attributes.lpSecurityDescriptor = &descriptor;
+	attributes.bInheritHandle = FALSE;
+	::CreateMutex(&attributes, FALSE, "PuebloUE_RunningMutex");
+	::CreateMutex(&attributes, FALSE, "Global\\PuebloUE_RunningMutex");
 
 /*
 #if defined( _DEBUG )
@@ -204,10 +213,15 @@ ChApp::~ChApp()
 
 BOOL ChApp::InitInstance()
 {
+	bool splashVisible = false;
 	CSingleDocTemplate	*pDocTemplate;
 											// Store the instance identifier
 	//TRACE0("ChApp::InitInstance");
 	hInstApp = m_hInstance;
+
+#ifdef PBERROR_API
+	PbError::SetThreadName("Main");
+#endif
 											/* Set a registry key to be used
 												for MFC internals */
 	#if defined( WIN32 )
@@ -241,100 +255,120 @@ BOOL ChApp::InitInstance()
 		m_splash.SetWindowPos( &CWnd::wndTopMost, 0, 0, 0, 0,
 								SWP_SHOWWINDOW| SWP_NOSIZE | SWP_NOMOVE );
 		m_splash.UpdateWindow();
+		splashVisible = true;
 	}
-	TRACE("INI & doc template\n");
-											/* Load standard INI file
-												options */
-	LoadStdProfileSettings( 0 );
-											/* Register the application's
-												document templates.  Document
-												templates serve as the
-												connection between documents,
-												frame windows and views. */
-	pDocTemplate =
-		new CSingleDocTemplate( IDR_MAINFRAME, RUNTIME_CLASS( ChPuebloDoc ),
-								RUNTIME_CLASS( ChMainFrame ),
-								RUNTIME_CLASS( ChBaseView ) );
-	AddDocTemplate( pDocTemplate );
-											// Enable DDE Execute open
-	EnableShellOpen();
-	RegisterShellFileTypes();
-											// Simple command line parsing
-	OnFileNew();
+	try {
+		TRACE("INI & doc template\n");
+												/* Load standard INI file
+													options */
+		LoadStdProfileSettings( 0 );
+												/* Register the application's
+													document templates.  Document
+													templates serve as the
+													connection between documents,
+													frame windows and views. */
 
-	ASSERT( m_pMainWnd );
-											// Create the DDE conn object
-	// UE: this appears to be the cause of all our startup grief; most of the
-	//     time there isn't a DDE viewer that we can talk to anyway, so why
-	//     bother trying to communicate with it?  Really.
-	m_pddeConn = NULL;
-	//m_pddeConn = new ChHTTPDDE( 0 );
-	//ASSERT( m_pddeConn );
+		pDocTemplate =
+			new CSingleDocTemplate( IDR_MAINFRAME, RUNTIME_CLASS( ChPuebloDoc ),
+									RUNTIME_CLASS( ChMainFrame ),
+									RUNTIME_CLASS( ChBaseView ) );
+		AddDocTemplate( pDocTemplate );
+												// Enable DDE Execute open
+		EnableShellOpen();
+		RegisterShellFileTypes();
+												// Simple command line parsing
+		OnFileNew();
 
-	ChMainFrame* pFrame = (ChMainFrame*)m_pMainWnd;
+		ASSERT( m_pMainWnd );
+												// Create the DDE conn object
+		// UE: this appears to be the cause of all our startup grief; most of the
+		//     time there isn't a DDE viewer that we can talk to anyway, so why
+		//     bother trying to communicate with it?  Really.
+		m_pddeConn = NULL;
+		//m_pddeConn = new ChHTTPDDE( 0 );
+		//ASSERT( m_pddeConn );
 
-											// Enable drag/drop open
-	pFrame->DragAcceptFiles();
+		ChMainFrame* pFrame = (ChMainFrame*)m_pMainWnd;
 
-	chuint			startOptions = 0;
-	ChString			strCmdLine( m_lpCmdLine );
-	ChRegistry		appReg( CH_MISC_GROUP );
-	ChString			strAcceptedVersion;
-	ChClientInfo	clientInfo( ChClientInfo::thisMachine );
-	ChString			strClientVersion;
+												// Enable drag/drop open
+		pFrame->DragAcceptFiles();
 
-	strClientVersion = clientInfo.GetClientVersion().Format();
+		chuint			startOptions = 0;
+		ChString			strCmdLine( m_lpCmdLine );
+		ChRegistry		appReg( CH_MISC_GROUP );
+		ChString			strAcceptedVersion;
+		ChClientInfo	clientInfo( ChClientInfo::thisMachine );
+		ChString			strClientVersion;
 
-	appReg.Read( CH_MISC_LICENSE_ACCEPTED, strAcceptedVersion, "" );
+		strClientVersion = clientInfo.GetClientVersion().Format();
 
-											/* Do we need to display the
-												license dialog ? */
+		appReg.Read( CH_MISC_LICENSE_ACCEPTED, strAcceptedVersion, "" );
 
-	if (strAcceptedVersion != strClientVersion)
-	{
-		startOptions |= ChClientCore::doLicense;
-	}
+												/* Do we need to display the
+													license dialog ? */
 
-	if (TimeToRegister())
-	{
-		startOptions |=  ChClientCore::doRegistration;
-	}
-
-	#if defined( _DEBUG )
-	{										/* For debugging purpose, keep
-												the shift key down to start
-												the registration wizard */
-		if (GetKeyState( VK_SHIFT ) & 0x8000)
+		if (strAcceptedVersion != strClientVersion)
 		{
-			startOptions |= ChClientCore::doRegistration;
+			startOptions |= ChClientCore::doLicense;
 		}
-		// UE: Hold down CTRL to abbreviate the splash screen duration, for
-		//     use in debugging initial startup.
-		if (GetKeyState( VK_CONTROL ) & 0x8000)
-			startOptions |= ChClientCore::doQuickSplash;
-		// Note that no special behaviour needs to be attached to this value; it
-		// just gives a nonzero value to startOptions, which will automatically
-		// destroy the splash window before calling StartPueblo.
-	}
-	#endif	// defined( _DEBUG )
-											// Start Pueblo
 
-	if (startOptions || !strCmdLine.IsEmpty())
+		if (TimeToRegister())
+		{
+			startOptions |=  ChClientCore::doRegistration;
+		}
+
+		#if defined( _DEBUG )
+		{										/* For debugging purpose, keep
+													the shift key down to start
+													the registration wizard */
+			if (GetKeyState( VK_SHIFT ) & 0x8000)
+			{
+				startOptions |= ChClientCore::doRegistration;
+			}
+			// UE: Hold down CTRL to abbreviate the splash screen duration, for
+			//     use in debugging initial startup.
+			if (GetKeyState( VK_CONTROL ) & 0x8000)
+				startOptions |= ChClientCore::doQuickSplash;
+			// Note that no special behaviour needs to be attached to this value; it
+			// just gives a nonzero value to startOptions, which will automatically
+			// destroy the splash window before calling StartPueblo.
+		}
+		#endif	// defined( _DEBUG )
+												// Start Pueblo
+
+				//startOptions |= ChClientCore::doQuickSplash;
+		if (startOptions || !strCmdLine.IsEmpty())
+		{										/* Initialization of Pueblo is
+													done, remove the splash
+													screen */
+			m_splash.DestroyWindow();
+			splashVisible = false;
+		}
+
+		// UE: The code below is an intentional bug, introduced in order to test out the
+		//     error reporting code.  It must be commented out in order to get the code
+		//     to actually work (obviously) ;)
+		//CWnd *foo = NULL;
+		//foo->SetForegroundWindow();
+
+		pFrame->GetPuebloCore()->StartPueblo( strCmdLine,
+												startOptions | ChClientCore::doLoginNotify );
+	} catch(...) {
+		// UE: clean up the splash screen on a fatal error, otherwise it'll sit in front of
+		//     the error dialog looking rather silly (since it's a topmost window).
+		//     This could have been done so much neater if C++ had a finally clause.  Oh well.
+		if(splashVisible) {
+			m_splash.DestroyWindow();
+		}
+		throw;
+	}
+
+	if (splashVisible)
 	{										/* Initialization of Pueblo is
 												done, remove the splash
 												screen */
 		m_splash.DestroyWindow();
-	}
-
-	pFrame->GetPuebloCore()->StartPueblo( strCmdLine,
-											startOptions |
-												ChClientCore::doLoginNotify );
-
-	if (!startOptions && strCmdLine.IsEmpty())
-	{										/* Initialization of Pueblo is
-												done, remove the splash
-												screen */
-		m_splash.DestroyWindow();
+		splashVisible = false;
 	}
 
 	return( true );
@@ -498,6 +532,9 @@ void ChApp::SetOutdatedTellLater()
 }
 
 // $Log$
+// Revision 1.2  2003/07/04 11:26:42  uecasm
+// Update to 2.60 (see help file for details)
+//
 // Revision 1.1.1.1  2003/02/03 18:52:37  uecasm
 // Import of source tree as at version 2.53 release.
 //

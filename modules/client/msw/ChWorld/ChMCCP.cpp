@@ -34,7 +34,8 @@
 	This file consists of the implementation of the ChMCCP class, which handles
 	the behind-the-scenes stuff for server-to-client compression using MCCP.
 
-	This class is based on code written by Oliver Jowett <icecube@ihug.co.nz>
+	This class is based almost entirely on code written by
+	Oliver Jowett <icecube@ihug.co.nz>
 
 ----------------------------------------------------------------------------*/
 
@@ -336,6 +337,9 @@ void ChMCCP::negotiated(CompressMode newMode)
 }
 
 // $Log$
+// Revision 1.2  2003/07/05 08:32:15  uecasm
+// Fix for MFC6 Format() incompatibility (affected send of TTYPE)
+//
 // Revision 1.1  2003/07/04 11:26:42  uecasm
 // Update to 2.60 (see help file for details)
 //

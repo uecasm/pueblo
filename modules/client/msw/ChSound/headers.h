@@ -61,6 +61,8 @@
 	Includes
 ----------------------------------------------------------------------------*/
 
+#include <PbSysVersion.h>
+
 #if defined( CH_MSW )
 
 	#include <afxwin.h>						// MFC core and std components
@@ -200,3 +202,6 @@ GetSysSoundFilesPath();
 #endif	// !defined( _HEADERS_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:56  uecasm
+// Import of source tree as at version 2.53 release.
+//

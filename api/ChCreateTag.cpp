@@ -89,6 +89,11 @@ ChHtmlTag* ChHtmlParser::CreateInstanceFromID( int iToken )
 			pTag = new ChHeadTag( this );	
 			break;
 		}
+		case HTML_BASE :
+		{
+			pTag = new ChBaseTag( this );
+			break;
+		}
 		case HTML_COMMENT :
 		{
 			pTag = new ChCommentTag( this );	
@@ -306,3 +311,6 @@ ChHtmlTag* ChHtmlParser::CreateInstanceFromID( int iToken )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:53  uecasm
+// Import of source tree as at version 2.53 release.
+//

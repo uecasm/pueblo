@@ -78,6 +78,7 @@ class ChPrefs : public CPropertySheet
 		afx_msg void OnOK();
 		afx_msg void OnCancel();
 		afx_msg void OnClose();
+		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 		//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()
@@ -86,3 +87,6 @@ class ChPrefs : public CPropertySheet
 #endif	// !defined( _CHPREFS_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:32  uecasm
+// Import of source tree as at version 2.53 release.
+//

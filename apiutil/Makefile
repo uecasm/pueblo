@@ -4,7 +4,7 @@
 CSM=$(INTDIR)\PbUtil32.csm
 DEF_FILE=PbUtil32.def
 RES_FILE=$(INTDIR)\PbUtil32.res
-NCDEFS=-WD -D_AFXEXT;XMD_H;ZLIB_DLL;MNG_BUILD_DLL
+NCDEFS=-WD -D_AFXEXT;XMD_H;ZLIB_DLL;ZLIB_INTERNAL 
 NRDEFS=/d_AFXEXT
 NLDEFS=/Gi /b:0x18000000 /Tpd
 
@@ -58,7 +58,7 @@ $(DLL_APIUTIL) : $(DEF_FILE) $(RES_FILE) $(LINK32_OBJS) $(LIBS)
 |
 
 DEP_RSC=\
-	res\gray.pal
+  res\gray.pal
 	
 $(RES_FILE) : PbUtil32.rc resource.h $(DEP_RSC)
    $(RSC) $(RSC_PROJ) PbUtil32.rc
