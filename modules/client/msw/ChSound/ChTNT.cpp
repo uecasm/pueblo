@@ -51,6 +51,7 @@
 #include "ChSpeechPrefs.h"
 #include "ChSpeechStatus.h"
 #include "ChTNT.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -1054,3 +1055,6 @@ ChTNTSession::~ChTNTSession()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:07  uecasm
+// Import of source tree as at version 2.53 release.
+//

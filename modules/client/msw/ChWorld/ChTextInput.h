@@ -166,6 +166,7 @@ class ChTextInputEdit : public CEdit
 		afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 		afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+		afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	//}}AFX_MSG
 		#if defined( CH_PUEBLO_PLUGIN )
 			afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
@@ -241,3 +242,6 @@ class ChTextInput
 #endif	// !defined( _CHTEXTINPUT_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:15  uecasm
+// Import of source tree as at version 2.53 release.
+//

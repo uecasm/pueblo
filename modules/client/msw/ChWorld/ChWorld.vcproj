@@ -15,7 +15,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory=".\$(ConfigurationName)"
+			IntermediateDirectory=".\$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -28,9 +28,10 @@
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="TRUE"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;$(SolutionDir)zlib"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="2"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChWorld.pch"
@@ -50,6 +51,7 @@
 				OutputFile="$(OutDir)\modules\ChWorld.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\ChWorld.def"
 				ProgramDatabaseFile="$(OutDir)\modules\ChWorld.pdb"
 				SubSystem="2"
@@ -71,7 +73,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;NDEBUG"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -80,7 +83,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory=".\$(ConfigurationName)"
+			IntermediateDirectory=".\$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -89,9 +92,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;$(SolutionDir)zlib"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="3"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChWorld.pch"
@@ -110,6 +114,7 @@
 				OutputFile="$(OutDir)\modules\ChWorld.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\ChWorld.def"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)\modules\ChWorld.pdb"
@@ -132,7 +137,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;_DEBUG"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -154,6 +160,9 @@
 			</File>
 			<File
 				RelativePath=".\ChKeyMapType.cpp">
+			</File>
+			<File
+				RelativePath="ChMCCP.cpp">
 			</File>
 			<File
 				RelativePath=".\ChPrefsNotify.cpp">
@@ -217,6 +226,9 @@
 				RelativePath="ChKeyMapType.h">
 			</File>
 			<File
+				RelativePath="ChMCCP.h">
+			</File>
+			<File
 				RelativePath="ChPrefsNotify.h">
 			</File>
 			<File
@@ -278,6 +290,15 @@
 				RelativePath="resource.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath="res\chaco.ico">
+		</File>
+		<File
+			RelativePath="res\planet.ico">
+		</File>
+		<File
+			RelativePath="res\wheel.ico">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

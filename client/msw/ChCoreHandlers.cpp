@@ -74,6 +74,7 @@
 #endif // defined( CH_MSW )
 
 #include "ChClCore.h"
+#include "MemDebug.h"
 
 
 
@@ -82,7 +83,7 @@
 ----------------------------------------------------------------------------*/
 
 #define PREF_PAGE_COUNT				7
-#define ABOUT_PAGE_COUNT			4
+#define ABOUT_PAGE_COUNT			5
 
 /*----------------------------------------------------------------------------
 	Handler declarations
@@ -284,6 +285,7 @@ CH_IMPLEMENT_MESSAGE_HANDLER( coreGetPagesHandler )
 				pPages[1] = (chparam)new ChDisclaimerAbout;
 				pPages[2] = (chparam)new ChTeamAbout;
 				pPages[3] = (chparam)new ChUEAbout;
+				pPages[4] = (chparam)new ChComponentsAbout;
 			}
 			#endif	// defined( CH_MSW )
 			break;
@@ -438,3 +440,6 @@ CH_IMPLEMENT_MESSAGE_HANDLER( coreReleasePagesHandler )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:25  uecasm
+// Import of source tree as at version 2.53 release.
+//

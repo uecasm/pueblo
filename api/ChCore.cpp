@@ -253,7 +253,7 @@ void ChCore::OpenTraceWindow()
 
 		{
 			delete pChild;
-			TRACE( "ChTextOutput::DoPaneOpen : Error creating pane." );
+			TRACE( "ChTextOutput::DoPaneOpen : Error creating pane.\n" );
 
 			pPaneManager->DestroyPane( strPaneName );
 		}
@@ -313,3 +313,6 @@ void ChCore::UpdateTraceOptions()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:53  uecasm
+// Import of source tree as at version 2.53 release.
+//

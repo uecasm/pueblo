@@ -51,6 +51,7 @@
 #endif
 
 #include "TinTin.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -591,3 +592,6 @@ bool TinTin::IsVarNameValid( const ChString& strName )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:43  uecasm
+// Import of source tree as at version 2.53 release.
+//

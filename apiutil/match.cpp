@@ -20,6 +20,7 @@
 
 #include "headers.h"
 #include "ChUnzip.h"
+#include "MemDebug.h"
 
 //static int  matche              __((register char *p, register char *t));
 //static int  matche_after_star   __((register char *p, register char *t));

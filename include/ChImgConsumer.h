@@ -51,7 +51,7 @@ typedef struct tagChImageInfo
 	int			iWidth;
 	int			iHeight;
 	int			iLoopCount;
-	COLORREF	colorBack;
+	//COLORREF	colorBack;
 
 } ChImageInfo, FAR* pChImageInfo;
 
@@ -95,6 +95,9 @@ class CH_EXPORT_CLASS ChImageConsumer
 };
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:41  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif //  !defined( _CHIMGCONSUMER_H )
 

@@ -56,6 +56,7 @@
 
 #include "TinTin.h"
 #include "TinTinInfo.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -998,3 +999,6 @@ void tab_delete(arg)
 #endif	// 0
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:39  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -1623,14 +1623,14 @@ ChString ChRMenuBlock::MakeSeparatorTitle( ChMenuItemId id ) const
 CH_GLOBAL_FUNC( HACCEL )
 CreateAcceleratorTable( LPACCEL pAccel, int cEntries )
 {               
-	TRACE( "CreateAcceleratorTable table not implemented for win16" );
+	TRACE( "CreateAcceleratorTable table not implemented for win16\n" );
 	return NULL;
 }
 
 CH_GLOBAL_FUNC( int )
 CopyAcceleratorTable( HACCEL hAccel, LPACCEL pAccel, int cEntries )
 {               
-	TRACE( "CopyAcceleratorTable table not implemented for win16" );
+	TRACE( "CopyAcceleratorTable table not implemented for win16\n" );
 	return true;
 }
 
@@ -1638,7 +1638,7 @@ CopyAcceleratorTable( HACCEL hAccel, LPACCEL pAccel, int cEntries )
 CH_GLOBAL_FUNC( BOOL )
 DestroyAcceleratorTable( HACCEL hAccel )
 {               
-	TRACE( "DestroyAcceleratorTable table not implemented for win16" );
+	TRACE( "DestroyAcceleratorTable table not implemented for win16\n" );
 	return true;
 }   
 
@@ -1649,3 +1649,6 @@ DestroyAcceleratorTable( HACCEL hAccel )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:37  uecasm
+// Import of source tree as at version 2.53 release.
+//

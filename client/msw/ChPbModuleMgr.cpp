@@ -52,6 +52,7 @@
 
 #include "ChPbModuleMgr.h"
 #include "ChClCore.h"
+#include "MemDebug.h"
 
 
 CH_DECLARE_MAIN_HANDLER( coreMainHandler )
@@ -139,7 +140,7 @@ void ChPuebloModuleManager::InitModuleManager()
 		if ( !GetModuleFileName( NULL, m_strAppDir.GetBuffer( 512 ), 512 ) )
 		{
 			m_strAppDir.ReleaseBuffer();	
-			TRACE( "GetModuleFileName function failed !!!!" );
+			TRACE( "GetModuleFileName function failed !!!!\n" );
 			ASSERT( 0 );
 		}
 
@@ -452,7 +453,7 @@ void ChPuebloModuleManager::BuildModuleList()
 
 	if ( !pDir )
 	{
-		TRACE( "No modules installed !!!" );
+		TRACE( "No modules installed !!!\n" );
 		return;
 	}
 
@@ -539,3 +540,6 @@ void ChPuebloModuleManager::BuildModuleList()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:30  uecasm
+// Import of source tree as at version 2.53 release.
+//

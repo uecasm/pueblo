@@ -498,6 +498,7 @@ bool ChHtmlWnd::StreamFile( const char* pstrFile, const char* pstrMimeType,
 //	#endif
 
 	pView->SetDocURL( strURL );
+	pView->SetDocBaseURL( strURL );		// UE: set as base URL for page, for further relative links etc
 
 	char *pstrBuffer = new char[ 4092 ];
 	ASSERT( pstrBuffer );
@@ -1334,3 +1335,6 @@ void ChHtmlWnd::OnDestroy()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:17  uecasm
+// Import of source tree as at version 2.53 release.
+//

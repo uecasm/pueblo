@@ -55,7 +55,15 @@
 #include <ChClInfo.h>
 #include <ChDibDecoder.h>
 
+// only really to get version numbers, but oh well
+#ifndef __BORLANDC__
+#define HAVE_BOOLEAN
+#endif
+#define XMD_H
+#include "libmng.h"
+
 #include "ChAbout.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -398,6 +406,7 @@ BEGIN_MESSAGE_MAP( ChAbout, ChPropertySheet )
 	ON_BN_CLICKED(IDOK, OnOK)
 	ON_BN_CLICKED(IDCANCEL, OnCancel)
 	ON_WM_CLOSE()
+	ON_WM_NCDESTROY()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -421,7 +430,7 @@ void ChAbout::OnOK()
 		#endif
 											/* Release the pages for other
 												modules */
-		m_pageMgr.ReleaseModulePages();
+		//m_pageMgr.ReleaseModulePages();
 	}
 }
 
@@ -435,7 +444,7 @@ void ChAbout::OnCancel()
 	#endif
 											/* Release the pages for other
 												modules */
-	m_pageMgr.ReleaseModulePages();
+	//m_pageMgr.ReleaseModulePages();
 }
 
 
@@ -445,7 +454,7 @@ void ChAbout::OnClose()
 	ChPropertySheet ::OnClose();
 											/* Release the pages for other
 												modules */
-	m_pageMgr.ReleaseModulePages();
+	//m_pageMgr.ReleaseModulePages();
 }
 
 
@@ -586,6 +595,12 @@ BOOL ChAbout::OnInitDialog()
 	return bResult;
 }
 
+void ChAbout::OnNcDestroy()
+{
+	ChPropertySheet::OnNcDestroy();
+
+	m_pageMgr.ReleaseModulePages();
+}
 
 /*----------------------------------------------------------------------------
 	ChPuebloAbout property page class
@@ -762,7 +777,6 @@ void ChDisclaimerAbout::DoDataExchange( CDataExchange* pDX )
 		// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
-
 
 BEGIN_MESSAGE_MAP( ChDisclaimerAbout, ChPropertyPage )
 	//{{AFX_MSG_MAP(ChDisclaimerAbout)
@@ -1053,4 +1067,117 @@ BOOL ChUEAbout::OnSetActive()
 	return ChPropertyPage::OnSetActive();
 }
 
+/*----------------------------------------------------------------------------
+	ChComponentsAbout property page class
+----------------------------------------------------------------------------*/
+
+IMPLEMENT_DYNCREATE( ChComponentsAbout, ChPropertyPage )
+
+ChComponentsAbout::ChComponentsAbout() :
+					ChPropertyPage( ChComponentsAbout::IDD, 0, hInstApp )
+{
+	//{{AFX_DATA_INIT(ChComponentsAbout)
+		// NOTE: the ClassWizard will add member initialization here
+	//}}AFX_DATA_INIT
+}
+
+ChComponentsAbout::~ChComponentsAbout()
+{
+}
+
+void ChComponentsAbout::CreateTextWindow()
+{
+	CRect		rtView;
+	ChWnd*		pPlaceholder = GetDlgItem( IDC_STATIC_PLACEHOLDER );
+
+	pPlaceholder->GetWindowRect( &rtView );
+	ScreenToClient( &rtView );
+	pPlaceholder->ShowWindow(SW_HIDE);
+
+	m_htmlWnd.CreateEx( rtView, this, WS_CHILD | WS_VISIBLE | WS_BORDER,
+						WS_EX_CLIENTEDGE );
+	m_htmlWnd.EnableSelection( false );		// No se lection allowed
+
+	//m_htmlWnd.DisplayResource( IDR_DISCLAIMER );
+	m_htmlWnd.NewPage();
+	
+	DisplayStringResource(IDS_COMPONENTS_HEADER);
+	m_htmlWnd.AppendText("  <ul>\r\n");
+
+	DisplayMFCVersion();
+	DisplayMNGComponents();
+	m_htmlWnd.AppendText("    <li>mcclient version 0.4</li>\r\n");
+
+	m_htmlWnd.AppendText("  </ul>\r\n");
+	DisplayStringResource(IDS_COMPONENTS_FOOTER);
+}
+
+void ChComponentsAbout::DisplayStringResource(int id)
+{
+	ChString text;
+	LOADSTRING(id, text);
+
+	m_htmlWnd.AppendText(text);
+}
+
+void ChComponentsAbout::DisplayMFCVersion()
+{
+	ChString text, version;
+	text = "    <li>Microsoft Foundation Classes ";
+#if defined(__BORLANDC__)
+	text += "(for Borland C++) ";
+#endif
+	version.Format("version %d.%d</li>\r\n", HIBYTE(_MFC_VER), LOBYTE(_MFC_VER));
+	text += version;
+	m_htmlWnd.AppendText(text);
+}
+
+void ChComponentsAbout::DisplayMNGComponents()
+{
+	ChString text, temp;
+
+	text.Format("    <li>libmng version %s\r\n", MNG_VERSION_TEXT);
+	text += "      <ul>\r\n";
+	temp.Format("      <li>zlib version %s</li>\r\n", ZLIB_VERSION);
+	text += temp;
+	temp.Format("      <li>jpeglib version %d.%d</li>\r\n", JPEG_LIB_VERSION / 10, JPEG_LIB_VERSION % 10);
+	text += temp;
+	text += "      <li>lcms version 1.09d</li>\r\n";
+	text += "    </ul></li>\r\n";
+	
+	m_htmlWnd.AppendText(text);
+}
+
+void ChComponentsAbout::DoDataExchange( CDataExchange* pDX )
+{
+	ChPropertyPage::DoDataExchange( pDX );
+
+	//{{AFX_DATA_MAP(ChComponentsAbout)
+		// NOTE: the ClassWizard will add DDX and DDV calls here
+	//}}AFX_DATA_MAP
+}
+
+BEGIN_MESSAGE_MAP( ChComponentsAbout, ChPropertyPage )
+	//{{AFX_MSG_MAP(ChComponentsAbout)
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+
+/*----------------------------------------------------------------------------
+	ChComponentsAbout message handlers
+----------------------------------------------------------------------------*/
+
+BOOL ChComponentsAbout::OnInitDialog()
+{
+	ChPropertyPage::OnInitDialog();
+
+	CreateTextWindow();
+
+	return TRUE;  // return true unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:20  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -109,6 +109,7 @@ class CH_EXPORT_CLASS ChGifDecoder : public ChImageDecoder
 	    virtual bool Load( const char* pszFileName = NULL, 
 	    					chuint32 flOption = loadAuto );// Load GIF from disk file
 
+			// the following two methods are not implemented and will always fail:
 	    virtual bool Load(WORD wResid, HINSTANCE hInst = 0); // Load GIF from resource
 	    virtual bool Load(LZHANDLE lzHdl);             // Load GIF from LZ File	
 
@@ -182,5 +183,8 @@ class CH_EXPORT_CLASS ChGifDecoder : public ChImageDecoder
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:38  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif // CHGIFDECODER_H_

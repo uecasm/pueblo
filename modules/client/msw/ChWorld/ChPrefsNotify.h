@@ -71,14 +71,17 @@ class ChNotifyPrefsPage : public ChPropertyBaseClass
 		ChNotifyPrefsPage();
 		~ChNotifyPrefsPage();
 
-		inline bool GetNotify() { return radioNoNotify != m_iNotifyOption; }
+		inline bool GetNotifyInactive() { return (m_iNotifyOption == radioWhenInactive); }
+		inline bool GetNotifyFlash() { return (m_boolFlash != FALSE); }
 		inline bool GetNotifyAlert() { return (m_boolAlert != FALSE); }
 		inline const ChString& GetNotifyMatch() { return m_strMatch; }
 
-		void Set( bool boolNotify, bool boolAlert, const ChString& strMatch );
+		void Set( bool boolInactive, bool boolFlash, bool boolAlert, const ChString& strMatch );
 
+		virtual BOOL OnSetActive();			/* Called when this page gets the
+												focus */
 		#if defined( CH_PUEBLO_PLUGIN )
-		virtual bool OnKillActive();	    // Perform validation here
+		virtual BOOL OnKillActive();	    // Perform validation here
 		#else
 		virtual void OnCommit();   /* Called to commit data (this is
 												a good time to save data to the
@@ -88,9 +91,12 @@ class ChNotifyPrefsPage : public ChPropertyBaseClass
 											// Dialog Data
 		//{{AFX_DATA(ChNotifyPrefsPage)
 		enum { IDD = IDD_PREF_PAGE_NOTIFY };
-		CEdit	m_editMatch;
 		int		m_iNotifyOption;
+		CButton m_checkOnMatch;
+		BOOL	m_boolOnMatch;
+		CEdit	m_editMatch;
 		CString	m_strMatch;
+		BOOL	m_boolFlash;
 		BOOL	m_boolAlert;
 		//}}AFX_DATA
 											/* ClassWizard generate virtual
@@ -104,17 +110,17 @@ class ChNotifyPrefsPage : public ChPropertyBaseClass
 											// Generated message map functions
 		//{{AFX_MSG(ChNotifyPrefsPage)
 		afx_msg void OnNotifyOnMatch();
-		afx_msg void OnNotifyNever();
-		afx_msg void OnNotifyWhenever();
 		//}}AFX_MSG
 	
 		DECLARE_MESSAGE_MAP()
 
 	protected:
-		enum tagRadioButtons { radioNoNotify, radioAlwaysNotify,
-								radioNotifyOnMatch };
+		enum tagRadioButtons { radioWhenMinimised, radioWhenInactive };
 };
 
 #endif	// !defined( _CHPREFSNOTIFY_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:09  uecasm
+// Import of source tree as at version 2.53 release.
+//

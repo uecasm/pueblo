@@ -622,6 +622,7 @@ ChWizard::ChWizard( chparam resources, int iCaptionID, CWnd* pParent ) :
 												'DrawEdge' function */
 
 	m_boolDrawEdgeAvailable = ((osWin95 == osType) ||
+								(osWin98 == osType) || 
 								(osWinXP == osType) ||
 								((osWinNT == osType) &&
 									(osVersion >= ntDrawEdgeVer)));
@@ -2006,3 +2007,6 @@ IsCharAfterAmpersand( LPTSTR lpsz, TCHAR chFind )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:05  uecasm
+// Import of source tree as at version 2.53 release.
+//

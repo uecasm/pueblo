@@ -47,6 +47,7 @@
 
 #include <ChDibImage.h>
 #include <ChSFImage.h>
+#include "MemDebug.h"
 
 
 #ifdef _DEBUG
@@ -152,3 +153,6 @@ bool ChSFImage::Create(int width, int height, int iNumComponents,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:18  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -1,3 +1,13 @@
 Pueblo may contain patented Lempel-Ziv-Welch (LZW) compression technology (in
 the GIF rendering code).  Use of this code without a proper Unisys license may
-be unlawful.
+be unlawful in some countries.
+
+This project contains some third-party source code files, which are covered by
+a license separate from the Andromedia Public License.  Please see the files
+themselves, or their respective websites, for further information.  To the best
+of our knowledge, the group of third-party files are as follows:
+  - Java Runtime Interface: api/jri/*
+  - LibMNG: libmng/*; solely excepting "makefile" and "libmng.vcproj", which
+      *are* covered by the APL
+  - Little CMS: lcms/*
+  - JPEGlib: jpegsrc6b/*

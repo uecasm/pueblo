@@ -99,7 +99,7 @@ ChHtmlViewObj::~ChHtmlViewObj()
 			else
 			{
 				m_pHtmlView->DestroyWindow();
-				delete m_pHtmlView;
+				//delete m_pHtmlView;		// UE: DestroyWindow will delete the object itself.
 			}
 		}
 	}
@@ -661,7 +661,10 @@ void ChHtmlWnd::RemapColors( int iNumColors,
 	}
 }
 
-
+void ChHtmlWnd::PostMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	GetDefaultView()->PostMessage(WM_MOUSEWHEEL, MAKEWPARAM(nFlags, zDelta), MAKELPARAM(pt.x, pt.y));
+}
 
 ChHtmlView* ChHtmlWnd::GetDefaultView()
 {
@@ -722,7 +725,7 @@ ChHtmlView* ChHtmlWnd::CreateHtmlView( const char* pstrName,
 
 	ASSERT( pstrName );
 
-	TRACE("ChHtmlWnd::CreateHtmlView(\"%s\", %08Xh)", pstrName, pFrame);	// UE DEBUG
+	TRACE("ChHtmlWnd::CreateHtmlView(\"%s\", %08Xh)\n", pstrName, pFrame);	// UE DEBUG
 
 	if (m_htmlViewList.GetCount() == 1)
 	{										// main view
@@ -736,7 +739,7 @@ ChHtmlView* ChHtmlWnd::CreateHtmlView( const char* pstrName,
 	
 	if ( pView == 0 )
 	{
-		TRACE("Creating view object");	// UE DEBUG
+		TRACE("Creating view object\n");	// UE DEBUG
 		pstrWndName = pstrName;
 		pView = new ChHtmlView( pstrWndName, this );
 		ASSERT( pView );	
@@ -795,3 +798,6 @@ void ChHtmlWnd::RecalcLayout()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:09  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -80,10 +80,8 @@
 #include "ChTNT.h"
 #include "ChSpeechPrefs.h"
 #include "ChSpeechStatus.h"
+#include "MemDebug.h"
 
-
-//#define DebugBox(msg)	::MessageBox(0, msg, "Debug", MB_OK|MB_ICONINFORMATION)
-#define DebugBox(msg)
 
 /*----------------------------------------------------------------------------
 	Constants
@@ -1428,12 +1426,12 @@ ChMain
 
 		case CH_MSG_TERM:
 		{
-			DebugBox("TERM: About to delete MainInfo");
+			TRACE("SOUND: About to delete MainInfo... ");
 			if(pMainInfo) {
 				delete pMainInfo;
-				DebugBox("TERM: Deleted MainInfo");
+				TRACE("deleted MainInfo\n");
 			} else
-				DebugBox("TERM: There wasn't any MainInfo!");
+				TRACE("there wasn't any MainInfo!\n");
 			break;
 		}
 	}
@@ -1840,8 +1838,8 @@ GetSysSoundFilesPath()
 	strPath = dir;
 	strPath += "\\";
 
-	if ((ChCore::GetClientInfo()->GetPlatform() == osWin95)
-			|| (ChCore::GetClientInfo()->GetPlatform() == osWinXP))
+	OSType osType = ChCore::GetClientInfo()->GetPlatform();
+	if ((osWin95 == osType) || (osWin98 == osType) || (osWinXP == osType))
 	{
 		/* Win95 sounds are in the Media
 			directory, as are WinXP's */
@@ -1857,3 +1855,6 @@ GetSysSoundFilesPath()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:01  uecasm
+// Import of source tree as at version 2.53 release.
+//

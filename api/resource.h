@@ -29,6 +29,8 @@
 #define IDC_COL_SPLITTER                132
 #define IDC_HOTSPOT_CUR                 134
 #define IDC_ROW_SPLITTER                138
+#define IDI_IMAGE                       140
+#define IDI_IMAGE_BROKEN                141
 #define IDI_BOOK                        142
 #define IDI_SCROLL                      143
 #define IDI_MAP                         144

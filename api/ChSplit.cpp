@@ -282,11 +282,12 @@ ChSplitter::ChSplitter() :
 												'DrawEdge' function */
 
 		m_boolDrawEdgeAvailable = ((osWin95 == osType) ||
+									(osWin98 == osType) ||
 									(osWinXP == osType) ||
 									((osWinNT == osType) &&
 										(osVersion >= ntDrawEdgeVer)));
 
-		m_boolWindows95 = ((osWin95 == osType) || (osWinXP == osType));
+		m_boolWindows95 = ((osWin95 == osType) || (osWin98 == osType) || (osWinXP == osType));
 
 		m_colorBtnFace = ::GetSysColor( COLOR_BTNFACE );
 		m_colorBtnShadow = ::GetSysColor( COLOR_BTNSHADOW );
@@ -1921,7 +1922,7 @@ ChSplitterBanner::ChSplitterBanner( ChSplitter* pSplitter, ChPane* pPane,
 											/* Figure out if we can call the
 												'DrawEdge' function */
 
-	m_boolWindows95 = ((osWin95 == osType) || (osWinXP == osType));
+	m_boolWindows95 = ((osWin95 == osType) || (osWin98 == osType) || (osWinXP == osType));
 	m_boolDrawEdgeAvailable = IsWindows95() ||
 								((osWinNT == osType) &&
 									(osVersion >= ntDrawEdgeVer));
@@ -2126,3 +2127,6 @@ void ChSplitterBanner::OnActivate( UINT nState, CWnd* pWndOther,
 #endif	// defined( CH_MSW )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:46  uecasm
+// Import of source tree as at version 2.53 release.
+//

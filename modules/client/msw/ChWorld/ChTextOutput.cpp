@@ -61,6 +61,7 @@
 #include <ChSplit.h>
 #endif
 
+#include "MemDebug.h"
 
 /*----------------------------------------------------------------------------
 	Inline functions
@@ -1281,3 +1282,6 @@ LONG ChTextOutputWnd::OnExecuteScript( UINT wParam, LONG lParam )
 #endif // !CH_UNIX
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:17  uecasm
+// Import of source tree as at version 2.53 release.
+//

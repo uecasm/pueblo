@@ -84,6 +84,7 @@
  
 #include "headers.h"
 #include <ChUnzip.h>      /* must supply slide[] (uch) array and NEXTBYTE macro */
+#include "MemDebug.h"
 
 #ifndef WSIZE
 #  define WSIZE 0x8000  /* window size--must be a power of two, and */
@@ -868,3 +869,6 @@ int ChUnzip::explode()
 #undef DUMPBITS
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:23  uecasm
+// Import of source tree as at version 2.53 release.
+//

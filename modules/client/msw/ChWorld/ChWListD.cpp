@@ -52,6 +52,7 @@
 #include <ChUtil.h>
 
 #include "ChWListD.h"
+#include "MemDebug.h"
 
 
 #ifdef _DEBUG
@@ -819,3 +820,6 @@ void ChWorldListEdit::OnRadioLoginMud()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:23  uecasm
+// Import of source tree as at version 2.53 release.
+//

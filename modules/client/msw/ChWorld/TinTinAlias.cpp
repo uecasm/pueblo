@@ -54,6 +54,7 @@
 #include <signal.h>
 
 #include "TinTin.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -189,3 +190,6 @@ void TinTin::DoUnalias( const ChString& strArgs )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:38  uecasm
+// Import of source tree as at version 2.53 release.
+//

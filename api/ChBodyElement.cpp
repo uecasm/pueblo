@@ -39,6 +39,8 @@
 
 ----------------------------------------------------------------------------*/
 
+// $Header$
+
 #include "headers.h"
 
 #include "ChHtmlView.h"
@@ -376,3 +378,5 @@ chint32 ChBodyElements::ProcessPreformatText( const char* pstrBuffer, chint32 lS
 
 	return lStart;
 }
+
+// $Log$

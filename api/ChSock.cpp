@@ -650,7 +650,7 @@ const char* sockinetaddr::GetHostname() const
 		if (::gethostname( strHostname, 63 ) == -1)
 		{
 			#if !defined( CH_ARCH_16 )
-  			TRACE( "in sockinetaddr::gethostname" );
+  			TRACE( "in sockinetaddr::gethostname\n" );
   			#endif
 			return "";
 		}
@@ -1240,9 +1240,14 @@ void ChAsyncChacoSocket::OnClose( int nErrorCode )
 	if ( ProcessBlocking( nErrorCode ) )
 	{
 		ASSERT( m_pHandler );
-		(m_pHandler)( *m_sockInet, CH_SOCK_EVENT_CLOSE, nErrorCode );
 
+		// UE: moved this line to before calling the handler; the handler has a high tendency to
+		//     destory this object!
 		m_iState = stateDisconnected;
+
+		(m_pHandler)( *m_sockInet, CH_SOCK_EVENT_CLOSE, nErrorCode );
+		// UE: the handler will most likely delete this object, so do NOT make any references
+		//     through 'this' (not even implicitly!) after this point.
 	}
 }
 
@@ -1306,16 +1311,8 @@ BOOL ChAsyncChacoSocket::OnMessagePending( )
 }
 #endif
 
-#ifdef _DEBUG
-extern "C" __declspec(dllimport) int _CrtCheckMemory();
-#endif
-
 BOOL ChAsyncChacoSocket::ProcessBlocking( int iError )
 {
-#ifdef _DEBUG
-	_CrtCheckMemory();
-#endif
-	
 	if ( stateConnected == m_iState || stateWaitingForSOCKS == m_iState )
 	{	  
 		return true;
@@ -1836,7 +1833,7 @@ int sockbuf::underflow ()
 //     buffering this would just be a pain in the neck, so disable it for now.  If
 //     I discover it was necessary I'll have to put something back in, but for now
 //     I think it's pretty much redundant.
-	TRACE( "in sockbuf::underflow" );
+	TRACE( "in sockbuf::underflow\n" );
 /*
     if (xflags () & _S_NO_READS) return EOF;
 
@@ -1868,7 +1865,7 @@ int sockbuf::overflow (int c)
 	// UE: As for the rest of this, well, like underflow I can't see the point.
 	//     The task at this point devolves to a 1-byte send.  Again, I think
 	//     that it's pretty much redundant.
-	TRACE( "in sockbuf::overflow" );
+	TRACE( "in sockbuf::overflow\n" );
 /*
     if (xflags () & _S_NO_WRITES) return EOF;
 
@@ -2342,3 +2339,6 @@ WSADisplayError( int iError, const char* pstrContext )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:41  uecasm
+// Import of source tree as at version 2.53 release.
+//

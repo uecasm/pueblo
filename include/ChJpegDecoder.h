@@ -47,8 +47,7 @@
 #include <ChImgConsumer.h>
 #include <ChImageDecoder.h>
 
-#include <fstream>
-#include <jpeglib.h>
+typedef struct jpeg_decompress_struct * j_decompress_ptr;
 
 #if defined( CH_MSW )
 											/* Disable warnings about non-
@@ -73,82 +72,20 @@ class CH_EXPORT_CLASS ChJPEG : public ChImageDecoder
 
 	private :
 		void  LoadJPEG( const char* pszFileName, chuint32 flOptions );
-		// methods from jdapi.cpp
-		void jpeg_create_decompress (j_decompress_ptr cinfo);
-		void jpeg_destroy_decompress (j_decompress_ptr cinfo);
-		void jpeg_set_marker_processor (j_decompress_ptr cinfo, int marker_code,
-					   jpeg_marker_parser_method routine);
-		void default_decompress_parms (j_decompress_ptr cinfo);
-		int  jpeg_read_header (j_decompress_ptr cinfo, bool require_image);
-		void jpeg_start_decompress (j_decompress_ptr cinfo);
-		JDIMENSION jpeg_read_scanlines (j_decompress_ptr cinfo, JSAMPARRAY scanlines,
-				     JDIMENSION max_lines);
-		JDIMENSION jpeg_read_raw_data (j_decompress_ptr cinfo, JSAMPIMAGE data,
-				    JDIMENSION max_lines);
-		bool jpeg_finish_decompress (j_decompress_ptr cinfo);
-		void jpeg_abort_decompress (j_decompress_ptr cinfo);	  
 
-		// method in jdatasrc.cpp
-		void jpeg_stdio_src (j_decompress_ptr cinfo, std::fstream * infile);
+	 	bool put_scanline_someplace( unsigned char* buffer, int row_stride);
+		void SetupParameters();
 
-		public :
-		// method in jdcoefct.cpp
-		static void jinit_d_coef_controller (j_decompress_ptr cinfo, bool need_full_buffer);
-
-		// method in jdcolor.cpp
-		static void jinit_color_deconverter (j_decompress_ptr cinfo);
-		// method in jddctmgr.cpp
-		static void jinit_inverse_dct (j_decompress_ptr cinfo);
-		// method in jdhuff.cpp
-		static void jinit_huff_decoder (j_decompress_ptr cinfo);
-		// method in jdmainct.cpp
-		static void jinit_d_main_controller (j_decompress_ptr cinfo, bool need_full_buffer);
-		// method in jdmarker.cpp
-		static bool jpeg_resync_to_restart (j_decompress_ptr cinfo);
-		static void jinit_marker_reader (j_decompress_ptr cinfo);
-		// method in jdmaster.cpp
-		static void jpeg_calc_output_dimensions (j_decompress_ptr cinfo);
-		// method in jdmerge.cpp
-		static void jinit_merged_upsampler (j_decompress_ptr cinfo);
-		// method in jdpostct.cpp
-		static void jinit_d_post_controller (j_decompress_ptr cinfo, bool need_full_buffer);
-		// method in jdsample.cpp
-		static void jinit_upsampler (j_decompress_ptr cinfo);
-		// method in jderror.cpp
-		jpeg_error_mgr *jpeg_std_error (jpeg_error_mgr * err);
-		// method in jfdctint.cpp
-		//void jpeg_fdct_islow (DCTELEM * data);
-		// method in jfdmaster.cpp
-		static void jinit_master_decompress (j_decompress_ptr cinfo);
-
-		//
-		static void jinit_1pass_quantizer (j_decompress_ptr cinfo);
-		static void jinit_2pass_quantizer (j_decompress_ptr cinfo);
-
-
-		static void jinit_memory_mgr( j_common_ptr cinfo);
-		static long jpeg_mem_init( j_common_ptr cinfo); 
-		static void   jpeg_mem_term(j_common_ptr cinfo);		/* system-dependent cleanup */
-
-
-		static void jpeg_destroy( j_common_ptr cinfo); /* use common routine */
-		static void jpeg_abort( j_common_ptr cinfo); /* use common routine */
-
-		private :
-
-
-
-
-	 	bool put_scanline_someplace( j_decompress_ptr cinfo, unsigned char* buffer, int row_stride);
-
-
-		jpeg_decompress_struct cinfo;
-		std::fstream * 	m_pFile;
+		j_decompress_ptr cinfo;
+		FILE * 	m_pFile;
 		bool	 	m_boolFirst;
 		int 	 	m_iCurrScanLine;
 
 };
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:42  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif // CHJPEGDECODER_H_

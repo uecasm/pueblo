@@ -60,6 +60,7 @@
 #include <ChDC.h>
 #endif
 #include <ChGifDecoder.h>
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -173,12 +174,13 @@ bool ChGifDecoder::Load( const char * pszFileName, chuint32 flOptions /* = ChDIB
 				// ** BEGIN UE HACK **
 				if ( m_iFrame == -1 ) {
 					// The incoming GIF wasn't in an expected format; what seems to cause this
-					// is a GIF89a that doesn't contain a graphics control block.
+					// is a GIF89a that doesn't contain a graphics control block. (or at least
+					// Pueblo couldn't find it!)
 					// No idea what output this will result in (since the GCB defines all sorts
 					// of image properties), but keeping an image index of -1 is totally
 					// unacceptable (and will cause truly crazy behaviour).
 					m_iFrame = 0;
-					TRACE("WARNING: image didn't decode properly!");
+					TRACE("WARNING: image didn't decode properly!\n");
 				}
 				// ** END UE HACK **
 
@@ -911,3 +913,6 @@ short ChGifDecoder::decoder( short linewidth)
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:17  uecasm
+// Import of source tree as at version 2.53 release.
+//

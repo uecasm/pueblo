@@ -49,6 +49,7 @@
 #include <ChDibImage.h>
 
 #include <lzexpand.h>    
+#include "MemDebug.h"
 
 
 #ifdef _DEBUG
@@ -123,14 +124,14 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
     iBytes = LZRead(lzHdl, (LPSTR)&BmpFileHdr, sizeof(BmpFileHdr));
     if (iBytes != sizeof(BmpFileHdr)) 
     {
-        TRACE("Failed to read file header");
+        TRACE("Failed to read file header\n");
         goto d__abort;
     }
 
     // Check that we have the magic 'BM' at the start.
     if (BmpFileHdr.bfType != 0x4D42) 
     {
-        TRACE("Not a bitmap file");
+        TRACE("Not a bitmap file\n");
         goto d__abort;
     }
 
@@ -141,7 +142,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
     iBytes = LZRead(lzHdl, (LPSTR)&BmpInfoHdr, sizeof(BmpInfoHdr)); 
     if (iBytes != sizeof(BmpInfoHdr)) 
     {
-        TRACE("Failed to read BITMAPINFOHEADER");
+        TRACE("Failed to read BITMAPINFOHEADER\n");
         goto d__abort;
     }
 
@@ -150,7 +151,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
     {
         if (BmpInfoHdr.biSize != sizeof(BITMAPCOREHEADER)) 
         {
-            TRACE(" File is not Windows or PM DIB format");
+            TRACE(" File is not Windows or PM DIB format\n");
             goto d__abort;
         }
 
@@ -164,7 +165,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
         iBytes = LZRead(lzHdl, (LPSTR)&BmpCoreHdr, sizeof(BmpCoreHdr)); 
         if (iBytes != sizeof(BmpCoreHdr)) 
         {
-            TRACE("Failed to read BITMAPCOREHEADER");
+            TRACE("Failed to read BITMAPCOREHEADER\n");
             goto d__abort;
         }
 
@@ -228,7 +229,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
     lpColorTable = (LPRGBQUAD) ALLOC(iBISize);
     if (!lpColorTable) 
     {
-        TRACE("Out of memory for color table");
+        TRACE("Out of memory for color table\n");
         goto d__abort;
     }
 
@@ -241,7 +242,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
                              iColorTableSize);
         if (iBytes != iColorTableSize) 
         {
-            TRACE("Failed to read color table");
+            TRACE("Failed to read color table\n");
             goto d__abort;
         }
     } 
@@ -257,7 +258,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
             iBytes = LZRead(lzHdl, (LPSTR)&rgbt, sizeof(RGBTRIPLE));
             if (iBytes != sizeof(RGBTRIPLE)) 
             {
-                TRACE("Failed to read RGBTRIPLE");
+                TRACE("Failed to read RGBTRIPLE\n");
                 goto d__abort;
             }
             lpRGB->rgbBlue = rgbt.rgbtBlue;
@@ -278,7 +279,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
     pBits = (BYTE*) ALLOC((((BmpInfoHdr.biWidth * BmpInfoHdr.biBitCount/8 ) + 3) & ~3));
     if (!pBits) 
     {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         goto d__abort;
     }
 
@@ -292,7 +293,7 @@ bool ChDibDecoder::Load(LZHANDLE lzHdl)
 	    iBytes = LZRead(lzHdl, (LPSTR)pBits, iBitsSize);
 	    if (iBytes != iBitsSize) 
 	    {
-	        TRACE("Failed to read bits");
+	        TRACE("Failed to read bits\n");
 	        goto d__abort;
 	    }
 		// Set the scan line
@@ -331,7 +332,7 @@ bool ChDibDecoder::Load(const char* pszFileName, chuint32 flOption )
 										0,
 										0)))       
 	{  //
-        TRACE("Failed to open file");
+        TRACE("Failed to open file\n");
         return false;
     }
 	lzHdl = ::LZInit( hFile );
@@ -351,13 +352,13 @@ bool ChDibDecoder::Load(WORD wResid, HINSTANCE hInstance)
     HRSRC hrsrc = ::FindResource(hInst, MAKEINTRESOURCE(wResid), "DIB");
     if (!hrsrc) 
     {
-        TRACE("DIB resource not found");
+        TRACE("DIB resource not found\n");
         return false;
     }
     HGLOBAL hg = LoadResource(hInst, hrsrc);
     if (!hg) 
     {
-        TRACE("Failed to load DIB resource");
+        TRACE("Failed to load DIB resource\n");
         return false;
     }
     BYTE* pRes = (BYTE*) LockResource(hg);
@@ -392,3 +393,6 @@ bool ChDibDecoder::Load(WORD wResid, HINSTANCE hInstance)
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:12  uecasm
+// Import of source tree as at version 2.53 release.
+//

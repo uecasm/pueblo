@@ -44,6 +44,7 @@
 #include "headers.h"
 #include "World.h"
 #include "ChConnectDlg.h"
+#include "MemDebug.h"
 
 
 #ifdef _DEBUG
@@ -146,3 +147,6 @@ void ChConnectingDlg::OnTimer( UINT nIDEvent )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:08  uecasm
+// Import of source tree as at version 2.53 release.
+//

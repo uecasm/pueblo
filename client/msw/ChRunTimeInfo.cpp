@@ -49,13 +49,13 @@
 
 #include "ChPbModuleMgr.h"
 #include "ChRunTimeInfo.h"
+#include "MemDebug.h"
 
 #define CH_LOCAL_MODULE_ID_START 	0xFFFFF000
 #define CH_LOCAL_MODULE_ID_END		0xFFFFFFFF
 
 #pragma optimize( "", off )
 
-#define DebugBox(msg)	::MessageBox(0, msg, "Debug", MB_OK|MB_ICONINFORMATION)
 //static CStdioFile *debugFile = 0;
 
 /*----------------------------------------------------------------------------
@@ -472,3 +472,6 @@ void ChPuebloModuleManager::UnloadModule( const ChModuleID idModule )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:36  uecasm
+// Import of source tree as at version 2.53 release.
+//

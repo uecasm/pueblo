@@ -18,7 +18,7 @@ run : BuildDLLs
 
 !include "Common2.mak"
 
-BuildDLLs : OutDir BuildAPIUtil BuildAPI BuildModules
+BuildDLLs : OutDir BuildMNG BuildAPIUtil BuildAPI BuildModules
 
 BuildModules : ModuleDir BuildWorld BuildSound
 
@@ -28,6 +28,10 @@ BuildAPI :
 	
 BuildAPIUtil :
 	cd $(PROJROOT)\apiutil
+	$(MAKEDIR)\$(MAKE) -$(MAKEFLAGS) all
+
+BuildMNG:
+	cd $(PROJROOT)\libmng
 	$(MAKEDIR)\$(MAKE) -$(MAKEFLAGS) all
 
 BuildWorld :

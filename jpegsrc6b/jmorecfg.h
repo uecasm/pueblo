@@ -1,7 +1,7 @@
 /*
  * jmorecfg.h
  *
- * Copyright (C) 1991-1994, Thomas G. Lane.
+ * Copyright (C) 1991-1997, Thomas G. Lane.
  * This file is part of the Independent JPEG Group's software.
  * For conditions of distribution and use, see the accompanying README file.
  *
@@ -10,7 +10,6 @@
  * optimizations.  Most users will not need to touch this file.
  */
 
-// $Header$
 
 /*
  * Define BITS_IN_JSAMPLE as either
@@ -153,14 +152,18 @@ typedef unsigned int UINT16;
 /* INT16 must hold at least the values -32768..32767. */
 
 #ifndef XMD_H			/* X11/xmd.h correctly defines INT16 */
+# ifndef _BASETSD_H_		// so does basetsd.h
 typedef short INT16;
+# endif
 #endif
 
 /* INT32 must hold at least signed 32-bit values. */
 
-//#ifndef XMD_H			/* X11/xmd.h correctly defines INT32 */
-//typedef long INT32;
-//#endif
+#ifndef XMD_H			/* X11/xmd.h correctly defines INT32 */
+# ifndef _BASETSD_H_		// so does basetsd.h
+typedef long INT32;
+# endif
+#endif
 
 /* Datatype used for image dimensions.  The JPEG standard only supports
  * images up to 64K*64K due to 16-bit fields in SOF markers.  Therefore
@@ -174,16 +177,54 @@ typedef unsigned int JDIMENSION;
 #define JPEG_MAX_DIMENSION  65500L  /* a tad under 64K to prevent overflows */
 
 
-/* These defines are used in all function definitions and extern declarations.
- * You could modify them if you need to change function linkage conventions.
+/* These macros are used in all function definitions and extern declarations.
+ * You could modify them if you need to change function linkage conventions;
+ * in particular, you'll need to do that to make the library a Windows DLL.
  * Another application is to make all functions global for use with debuggers
  * or code profilers that require it.
  */
 
-#define METHODDEF static	/* a function called through method pointers */
-#define LOCAL	  static	/* a function used only in its module */
-#define GLOBAL			/* a function referenced thru EXTERNs */
-#define EXTERN	  extern	/* a reference to a GLOBAL function */
+/* a function called through method pointers: */
+#if defined(__BORLANDC__)
+#define METHODDEF(type)		static type __stdcall
+#else
+#define METHODDEF(type)		static type
+#endif
+/* a function used only in its module: */
+#define LOCAL(type)		static type
+/* a function referenced thru EXTERNs: */
+#if defined(__BORLANDC__)
+#define GLOBAL(type)		type __stdcall
+#else
+#define GLOBAL(type)		type
+#endif
+/* a reference to a GLOBAL function: */
+#if defined(__BORLANDC__)
+#define EXTERN(type)		__declspec(dllexport) type __stdcall
+#else
+#define EXTERN(type)		__declspec(dllexport) extern type
+#endif
+
+
+/* This macro is used to declare a "method", that is, a function pointer.
+ * We want to supply prototype parameters if the compiler can cope.
+ * Note that the arglist parameter must be parenthesized!
+ * Again, you can customize this if you need special linkage keywords.
+ */
+
+#ifdef HAVE_PROTOTYPES
+#if defined(__BORLANDC__)
+#define JMETHOD(type,methodname,arglist)  type __stdcall (*methodname) arglist
+#else
+#define JMETHOD(type,methodname,arglist)  type (*methodname) arglist
+#endif
+#else
+#if defined(__BORLANDC__)
+#define JMETHOD(type,methodname,arglist)  type __stdcall (*methodname) ()
+#else
+#define JMETHOD(type,methodname,arglist)  type (*methodname) ()
+#endif
+#endif
 
 
 /* Here is the pseudo-keyword for declaring pointers that must be "far"
@@ -193,9 +234,7 @@ typedef unsigned int JDIMENSION;
  */
 
 #ifdef NEED_FAR_POINTERS
-#if !defined( FAR )
-#define FAR  far  
-#endif
+#define FAR  far
 #else
 #define FAR
 #endif
@@ -209,7 +248,7 @@ typedef unsigned int JDIMENSION;
  */
 
 #ifndef HAVE_BOOLEAN
-//typedef int boolean;
+typedef int boolean;
 #endif
 #ifndef FALSE			/* in case these macros already exist */
 #define FALSE	0		/* values of boolean */
@@ -246,29 +285,35 @@ typedef unsigned int JDIMENSION;
 /* Capability options common to encoder and decoder: */
 
 #define DCT_ISLOW_SUPPORTED	/* slow but accurate integer algorithm */
-//#define DCT_IFAST_SUPPORTED	/* faster, less accurate integer method */
+#define DCT_IFAST_SUPPORTED	/* faster, less accurate integer method */
 #define DCT_FLOAT_SUPPORTED	/* floating-point: accurate, fast on fast HW */
 
 /* Encoder capability options: */
 
 #undef  C_ARITH_CODING_SUPPORTED    /* Arithmetic coding back end? */
-#undef  C_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files?  (NYI) */
+#define C_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
+#define C_PROGRESSIVE_SUPPORTED	    /* Progressive JPEG? (Requires MULTISCAN)*/
 #define ENTROPY_OPT_SUPPORTED	    /* Optimization of entropy coding parms? */
 /* Note: if you selected 12-bit data precision, it is dangerous to turn off
  * ENTROPY_OPT_SUPPORTED.  The standard Huffman tables are only good for 8-bit
  * precision, so jchuff.c normally uses entropy optimization to compute
  * usable tables for higher precision.  If you don't want to do optimization,
  * you'll have to supply different default Huffman tables.
+ * The exact same statements apply for progressive JPEG: the default tables
+ * don't work for progressive mode.  (This may get fixed, however.)
  */
 #define INPUT_SMOOTHING_SUPPORTED   /* Input image smoothing option? */
 
 /* Decoder capability options: */
 
 #undef  D_ARITH_CODING_SUPPORTED    /* Arithmetic coding back end? */
-//#define D_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
-//#define IDCT_SCALING_SUPPORTED	    /* Output rescaling via IDCT? */
+#define D_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
+#define D_PROGRESSIVE_SUPPORTED	    /* Progressive JPEG? (Requires MULTISCAN)*/
+#define SAVE_MARKERS_SUPPORTED	    /* jpeg_save_markers() needed? */
+#define BLOCK_SMOOTHING_SUPPORTED   /* Block smoothing? (Progressive only) */
+#define IDCT_SCALING_SUPPORTED	    /* Output rescaling via IDCT? */
 #undef  UPSAMPLE_SCALING_SUPPORTED  /* Output rescaling at upsample stage? */
-//#define UPSAMPLE_MERGING_SUPPORTED  /* Fast path for sloppy upsampling? */
+#define UPSAMPLE_MERGING_SUPPORTED  /* Fast path for sloppy upsampling? */
 #define QUANT_1PASS_SUPPORTED	    /* 1-pass color quantization? */
 #define QUANT_2PASS_SUPPORTED	    /* 2-pass color quantization? */
 

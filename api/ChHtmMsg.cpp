@@ -240,7 +240,7 @@ void ChHtmlView::OnKillFocus(CWnd* pNewWnd)
 void ChHtmlView::OnRButtonDown(UINT nFlags, CPoint point) 
 {
 	// TODO: Add your message handler code here and/or call default
-	TRACE("ChHtmlView::OnRButtonDown(%08Xh, %d, {%d, %d}) -- (%08Xh, \"%s\")",
+	TRACE("ChHtmlView::OnRButtonDown(%08Xh, %d, {%d, %d}) -- (%08Xh, \"%s\")\n",
 						this, nFlags, point.x, point.y, GetFrameMgr(), (LPCSTR)GetFrameName());	// UE DEBUG
 	GetFrameMgr()->OnRightMouseDown( point, GetFrameName() );
 
@@ -539,3 +539,6 @@ void ChHtmlView::RemapColors( int iNumColors,
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:53  uecasm
+// Import of source tree as at version 2.53 release.
+//

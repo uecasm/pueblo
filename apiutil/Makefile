@@ -4,7 +4,7 @@
 CSM=$(INTDIR)\PbUtil32.csm
 DEF_FILE=PbUtil32.def
 RES_FILE=$(INTDIR)\PbUtil32.res
-NCDEFS=-WD -D_AFXEXT
+NCDEFS=-WD -D_AFXEXT;XMD_H;ZLIB_DLL;MNG_BUILD_DLL
 NRDEFS=/d_AFXEXT
 NLDEFS=/Gi /b:0x18000000 /Tpd
 
@@ -31,6 +31,8 @@ LINK32_OBJS= \
 	ChDibUtl.obj		\
 	ChGIF.obj				\
 	ChJPEG.obj			\
+	ChMngDecoder.obj \
+	ChMngImage.obj	\
 	ChSFImage.obj		\
 	ChUnzip.obj			\
 	explode.obj			\
@@ -38,33 +40,12 @@ LINK32_OBJS= \
 	file_io.obj			\
 	headers.obj			\
 	inflate.obj			\
-	jcomapi.obj			\
-	jdapi.obj				\
-	jdatasrc.obj		\
-	jdcoefct.obj		\
-	jdcolor.obj			\
-	jddctmgr.obj		\
-	jdhuff.obj			\
-	jdmainct.obj		\
-	jdmarker.obj		\
-	jdmaster.obj		\
-	jdmerge.obj			\
-	jdpostct.obj		\
-	jdsample.obj		\
-	jerror.obj			\
-	jfdctint.obj		\
-	jidctflt.obj		\
-	jidctint.obj		\
-	jmemmgr.obj			\
-	jquant1.obj			\
-	jquant2.obj			\
-	jutils.obj			\
 	match.obj				\
 	PbUtil32.obj		\
 	unreduce.obj		\
 	unshrink.obj
 
-LIBS=
+LIBS=$(LIB_MNG)
 
 $(DLL_APIUTIL) : $(DEF_FILE) $(RES_FILE) $(LINK32_OBJS) $(LIBS)
     $(LINK32) @&&|

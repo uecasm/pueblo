@@ -51,6 +51,7 @@
 #endif
 
 #include "TinTin.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -425,3 +426,6 @@ int MatchString( const char* pstrLine, const char* pstrMask )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:35  uecasm
+// Import of source tree as at version 2.53 release.
+//

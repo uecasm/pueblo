@@ -195,6 +195,62 @@ class ChTextInputPrefsPage : public ChPropertyBaseClass
 
 
 /*----------------------------------------------------------------------------
+	ChProtocolPrefsPage class
+----------------------------------------------------------------------------*/
+	
+class ChProtocolPrefsPage : public ChPropertyBaseClass
+{
+	DECLARE_DYNCREATE( ChProtocolPrefsPage )
+
+	public:
+		ChProtocolPrefsPage();
+		virtual ~ChProtocolPrefsPage();
+
+		virtual BOOL OnSetActive();			/* Called when this page gets the
+												focus */
+		virtual BOOL OnKillActive();	    // Perform validation here
+		#if !defined( CH_PUEBLO_PLUGIN )
+		virtual void OnCommit();   /* Called to commit data (this is
+												a good time to save data to the
+												registry */
+
+		#endif
+
+											// Dialog Data
+		//{{AFX_DATA(ChProtocolPrefsPage)
+		enum { IDD = IDD_PREF_PAGE_PROTOCOL };
+		BOOL	m_boolAllowMCCP;
+		//}}AFX_DATA
+											/* ClassWizard generate virtual
+												function overrides */
+		//{{AFX_VIRTUAL(ChProtocolPrefsPage)
+		protected:
+		virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+		//}}AFX_VIRTUAL
+
+	protected:
+		inline bool IsDirty() { return m_boolDirty; }
+		inline void SetDirty( bool boolDirty = true )
+						{
+							m_boolDirty = boolDirty;
+						}
+
+	protected:
+											// Generated message map functions
+		//{{AFX_MSG(ChProtocolPrefsPage)
+		//}}AFX_MSG
+
+		DECLARE_MESSAGE_MAP()
+
+	protected:
+		ChRegistry		m_reg;
+		bool			m_boolInitialized;
+		bool			m_boolDirty;
+};
+
+
+
+/*----------------------------------------------------------------------------
 	ChTinTinSelectFileDlg class
 ----------------------------------------------------------------------------*/
 
@@ -236,3 +292,6 @@ class ChTinTinSelectFileDlg : public ChFileDialog
 #endif	// !defined( _CHPREFSWORLD_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:10  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -44,6 +44,7 @@
 #include "headers.h"
 
 #include "ChSoundUtils.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -134,3 +135,6 @@ void WriteVolumeSliderPos( CSliderCtrl& slider, ChRegistry& reg, const char* str
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:03  uecasm
+// Import of source tree as at version 2.53 release.
+//

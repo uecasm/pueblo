@@ -41,6 +41,7 @@
           "de-underline".  In addition, the concept of "bold" in
           ANSI was changed to the common interpretation of low- vs.
           high-intensity colours rather than bold font-style.
+					Support for MCCP added.
 
 ------------------------------------------------------------------------------
 
@@ -56,16 +57,16 @@
 #include <ChConn.h>
 
 #include "ChTextOutput.h"
+#include "ChMCCP.h"
 
 class ChWorldMainInfo;
-
 
 /*----------------------------------------------------------------------------
 	Switches
 ----------------------------------------------------------------------------*/
 
 #if defined( CH_DEBUG )
-//	#define DUMP_TELNET_CODES	1
+	#define DUMP_TELNET_CODES	1
 	#define DUMP_ANSI_CODES		1
 #endif	// defined( CH_DEBUG )
 
@@ -87,8 +88,9 @@ typedef enum { stateNotConnected, stateWaitingForAddress,
 				stateConnected } ConnectState;
 
 typedef enum { parseStateScanning, parseStateEscape, parseStateAnsi,
-				parseStateAnsiTerm, parseTelnetIAC,
-				parseTelnetCmd } ParseState;
+				parseStateAnsiTerm, parseTelnetIAC, parseTelnetCmd,
+				parseTelnetSubnegotiate, parseTelnetSubnegotiateCmd, parseTelnetSubnegotiateIAC
+					} ParseState;
 
 
 /*----------------------------------------------------------------------------
@@ -123,6 +125,10 @@ class ChBufferString
 
 		ChBufferString& operator +=( char cChar );
 		ChBufferString& operator +=( const char* pstrText );
+
+		ChBufferString& Append( const char* pstrText, int iLen );
+		ChBufferString& DeleteFromStart( int iLen );
+		ChBufferString& Clear();
 
 	protected:
 		ChString		m_string;
@@ -193,7 +199,8 @@ class ChAnsiState
 
 typedef enum { modeText, modeHtml, modePureHtml } TextMode;
 
-enum { telnetStateEcho = 1, telnetStateEOR = 2 };
+enum { telnetStateEcho = 0x0001, telnetStateEOR = 0x0002, telnetStateTType = 0x0004,
+				telnetStateMCCP1 = 0x0010, telnetStateMCCP2 = 0x0020, telnetStateMCCPOn = 0x0040 };
 
 class ChWorldConn : public ChConn
 {
@@ -260,7 +267,7 @@ class ChWorldConn : public ChConn
 		void SendWorldCommand( const ChString& strCommand,
 								bool boolUserCommand = true );
 		void Display( const ChString& strText );
-		void Display( ChString& strOut, const ChString& strText );
+		void Display( ChString& strOut, const ChString& strText, bool boolUserCommand = false );
 
 		void UpdatePreferences();
 
@@ -301,6 +308,8 @@ class ChWorldConn : public ChConn
 							#endif	// defined( DUMP_ANSI_CODES )
 						}
 
+		void ParseIncomingData( ChString& strData, int iLen );
+
 		void ParseText( ChString& strText, bool boolNewlinesToBreaks );
 		void ParseEndOfLine( ChBufferString& strBuffer, int iStartOfLine,
 								bool boolEndOfLine );
@@ -309,9 +318,14 @@ class ChWorldConn : public ChConn
 								ChBufferString& strBuffer );
 		void ProcessAnsiCode( char cCodeType, int iCode, ChString& strOutput );
 
+#if defined( DUMP_TELNET_CODES )
+		ChString GetTelnetLabel( int iCommand );
+#endif
 		void TelnetSend( int iCommand, int iOption );
 		void TelnetReceive( int iCommand, int iOption );
 		void DoTelnetCmd( int iCommand, int iOption );
+		void DoTelnetSubnegotiation( int iCommand, const ChString& data );
+		void DoSendTerminalType();
 
 		void TranslateNewlinesToBreaks( ChString& strOut );
 
@@ -323,6 +337,9 @@ class ChWorldConn : public ChConn
 
 		void SetPuebloEnhanced( bool boolEnhanced,
 								const ChVersion& versEnhanced );
+
+
+		void UpdateCompressionPanel();
 
 	private:
 		ChModuleID				m_idModule;
@@ -340,6 +357,7 @@ class ChWorldConn : public ChConn
 		bool					m_boolEcho;
 		bool					m_boolBold;
 		bool					m_boolItalic;
+		bool					m_boolAllowMCCP;
 
 		ChAnsiState				m_ansiState;
 		bool					m_boolAnsiResetReceived;
@@ -348,11 +366,14 @@ class ChWorldConn : public ChConn
 
 		chflag32				m_flTelnetState;
 		ParseState				m_parseState;
+		ParseState				m_telnetParseState;
 		ChString					m_strAnsiSequence;
 		int						m_iTelnetCmd;
 		ChString					m_strCurrentLine;
+		ChString					m_strSubnegotiation;
 		
-		bool						m_boolDisplayUserText;		// UE
+		int							m_iCurrentTermType;			// UE
+		ChMCCP					m_mccp;
 };
 
 
@@ -363,3 +384,6 @@ class ChWorldConn : public ChConn
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:20  uecasm
+// Import of source tree as at version 2.53 release.
+//

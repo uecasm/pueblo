@@ -288,15 +288,15 @@ typedef chuint32		ChModuleID;
 												avoid name mangling... */
 	#ifdef CH_MSW
 //		#define EXTERN			extern "C"
-		#define EXTERN			extern
+		#define CH_EXTERN			extern
 	#else
-		#define EXTERN			extern
+		#define CH_EXTERN			extern
 	#endif
 	#define C_NAMING		extern "C"
 
 #else	// defined( __cplusplus )
 
-	#define EXTERN			extern
+	#define CH_EXTERN			extern
 	#define C_NAMING
 
 #endif	// defined( __cplusplus )
@@ -317,17 +317,17 @@ typedef chuint32		ChModuleID;
 #define CH_INTERN_FUNC_C( retType )			static retType NEAR
 
 #define CH_GLOBAL_FUNC( retType )			retType
-#define CH_EXTERN_FUNC( retType )			EXTERN retType
+#define CH_EXTERN_FUNC( retType )			CH_EXTERN retType
 
 #define CH_GLOBAL_LIBRARY_C( retType )		C_NAMING DLL_EXPORT retType API EXPORT
-#define CH_EXTERN_LIBRARY_C( retType )		EXTERN DLL_IMPORT retType API EXPORT
+#define CH_EXTERN_LIBRARY_C( retType )		CH_EXTERN DLL_IMPORT retType API EXPORT
 
 #define CH_GLOBAL_CALLBACK( retType )		retType CALLBACK EXPORT
-#define CH_EXTERN_CALLBACK( retType )		EXTERN retType CALLBACK EXPORT
+#define CH_EXTERN_CALLBACK( retType )		CH_EXTERN retType CALLBACK EXPORT
 
 #if defined( CH_MSW )
 	#define CH_GLOBAL_CALLBACK_C( retType )		retType FAR __cdecl EXPORT
-	#define CH_EXTERN_CALLBACK_C( retType )		EXTERN retType FAR __cdecl EXPORT  
+	#define CH_EXTERN_CALLBACK_C( retType )		CH_EXTERN retType FAR __cdecl EXPORT  
 // UE: the logic seems to have mysteriously been reversed in the following test;
 //     which caused it to erroneously think the entrypoint was __stdcall in the
 //     main program and __cdecl in the modules themselves, causing the stack to
@@ -335,16 +335,16 @@ typedef chuint32		ChModuleID;
 	#if !defined( CH_ARCH_32 )
 #error Unexpected non-arch32!
 	#define CH_GLOBAL_LIBRARY( retType )		C_NAMING DLL_EXPORT retType CDECL EXPORT
-	#define CH_EXTERN_LIBRARY( retType )		EXTERN DLL_IMPORT retType CDECL EXPORT  
+	#define CH_EXTERN_LIBRARY( retType )		CH_EXTERN DLL_IMPORT retType CDECL EXPORT  
 	#else
 	#define CH_GLOBAL_LIBRARY( retType )		C_NAMING DLL_EXPORT retType API EXPORT
-	#define CH_EXTERN_LIBRARY( retType )		C_NAMING EXTERN DLL_IMPORT retType API EXPORT  
+	#define CH_EXTERN_LIBRARY( retType )		C_NAMING CH_EXTERN DLL_IMPORT retType API EXPORT  
 	#endif
 #else
 	#define CH_GLOBAL_CALLBACK_C( retType )		retType FAR EXPORT
-	#define CH_EXTERN_CALLBACK_C( retType )		EXTERN retType FAR EXPORT
+	#define CH_EXTERN_CALLBACK_C( retType )		CH_EXTERN retType FAR EXPORT
 	#define CH_GLOBAL_LIBRARY( retType )		C_NAMING DLL_EXPORT retType CDECL EXPORT
-	#define CH_EXTERN_LIBRARY( retType )		EXTERN DLL_IMPORT retType CDECL EXPORT
+	#define CH_EXTERN_LIBRARY( retType )		CH_EXTERN DLL_IMPORT retType CDECL EXPORT
 #endif
 
 #define CH_TYPEDEF_FUNC( retType, typeName ) \
@@ -579,3 +579,6 @@ class ChString : public String
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:01  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -355,10 +355,10 @@ CH_GLOBAL_VAR  SymbolMap aEntityTbl[] =
 							{"thorn", 254},
 							{"yuml", 255},
 												// Netscape additions
-							{ "copy",'©'},
-							{ "reg", '®' },
+							{ "copy",'\xA9'},
+							{ "reg", '\xAE' },
 							{ "trade", '\x99' },
-							{ "nbsp", ' ' },
+							{ "nbsp", '\xA0' },	// UE: was regular space
 							{ "tmark", '\x99' },  // Chaco addition
 
 						};
@@ -822,6 +822,7 @@ bool ChHtmlParser::BreakTag( const char* pstrBuffer, chint32& lStart, 	chint32  
 				&& !(GetTextStyle()->GetStyle() & ChTxtWnd::textHotSpot) )
 		{	// we currently look for a URL 
 			ChString strURL;
+			chint32 lOldStart = lStart;		//UE
 			while ( lStart < lCount && !IS_WHITE_SPACE( pstrBuffer[lStart] ) 
 							&& !( pstrBuffer[lStart] == TEXT( '<' )
 								  || pstrBuffer[lStart] == TEXT( ')' )
@@ -862,9 +863,9 @@ bool ChHtmlParser::BreakTag( const char* pstrBuffer, chint32& lStart, 	chint32  
 				char* pstrBuf = new char[30 + strURL.GetLength() + 
 									m_pHtmlView->GetAnchorTarget().GetLength() ];
 				ASSERT( pstrBuf );
-				lstrcpy( pstrBuf, "href=" );
+				lstrcpy( pstrBuf, "href=\"" );
 				lstrcat( pstrBuf, strURL );
-				lstrcat( pstrBuf, " target=" );
+				lstrcat( pstrBuf, "\" target=" );
 				lstrcat( pstrBuf, m_pHtmlView->GetAnchorTarget() );
 				GetTextStyle()->SetUserData( (chparam)pstrBuf ); 
 				// add all the mem allocation, we will free this on 
@@ -886,10 +887,15 @@ bool ChHtmlParser::BreakTag( const char* pstrBuffer, chint32& lStart, 	chint32  
 			}
 			else
 			{
-			    for( int i = 0; i < strURL.GetLength(); i++ )
-				{
-					AppendChar( strURL[i] );
-				}
+			 // for( int i = 0; i < strURL.GetLength(); i++ )
+				//{
+				//	AppendChar( strURL[i] );
+				//}
+				
+				// UE: if you append in the above fashion, it screws up entities (now that we're considering '&' to
+				//     be a valid link character), so we'll just declare that nothing happened and return to sender.
+				lStart = lOldStart;
+				AppendChar( pstrBuffer[lStart++] );		// consume one character, so we don't cause an infinite loop
 			}
 		}
 		else
@@ -905,3 +911,6 @@ bool ChHtmlParser::BreakTag( const char* pstrBuffer, chint32& lStart, 	chint32  
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:18  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -64,6 +64,7 @@
 
 #include "ChMPlay.h"
 #include "ChSoundInfo.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -1027,3 +1028,6 @@ bool ChMixer::WaveSetVolume( chuint16 suNewVolume )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:57  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -41,6 +41,10 @@
           "de-underline".  In addition, the concept of "bold" in
           ANSI was changed to the common interpretation of low- vs.
           high-intensity colours rather than bold font-style.
+					Support for MCCP added.  Fixed up Erase code parsing; it
+					previously accepted ESC[2j but ESC[2J is in fact the
+					correct code.  The lowercase j code is no longer supported
+					(because it means something QUITE different).
 
 ------------------------------------------------------------------------------
 
@@ -70,6 +74,8 @@
 #include "vwrres.h"
 #endif
 
+#include <zlib.h>
+#include "MemDebug.h"
 
 /*----------------------------------------------------------------------------
 	Constants
@@ -83,9 +89,8 @@
 #define ANSI_START_1		ESCAPE
 #define ANSI_START_2		'['
 #define ANSI_SEPARATOR		';'
-#define ANSI_END			"m\n\r\0x1b"	// One of these ends sequence
 #define ANSI_MODE			'm'
-#define ANSI_ERASE			'j'
+#define ANSI_ERASE			'J'
 											/* Telnet commands:
 												(from RFC 854:  Telnet protocol
 																spec.) */
@@ -121,6 +126,10 @@
 #define TN_TSPEED			32				// not used
 #define TN_LINEMODE			34				// not used
 
+											// MCCP options:
+#define TN_COMPRESS		85
+#define TN_COMPRESS2	86
+
 											// Other Telnet codes:
 #define TN_IS				0
 #define TN_SEND				1
@@ -142,6 +151,14 @@ typedef enum { betweenSequences, foundIAC, foundModifier } TelnetState;
 static const char*	pstrTelnetLabel[256];
 
 #endif	// defined( DUMP_TELNET_CODES )
+
+static const char*	pstrTerminalTypes[] = {
+		"pueblo",
+		"ansi",
+		"network-virtual-terminal",
+		"unknown",
+		NULL
+};
 
 
 /*----------------------------------------------------------------------------
@@ -202,6 +219,11 @@ ChBufferString& ChBufferString::operator +=( const char* pstrText )
 {
 	int		iLen = strlen( pstrText );
 
+	return Append(pstrText, iLen);
+}
+
+ChBufferString& ChBufferString::Append( const char* pstrText, int iLen )
+{
 	if (m_iActualSize + iLen >= m_iBufferSize)
 	{										/* We need to reallocate the
 												string to make room for the
@@ -213,6 +235,11 @@ ChBufferString& ChBufferString::operator +=( const char* pstrText )
 												new data */
 
 		m_iBufferSize = m_iActualSize + growBufferStringSize;
+		while (m_iActualSize + iLen >= m_iBufferSize)
+		{
+			// adding a really big chunk o' text to this one
+			m_iBufferSize += growBufferStringSize;
+		}
 
 											// Get new pointers
 
@@ -227,6 +254,42 @@ ChBufferString& ChBufferString::operator +=( const char* pstrText )
 
 	return *this;
 }
+
+ChBufferString& ChBufferString::DeleteFromStart( int iLen )
+{
+	if (m_iActualSize > iLen)
+	{
+		// Delete some characters from the start; first compact the data
+		m_iActualSize -= iLen;
+		memmove(m_pstrBuffer, m_pstrBuffer + iLen, m_iActualSize * sizeof(TCHAR));
+		// Now try to shrink the buffer
+		m_string.ReleaseBuffer( m_iActualSize );
+		while (m_iBufferSize - growBufferStringSize > m_iActualSize)
+			m_iBufferSize -= growBufferStringSize;
+		// Adjust pointers accordingly
+		m_pstrBuffer = m_string.GetBuffer( m_iBufferSize );
+		m_pstrBufferEnd = m_pstrBuffer + m_iActualSize;
+	}
+	else
+	{
+		// Trivial case; we want to erase all (or more) data than we actually have
+		Clear();
+	}
+
+	return *this;
+}
+
+ChBufferString& ChBufferString::Clear()
+{
+	m_string.ReleaseBuffer(0);
+	m_iActualSize = 0;
+	m_iBufferSize = initBufferStringSize;
+	m_pstrBuffer = m_string.GetBuffer( m_iBufferSize );
+	m_pstrBufferEnd = m_pstrBuffer;
+	
+	return *this;
+}
+
 
 
 /*----------------------------------------------------------------------------
@@ -465,7 +528,8 @@ ChWorldConn::ChWorldConn( const ChModuleID& idModule,
 				m_boolAnsiResetReceived( false ),
 				m_flTelnetState( telnetStateEcho ),
 				m_parseState( parseStateScanning ),
-				m_boolDisplayUserText( false )
+				m_telnetParseState( parseStateScanning ),
+				m_iCurrentTermType( 0 )
 {
 	UpdatePreferences();
 											// Cache text out object
@@ -490,6 +554,8 @@ ChWorldConn::ChWorldConn( const ChModuleID& idModule,
 		pstrTelnetLabel[TN_NAWS]			= "NAWS";
 		pstrTelnetLabel[TN_TSPEED]			= "TSPEED";
 		pstrTelnetLabel[TN_LINEMODE]		= "LINEMODE";
+		pstrTelnetLabel[TN_COMPRESS]		= "COMPRESS1";
+		pstrTelnetLabel[TN_COMPRESS2]		= "COMPRESS2";
 		pstrTelnetLabel[TN_EOR]				= "EOR";
 		pstrTelnetLabel[TN_SE]				= "SE";
 		pstrTelnetLabel[TN_NOP]				= "NOP";
@@ -582,9 +648,7 @@ void ChWorldConn::ProcessOutput()
 		read( pstrBuffer, iLen );
 		strOut.ReleaseBuffer( iLen );
 
-		ASSERT( strOut.GetLength() == iLen );
-
-		ParseText( strOut, (GetMode() == modeHtml) );
+		ParseIncomingData(strOut, iLen);
 
 											// Display the text
 		OutputBuffer( strOut );
@@ -658,9 +722,7 @@ void ChWorldConn::SendWorldCommand( const ChString& strCommand,
 											/* Append the users' text to the
 												output buffer */
 
-			m_boolDisplayUserText = true;
-			Display( strOut, strCommandOut );
-			m_boolDisplayUserText = false;
+			Display( strOut, strCommandOut, true );
 
 			if (m_boolItalic)
 			{
@@ -701,7 +763,7 @@ void ChWorldConn::Display( const ChString& strText )
 }
 
 
-void ChWorldConn::Display( ChString& strOut, const ChString& strText )
+void ChWorldConn::Display( ChString& strOut, const ChString& strText, bool boolUserCommand /*=false*/ )
 {
 	ChString		strTextOut( strText );
 	chuint32	luBackColor = m_ansiState.GetBackColor();
@@ -721,10 +783,11 @@ void ChWorldConn::Display( ChString& strOut, const ChString& strText )
 									output buffer */
 
 	ChHtmlWnd::EscapeForHTML( strTextOut );
-	if (m_boolDisplayUserText) {
+	if (boolUserCommand) {
 		// UE: Displaying user text; we want to split up the display properly
 		//     into lines, so it doesn't all run together.
-		strTextOut.Replace("\r\n", "<br>");
+		TranslateNewlinesToBreaks(strTextOut);
+		//strTextOut.Replace("\r\n", "<br>");
 	}
 	strOut += strTextOut;
 
@@ -739,6 +802,7 @@ void ChWorldConn::UpdatePreferences()
 	worldPrefsReg.ReadBool( WORLD_PREFS_ECHO, m_boolEcho, true );
 	worldPrefsReg.ReadBool( WORLD_PREFS_ECHO_BOLD, m_boolBold, true );
 	worldPrefsReg.ReadBool( WORLD_PREFS_ECHO_ITALIC, m_boolItalic, false );
+	worldPrefsReg.ReadBool( WORLD_PREFS_ALLOWMCCP, m_boolAllowMCCP, WORLD_PREFS_ALLOWMCCP_DEF );
 }
 
 
@@ -746,16 +810,252 @@ void ChWorldConn::UpdatePreferences()
 	ChWorldConn protected methods
 ----------------------------------------------------------------------------*/
 
+void ChWorldConn::ParseIncomingData( ChString& strData, int iLen )
+{
+	// This routine parses the incoming (possibly compressed) data, and also
+	// handles Telnet command sequences.
+	m_mccp.receive(strData, iLen);
+
+	if (m_mccp.error())
+	{
+		ChString strMessage;
+		LOADSTRING( IDS_DECOMPRESSION_ERROR, strMessage );
+		GetMainInfo()->GetCore()->GetFrameWnd()->MessageBox( strMessage );
+		TelnetSend(TN_DONT, TN_COMPRESS);
+		TelnetSend(TN_DONT, TN_COMPRESS2);
+		// note that most servers don't actually pay attention to that, but it's
+		// about the best we can do...
+		GetMainInfo()->GetCore()->SetStatusPaneText(ChCore::paneCompression, _T(""));
+		m_mccp.negotiated(ChMCCP::modeUncompressed);
+		return;
+	}
+
+	UpdateCompressionPanel();
+
+	int available = m_mccp.pending();
+	if (!available)
+	{
+		// no incoming data (decompressor might not have enough yet)
+		strData = _T("");
+		return;
+	}
+
+	iLen = m_mccp.get( strData.GetBuffer(available + 2), available + 1 );
+	strData.ReleaseBuffer( iLen );
+	ASSERT( iLen == available );
+
+	if (0 < (available = m_mccp.pending()))
+	{
+		// retrieving some decompressed text freed up some more, so read that in too
+		ChString additional;
+		int extraLen = m_mccp.get( additional.GetBuffer(available + 2), available + 1 );
+		additional.ReleaseBuffer( extraLen );
+
+		//strData.Append(additional, extraLen);
+		strData += additional;
+		iLen += extraLen;
+	}
+
+	ChBufferString strParsedBuffer;
+	const unsigned char*	pstrOriginText;
+	bool boolTerminateParsing = false;
+	pstrOriginText = (const unsigned char*)(LPCSTR)strData;
+
+	while ((iLen > 0) && !boolTerminateParsing)
+	{
+		switch (m_telnetParseState)
+		{
+			case parseStateScanning:
+			{
+				if (*pstrOriginText == TN_IAC)		// 0xFF
+				{
+					m_telnetParseState = parseTelnetIAC;
+					break;
+				}
+				else
+				{
+					strParsedBuffer += *pstrOriginText;
+				}
+				break;
+			}
+
+			case parseTelnetIAC:
+			{
+				m_iTelnetCmd = *pstrOriginText;
+
+				if (TN_IAC == m_iTelnetCmd)
+				{
+					// UE: IAC IAC is just an escape meaning we want a regular 255 data byte
+					TelnetDisplay("recv IAC IAC\n");
+					strParsedBuffer += *pstrOriginText;
+					m_telnetParseState = parseStateScanning;
+				}
+				else if (TN_NOP == m_iTelnetCmd)
+				{
+	  			m_parseState = parseStateScanning;
+				}
+				else if ((TN_WILL == m_iTelnetCmd) || (TN_WONT == m_iTelnetCmd) ||
+					(TN_DO == m_iTelnetCmd) || (TN_DONT == m_iTelnetCmd))
+				{
+					m_telnetParseState = parseTelnetCmd;
+				}
+				else if ((TN_GA == m_iTelnetCmd) || (TN_EOR == m_iTelnetCmd))
+				{
+											// This is definitely a prompt
+
+					#if defined( DUMP_TELNET_CODES )
+					{
+						ChString		strSequence;
+						ChString		strOut;
+
+						strSequence.Format( "rcvd IAC %s\n",
+											pstrTelnetLabel[m_iTelnetCmd] );
+						TelnetDisplay( strSequence );
+					}
+					#endif	// defined( DUMP_TELNET_CODES )
+
+											// State goes back to 'scanning'
+
+					m_telnetParseState = parseStateScanning;
+				}
+				else if (TN_SB == m_iTelnetCmd)
+				{
+					// Start of telnet subnegotiation
+					m_telnetParseState = parseTelnetSubnegotiateCmd;
+					m_strSubnegotiation.Empty();
+				}
+				else
+				{
+					strParsedBuffer += (char)TN_IAC;
+					strParsedBuffer += *pstrOriginText;
+
+					m_telnetParseState = parseStateScanning;
+				}
+				break;
+			}
+
+			case parseTelnetCmd:
+			{
+				DoTelnetCmd( m_iTelnetCmd, (unsigned char)*pstrOriginText );
+				m_telnetParseState = parseStateScanning;
+				break;
+			}
+
+			case parseTelnetSubnegotiateCmd:	//UE
+			{
+				// The first byte of a subnegotiation is the command it applies to
+				m_iTelnetCmd = *pstrOriginText;
+				TelnetReceive(TN_SB, m_iTelnetCmd);
+				m_telnetParseState = parseTelnetSubnegotiate;
+				break;
+			}
+
+			case parseTelnetSubnegotiate:		//UE
+			{
+				if (TN_IAC == *pstrOriginText)
+				{
+					// an IAC in the subnegotiation is handled specially
+					m_telnetParseState = parseTelnetSubnegotiateIAC;
+				}
+				else
+				{
+					// any other byte is simply remembered as part of the negotiation
+					m_strSubnegotiation += *pstrOriginText;
+				}
+				break;
+			}
+
+			case parseTelnetSubnegotiateIAC:	//UE
+			{
+				if (TN_SE == *pstrOriginText)
+				{
+					// IAC SE, means we've reached the end of the negotiation
+					DoTelnetSubnegotiation(m_iTelnetCmd, m_strSubnegotiation);
+					m_telnetParseState = parseStateScanning;
+				}
+				else if (TN_IAC == *pstrOriginText)
+				{
+					// IAC IAC, means we want a data byte 255
+					m_strSubnegotiation += '\xFF';
+					m_telnetParseState = parseTelnetSubnegotiate;
+				}
+				else
+				{
+					// technically, this case is illegal.  However, in the
+					// interests of compatibility we'll just assume that the
+					// sender forgot to properly escape the IAC byte, and it's
+					// actually just another data byte.
+					m_strSubnegotiation += '\xFF';
+					m_strSubnegotiation += *pstrOriginText;
+					m_telnetParseState = parseTelnetSubnegotiate;
+				}
+				break;
+			}
+
+			default:
+			{
+				TRACE( "Error in parse state!\n" );
+				ASSERT( false );
+				break;
+			}
+		}
+
+		// move on to next character
+		if (iLen > 0)
+		{
+			pstrOriginText++;
+			iLen--;
+		}
+	}
+
+	strData = CString(strParsedBuffer);
+	ParseText( strData, (GetMode() == modeHtml) );
+}
+
+void ChWorldConn::UpdateCompressionPanel()
+{
+	if (m_mccp.compressing())
+	{
+		if (!(m_flTelnetState & telnetStateMCCPOn))
+		{
+			// input is now compressed
+			m_flTelnetState |= telnetStateMCCPOn;
+			if (m_flTelnetState & telnetStateMCCP1)
+			{
+				GetMainInfo()->GetCore()->SetStatusPaneText( ChCore::paneCompression, _T("MCCP1") );
+			}
+			else if(m_flTelnetState & telnetStateMCCP2)
+			{
+				GetMainInfo()->GetCore()->SetStatusPaneText( ChCore::paneCompression, _T("MCCP2") );
+			}
+			else
+			{
+				GetMainInfo()->GetCore()->SetStatusPaneText( ChCore::paneCompression, _T("????") );
+			}
+		}
+	}
+	else
+	{
+		if (m_flTelnetState & telnetStateMCCPOn)
+		{
+			// input no longer compressed
+			m_flTelnetState &= ~telnetStateMCCPOn;
+			GetMainInfo()->GetCore()->SetStatusPaneText( ChCore::paneCompression, _T("") );
+		}
+	}
+}
+
 void ChWorldConn::ParseText( ChString& strText, bool boolNewlinesToBreaks )
 {
 	ChString			strWorking;
-	const char*		pstrOriginText;
+	const unsigned char*	pstrOriginText;
 	int				iStartOfLine = 0;
 	ChBufferString	strParsedBuffer;
+	bool boolTerminateParsing = false;
 
-	pstrOriginText = strText;
+	pstrOriginText = (const unsigned char*)(LPCSTR)strText;
 
-	while (*pstrOriginText)
+	while (*pstrOriginText && !boolTerminateParsing)
 	{
 		bool	boolMoveToNextChar = true;
 
@@ -782,12 +1082,6 @@ void ChWorldConn::ParseText( ChString& strText, bool boolNewlinesToBreaks )
 					case ESCAPE:
 					{
 						m_parseState = parseStateEscape;
-						break;
-					}
-
-					case TN_IAC:			// 0xff
-					{
-						m_parseState = parseTelnetIAC;
 						break;
 					}
 
@@ -946,51 +1240,6 @@ void ChWorldConn::ParseText( ChString& strText, bool boolNewlinesToBreaks )
 				break;
 			}
 
-			case parseTelnetIAC:
-			{
-				m_iTelnetCmd = (unsigned char)*pstrOriginText;
-
-				if ((TN_WILL == m_iTelnetCmd) || (TN_WONT == m_iTelnetCmd) ||
-					(TN_DO == m_iTelnetCmd) || (TN_DONT == m_iTelnetCmd))
-				{
-					m_parseState = parseTelnetCmd;
-				}
-				else if ((TN_GA == m_iTelnetCmd) || (TN_EOR == m_iTelnetCmd))
-				{
-											// This is definitely a prompt
-
-					#if defined( DUMP_TELNET_CODES )
-					{
-						ChString		strSequence;
-						ChString		strOut;
-
-						strSequence.Format( "rcvd IAC %s\n",
-											pstrTelnetLabel[m_iTelnetCmd] );
-						TelnetDisplay( strSequence );
-					}
-					#endif	// defined( DUMP_TELNET_CODES )
-
-											// State goes back to 'scanning'
-
-					m_parseState = parseStateScanning;
-				}
-				else
-				{
-					strParsedBuffer += (char)TN_IAC;
-					strParsedBuffer += *pstrOriginText;
-
-					m_parseState = parseStateScanning;
-				}
-				break;
-			}
-
-			case parseTelnetCmd:
-			{
-				DoTelnetCmd( m_iTelnetCmd, (unsigned char)*pstrOriginText );
-				m_parseState = parseStateScanning;
-				break;
-			}
-
 			default:
 			{
 				TRACE( "Error in parse state!\n" );
@@ -1043,14 +1292,21 @@ void ChWorldConn::ProcessAnsiCodes( char cCodeType, const char* pstrCodes,
 		return;
 	}
 
+	if (*pstrCodes == 0)
+	{
+		// UE: support single default parameter
+		ProcessAnsiCode( cCodeType, -1, strAnsiHTML );
+	}
+
 	while (*pstrCodes != 0)
 	{
-		while (*pstrCodes == ANSI_SEPARATOR)
-		{									// Strip out separators
-			pstrCodes++;
+		if (*pstrCodes == ANSI_SEPARATOR)
+		{
+			// UE: a separator on its own means that we want a default parameter!
+			ProcessAnsiCode( cCodeType, -1, strAnsiHTML );
+			++pstrCodes;
 		}
-
-		if (isdigit( *pstrCodes ))
+		else if (isdigit( *pstrCodes ))
 		{									// There's a code here
 			int		iCode = 0;
 			ChString	strAnsiOutput;
@@ -1062,6 +1318,12 @@ void ChWorldConn::ProcessAnsiCodes( char cCodeType, const char* pstrCodes,
 			}
 
 			ProcessAnsiCode( cCodeType, iCode, strAnsiHTML );
+
+			// UE: strip single following separator, if any
+			if (*pstrCodes == ANSI_SEPARATOR)
+			{
+				++pstrCodes;
+			}
 		}
 	}
 
@@ -1091,6 +1353,7 @@ void ChWorldConn::ProcessAnsiCode( char cCodeType, int iCode,
 			switch( iCode )
 			{
 				case 0:						// Reset all
+				case -1:					// (this is the default mode)
 				{
 					AnsiDisplay( "ANSI(reset)" );
 
@@ -1322,9 +1585,12 @@ void ChWorldConn::ProcessAnsiCode( char cCodeType, int iCode,
 				case 2:						// Clear display
 				{
 					AnsiDisplay( "ANSI(clear)" );
+					// UE: actually implemented
+					strCodeHTML += "<xch_page clear=text>";
 					break;
 				}
 
+				case -1:					// the default is 0, which is unsupported
 				default:
 				{
 					break;
@@ -1340,6 +1606,22 @@ void ChWorldConn::ProcessAnsiCode( char cCodeType, int iCode,
 	}
 }
 
+#if defined( DUMP_TELNET_CODES )
+ChString ChWorldConn::GetTelnetLabel( int iCommand )
+{
+	ChString strLabel;
+
+	if (pstrTelnetLabel[iCommand])
+	{
+		strLabel = pstrTelnetLabel[iCommand];
+	}
+	else 
+	{
+		strLabel.Format( "%d", iCommand );
+	}
+	return strLabel;
+}
+#endif
 
 void ChWorldConn::TelnetSend( int iCommand, int iOption )
 {
@@ -1354,18 +1636,7 @@ void ChWorldConn::TelnetSend( int iCommand, int iOption )
 	#if defined( DUMP_TELNET_CODES )
 	{
 		ChString		strSequence;
-
-		if (pstrTelnetLabel[iOption])
-		{
-			strSequence.Format( "sent IAC %s %s\n", pstrTelnetLabel[iCommand],
-													pstrTelnetLabel[iOption] );
-		}
-		else 
-		{
-			strSequence.Format( "sent IAC %s %d\n", pstrTelnetLabel[iCommand],
-													iOption );
-		}
-
+		strSequence.Format( "sent IAC %s %s\n", (LPCSTR)GetTelnetLabel(iCommand), (LPCSTR)GetTelnetLabel(iOption) );
 		TelnetDisplay( strSequence );
 	}
 	#endif	// defined( DUMP_TELNET_CODES )
@@ -1376,18 +1647,7 @@ void ChWorldConn::TelnetReceive( int iCommand, int iOption )
 	#if defined( DUMP_TELNET_CODES )
 	{
 		ChString		strSequence;
-
-		if (pstrTelnetLabel[iOption])
-		{
-			strSequence.Format( "recv IAC %s %s\n", pstrTelnetLabel[iCommand],
-													pstrTelnetLabel[iOption] );
-		}
-		else 
-		{
-			strSequence.Format( "recv IAC %s %d\n", pstrTelnetLabel[iCommand],
-													iOption );
-		}
-
+		strSequence.Format( "recv IAC %s %s\n", (LPCSTR)GetTelnetLabel(iCommand), (LPCSTR)GetTelnetLabel(iOption) );
 		TelnetDisplay( strSequence );
 	}
 	#endif	// defined( DUMP_TELNET_CODES )
@@ -1414,6 +1674,8 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 
 			ECHO			1
 			TERMINAL_TYPE	24
+			COMPRESS				85	(UE 2.54)
+			COMPRESS2				86	(UE 2.54)
 
 		Others are ignored.
 	*/
@@ -1454,6 +1716,53 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 					{
 						// We already said DO EOR_OPT, so ignore WILL EOR_OPT
 					}
+					break;
+				}
+
+				case TN_COMPRESS:	//UE
+				{
+					if (m_boolAllowMCCP)
+					{
+						if (!(m_flTelnetState & (telnetStateMCCP1 | telnetStateMCCP2)))
+						{
+							m_flTelnetState |= telnetStateMCCP1;
+							TelnetSend( TN_DO, iOption );
+							m_mccp.negotiated(ChMCCP::modeCompressV1);
+						}
+						else
+						{
+							// We've already accepted either COMPRESS or COMPRESS2, so ignore WILL COMPRESS
+						}
+					}
+					else
+					{
+						// User doesn't want to allow use of MCCP
+						TelnetSend( TN_DONT, iOption );
+					}
+					break;
+				}
+
+				case TN_COMPRESS2:	//UE
+				{
+					if (m_boolAllowMCCP)
+					{
+						if (!(m_flTelnetState & (telnetStateMCCP1 | telnetStateMCCP2)))
+						{
+							m_flTelnetState |= telnetStateMCCP2;
+							TelnetSend( TN_DO, iOption );
+							m_mccp.negotiated(ChMCCP::modeCompressV2);
+						}
+						else
+						{
+							// We've already accepted either COMPRESS or COMPRESS2, so ignore WILL COMPRESS2
+						}
+					}
+					else
+					{
+						// User doesn't want to allow use of MCCP
+						TelnetSend( TN_DONT, iOption );
+					}
+					break;
 				}
 
 				default:
@@ -1502,6 +1811,36 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 					}
 				}
 
+				case TN_COMPRESS:	//UE
+				{
+					if (!(m_flTelnetState & telnetStateMCCP1))
+					{
+								// We're in DONT COMPRESS state, ignore WONT COMPRESS
+					}
+					else
+					{			// Acknowledge
+						m_flTelnetState &= ~telnetStateMCCP1;
+						TelnetSend( TN_DONT, TN_COMPRESS );
+						m_mccp.negotiated(ChMCCP::modeUncompressed);
+					}
+					break;
+				}
+
+				case TN_COMPRESS2:	//UE
+				{
+					if (!(m_flTelnetState & telnetStateMCCP2))
+					{
+								// We're in DONT COMPRESS2 state, ignore WONT COMPRESS2
+					}
+					else
+					{			// Acknowledge
+						m_flTelnetState &= ~telnetStateMCCP2;
+						TelnetSend( TN_DONT, TN_COMPRESS2 );
+						m_mccp.negotiated(ChMCCP::modeUncompressed);
+					}
+					break;
+				}
+
 				default:
 				{
 					break;
@@ -1513,16 +1852,61 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 		case TN_DO:
 		{
 			TelnetReceive( TN_DO, iOption );
-											// Refuse all DO requests
-			TelnetSend( TN_WONT, iOption );
+
+			switch( iOption )
+			{
+				case TN_TERMINAL_TYPE:		//UE
+				{
+					if (!(m_flTelnetState & telnetStateTType))
+					{
+						m_flTelnetState |= telnetStateTType;
+						m_iCurrentTermType = 0;
+						TelnetSend( TN_WILL, iOption );
+					}
+					else
+					{
+						// We've already acknowledged TTYPE, so ignore DO TTYPE
+					}
+					break;
+				}
+
+				default:
+				{
+					// Refuse all other DO requests
+					TelnetSend( TN_WONT, iOption );
+					break;
+				}
+			}
 			break;
 		}
 
 		case TN_DONT:
 		{
-											/* Ignore all DONT requests (we're
-												already in the DONT state) */
 			TelnetReceive( TN_DONT, iOption );
+
+			switch( iOption )
+			{
+				case TN_TERMINAL_TYPE:	//UE
+				{
+					if (!(m_flTelnetState & telnetStateTType))
+					{
+								// We're in WONT TTYPE state, ignore DONT TTYPE
+					}
+					else
+					{			// Acknowledge
+						m_flTelnetState &= ~telnetStateTType;
+						TelnetSend( TN_WONT, TN_TERMINAL_TYPE );
+					}
+					break;
+				}
+		
+				default:
+				{
+					// Ignore all other DONT requests (we're
+					// already in the DONT state)
+					break;
+				}
+			}
 			break;
 		}
 
@@ -1533,6 +1917,66 @@ void ChWorldConn::DoTelnetCmd( int iCommand, int iOption )
 	}
 }
 
+void ChWorldConn::DoTelnetSubnegotiation( int iCommand, const ChString& data )
+{
+	switch( iCommand )
+	{
+		case TN_TERMINAL_TYPE:
+		{
+			// the only data we accept is a send request.
+			if (m_flTelnetState & telnetStateTType)
+			{
+				if (data.GetLength() == 1)
+				{
+					if (TN_SEND == data[0])
+					{
+						DoSendTerminalType();
+						return;
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	// we don't know what that is (or we don't care), so just ignore it.
+	#if defined( DUMP_TELNET_CODES )
+	ChString strMessage;
+	strMessage.Format("neg %s: ", (LPCSTR)GetTelnetLabel(iCommand));
+	for(int byteIndex = 0; byteIndex < data.GetLength(); ++byteIndex)
+	{
+		strMessage.AppendFormat("%02X ", data[byteIndex]);
+	}
+	strMessage.AppendChar('\n');
+	TelnetDisplay( strMessage );
+	#endif
+}
+
+void ChWorldConn::DoSendTerminalType()
+{
+	// The world can cause this method to be called as much as it likes; each time,
+	// it returns the next terminal type in our compatibility list.  Once we reach
+	// the end, the next call will repeat the same type again.  A further call will
+	// return to the start of the list and send the first type.
+	TelnetDisplay( "recv SEND TERMINAL_TYPE req\n" );
+
+	const char *termType = pstrTerminalTypes[m_iCurrentTermType++];
+	if (termType == NULL)
+	{
+		termType = pstrTerminalTypes[m_iCurrentTermType - 2];	// the one before the NULL
+		m_iCurrentTermType = 0;
+	}
+
+	ChString reply;
+	reply.Format("%c%c%c%c%s%c%c", TN_IAC, TN_SB, TN_TERMINAL_TYPE, TN_IS, termType, TN_IAC, TN_SE);
+	SendBlock((LPCSTR)reply, reply.GetLength());
+
+	#if defined( DUMP_TELNET_CODES )
+	ChString strMessage;
+	strMessage.Format("sent %s IS %s\n", (LPCSTR)GetTelnetLabel(TN_TERMINAL_TYPE), termType);
+	TelnetDisplay( strMessage );
+	#endif
+}
 
 void ChWorldConn::TranslateNewlinesToBreaks( ChString& strOut )
 {
@@ -1639,3 +2083,6 @@ void ChWorldConn::SetPuebloEnhanced( bool boolEnhanced,
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:19  uecasm
+// Import of source tree as at version 2.53 release.
+//

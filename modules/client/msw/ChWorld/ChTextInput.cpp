@@ -52,6 +52,7 @@
 #include "World.h"
 #include "ChTextInput.h"
 #include "ChTextOutput.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -531,7 +532,7 @@ ChTextInputEdit::ChTextInputEdit( bool boolPassword ) :
 	const ChClientInfo*	pClientInfo = ChCore::GetClientInfo();
 	OSType				osType = pClientInfo->GetPlatform();
 
-	m_boolWindows95 = ((osWin95 == osType) || (osWinXP == osType));
+	m_boolWindows95 = ((osWin95 == osType) || (osWin98 == osType) || (osWinXP == osType));
 
 	if (!m_boolWindows95 && (m_h3dLib = LoadLibrary( "Ctl3d32.dll" )))
 	{
@@ -639,6 +640,7 @@ BEGIN_MESSAGE_MAP( ChTextInputEdit, CEdit )
 	ON_WM_RBUTTONDOWN()
 	ON_WM_CREATE()
 	ON_WM_SHOWWINDOW()
+	ON_WM_MOUSEWHEEL()
 	//}}AFX_MSG_MAP
 #if defined( CH_PUEBLO_PLUGIN )
 	ON_WM_KEYUP()
@@ -736,15 +738,18 @@ void ChTextInputEdit::MoveInHistory( bool boolUp )
 	}
 	else
 	{
-		if (m_history.GetNext( strLine ))
+		if (IsBrowsingHistory())
 		{
-			SetHistoryText( strLine );
-		}
-		else
-		{									/* We're at the end of the history
-												again... */
-			SetHistoryText( m_strEndText );
-			SetBrowsingHistory( false );
+			if (m_history.GetNext( strLine ))
+			{
+				SetHistoryText( strLine );
+			}
+			else
+			{									/* We're at the end of the history
+													again... */
+				SetHistoryText( m_strEndText );
+				SetBrowsingHistory( false );
+			}
 		}
 	}
 }
@@ -1282,6 +1287,19 @@ void ChTextInputEdit::OnShowWindow( BOOL boolShow, UINT nStatus )
 	}
 }
 
+BOOL ChTextInputEdit::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	ChTextOutput *output = GetMainInfo()->GetTextOutput();
+	if (output != NULL)
+	{
+		ChTextOutputWnd *outputWnd = output->GetOutputWnd();
+		if (outputWnd != NULL)
+		{
+			outputWnd->PostMouseWheel(nFlags, zDelta, pt);
+		}
+	}
+	return TRUE;
+}
 
 LONG ChTextInputEdit::OnGrabFocus( UINT wParam, LONG lParam )
 {
@@ -1366,3 +1384,6 @@ TruncateMenuString( ChString& strText )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:14  uecasm
+// Import of source tree as at version 2.53 release.
+//

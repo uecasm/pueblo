@@ -33,6 +33,10 @@
 
 					Wrote and designed original codebase.
 
+		 Ultra Enterprises:  Gavin Lambert
+
+		      Added default port numbers for each URL scheme.
+
 ------------------------------------------------------------------------------
 
 
@@ -65,6 +69,20 @@ const char * ChURLParts::m_pstrScheme[] =
 			   "url",				   //   
 		};
 
+const int ChURLParts::m_SchemeDefaultPort[] =
+{
+				80,											// http://
+				80,											// file:// (no port used, so default is irrelevant)
+				21,											// ftp://
+				70,											// gopher://
+				25,											// mailto: (SMTP)
+				119,										// news://
+				119,										// nntp://
+				23,											// telnet://
+				80,											// wais:// (don't actually know)
+				80,											// prospero:// (dunno either)
+				80,											// unrecognised scheme
+};
 
 
 /*----------------------------------------------------------------------------
@@ -123,7 +141,7 @@ bool ChURLParts::GetURLParts( const ChString& strURL, const char* pstrDefURL )
     m_pAbsPath 	= 0;
     m_pRelPath 	= 0;
     m_pAnchor 	= 0;
-	m_iSocket 	= HTTP_DEFAULT_SOCKET; //overide this if there is
+    m_iSocket 	= m_SchemeDefaultPort[typeHTTP]; //overide this if there is
 										   // is a socket # in the URL
     after_access = m_pstrParts;
 
@@ -149,6 +167,9 @@ bool ChURLParts::GetURLParts( const ChString& strURL, const char* pstrDefURL )
 			#endif
 
 			m_iScheme = GetSchemeByName( m_pScheme );
+
+			// use default port number for specified scheme
+			m_iSocket = m_SchemeDefaultPort[m_iScheme];
 
 			if ( m_iScheme == typeURL )
 			{
@@ -372,7 +393,7 @@ bool ChURLParts::GetURLParts( const ChString& strURL, const char* pstrDefURL )
 	if ( m_pHostName )
 	{
 		m_strURLRequest += m_pHostName;
-		if ( HTTP_DEFAULT_SOCKET != m_iSocket && m_iScheme == typeHTTP )
+		if ( m_SchemeDefaultPort[m_iScheme] != m_iSocket )
 		{
 			char strPort[25];
 			::wsprintf( strPort, ":%d", m_iSocket );
@@ -638,3 +659,6 @@ bool ChURLParts::MapURLToHostFile( const char* pstrURL, ChString& strHostFile )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:01  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -461,7 +461,7 @@ void ChPane::GetSize( chint16& sWidth, chint16& sHeight )
 		}
 		#else
 		{
-			TRACE( "Platform not defined in ChPane::GetSize()" );
+			TRACE( "Platform not defined in ChPane::GetSize()\n" );
 		}
 		#endif
 	}
@@ -533,7 +533,7 @@ ChPane* ChPane::SetSize( chint16 sWidth, chint16 sHeight )
 		}
 		#else
 		{
-			TRACE( "Platform not defined in ChPane::SetSize()" );
+			TRACE( "Platform not defined in ChPane::SetSize()\n" );
 		}
 		#endif
 	}
@@ -557,7 +557,7 @@ ChPane* ChPane::SetTitle( const ChString& strTitle )
 		}
 		#else
 		{
-			TRACE( "Platform not defined in ChPane::SetTitle()" );
+			TRACE( "Platform not defined in ChPane::SetTitle()\n" );
 		}
 		#endif
 	}
@@ -598,7 +598,7 @@ ChPane* ChPane::Show( bool boolShow )
 			}
 			#else
 			{
-				TRACE( "Platform not defined in ChPane::Show()" );
+				TRACE( "Platform not defined in ChPane::Show()\n" );
 			}
 			#endif
 		}
@@ -1325,7 +1325,7 @@ void ChPane::CreateNewFrame()
 	}
 	#else
 	{
-		TRACE( "Platform not defined in ChPane::CreateNewFrame()" );
+		TRACE( "Platform not defined in ChPane::CreateNewFrame()\n" );
 	}
 	#endif
 }
@@ -1727,3 +1727,6 @@ LRESULT CALLBACK PaneFrameCallback( HWND hWnd, UINT uMsg,
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:28  uecasm
+// Import of source tree as at version 2.53 release.
+//

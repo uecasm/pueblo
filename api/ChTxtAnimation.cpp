@@ -215,36 +215,57 @@ void ChTxtWnd::UpdateAnimation()
 					{
 						ChObjInline* pInline = (ChObjInline*)(*ppObject);
 						ChInlineImageData*	pImgData = pInline->GetImageData();
-						ChDib* pDib = pImgData->GetImage();
-						pChImageInfo pImageInfo;
-
-						if ( pDib && (pImageInfo = pDib->GetImageInfo() )
-									&& pImageInfo->boolMultiframe )
+						if (pImgData != NULL)
 						{
-							if ( pImageInfo->iLoopCount== 0 || 
-										pInline->GetImageData()->m_iLoopCount < pImageInfo->iLoopCount )
+							ChDib* pDib = pImgData->GetImage();
+							pChImageInfo pImageInfo;
+	
+							if ( pDib && (pImageInfo = pDib->GetImageInfo() )
+										&& pImageInfo->boolMultiframe )
 							{
-								pChImageFrameInfo pFrame = pDib->GetFrameInfo( pDib->GetCurrentFrame() );
-
-								if ( pFrame->iExposture )
+								if ( pImageInfo->iLoopCount== 0 || 
+											pInline->GetImageData()->m_iLoopCount < pImageInfo->iLoopCount )
 								{
-									if ( uUpdateTime > pImgData->m_uLastUpdate +  pFrame->iExposture )
+									pChImageFrameInfo pFrame = pDib->GetFrameInfo( pDib->GetCurrentFrame() );
+	
+									if ( pFrame->iExposture )
 									{
-										pImgData->m_uLastUpdate = uUpdateTime;
+										// UE: okay, this might be a little inefficient, but unfortunately when we have
+										//     shared images (multiple images in the document with the same URL and therefore
+										//     also the same pDib pointer) the update times don't always mesh nicely -- besides,
+										//     we don't want to call NextFrame too often on the underlying image....
+										boolUpdate = true;
+
+										//TRACE("Animation(%08X, %08X): uUpdateTime == %d, uLastUpdate == %d, iExposture == %d\n",
+										//	pInline, pDib, uUpdateTime, pImgData->m_uLastUpdate, pFrame->iExposture);
+										if ( uUpdateTime > pImgData->m_uLastUpdate +  pFrame->iExposture )
+										{
+											//TRACE0("Animation: NextFrame\n");
+											pImgData->m_uLastUpdate = uUpdateTime;
+											pDib->NextFrame();
+											boolUpdate = true;
+										}
+	
+									}
+									else
+									{
+										//TRACE0("Animation: no exposture\n");
 										pDib->NextFrame();
 										boolUpdate = true;
 									}
-
-								}
-								else
-								{
-									pDib->NextFrame();
-									boolUpdate = true;
-								}
-
-								if ( pDib->GetCurrentFrame() == 0 )
-								{	// We have looped through all the frames
-									pImgData->m_iLoopCount++;  
+	
+									if (pImageInfo->boolMultiframe && (pDib->GetTotalFrames() == 1))
+									{
+										//// UE: total frames == 1 (but still multiframe) means it's dynamic framed, so we
+										////     need to re-evaluate the timer interval
+										//if (boolUpdate) {
+										//	ComputeTimerInterval(pDib);
+										//}
+									} 
+									else if ( pDib->GetCurrentFrame() == 0 )
+									{	// We have looped through all the frames
+										pImgData->m_iLoopCount++;  
+									}
 								}
 							}
 						}
@@ -296,3 +317,6 @@ void ChTxtWnd::UpdateAnimation()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:00  uecasm
+// Import of source tree as at version 2.53 release.
+//

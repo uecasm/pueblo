@@ -74,7 +74,7 @@ BOOL ChDibPal::Create(ChDibBmp* pDIB)
     DWORD dwColors = pDIB->GetNumClrEntries();
     // Check the DIB has a color table.
     if (! dwColors) {
-        TRACE("No color table");   
+        TRACE("No color table\n");   
         return false;
     }
 
@@ -85,7 +85,7 @@ BOOL ChDibPal::Create(ChDibBmp* pDIB)
     LOGPALETTE* pPal = (LOGPALETTE*) malloc(sizeof(LOGPALETTE) 
                      + dwColors * sizeof(PALETTEENTRY));
     if (!pPal) {
-        TRACE("Out of memory for logpal");
+        TRACE("Out of memory for logpal\n");
         return false;
     }
     pPal->palVersion = 0x300;              // Windows 3.0
@@ -108,7 +108,7 @@ int ChDibPal::GetNumColors()
 {
     int iColors = 0;
     if (!GetObject(sizeof(iColors), &iColors)) {
-        TRACE("Failed to get num pal colors");
+        TRACE("Failed to get num pal colors\n");
         return 0;
     }
     return iColors;
@@ -147,7 +147,7 @@ BOOL ChDibPal::SetSysPalColors()
 
     // Make sure we are on a palettized device.
     if (!(GetDeviceCaps(hdcScreen, RASTERCAPS) & RC_PALETTE)) {
-        TRACE("Not a palettized device");
+        TRACE("Not a palettized device\n");
         goto abort;
     }
 
@@ -267,7 +267,7 @@ BOOL ChDibPal::Load(HANDLE hFile)
                      &info,
                      MMIO_READ | MMIO_ALLOCBUF);
     if (!hmmio) {
-        TRACE("mmioOpen failed");
+        TRACE("mmioOpen failed\n");
         return false;
     }
     BOOL bResult = Load(hmmio);
@@ -285,7 +285,7 @@ BOOL ChDibPal::Load(HMMIO hmmio)
                     &ckFile,
                     NULL,
                     MMIO_FINDRIFF) != 0) {
-        TRACE("Not a RIFF or PAL file");
+        TRACE("Not a RIFF or PAL file\n");
         return false;
     }
     // Find the 'data' chunk.
@@ -295,21 +295,21 @@ BOOL ChDibPal::Load(HMMIO hmmio)
                     &ckChunk,
                     &ckFile,
                     MMIO_FINDCHUNK) != 0) {
-        TRACE("No data chunk in file");
+        TRACE("No data chunk in file\n");
         return false;
     }
     // Allocate some memory for the data chunk.
     int iSize = ckChunk.cksize;
     void* pdata = malloc(iSize);
     if (!pdata) {
-        TRACE("No mem for data");
+        TRACE("No mem for data\n");
         return false;
     }
     // Read the data chunk.
     if (mmioRead(hmmio,
                  (char*)pdata,
                  iSize) != iSize) {
-        TRACE("Failed to read data chunk");
+        TRACE("Failed to read data chunk\n");
         free(pdata);
         return false;
     }
@@ -317,14 +317,14 @@ BOOL ChDibPal::Load(HMMIO hmmio)
     // that we can create a palette from.
    LOGPALETTE* pLogPal = (LOGPALETTE*)pdata;
    if (pLogPal->palVersion != 0x300) {
-      TRACE("Invalid version number");
+      TRACE("Invalid version number\n");
         free(pdata);
         return false;
    }
    // Get the number of entries.
    int iColors = pLogPal->palNumEntries;
    if (iColors <= 0) {
-      TRACE("No colors in palette");
+      TRACE("No colors in palette\n");
         free(pdata);
         return false;
    }
@@ -348,7 +348,7 @@ BOOL ChDibPal::Save(HANDLE hFile)
                      &info,
                      MMIO_WRITE | MMIO_CREATE | MMIO_ALLOCBUF);
     if (!hmmio) {
-        TRACE("mmioOpen failed");
+        TRACE("mmioOpen failed\n");
         return false;
     }
     BOOL bResult = Save(hmmio);
@@ -366,7 +366,7 @@ BOOL ChDibPal::Save(HMMIO hmmio)
     if (mmioCreateChunk(hmmio,
                         &ckFile,
                         MMIO_CREATERIFF) != 0) {
-        TRACE("Failed to create RIFF-PAL chunk");
+        TRACE("Failed to create RIFF-PAL chunk\n");
         return false;
     }
    // Create the LOGPALETTE data which will become
@@ -387,14 +387,14 @@ BOOL ChDibPal::Save(HMMIO hmmio)
     if (mmioCreateChunk(hmmio,
                         &ckData,
                         0) != 0) {
-        TRACE("Failed to create data chunk");
+        TRACE("Failed to create data chunk\n");
         return false;
     }
    // Write the data chunk.
     if (mmioWrite(hmmio,
                  (char*)plp,
                  iSize) != iSize) {
-        TRACE("Failed to write data chunk");
+        TRACE("Failed to write data chunk\n");
         free(plp);
         return false;
     }
@@ -410,3 +410,6 @@ BOOL ChDibPal::Save(HMMIO hmmio)
 #endif // CH_MSW
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:14  uecasm
+// Import of source tree as at version 2.53 release.
+//

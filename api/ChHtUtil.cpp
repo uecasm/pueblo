@@ -156,6 +156,26 @@ void ChMimeListManager::Init()
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
 	
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_PNG, "png", "Portable Network Graphic(*.png)" );
+	ASSERT( pInfo );
+	m_mimeList.AddTail( (chparam)pInfo );
+	
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_MNG, "mng", "Multi-image Network Graphic(*.mng)" );
+	ASSERT( pInfo );
+	m_mimeList.AddTail( (chparam)pInfo );
+	
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_MNG2, "mng", "Multi-image Network Graphic(*.mng)" );
+	ASSERT( pInfo );
+	m_mimeList.AddTail( (chparam)pInfo );
+	
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_JNG, "jng", "JPEG Network Graphic(*.jng)" );
+	ASSERT( pInfo );
+	m_mimeList.AddTail( (chparam)pInfo );
+	
+	pInfo = new ChMimeInfo( ChHTTPConn::typeNG, MIME_JNG2, "jng", "JPEG Network Graphic(*.jng)" );
+	ASSERT( pInfo );
+	m_mimeList.AddTail( (chparam)pInfo );
+	
 	pInfo = new ChMimeInfo( ChHTTPConn::typeMidi, MIME_MIDI, "mid", "MIDI(*.mid)" );
 	ASSERT( pInfo );
 	m_mimeList.AddTail( (chparam)pInfo );
@@ -427,3 +447,6 @@ void ChHTTPConn::TermMimeManager( )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:24  uecasm
+// Import of source tree as at version 2.53 release.
+//

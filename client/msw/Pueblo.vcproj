@@ -28,9 +28,10 @@
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="TRUE"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
+				AdditionalIncludeDirectories="$(SolutionDir)Include;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_EXCEPTIONS;CH_NO_WEBTRACKER"
 				RuntimeLibrary="2"
+				DefaultCharIsUnsigned="TRUE"
 				PrecompiledHeaderFile="$(IntDir)\Pueblo.pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
@@ -64,7 +65,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;NDEBUG;CH_NO_WEBTRACKER"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -82,9 +84,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
+				AdditionalIncludeDirectories="$(SolutionDir)Include;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_EXCEPTIONS;CH_NO_WEBTRACKER"
 				RuntimeLibrary="3"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\Pueblo.pch"
@@ -120,7 +123,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;_DEBUG;CH_NO_WEBTRACKER"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool

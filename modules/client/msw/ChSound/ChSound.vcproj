@@ -15,7 +15,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory=".\$(ConfigurationName)"
+			IntermediateDirectory=".\$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -30,6 +30,7 @@
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="2"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChSound.pch"
@@ -69,7 +70,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;NDEBUG"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -78,7 +80,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory=".\$(ConfigurationName)"
+			IntermediateDirectory=".\$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -90,6 +92,7 @@
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="3"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\ChSound.pch"
@@ -131,7 +134,8 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_AFXDLL;_DEBUG"
-				Culture="1033"/>
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool

@@ -45,6 +45,7 @@
 #include "headers.h"
 #include "ChWInfo.h"
 #include "ChWList.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -279,3 +280,6 @@ ChPosition ChWorldList::FindNamePos(  const ChString& strName,
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:22  uecasm
+// Import of source tree as at version 2.53 release.
+//

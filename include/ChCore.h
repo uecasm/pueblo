@@ -92,8 +92,8 @@ class CH_EXPORT_CLASS ChCore
 											/* Constants for the status bar panes
 												(Used by SetStatusPaneText) */
 
-		enum tagStatusPane { paneStatus, paneSessionTime, paneTimeofDay,
-								paneProgress, paneMax };
+		enum tagStatusPane { paneStatus, paneCompression, paneSessionTime,
+								paneTimeofDay, paneProgress, paneMax };
 
 		enum tagWebBrowser { browserWebTracker, browserExternal,
 								browserUserPref };
@@ -239,3 +239,6 @@ class CH_EXPORT_CLASS ChCore
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:35  uecasm
+// Import of source tree as at version 2.53 release.
+//

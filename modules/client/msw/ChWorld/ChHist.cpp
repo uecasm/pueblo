@@ -43,6 +43,7 @@
 
 #include "headers.h"
 #include "ChHist.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -261,3 +262,6 @@ bool ChHistory::GetExpansion( ChString& strText, ChPosition& startPos )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:08  uecasm
+// Import of source tree as at version 2.53 release.
+//

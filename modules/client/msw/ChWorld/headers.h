@@ -125,8 +125,9 @@
 #define WORLD_PREFS_ECHO_ITALIC				"Echo input/Italic"
 #define WORLD_PREFS_PAUSE_DISCONNECT		"Pause on disconnect"
 #define WORLD_PREFS_PAUSE_INLINE			"Pause inline"
-#define WORLD_PREFS_NOTIFY					"Data notify?"
-#define WORLD_PREFS_NOTIFY_ALERT			"Data notify alert?"
+#define WORLD_PREFS_NOTIFY_INACTIVE   "Data notify if inactive"
+#define WORLD_PREFS_NOTIFY_FLASH			"Data notify flash"
+#define WORLD_PREFS_NOTIFY_ALERT			"Data notify alert"
 #define WORLD_PREFS_NOTIFY_STR				"Data notify string"
 
 #define WORLD_PREFS_KEYMAP				"Key map"
@@ -139,6 +140,8 @@
 #define WORLD_TINTIN_FILE				"TinTin command file"
 #define WORLD_TINTIN_FILE_DEF				""
 
+#define WORLD_PREFS_ALLOWMCCP				"Allow MCCP"
+#define WORLD_PREFS_ALLOWMCCP_DEF		true
 
 /*----------------------------------------------------------------------------
 	Global variables
@@ -185,3 +188,6 @@
 #endif	// !defined( _HEADERS_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:33  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -51,6 +51,7 @@
 
 #include "Pueblo.h"
 #include "ChPrNet.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -326,3 +327,6 @@ void ChPrefsNetworkPage::OnCommit()
 ----------------------------------------------------------------------------*/
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:34  uecasm
+// Import of source tree as at version 2.53 release.
+//

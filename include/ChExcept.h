@@ -152,7 +152,7 @@ class CH_EXPORT_CLASS ChSocketEx : public ChEx
 		virtual ~ChSocketEx() {}
 };
 /*----------------------------------------------------------------------------
-	ChSocketEx class
+	ChJPEGEx class
 ----------------------------------------------------------------------------*/
 
 class CH_EXPORT_CLASS ChJPEGEx : public ChEx
@@ -161,7 +161,7 @@ class CH_EXPORT_CLASS ChJPEGEx : public ChEx
 	DECLARE_DYNAMIC(ChJPEGEx)      
 	#endif
 	public:
-		ChJPEGEx( chint16 sCause = undefined ) : ChEx( sCause ) {}
+		ChJPEGEx( chint16 sCause = undefined, const char *reason = "" ) : ChEx( sCause ), Reason(reason) {}
 		virtual ~ChJPEGEx() {}
 	public:
 		enum {	undefined = 0,			// Undefined exception
@@ -227,7 +227,7 @@ class CH_EXPORT_CLASS ChJPEGEx : public ChEx
 				last = 10000			// Always last exception defined
 			};
 
-
+		ChString Reason;
 };
 
 #else	// defined( CH_EXCEPTIONS )
@@ -243,5 +243,8 @@ class CH_EXPORT_CLASS ChJPEGEx : public ChEx
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:37  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _CHEXCEPT_H )

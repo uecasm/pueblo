@@ -33,6 +33,10 @@
 
 					Wrote and designed original codebase.
 
+		 Ultra Enterprises:  Gavin Lambert
+
+		      Added default port numbers for each URL scheme.
+
 ------------------------------------------------------------------------------
 
 	This file contains the definition of the ChHTTPInfo class, used to
@@ -74,9 +78,10 @@ class CH_EXPORT_CLASS ChURLParts
 				typeNews, typeNNTP, typeTelnet, typeWAIS, typeProspero, typeURL, maxSchemes };
 
 		ChURLParts() : m_iScheme( typeURL ), m_pstrParts(0 ), m_pScheme(0), m_pHostName(0 ),
-					   m_pAbsPath(0 ),	m_pRelPath(0), m_pAnchor(0),
-					   m_iSocket(HTTP_DEFAULT_SOCKET)
-		{}
+					   m_pAbsPath(0 ),	m_pRelPath(0), m_pAnchor(0)
+		{
+			m_iSocket = m_SchemeDefaultPort[typeHTTP];
+		}
 		 
 		virtual ~ChURLParts()
 		{
@@ -116,8 +121,12 @@ class CH_EXPORT_CLASS ChURLParts
 		int	   m_iSocket;
 		ChString m_strURLRequest;
 		static const char * m_pstrScheme[maxSchemes];
+		static const int m_SchemeDefaultPort[maxSchemes];
 };
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:02  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _CHURLMAP_H )

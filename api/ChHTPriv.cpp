@@ -1035,9 +1035,9 @@ bool ChHTTPInfo::SendRequest( )
 	int iCount = 0;
 	const char* pstrBuffer =  m_strRequestBuffer;
 
-#ifdef _DEBUG
-	afxDump << "----- HTTP Request:\n" << m_strRequestBuffer << "-----\n";
-#endif
+//#ifdef _DEBUG
+//	afxDump << "----- HTTP Request:\n" << m_strRequestBuffer << "-----\n";
+//#endif
 	while (iLen != 0)
 	{
 		int wcnt = m_pSocket->write( pstrBuffer + iCount, iLen );
@@ -3061,3 +3061,6 @@ bool ChHTTPInfo::CreateAndValidateCacheDir( ChString& strDir )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:13  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -80,6 +80,7 @@
 #include "ChMFrame.h"
 #include "ChClCore.h"
 #include "ChCoreStream.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -776,30 +777,35 @@ void ChClientCore::DisplayWebPage( const ChString& strURL, int iBrowser )
 	}
 	else 
 	{
-		GetDDEConn()->AbortRequests();
-		if (!GetDDEConn()->GetURL( strURL, 0, 0, ChHTTPConn::UseDDEOnly ) )
+		if (GetDDEConn() != NULL)
 		{
-			#if defined( CH_MSW )
+			GetDDEConn()->AbortRequests();
+			if (GetDDEConn()->GetURL( strURL, 0, 0, ChHTTPConn::UseDDEOnly ))
 			{
-				ChString strProgram( strBrowser );
-
-				strProgram = TEXT( '"' ) + strProgram + TEXT( '"' );
-				strProgram += TEXT( ' ' );
-				strProgram +=  strURL;
-
-				WinExec( strProgram, SW_SHOW );
+				// handled by DDE connection
+				return;
 			}
-			#elif defined( CH_UNIX )
-			{
-				TRACE( "ChClientCore::OnUpdateLoadComplete : "
-						"We need to do an exec here!" );
-			}
-			#else
-			{
-				#error "Platform not defined!"
-			}
-			#endif	// defined( CH_UNIX )
 		}
+		#if defined( CH_MSW )
+		{
+			ChString strProgram( strBrowser );
+
+			strProgram = TEXT( '"' ) + strProgram + TEXT( '"' );
+			strProgram += TEXT( ' ' );
+			strProgram +=  strURL;
+
+			WinExec( strProgram, SW_SHOW );
+		}
+		#elif defined( CH_UNIX )
+		{
+			TRACE( "ChClientCore::OnUpdateLoadComplete : "
+					"We need to do an exec here!\n" );
+		}
+		#else
+		{
+			#error "Platform not defined!"
+		}
+		#endif	// defined( CH_UNIX )
 	}
 }
 
@@ -882,13 +888,14 @@ void ChClientCore::UpdateSessionTime()
 bool ChClientCore::DoLicenseDialog()
 {
     bool    boolAccepted = true;
+
 	ChString  strFilename;
 
 	// make the file name
 	if ( !GetModuleFileName( NULL, strFilename.GetBuffer( 512 ), 512 ) )
 	{
 		strFilename.ReleaseBuffer();
-		TRACE( "GetModuleFileName function failed !!!!" );
+		TRACE( "GetModuleFileName function failed !!!!\n" );
 		ASSERT( 0 );
 	}
 
@@ -1091,3 +1098,6 @@ bool ChClientCore::DoRegistration()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:24  uecasm
+// Import of source tree as at version 2.53 release.
+//

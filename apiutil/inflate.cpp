@@ -1,5 +1,6 @@
 #include "headers.h"
 #include <ChUnzip.h>
+#include "MemDebug.h"
 
 // $Header$
 
@@ -1110,3 +1111,6 @@ int ChUnzip::inflate_free()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:36  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -52,6 +52,8 @@
 #include "ChCoreStream.h"
 #include "ChPbModuleMgr.h"
 #include "ChOODDlg.h"
+#include "PbVersion.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -487,3 +489,6 @@ void ChCoreStreamManager::DestroyStream( chparam requestData, pChHTTPStream pStr
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:26  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -51,6 +51,7 @@
 #include <ChCore.h>
 
 #include "ChSCWiz.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -875,3 +876,6 @@ END_MESSAGE_MAP()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:12  uecasm
+// Import of source tree as at version 2.53 release.
+//

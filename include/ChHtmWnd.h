@@ -326,6 +326,7 @@ class CH_EXPORT_CLASS ChHtmlWnd : public CWnd
 	public :
 
 		virtual void OnTrace( const ChString& strMsg, int iType );
+		void PostMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 
 	protected :
 
@@ -415,3 +416,6 @@ class CH_EXPORT_CLASS ChHtmlWnd : public CWnd
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:40  uecasm
+// Import of source tree as at version 2.53 release.
+//

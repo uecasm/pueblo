@@ -45,6 +45,7 @@
 
 #include <ChImgUtil.h>
 #include <ChDibImage.h>
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -173,7 +174,7 @@ void ChDib::SetFrame( int iFrame )
 	}
 }
 
-long ChDib::StorageWidth(  int iFrame /*=  - 1 */  )
+long ChDib::StorageWidth( int iFrame /*= -1 */ )
 {	
 	int iWidth;
 	if ( iFrame == -1 )
@@ -182,25 +183,30 @@ long ChDib::StorageWidth(  int iFrame /*=  - 1 */  )
 	}
 	ASSERT( iFrame < m_iNumFrames );
 	 
-    switch ( m_pFrameList[iFrame].m_pBMI->bmiHeader.biBitCount ) 
-    {
-	    case 1:
-	        iWidth  = ((( m_pFrameList[iFrame].m_pBMI->bmiHeader.biWidth/8) + 3) & ~3 );
-	        break;
-	    case 4:
-	        iWidth = (((  m_pFrameList[iFrame].m_pBMI->bmiHeader.biWidth >> 1 ) + 3) & ~3 );
-	        break;
-	    case 8:
-	        iWidth  = (( m_pFrameList[iFrame].m_pBMI->bmiHeader.biWidth + 3) & ~3 );
-	        break;
-	    case 24 :
-			iWidth  = ((( m_pFrameList[iFrame].m_pBMI->bmiHeader.biWidth * 3) + 3) & ~3);
+	BITMAPINFOHEADER& bmiHeader = m_pFrameList[iFrame].m_pBMI->bmiHeader;
+	switch ( bmiHeader.biBitCount ) 
+  {
+    case 1:
+			iWidth = bmiHeader.biWidth / 8;
+      break;
+    case 4:
+			iWidth = bmiHeader.biWidth >> 1;
+      break;
+    case 8:
+			iWidth = bmiHeader.biWidth;
+      break;
+ 	 	case 24 :
+			iWidth = bmiHeader.biWidth * 3;
 			break;
-	    default:
-	        iWidth = 0;
-	        break;
-    }
-	return ( iWidth == 0 ? 4 : iWidth );
+		case 32 :
+			iWidth = bmiHeader.biWidth << 2;
+			break;
+    default:
+        iWidth = 0;
+        break;
+  }
+	iWidth = (iWidth + 3) & ~3;		// round up to DWORD boundary
+	return ( (iWidth == 0) ? 4 : iWidth );
 }
 
 
@@ -221,7 +227,7 @@ bool ChDib::Create( int iFrame, int iWidth, int iHeight, int iBitCount /*= 8 */ 
      m_pFrameList[iFrame].m_pBMI = (BITMAPINFO*) ALLOC(sizeof(BITMAPINFOHEADER)
                                   + 256 * sizeof(RGBQUAD));
     if (! m_pFrameList[iFrame].m_pBMI) {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         return false;
     }
 
@@ -233,7 +239,7 @@ bool ChDib::Create( int iFrame, int iWidth, int iHeight, int iBitCount /*= 8 */ 
 	}
      m_pFrameList[iFrame].m_pBits = (BYTE*)ALLOC(iBitsSize);
     if (! m_pFrameList[iFrame].m_pBits) {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         FREE( m_pFrameList[iFrame].m_pBMI);
          m_pFrameList[iFrame].m_pBMI = NULL;
         return false;
@@ -364,7 +370,7 @@ BOOL ChDib::SetSize( long lWidth, long lHeight )
     // Allocate memory for the header.
     BITMAPINFO * pBMI;
 
-	if ( iBitCount != 24 )
+	if ( iBitCount < 24 )
 	{
 		pBMI = (BITMAPINFO*) ALLOC(sizeof(BITMAPINFOHEADER)
                                   + 256 * sizeof(RGBQUAD));	}
@@ -375,7 +381,7 @@ BOOL ChDib::SetSize( long lWidth, long lHeight )
     
     if (!pBMI) 
     {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         return false;
     }
 
@@ -386,12 +392,12 @@ BOOL ChDib::SetSize( long lWidth, long lHeight )
     BYTE *pBits = (BYTE*)ALLOC(iBitsSize);
     if (!pBits) 
     {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         FREE(pBMI);
         return false;
     }
 
-	if ( iBitCount != 24 )
+	if ( iBitCount < 24 )
 	{
 		ChMemCopy( pBMI, m_pFrameList[m_iCurrentFrame].m_pBMI,  sizeof(BITMAPINFOHEADER)
                                   + 256 * sizeof(RGBQUAD) );
@@ -515,7 +521,7 @@ void* ChDib::GetPixelAddress(int x, int y)
     
     if ((x >= DibWidth()) 
     || (y >= DibHeight())) {
-        TRACE("Attempt to get out of range pixel address");
+        TRACE("Attempt to get out of range pixel address\n");
         return NULL;
     }
 
@@ -523,27 +529,32 @@ void* ChDib::GetPixelAddress(int x, int y)
    // Calculate the scan line storage width.
    switch( m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount )
    {
-   		case 1 :
+   	case 1 :
 		{
 	    	return m_pFrameList[m_iCurrentFrame].m_pBits 
 	    				+ (DibHeight()-y-1) * iWidth + (x/8);
 		}
-   		case 4 :
+   	case 4 :
 		{
 	    	return m_pFrameList[m_iCurrentFrame].m_pBits 
 	    				+ (DibHeight()-y-1) * iWidth + (x/4);
 		}
-   		case 8 :
+   	case 8 :
 		{
 	    	return m_pFrameList[m_iCurrentFrame].m_pBits 
 	    					+ (DibHeight()-y-1) * iWidth + x;
 		}
-   		case 24 :
+   	case 24 :
 		{
 	    	return m_pFrameList[m_iCurrentFrame].m_pBits 
 	    					+ (DibHeight()-y-1) * iWidth + (x * 3);
 		}
-   		default :
+		case 32 :
+		{
+	    	return m_pFrameList[m_iCurrentFrame].m_pBits 
+	    					+ (DibHeight()-y-1) * iWidth + (x * 4);
+		}
+   	default :
 		{
 			return NULL;
 		}
@@ -562,7 +573,7 @@ int ChDib::GetNumClrEntries()
 BOOL ChDib::MapColorsToPalette(CPalette *pPal)
 {
     if (!pPal) {
-        TRACE("No palette to map to");
+        TRACE("No palette to map to\n");
         return false;
     }
     ASSERT(m_pFrameList[m_iCurrentFrame].m_pBMI);
@@ -821,6 +832,7 @@ void ChDib::CopyBits(ChDib* pdibDest,
 	        }
 		}
 	}
+	// UE TODO: 32-bit images?
 	else if ( pdibDest->GetBitmapInfoAddress()->bmiHeader.biBitCount == 24 &&
 						GetBitmapInfoAddress()->bmiHeader.biBitCount == 24 )
 	{  // copy
@@ -1002,3 +1014,6 @@ bool ChDib::SetScanLine( int iFrame, int iScanLine,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:14  uecasm
+// Import of source tree as at version 2.53 release.
+//

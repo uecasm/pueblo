@@ -89,6 +89,8 @@
 #define IDS_UPDATE_URL									61531
 #define IDS_TITLE_OUTOFDATE							61532
 #define IDS_MESSAGE_OUTOFDATE						61533
+#define IDS_COMPONENTS_HEADER						61534
+#define IDS_COMPONENTS_FOOTER						61535
 
 // Menus
 #define ID_EDIT_PREFERENCES             32771
@@ -109,14 +111,16 @@
 #define ID_VIEW_ROTATE                  32782
 #define ID_VIEW_VERTICAL                32784
 #define ID_HELP_BUGREPORT               32786
-#define ID_SESSION_PANE                 61500
-#define ID_TIME_PANE                    61501
-#define ID_PROGRESS_PANE                61502
+#define ID_SESSION_PANE                 61600
+#define ID_TIME_PANE                    61601
+#define ID_PROGRESS_PANE                61602
+#define ID_COMPRESSION_PANE             61603
 
 // Resources
 #define IDR_MAINFRAME                   128
 #define IDR_SHORTCUT                    129
 #define IDR_DISCLAIMER                  154
+#define IDR_PRERELEASE_LICENSE					155
 #define IDR_CHACO_DIB                   161
 #define	IDR_UE_DIB											162
 
@@ -127,20 +131,20 @@
 #define   IDC_CHACO_LOGO                  1060
 #define   IDC_COPYRIGHT2                  1114
 
-#define IDD_LOGIN                       513
+#define IDD_LOGIN                       511
 #define   IDC_LOGIN_USERNAME              1054
 #define   IDC_LOGIN_PASSWORD              1051
 #define   IDC_LOGIN_REMEMBER              1111
 #define   IDC_LOGIN_SIGN_ON               1063
 #define   IDC_LOGIN_NEW_ACCOUNT           1055
 
-#define IDD_PREF_DEBUG                  514
+#define IDD_PREF_DEBUG                  513
 #define   IDC_USE_LOCAL_MODULES           1067
 
-#define IDD_ABOUT_DISCLAIMER            515
+#define IDD_ABOUT_DISCLAIMER            514
 #define   IDC_STATIC_PLACEHOLDER          1138
 
-#define IDD_ABOUT_TEAM                  516
+#define IDD_ABOUT_TEAM                  515
 //#define IDC_CHACO_LOGO                  1060
 #define   IDC_TEAM_TITLE                  1112
 #define   IDC_NAME_1                      1075
@@ -148,6 +152,8 @@
 #define   IDC_NAME_3                      1077
 #define   IDC_NAME_4                      1078
 #define   IDC_NAME_5                      1079
+
+#define IDD_ABOUT_COMPONENTS						516
 
 #define IDD_PREF_FONT                   147
 #define   IDC_STAT_PROPORTIONAL           1073

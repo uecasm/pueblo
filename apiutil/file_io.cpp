@@ -19,6 +19,7 @@
 #include <dos.h>     
 #include <direct.h>
 #endif
+#include "MemDebug.h"
 
 
 
@@ -1803,3 +1804,6 @@ void ChUnzip::set_file_time_and_close()
 #endif /* ?DOS_OS2 */
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:32  uecasm
+// Import of source tree as at version 2.53 release.
+//

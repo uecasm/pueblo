@@ -13,6 +13,7 @@
 
 #include "headers.h"
 #include <ChUnzip.h>
+#include "MemDebug.h"
 
 
 /**************************************/

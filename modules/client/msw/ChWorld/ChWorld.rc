@@ -9,13 +9,13 @@
 //
 #include "afxres.h"
 #include <dlgs.h>
-#include <PbVersion.h>
+#include <..\..\..\..\Include\PbVersion.h>
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (NZ) resources
+// English (New Zealand) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENZ)
 #ifdef _WIN32
@@ -81,7 +81,7 @@ END
 BEGIN
     "#include ""afxres.h""\r\n"
     "#include <dlgs.h>\r\n"
-    "#include <PbVersion.h>\r\n"
+    "#include <..\\..\\..\\..\\Include\\PbVersion.h>\r\n"
     "\0"
 END
 
@@ -99,8 +99,9 @@ END
 // Dialog
 //
 
-IDD_WORLD_LIST DIALOG DISCARDABLE  0, 0, 300, 140
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_WORLD_LIST DIALOG  0, 0, 300, 140
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "Personal World List"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -115,8 +116,8 @@ BEGIN
     PUSHBUTTON      "Delete",IDC_LIST_DELETE,234,118,60,14
 END
 
-IDD_PREF_PAGE_WORLD DIALOG DISCARDABLE  0, 0, 250, 125
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_PAGE_WORLD DIALOG  0, 0, 250, 125
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Worlds"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -133,8 +134,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,24,20,100,10
 END
 
-IDD_WORLD_LIST_EDIT DIALOG DISCARDABLE  0, 0, 320, 175
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_WORLD_LIST_EDIT DIALOG  0, 0, 320, 175
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "World Information"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -169,28 +171,31 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,264,30,50,14
 END
 
-IDD_PREF_PAGE_NOTIFY DIALOG DISCARDABLE  0, 0, 250, 125
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_PAGE_NOTIFY DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Notification"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0
 BEGIN
-    GROUPBOX        "When Pueblo is iconized and new text arrives:",
-                    IDC_STATIC,10,10,165,100
-    CONTROL         "Don't flash the Pueblo icon",IDC_NOTIFY_NEVER,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,20,25,145,10
-    CONTROL         "Flash the Pueblo icon",IDC_NOTIFY_WHENEVER,"Button",
-                    BS_AUTORADIOBUTTON,20,40,145,10
-    CONTROL         "Flash the Pueblo icon if the text contains:",
-                    IDC_NOTIFY_ON_MATCH,"Button",BS_AUTORADIOBUTTON,20,55,
+    GROUPBOX        "When new text arrives and Pueblo is:",IDC_STATIC,8,5,
+                    165,37
+    CONTROL         "minimised",IDC_NOTIFY_MINIMISED,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,16,145,10
+    CONTROL         "minimised or not the topmost window",
+                    IDC_NOTIFY_INACTIVE,"Button",BS_AUTORADIOBUTTON,15,27,
                     145,10
-    EDITTEXT        IDC_EDIT_MATCH_TEXT,30,70,135,13,ES_AUTOHSCROLL | 
+    CONTROL         "And the text contains:",IDC_NOTIFY_ON_MATCH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,46,145,10
+    EDITTEXT        IDC_EDIT_MATCH_TEXT,26,57,143,13,ES_AUTOHSCROLL | 
                     WS_GROUP
-    CONTROL         "Play the alert sound",IDC_CHECK_ALERT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,20,92,145,10
+    GROUPBOX        "Then:",IDC_STATIC,8,72,165,41
+    CONTROL         "Flash the Pueblo icon in the taskbar",IDC_NOTIFY_FLASH,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,145,10
+    CONTROL         "Play the alert sound",IDC_NOTIFY_ALERT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,97,145,10
 END
 
-IDD_SHORTCUT_WIZ_NAME DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_SHORTCUT_WIZ_NAME DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Name"
 FONT 9, "Arial"
 BEGIN
@@ -204,8 +209,8 @@ BEGIN
                     WS_TABSTOP,20,80,225,10
 END
 
-IDD_SHORTCUT_WIZ_OPTIONS DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_SHORTCUT_WIZ_OPTIONS DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Options"
 FONT 9, "Arial"
 BEGIN
@@ -215,8 +220,8 @@ BEGIN
                     WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_SHORTCUT_WIZ_USERNAME DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_SHORTCUT_WIZ_USERNAME DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Username"
 FONT 9, "Arial"
 BEGIN
@@ -237,16 +242,16 @@ BEGIN
                     97,140,9
 END
 
-IDD_SHORTCUT_WIZ_FINISH DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_SHORTCUT_WIZ_FINISH DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Finished!"
 FONT 9, "Arial"
 BEGIN
     LTEXT           "",IDC_SHORTCUT_MSG_SYSTEM,10,10,240,40
 END
 
-IDD_SHORTCUT_WIZ_SERVER DIALOG DISCARDABLE  0, 0, 260, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_SHORTCUT_WIZ_SERVER DIALOG  0, 0, 260, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "World Server"
 FONT 9, "Arial"
 BEGIN
@@ -261,8 +266,8 @@ BEGIN
                     WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_LOG_FILE_SAVE_AS DIALOG DISCARDABLE  36, 24, 264, 165
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_LOG_FILE_SAVE_AS DIALOG  36, 24, 264, 165
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Open"
 FONT 8, "Helv"
 BEGIN
@@ -296,8 +301,8 @@ BEGIN
                     IDC_STATIC,6,132,95,24
 END
 
-IDD_LOG_FILE_SAVE_AS_95 DIALOG DISCARDABLE  36, 24, 295, 40
-STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+IDD_LOG_FILE_SAVE_AS_95 DIALOG  36, 24, 295, 40
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
 FONT 8, "Helv"
 BEGIN
     LTEXT           "",1119,0,0,295,15,NOT WS_VISIBLE
@@ -308,8 +313,8 @@ BEGIN
                     IDC_STATIC,11,16,145,17
 END
 
-IDD_PREF_PAGE_TEXT_IN DIALOG DISCARDABLE  0, 0, 250, 125
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_PAGE_TEXT_IN DIALOG  0, 0, 250, 125
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Text Input"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -328,18 +333,18 @@ BEGIN
     GROUPBOX        "Initial TinTin command file:",IDC_STATIC,10,70,230,40
 END
 
-IDD_PREF_PAGE_TEXT_OUT DIALOG DISCARDABLE  0, 0, 250, 125
-STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_PREF_PAGE_TEXT_OUT DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Text Output"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0
 BEGIN
     LTEXT           "Scroll-back buffer size (in lines):",IDC_STATIC,10,10,
                     100,8
     EDITTEXT        IDC_EDIT_LINES,114,8,24,13,ES_AUTOHSCROLL
 END
 
-IDD_SELECT_TINTIN DIALOG DISCARDABLE  36, 24, 264, 134
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_SELECT_TINTIN DIALOG  36, 24, 264, 134
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Select a TinTin command file"
 FONT 8, "Helv"
 BEGIN
@@ -369,16 +374,17 @@ BEGIN
     PUSHBUTTON      "Net&work...",1037,208,111,50,14,WS_GROUP
 END
 
-IDD_SELECT_TINTIN_95 DIALOG DISCARDABLE  36, 24, 272, 40
-STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+IDD_SELECT_TINTIN_95 DIALOG  36, 24, 272, 40
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
 FONT 8, "Helv"
 BEGIN
     PUSHBUTTON      "&None",IDC_NO_TINTIN_FILE,222,20,50,14
     LTEXT           "",1119,0,0,272,20,NOT WS_VISIBLE
 END
 
-IDD_TINTIN_INFO DIALOG DISCARDABLE  0, 0, 240, 125
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_TINTIN_INFO DIALOG  0, 0, 240, 125
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "TinTin Information"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -402,8 +408,8 @@ BEGIN
     LTEXT           "yes",IDC_STATIC_PRESUBS,202,76,20,8
 END
 
-IDD_ABOUT_TINTIN DIALOG DISCARDABLE  0, 0, 250, 125
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_ABOUT_TINTIN DIALOG  0, 0, 250, 125
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "TinTin"
 FONT 10, "Arial"
 BEGIN
@@ -424,8 +430,9 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_BLACKRECT,15,21,230,1
 END
 
-IDD_QUICKCONNECT DIALOG DISCARDABLE  0, 0, 252, 90
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_QUICKCONNECT DIALOG  0, 0, 252, 90
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "QuickConnect!"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -444,8 +451,8 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,194,23,50,14
 END
 
-IDD_CONNECTING_DLG DIALOG DISCARDABLE  0, 0, 176, 63
-STYLE DS_MODALFRAME | WS_CAPTION
+IDD_CONNECTING_DLG DIALOG  0, 0, 176, 63
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION
 CAPTION "Connection status"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -453,6 +460,15 @@ BEGIN
     CTEXT           "Connecting to blah.blah.com, port %d",
                     IDC_CONNECT_MESSAGE,38,12,130,24
     ICON            IDI_CHACO,IDC_STATIC,10,10,18,20
+END
+
+IDD_PREF_PAGE_PROTOCOL DIALOGEX 0, 0, 250, 125
+STYLE DS_SETFONT | DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Protocols"
+FONT 8, "MS Sans Serif", 0, 0
+BEGIN
+    CONTROL         "Allow MCCP (compressed) connections",IDC_ALLOW_MCCP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,149,10
 END
 
 
@@ -531,7 +547,6 @@ BEGIN
     IDS_MENU_WORLD          "Worlds"
     IDS_ADD                 "Add"
     IDS_CHANGE              "Change"
-    IDS_PERSONAL_LIST_TITLE "<html><center><h2>Personal World List</h2></center><hr>"
     IDS_PERSONAL_LIST_EMPTY "<p>You haven't specified any personal worlds.  To do so, click on the link below, or select <b>Edit personal list...</b> from the <b>Worlds</b> menu in the menu bar. </p> "
     IDS_HOST_NAME_ERROR     "The host name '%s' could not be found in your domain database.  The host name may be wrong, or you may not have access to this site."
     IDS_CONNECT_ERROR       "The host %s rejected the connection.  This world may be temporarily unavailable, and you might want to try a little later."
@@ -539,6 +554,18 @@ BEGIN
     IDS_MENU_ADD_TXT        "Add the current world to your personal list of worlds"
     IDS_STATUS_CONNECTING_FMT "Connecting to '%s'..."
 END
+
+#ifdef UE_PRERELEASE
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PERSONAL_LIST_TITLE "<html><center><h1><font color=""#FF0000"">PRERELEASE VERSION</font></h1>\n<hr>\n<h2>Personal World List</h2></center><hr>"
+END
+#else
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PERSONAL_LIST_TITLE "<html><center><h2>Personal World List</h2></center><hr>"
+END
+#endif
 
 STRINGTABLE DISCARDABLE 
 BEGIN
@@ -585,7 +612,12 @@ BEGIN
     IDS_MENU_HELP_PUEBLO_BUG_REPORT_TXT "Submit bug or enhancement requests"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
+BEGIN
+    IDS_DECOMPRESSION_ERROR "Decompression error; you will probably have to disconnect."
+END
+
+STRINGTABLE 
 BEGIN
     IDS_WARNING_WORLD_TYPE_MISSING 
                             "Warning:  Automatic login will not work properly unless the Type field is filled in."

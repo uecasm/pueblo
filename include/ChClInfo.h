@@ -66,8 +66,8 @@
 	ChClientInfo class
 ----------------------------------------------------------------------------*/
 
-typedef enum { osUnknown = 0, osWin16, osWin32s, osWinNT, osWin95, osWinXP,
-				osLinux, osSPARCSolaris } OSType;
+typedef enum { osUnknown = 0, osWin16, osWin32s, osWinNT, osWin95, osWin98,
+				osWinXP, osLinux, osSPARCSolaris } OSType;
 
 
 /*----------------------------------------------------------------------------
@@ -131,5 +131,8 @@ class CH_EXPORT_CLASS ChClientInfo : public ChStreamable
 };
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:33  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _CHCLINFO_H )

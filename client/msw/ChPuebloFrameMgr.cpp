@@ -47,6 +47,7 @@ This file includes the code for the main Pueblo client app frame manager.
 #include "Pueblo.h"
 #include "ChMFrame.h"
 #include "ChClCore.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -417,3 +418,6 @@ void ChApp::HandleOutdatedClient()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:35  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -54,6 +54,7 @@
 #include "ChSaveAs.h"
 
 #include <cderr.h>
+#include "MemDebug.h"
 
 #if defined( _DEBUG )
 	#undef THIS_FILE
@@ -316,3 +317,6 @@ void ChLogSaveAsDlg::OnDestroy()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:11  uecasm
+// Import of source tree as at version 2.53 release.
+//

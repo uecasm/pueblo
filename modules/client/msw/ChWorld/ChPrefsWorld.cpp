@@ -47,6 +47,7 @@
 
 #include "ChWorld.h"
 #include "ChPrefsWorld.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -481,6 +482,107 @@ void ChTextInputPrefsPage::OnTintinFile()
 
 
 /*----------------------------------------------------------------------------
+	ChProtocolPrefsPage class
+----------------------------------------------------------------------------*/
+	
+IMPLEMENT_DYNCREATE( ChProtocolPrefsPage, ChPropertyBaseClass )
+
+ChProtocolPrefsPage::ChProtocolPrefsPage() :
+			ChPropertyBaseClass( ChProtocolPrefsPage::IDD, 0
+			#if !defined( CH_PUEBLO_PLUGIN )
+				, ChWorldDLL.hModule 
+			#endif
+			 ),
+			m_reg( WORLD_PREFS_GROUP ),
+			m_boolDirty( false ),
+			m_boolInitialized( false )
+{
+	//{{AFX_DATA_INIT(ChProtocolPrefsPage)
+	m_boolAllowMCCP = TRUE;
+	//}}AFX_DATA_INIT
+}
+
+ChProtocolPrefsPage::~ChProtocolPrefsPage()
+{
+}
+
+
+BOOL ChProtocolPrefsPage::OnSetActive()
+{
+	BOOL	boolResult;
+
+	boolResult = ChPropertyBaseClass::OnSetActive();
+
+	if (!m_boolInitialized)
+	{
+		m_reg.ReadBool( WORLD_PREFS_ALLOWMCCP, m_boolAllowMCCP,
+										WORLD_PREFS_ALLOWMCCP_DEF );
+											// Initialize the dialog data
+		UpdateData( FALSE );
+											/* Set the initialized flag so
+												that we don't do this again */
+		m_boolInitialized = true;
+	}
+
+	return boolResult;
+}
+
+
+BOOL ChProtocolPrefsPage::OnKillActive()
+{
+	BOOL	boolSuccess;
+
+	if (boolSuccess = ChPropertyBaseClass::OnKillActive())
+	{
+		UpdateData();
+
+		m_reg.WriteBool( WORLD_PREFS_ALLOWMCCP, m_boolAllowMCCP );
+	}
+
+	return boolSuccess;
+}
+
+
+#if !defined( CH_PUEBLO_PLUGIN )
+
+void ChProtocolPrefsPage::OnCommit()
+{
+	if (m_boolInitialized)
+	{										// Write data to registry
+
+		m_reg.WriteBool( WORLD_PREFS_ALLOWMCCP, m_boolAllowMCCP );
+	}     
+}
+#endif
+
+
+void ChProtocolPrefsPage::DoDataExchange( CDataExchange* pDX )
+{
+	ChPropertyBaseClass::DoDataExchange( pDX );
+
+	//{{AFX_DATA_MAP(ChProtocolPrefsPage)
+	DDX_Check(pDX, IDC_ALLOW_MCCP, m_boolAllowMCCP);
+	//}}AFX_DATA_MAP
+}
+
+
+BEGIN_MESSAGE_MAP( ChProtocolPrefsPage, ChPropertyBaseClass )
+	//{{AFX_MSG_MAP(ChProtocolPrefsPage)
+	//}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+
+
+/*----------------------------------------------------------------------------
+	ChProtocolPrefsPage protected methods
+----------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------
+	ChProtocolPrefsPage message handlers
+----------------------------------------------------------------------------*/
+
+
+
+/*----------------------------------------------------------------------------
 	ChTinTinSelectFileDlg class
 ----------------------------------------------------------------------------*/
 
@@ -563,3 +665,6 @@ void ChTinTinSelectFileDlg::OnNoTinTinFile()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:10  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -47,6 +47,7 @@
 #include <ChTypes.h>
 
 #include "TinTin.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -263,3 +264,6 @@ Match( const char* pstrRegex, const char* pstrTest )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:42  uecasm
+// Import of source tree as at version 2.53 release.
+//

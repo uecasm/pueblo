@@ -184,7 +184,8 @@ void ChScrollWnd::End()
 }
 
 
-BEGIN_MESSAGE_MAP(ChScrollWnd, CWnd)
+//BEGIN_MESSAGE_MAP(ChScrollWnd, CWnd)
+BEGIN_MESSAGE_MAP(ChScrollWnd, CScrollView)
 	//{{AFX_MSG_MAP(ChScrollWnd)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
@@ -193,6 +194,9 @@ BEGIN_MESSAGE_MAP(ChScrollWnd, CWnd)
 	ON_WM_CREATE()
 	ON_WM_ACTIVATE()
 	ON_WM_MOUSEACTIVATE()
+#if _MFC_VER < 0x0700
+	ON_WM_MOUSEWHEEL()
+#endif
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -825,8 +829,100 @@ void ChScrollWnd::OnVScroll( UINT nSBCode, UINT nPos, CScrollBar* pScrollBar )
 	}
 }
 
+#if _MFC_VER < 0x0700
+void ChScrollWnd::CheckScrollBars(BOOL& bHasHorzBar, BOOL& bHasVertBar) const
+{
+	DWORD dwStyle = GetStyle();
+	CScrollBar* pBar = GetScrollBarCtrl(SB_VERT);
+	bHasVertBar = ((pBar != NULL) && pBar->IsWindowEnabled()) ||
+					(dwStyle & WS_VSCROLL);
 
-bool ChScrollWnd::OnScroll( UINT nScrollCode, UINT nPos, bool boolDoScroll )
+	pBar = GetScrollBarCtrl(SB_HORZ);
+	bHasHorzBar = ((pBar != NULL) && pBar->IsWindowEnabled()) ||
+					(dwStyle & WS_HSCROLL);
+}
+
+UINT PASCAL _AfxGetMouseScrollLines();
+
+// UE: unfortunately it's necessary to replace this routine with an almost
+//     identical copy of it under MFC 6 and earlier; without a cast to int
+//     it appears that it misinterprets a negative as a large positive,
+//     thereby preventing using the mouse wheel to scroll upwards.
+BOOL ChScrollWnd::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	// we don't handle anything but scrolling
+	if (nFlags & (MK_SHIFT | MK_CONTROL))
+		return FALSE;
+
+	BOOL bHasHorzBar, bHasVertBar;
+	CheckScrollBars(bHasHorzBar, bHasVertBar);
+	if (!bHasVertBar && !bHasHorzBar)
+		return FALSE;
+
+	BOOL bResult = FALSE;
+	UINT uWheelScrollLines = _AfxGetMouseScrollLines();
+	int nToScroll = ::MulDiv(-zDelta, uWheelScrollLines, WHEEL_DELTA);
+	int nDisplacement;
+
+	if (bHasVertBar)
+	{
+		if (uWheelScrollLines == WHEEL_PAGESCROLL)
+		{
+			nDisplacement = m_pageDev.cy;
+			if (zDelta > 0)
+				nDisplacement = -nDisplacement;
+		}
+		else
+		{
+			nDisplacement = nToScroll * m_lineDev.cy;
+			nDisplacement = min(nDisplacement, (int)m_pageDev.cy);
+		}
+		bResult = OnScrollBy(CSize(0, nDisplacement), TRUE);
+	}
+	else if (bHasHorzBar)
+	{
+		if (uWheelScrollLines == WHEEL_PAGESCROLL)
+		{
+			nDisplacement = m_pageDev.cx;
+			if (zDelta > 0)
+				nDisplacement = -nDisplacement;
+		}
+		else
+		{
+			nDisplacement = nToScroll * m_lineDev.cx;
+			nDisplacement = min(nDisplacement, (int)m_pageDev.cx);
+		}
+		bResult = OnScrollBy(CSize(nDisplacement, 0), TRUE);
+	}
+
+	if (bResult)
+		UpdateWindow();
+
+	return bResult;
+}
+#endif
+//BOOL ChScrollWnd::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+//{
+//	int lines;
+//	if(!SystemParametersInfo(SPI_GETWHEELSCROLLLINES, 0, &lines, 0))
+//	{
+//		lines = 3;
+//	}
+//	for(int line = 0; line < lines; ++line)
+//	{
+//		if (zDelta < 0)
+//		{
+//			OnScroll( MAKEWORD( -1, SB_LINEDOWN ), 0 );
+//		}
+//		else
+//		{
+//			OnScroll( MAKEWORD( -1, SB_LINEUP ), 0 );
+//		}
+//	}
+//	return TRUE;
+//}
+
+BOOL ChScrollWnd::OnScroll( UINT nScrollCode, UINT nPos, BOOL boolDoScroll )
 {
 											// Calc new x position
 	int		x = GetScrollPos( SB_HORZ );
@@ -925,7 +1021,7 @@ bool ChScrollWnd::OnScroll( UINT nScrollCode, UINT nPos, bool boolDoScroll )
 		}
 	}
 
-	bool	boolResult = OnScrollBy( CSize( x - xOrig, y - yOrig ),
+	BOOL	boolResult = OnScrollBy( CSize( x - xOrig, y - yOrig ),
 										boolDoScroll );
 	if (boolResult && boolDoScroll)
 	{
@@ -936,7 +1032,7 @@ bool ChScrollWnd::OnScroll( UINT nScrollCode, UINT nPos, bool boolDoScroll )
 }
 
 
-bool ChScrollWnd::OnScrollBy( CSize sizeScroll, bool boolDoScroll )
+BOOL ChScrollWnd::OnScrollBy( CSize sizeScroll, BOOL boolDoScroll )
 {
 	chint32		lOrigX;
 	chint32		lMaxX;
@@ -1075,3 +1171,6 @@ void ChScrollWnd::OnPrepareDC( CDC* pDC, CPrintInfo* pInfo )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:43  uecasm
+// Import of source tree as at version 2.53 release.
+//

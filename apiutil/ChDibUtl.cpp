@@ -49,6 +49,7 @@
 #endif
 
 #include <ChImgUtil.h>
+#include "MemDebug.h"
 
 
 #ifdef _DEBUG
@@ -165,13 +166,13 @@ void ChImgUtil::LoadPalette( UINT uResID, CPalette* pPal,  RGBQUAD* pClrTbl, int
 
 	    if (!hrsrc) 
 	    {
-	        TRACE("PAL resource not found");
+	        TRACE("PAL resource not found\n");
 	        return;
 	    }
 	    HGLOBAL hg = LoadResource(hInst, hrsrc);
 	    if (!hg) 
 	    {
-	        TRACE("Failed to load PAL resource");
+	        TRACE("Failed to load PAL resource\n");
 	        return;
 	    }
 	    BYTE* pRes = (BYTE*) LockResource(hg);
@@ -184,7 +185,7 @@ void ChImgUtil::LoadPalette( UINT uResID, CPalette* pPal,  RGBQUAD* pClrTbl, int
 	    LOGPALETTE* pLogPal = (LOGPALETTE*)pRes;
 	    if (pLogPal->palVersion != 0x300) 
 	    {
-	        TRACE("Invalid palette version number");
+	        TRACE("Invalid palette version number\n");
 	        return ;
 	    }
 	    // Get the number of entries.
@@ -192,7 +193,7 @@ void ChImgUtil::LoadPalette( UINT uResID, CPalette* pPal,  RGBQUAD* pClrTbl, int
     
 	    if (iColors <= 0) 
 	    {
-	        TRACE("No colors in palette");
+	        TRACE("No colors in palette\n");
 	        return ;
 	    }
 
@@ -320,7 +321,7 @@ int ChImgUtil::NumDIBColorEntries(BITMAPINFO* pBmpInfo)
     {
         if (iColors > iMax) 
         {
-            TRACE("Invalid color count");
+            TRACE("Invalid color count\n");
             iColors = iMax;
         }
     }
@@ -329,3 +330,6 @@ int ChImgUtil::NumDIBColorEntries(BITMAPINFO* pBmpInfo)
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:15  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -309,6 +309,55 @@ class ChUEAbout : public ChPropertyPage
 	DECLARE_MESSAGE_MAP()
 };
 
+/*----------------------------------------------------------------------------
+	ChComponentsAbout property page class
+----------------------------------------------------------------------------*/
+
+class ChComponentsAbout : public ChPropertyPage
+{
+	DECLARE_DYNCREATE( ChComponentsAbout )
+
+	public:
+		ChComponentsAbout();
+		~ChComponentsAbout();
+
+											// Overrides
+
+	protected:
+		void CreateTextWindow();
+		void DisplayStringResource(int id);
+		void DisplayMFCVersion();
+		void DisplayMNGComponents();
+
+	protected:
+											// Dialog data
+		//{{AFX_DATA(ChComponentsAbout)
+		enum { IDD = IDD_ABOUT_COMPONENTS };
+			// NOTE - ClassWizard will add data members here.
+			//    DO NOT EDIT what you see in these blocks of generated code !
+		//}}AFX_DATA
+
+
+											/* ClassWizard generate virtual
+												function overrides */
+		//{{AFX_VIRTUAL(ChComponentsAbout)
+		protected:
+		virtual void DoDataExchange( CDataExchange* pDX );    // DDX/DDV support
+		//}}AFX_VIRTUAL
+
+	protected:
+											// Generated message map functions
+		//{{AFX_MSG(ChComponentsAbout)
+		virtual BOOL OnInitDialog();
+		//}}AFX_MSG
+
+	protected:
+		ChLogoBitmap	m_logoBmp;
+		ChHtmlWnd		m_htmlWnd;
+
+	DECLARE_MESSAGE_MAP()
+};
+
 
 class ChCore;
 /*----------------------------------------------------------------------------
@@ -344,6 +393,7 @@ class ChAbout : public ChPropertySheet
 		afx_msg void OnHelp();
 		afx_msg void OnClose();
 		virtual BOOL OnInitDialog();
+		virtual void OnNcDestroy();
 		//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()
@@ -352,3 +402,6 @@ class ChAbout : public ChPropertySheet
 #endif	// !defined( _CHABOUT_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:20  uecasm
+// Import of source tree as at version 2.53 release.
+//

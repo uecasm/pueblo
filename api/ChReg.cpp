@@ -253,7 +253,7 @@ bool ChRegistry::GetHelpPath( ChString& strHelpFiles )
 
 		if (iType == CH_SYS_WIN32S || iType == CH_SYS_WIN3X)
 		{
-			TRACE( "ChRegistry::GetHelpPath() : Not implemented for 16-bit" );
+			TRACE( "ChRegistry::GetHelpPath() : Not implemented for 16-bit\n" );
 			ASSERT( false );
 		}
 		else
@@ -327,7 +327,7 @@ bool ChRegistry::Erase( const ChString& strLabel )
 	}
 	#elif defined( CH_UNIX )
 	{
-		TRACE( "Need to erase an item from the registry here." );
+		TRACE( "Need to erase an item from the registry here.\n" );
 	}
 	#elif defined( CH_MSW) && defined( CH_ARCH_16 )
 	{
@@ -716,3 +716,6 @@ void ChRegistry::Construct( const ChString& strCompanyName,
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:38  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -85,7 +85,7 @@ typedef const SCROLLINFO* LPCSCROLLINFO;
 	ChScrollWnd class
 ----------------------------------------------------------------------------*/
 
-class CH_EXPORT_CLASS ChScrollWnd : public CWnd
+class CH_EXPORT_CLASS ChScrollWnd : public ChScrollView //CWnd
 {
 	public:
 		static const SIZE	sizeDefault;
@@ -155,17 +155,25 @@ class CH_EXPORT_CLASS ChScrollWnd : public CWnd
 		afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 		afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 		afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
+#if _MFC_VER < 0x0700
+		afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+#endif
 		//}}AFX_MSG
 
-		bool OnScroll( UINT nScrollCode, UINT nPos, bool boolDoScroll = true );
-		bool OnScrollBy( CSize sizeScroll, bool boolDoScroll = true );
+		BOOL OnScroll( UINT nScrollCode, UINT nPos, BOOL boolDoScroll = true );
+		BOOL OnScrollBy( CSize sizeScroll, BOOL boolDoScroll = true );
 		void OnPrepareDC( CDC* pDC, CPrintInfo* pInfo = 0 );
+
+#if _MFC_VER < 0x0700
+		void CheckScrollBars(BOOL& bHasHorzBar, BOOL& bHasVertBar) const;
+#endif
+
 
 	protected:
 		static ChString	m_strClass;
 		CSize			m_totalDev;			// Total size
-		CSize			m_pageDev;			// Per page scroll size
-		CSize			m_lineDev;			// Per line scroll size
+		//CSize			m_pageDev;			// Per page scroll size
+		//CSize			m_lineDev;			// Per line scroll size
 
 		bool			m_boolInsideUpdate;
 
@@ -186,3 +194,6 @@ class CH_EXPORT_CLASS ChScrollWnd : public CWnd
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:52  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -107,10 +107,10 @@ class CH_EXPORT_CLASS ChDib : public ChImageConsumer
 
 
 		int  GetCurrentFrame() 		{ return m_iCurrentFrame; }	 
-		void NextFrame();
+		virtual void NextFrame();
 		void SetFrame( int iFrame );
 		int	 GetTotalFrames()			{ return m_iNumFrames; }
-
+		long StorageWidth( int iFrame = -1 );
 
 	    virtual void Draw(CDC* pDC, int x, int y);
 		virtual void Draw(CDC* pDC, int x, int y, COLORREF clrTrans );
@@ -126,9 +126,10 @@ class CH_EXPORT_CLASS ChDib : public ChImageConsumer
                           int w,  int h,
                           int xs, int ys,
                           COLORREF clrTrans = 0xFFFFFFFF);
-	private :
-		void ChDib::AllocateFrame( int iFrame );
 
+	private :
+		void AllocateFrame( int iFrame );
+		void DrawInBuffer(CDC *pDC, int x, int y, HBRUSH hBrMask, ChDib& target);
 
 	protected:
 		ChImageInfo			m_imgInfo;
@@ -137,15 +138,19 @@ class CH_EXPORT_CLASS ChDib : public ChImageConsumer
 		int					m_iFrameListSize;
   		pChDibFrame   		m_pFrameList;
 
-	private:
 	    long DibWidth()
 	        {return m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth;}
 	    long DibHeight() 
 	        {return m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight;}
-	    long StorageWidth( int iFrame = - 1 );
 
+		virtual void CreateBackgroundImage(CDC *pDC, int x, int y, COLORREF clrMask);
+		virtual void CreateBackgroundImage(CDC *pDC, int x, int y, CBrush *pbrMask);
+		virtual void CreateBackgroundImage(CDC *pDC, int x, int y, ChDib *pdibMask);
 };
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:36  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif //  !defined( _CHDIBIMAGE_H )

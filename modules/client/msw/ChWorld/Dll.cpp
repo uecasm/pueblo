@@ -44,6 +44,7 @@
 #include "headers.h"
 
 #include <afxdllx.h>
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -111,3 +112,6 @@ InitChWorldDLL()
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:33  uecasm
+// Import of source tree as at version 2.53 release.
+//

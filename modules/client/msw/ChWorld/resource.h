@@ -203,6 +203,7 @@
 #define IDS_TINTIN_CHAR_OK              61613
 #define IDS_TINTIN_RECURSE_ERR          61614
 #define IDS_STATUS_WORLD_ADDED          61615
+#define IDS_DECOMPRESSION_ERROR         61616
 
 // Menus
 #define ID_MENU_LOG                     110
@@ -240,11 +241,15 @@
 #define   IDC_STATIC_MESSAGE              1026
 
 #define IDD_PREF_PAGE_NOTIFY            517
-#define   IDC_NOTIFY_NEVER                1020
-#define   IDC_NOTIFY_WHENEVER             1021
+#define   IDC_NOTIFY_MINIMISED            1020
+#define   IDC_NOTIFY_INACTIVE             1021
 #define   IDC_NOTIFY_ON_MATCH             1022
 #define   IDC_EDIT_MATCH_TEXT             1023
-#define   IDC_CHECK_ALERT                 1024
+#define   IDC_NOTIFY_FLASH             		1024
+#define   IDC_NOTIFY_ALERT                1025
+
+#define IDD_PREF_PAGE_PROTOCOL          518
+#define 	IDC_ALLOW_MCCP                  1051
 
 #define IDD_SHORTCUT_WIZ_NAME           526
 #define   IDC_SHORTCUT_NAME               1027
@@ -327,7 +332,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        111
 #define _APS_NEXT_COMMAND_VALUE         40005
-#define _APS_NEXT_CONTROL_VALUE         1050
+#define _APS_NEXT_CONTROL_VALUE         1052
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

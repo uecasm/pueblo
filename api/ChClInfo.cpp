@@ -66,10 +66,10 @@
 
 const char*	ChClientInfo::strWin = "Windows";
 const char*	ChClientInfo::strWin32s = "Win32s";
-const char*	ChClientInfo::strWinNT = "Windows NT";
+const char*	ChClientInfo::strWinNT = "WinNT";
 const char*	ChClientInfo::strWin95 = "Win95";
 const char* ChClientInfo::strWin98 = "Win98";
-const char* ChClientInfo::strWinXP = "WinXP";
+const char* ChClientInfo::strWinXP = "Win2K/XP";
 const char*	ChClientInfo::strLinux = "Linux";
 const char*	ChClientInfo::strSPARCSolaris = "Solaris/SPARC";
 
@@ -90,7 +90,11 @@ ChClientInfo::ChClientInfo()
 ChClientInfo::ChClientInfo( chint16 sMode )
 {
 	m_clientVersion.Set( VERS_CLIENT_MAJOR, VERS_CLIENT_MINOR,
+#ifdef UE_PRERELEASE
+							VERS_CLIENT_COMMENT " PRERELEASE" );
+#else
 							VERS_CLIENT_COMMENT );
+#endif
 
 	#if defined( CH_MSW )
 	{
@@ -115,17 +119,22 @@ ChClientInfo::ChClientInfo( chint16 sMode )
 				}
 				case VER_PLATFORM_WIN32_WINDOWS:
 				{
-					if(m_platformVersion > 0x0400)
+					if(m_platformVersion >= 0x0004000A)		// Win98/ME
+					{
 						m_strPlatform = strWin98;
+						m_platform = osWin98;
+					}
 					else
+					{
 						m_strPlatform = strWin95;
-					m_platform = osWin95;
+						m_platform = osWin95;
+					}
 					break;
 				}
 
 				case VER_PLATFORM_WIN32_NT:
 				{
-					if(m_platformVersion >= 0x0500) {
+					if(m_platformVersion >= 0x00050000) {		// Win2000/XP/2003
 						m_strPlatform = strWinXP;
 						m_platform = osWinXP;
 					} else {
@@ -297,3 +306,6 @@ void ChClientInfo::Serialize( ChArchive& archive )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:14  uecasm
+// Import of source tree as at version 2.53 release.
+//

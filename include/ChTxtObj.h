@@ -100,6 +100,7 @@ class  ChInlineImageData
 				}
 		void    SetImage( ChDib *pDIB ) 
 				{
+					delete m_pDIB;
 					m_pDIB = pDIB;
 				}
 	public :
@@ -282,6 +283,9 @@ class CH_EXPORT_CLASS ChObjInline : public ChTextObject
 		 void SetImageData( ChInlineImageData* pImage ) 	{ m_pImage = pImage; }
 		 void ShutdownPlugin();
 		
+		 void CreateImagePlaceholder();
+		 void CreateBrokenImagePlaceholder();
+
 		// these methods should be provided by the objects defined
 		virtual int  GetType()				{ return m_pPlugin ? ChTextObject::objectPlugin 
 															: ChTextObject::objectImage; }
@@ -296,9 +300,12 @@ class CH_EXPORT_CLASS ChObjInline : public ChTextObject
 		virtual bool   PointInObject(  ChPoint& ptTopLeft, ChPoint& ptLoc, ChPoint *pptRel = 0  ); 
 		void SetObjectSize( const ChSize& objSize ) { m_sizeObject = objSize; }
 	private :
+		void CreatePlaceholder(int iIconId);	//UE
+		
 		int 		m_iBorder; //Border around the image
 		chuint32	m_luBorderColor;
 		int 		m_iMode;
+
 };
 
 class CH_EXPORT_CLASS ChObjControl : public ChTextObject
@@ -357,5 +364,8 @@ class CH_EXPORT_CLASS ChObjControl : public ChTextObject
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:58  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif // _CHTXTOBJ_H

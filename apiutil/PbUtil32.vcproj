@@ -15,7 +15,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -24,9 +24,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL"
 				RuntimeLibrary="3"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\PbUtil32.pch"
@@ -45,6 +46,7 @@
 				OutputFile="$(OutDir)\PbUtil32.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)\PbUtil32.pdb"
@@ -63,7 +65,8 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;_DEBUG"/>
+				PreprocessorDefinitions="_AFXDLL;_DEBUG"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -72,7 +75,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName).vs"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -81,11 +84,12 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\PbUtil32.pch"
@@ -104,6 +108,7 @@
 				OutputFile="$(OutDir)\PbUtil32.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
 				ProgramDatabaseFile="$(OutDir)\PbUtil32.pdb"
 				SubSystem="2"
@@ -121,7 +126,8 @@
 				Name="VCPreLinkEventTool"/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;NDEBUG"/>
+				PreprocessorDefinitions="_AFXDLL;NDEBUG"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -133,16 +139,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90">
 			<File
-				RelativePath=".\ChDibBmp.cpp">
-			</File>
-			<File
 				RelativePath=".\ChDibDecoder.cpp">
 			</File>
 			<File
 				RelativePath=".\ChDibImage.cpp">
-			</File>
-			<File
-				RelativePath=".\ChDibPal.cpp">
 			</File>
 			<File
 				RelativePath=".\ChDibTransparent.cpp">
@@ -155,6 +155,12 @@
 			</File>
 			<File
 				RelativePath=".\ChJPEG.cpp">
+			</File>
+			<File
+				RelativePath="ChMngDecoder.cpp">
+			</File>
+			<File
+				RelativePath="ChMngImage.cpp">
 			</File>
 			<File
 				RelativePath=".\ChSFImage.cpp">
@@ -180,94 +186,6 @@
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
 			</File>
-			<Filter
-				Name="JPEG Library"
-				Filter="">
-				<File
-					RelativePath=".\jcomapi.cpp">
-				</File>
-				<File
-					RelativePath=".\jdapi.cpp">
-				</File>
-				<File
-					RelativePath=".\jdatasrc.cpp">
-				</File>
-				<File
-					RelativePath=".\jdcoefct.cpp">
-				</File>
-				<File
-					RelativePath=".\jdcolor.cpp">
-				</File>
-				<File
-					RelativePath="jdct.h">
-				</File>
-				<File
-					RelativePath=".\jddctmgr.cpp">
-				</File>
-				<File
-					RelativePath=".\jdhuff.cpp">
-				</File>
-				<File
-					RelativePath=".\jdmainct.cpp">
-				</File>
-				<File
-					RelativePath=".\jdmarker.cpp">
-				</File>
-				<File
-					RelativePath=".\jdmaster.cpp">
-				</File>
-				<File
-					RelativePath=".\jdmerge.cpp">
-				</File>
-				<File
-					RelativePath=".\jdpostct.cpp">
-				</File>
-				<File
-					RelativePath=".\jdsample.cpp">
-				</File>
-				<File
-					RelativePath=".\jerror.cpp">
-				</File>
-				<File
-					RelativePath="jerror.h">
-				</File>
-				<File
-					RelativePath=".\jfdctint.cpp">
-				</File>
-				<File
-					RelativePath=".\jidctflt.cpp">
-				</File>
-				<File
-					RelativePath=".\jidctint.cpp">
-				</File>
-				<File
-					RelativePath="jinclude.h">
-				</File>
-				<File
-					RelativePath=".\jmemmgr.cpp">
-					<FileConfiguration
-						Name="Debug|Win32">
-						<Tool
-							Name="VCCLCompilerTool"
-							GeneratePreprocessedFile="0"/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="jpegint.h">
-				</File>
-				<File
-					RelativePath=".\jquant1.cpp">
-				</File>
-				<File
-					RelativePath=".\jquant2.cpp">
-				</File>
-				<File
-					RelativePath=".\jutils.cpp">
-				</File>
-				<File
-					RelativePath="jversion.h">
-				</File>
-			</Filter>
 			<Filter
 				Name="Compression"
 				Filter="">
@@ -298,9 +216,6 @@
 			Name="Header Files"
 			Filter="">
 			<File
-				RelativePath="..\include\ChDibBmp.h">
-			</File>
-			<File
 				RelativePath="..\include\ChDibDecoder.h">
 			</File>
 			<File
@@ -314,6 +229,12 @@
 			</File>
 			<File
 				RelativePath="..\include\ChJpegDecoder.h">
+			</File>
+			<File
+				RelativePath="ChMngDecoder.h">
+			</File>
+			<File
+				RelativePath="..\include\ChMngImage.h">
 			</File>
 			<File
 				RelativePath="..\include\ChSFImage.h">

@@ -14,8 +14,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\TinTin\$(ConfigurationName)"
-			IntermediateDirectory=".\TinTin\$(ConfigurationName)"
+			OutputDirectory=".\TinTin\$(ConfigurationName).vs"
+			IntermediateDirectory=".\TinTin\$(ConfigurationName).vs"
 			ConfigurationType="4"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -28,6 +28,7 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="TRUE"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile="$(IntDir)\TinTin.pch"
 				AssemblerOutput="2"
@@ -57,8 +58,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\TinTin\$(ConfigurationName)"
-			IntermediateDirectory=".\TinTin\$(ConfigurationName)"
+			OutputDirectory=".\TinTin\$(ConfigurationName).vs"
+			IntermediateDirectory=".\TinTin\$(ConfigurationName).vs"
 			ConfigurationType="4"
 			UseOfMFC="2"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -69,6 +70,7 @@
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="3"
+				DefaultCharIsUnsigned="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile="$(IntDir)\TinTin.pch"
 				AssemblerListingLocation="$(IntDir)\"

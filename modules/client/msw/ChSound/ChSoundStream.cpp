@@ -51,8 +51,8 @@
 #include <ChMsgTyp.h>
 #include "ChSoundInfo.h"
 
-
 #include "ChSoundStream.h"
+#include "MemDebug.h"
 
 
 ChSoundStreamManager::ChSoundStreamManager( ChSoundMainInfo* pMainInfo ) :
@@ -100,3 +100,6 @@ void ChSoundStreamManager::DestroyStream( chparam requestData,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:02  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -86,7 +86,7 @@ ChHttpCookie::ChHttpCookie() :
 	if ( !GetModuleFileName( NULL, m_strCookieFile.GetBuffer( 512 ), 512 ) )
 	{
 		m_strCookieFile.ReleaseBuffer();	
-		TRACE( "GetModuleFileName function failed !!!!" );
+		TRACE( "GetModuleFileName function failed !!!!\n" );
 		ASSERT( 0 );
 	}
 
@@ -821,3 +821,6 @@ int ChHttpCookie::ReadLine( char*& pstrBuffer, int& iCount, int iNext,  ChString
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:21  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -122,6 +122,8 @@ $(DLL_API) : $(DEF_FILE) $(RES_FILE) $(LINK32_OBJS) $(LIBS)
 |
 
 DEP_RSC=\
+  res\image.ico			\
+  res\imageb.ico		\
 	res\book.ico			\
 	res\book_log.ico	\
 	res\colsplit.cur	\

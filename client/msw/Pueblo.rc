@@ -221,6 +221,15 @@ BEGIN
     RTEXT           "",IDC_NAME_5,140,101,100,12,SS_NOPREFIX
 END
 
+IDD_ABOUT_COMPONENTS DIALOGEX DISCARDABLE  0, 0, 250, 125
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Components"
+FONT 10, "Arial"
+BEGIN
+    CONTROL         "",IDC_STATIC_PLACEHOLDER,"Static",SS_SIMPLE | NOT 
+                    WS_VISIBLE | WS_GROUP,10,5,245,115
+END
+
 IDD_PREF_FONT DIALOG DISCARDABLE  0, 0, 250, 150
 STYLE DS_NOIDLEMSG | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Fonts"
@@ -708,14 +717,16 @@ BEGIN
     END
 END
 
-// NOTE: Don't forget to modify the version details in ChClInfo.cpp as well!
-
 /////////////////////////////////////////////////////////////////////////////
 //
 // HTML
 //
 
 IDR_DISCLAIMER          HTML    DISCARDABLE     "res\\idr_disc.htm"
+
+#ifdef UE_PRERELEASE
+IDR_PRERELEASE_LICENSE	HTML		DISCARDABLE			"res\\idr_prelic.htm"
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -918,6 +929,7 @@ BEGIN
     IDS_WEB_BROWSER_INTERNAL "<Internal web browser>"
     IDS_MAILTO_NOT_SUPPORTED 
                             "You can only send electronic mail through Pueblo if you are using an external web browser such as NetManage WebSurfer or Netscape Navigator.\n\nYou can tell Pueblo to use an external browser by selecting the 'Apps' tab in the Preferences dialog box."
+		ID_COMPRESSION_PANE			"            "
     ID_SESSION_PANE         "                              "
     ID_TIME_PANE            "                    "
     ID_PROGRESS_PANE        "                                "
@@ -939,8 +951,14 @@ BEGIN
     IDS_REGINFO_FILE        "_reginfo.txt"
     IDS_REGISTER_AGAIN      "This copy has already been registered. Do you want to register again ?"
     IDS_URL_WORLD_LIST_ENTRY "http://pueblo.sf.net/worlds2.php"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
     IDS_TITLE_OUTOFDATE     "Reminder"
     IDS_MESSAGE_OUTOFDATE   "This version of Pueblo/UE is out of date.  You should update it as soon as possible.\r\n\r\nWould you like to visit the update site now?"
+		IDS_COMPONENTS_HEADER		"<html>\r\n  <body text=""#000000"" bgcolor=""#FFFFFF"">\r\n    <center><h3>\r\n        Third Party Components\r\n      </h3>\r\n    </center>\r\n    <hr>\r\n"
+		IDS_COMPONENTS_FOOTER		"\r\n  <hr>\r\n  <p>\r\n    <font size=""-1"">We would like to thank the developers of these components, without whom support for various features in Pueblo/UE would not have been possible.</font>\r\n  </p>\r\n  </body>\r\n</html>\r\n"
 END
 
 STRINGTABLE

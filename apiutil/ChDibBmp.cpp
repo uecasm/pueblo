@@ -206,7 +206,7 @@ static int NumDIBColorEntries(BITMAPINFO* pBmpInfo)
     }
     if (iMax) {
         if (iColors > iMax) {
-            TRACE("Invalid color count");
+            TRACE("Invalid color count\n");
             iColors = iMax;
         }
     }
@@ -254,7 +254,7 @@ BOOL ChDibBmp::Create(int iWidth, int iHeight, int iBitCount /*= 8 */ )
     m_pBMI = (BITMAPINFO*) ALLOC(sizeof(BITMAPINFOHEADER)
                                   + 256 * sizeof(RGBQUAD));
     if (!m_pBMI) {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         return false;
     }
 
@@ -266,7 +266,7 @@ BOOL ChDibBmp::Create(int iWidth, int iHeight, int iBitCount /*= 8 */ )
 	}
     m_pBits = (BYTE*)ALLOC(iBitsSize);
     if (!m_pBits) {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         FREE(m_pBMI);
         m_pBMI = NULL;
         return false;
@@ -360,13 +360,13 @@ BOOL ChDibBmp::Load(CFile* fp)
     int iBytes;
     iBytes = fp->Read(&BmpFileHdr, sizeof(BmpFileHdr));
     if (iBytes != sizeof(BmpFileHdr)) {
-        TRACE("Failed to read file header");
+        TRACE("Failed to read file header\n");
         goto d__abort;
     }
 
     // Check that we have the magic 'BM' at the start.
     if (BmpFileHdr.bfType != 0x4D42) {
-        TRACE("Not a bitmap file");
+        TRACE("Not a bitmap file\n");
         goto d__abort;
     }
 
@@ -376,14 +376,14 @@ BOOL ChDibBmp::Load(CFile* fp)
     BITMAPINFOHEADER BmpInfoHdr;
     iBytes = fp->Read(&BmpInfoHdr, sizeof(BmpInfoHdr)); 
     if (iBytes != sizeof(BmpInfoHdr)) {
-        TRACE("Failed to read BITMAPINFOHEADER");
+        TRACE("Failed to read BITMAPINFOHEADER\n");
         goto d__abort;
     }
 
     // Check that we got a real Windows DIB file.
     if (BmpInfoHdr.biSize != sizeof(BITMAPINFOHEADER)) {
         if (BmpInfoHdr.biSize != sizeof(BITMAPCOREHEADER)) {
-            TRACE(" File is not Windows or PM DIB format");
+            TRACE(" File is not Windows or PM DIB format\n");
             goto d__abort;
         }
 
@@ -396,7 +396,7 @@ BOOL ChDibBmp::Load(CFile* fp)
         BITMAPCOREHEADER BmpCoreHdr;
         iBytes = fp->Read(&BmpCoreHdr, sizeof(BmpCoreHdr)); 
         if (iBytes != sizeof(BmpCoreHdr)) {
-            TRACE("Failed to read BITMAPCOREHEADER");
+            TRACE("Failed to read BITMAPCOREHEADER\n");
             goto d__abort;
         }
 
@@ -444,7 +444,7 @@ BOOL ChDibBmp::Load(CFile* fp)
    // Allocate the memory for the header.
     pBmpInfo = (LPBITMAPINFO) ALLOC(iBISize);
     if (!pBmpInfo) {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         goto d__abort;
     }
 
@@ -457,7 +457,7 @@ BOOL ChDibBmp::Load(CFile* fp)
         iBytes = fp->Read(((LPBYTE) pBmpInfo) + sizeof(BITMAPINFOHEADER),
                              iColorTableSize);
         if (iBytes != iColorTableSize) {
-            TRACE("Failed to read color table");
+            TRACE("Failed to read color table\n");
             goto d__abort;
         }
     } else {
@@ -470,7 +470,7 @@ BOOL ChDibBmp::Load(CFile* fp)
         for (i=0; i<iColors; i++) {
             iBytes = fp->Read(&rgbt, sizeof(RGBTRIPLE));
             if (iBytes != sizeof(RGBTRIPLE)) {
-                TRACE("Failed to read RGBTRIPLE");
+                TRACE("Failed to read RGBTRIPLE\n");
                 goto d__abort;
             }
             lpRGB->rgbBlue = rgbt.rgbtBlue;
@@ -485,7 +485,7 @@ BOOL ChDibBmp::Load(CFile* fp)
     // and read the bits from the file.
     pBits = (BYTE*) ALLOC(iBitsSize);
     if (!pBits) {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         goto d__abort;
     }
 
@@ -495,7 +495,7 @@ BOOL ChDibBmp::Load(CFile* fp)
     // Read the bits.
     iBytes = fp->Read(pBits, (int)iBitsSize);
     if (iBytes != iBitsSize) {
-        TRACE("Failed to read bits");
+        TRACE("Failed to read bits\n");
         goto d__abort;
     }
 
@@ -531,13 +531,13 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
     int iBytes;
     iBytes = LZRead(lzHdl, (LPSTR)&BmpFileHdr, sizeof(BmpFileHdr));
     if (iBytes != sizeof(BmpFileHdr)) {
-        TRACE("Failed to read file header");
+        TRACE("Failed to read file header\n");
         goto d__abort;
     }
 
     // Check that we have the magic 'BM' at the start.
     if (BmpFileHdr.bfType != 0x4D42) {
-        TRACE("Not a bitmap file");
+        TRACE("Not a bitmap file\n");
         goto d__abort;
     }
 
@@ -547,14 +547,14 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
     BITMAPINFOHEADER BmpInfoHdr;
     iBytes = LZRead(lzHdl, (LPSTR)&BmpInfoHdr, sizeof(BmpInfoHdr)); 
     if (iBytes != sizeof(BmpInfoHdr)) {
-        TRACE("Failed to read BITMAPINFOHEADER");
+        TRACE("Failed to read BITMAPINFOHEADER\n");
         goto d__abort;
     }
 
     // Check that we got a real Windows DIB file.
     if (BmpInfoHdr.biSize != sizeof(BITMAPINFOHEADER)) {
         if (BmpInfoHdr.biSize != sizeof(BITMAPCOREHEADER)) {
-            TRACE(" File is not Windows or PM DIB format");
+            TRACE(" File is not Windows or PM DIB format\n");
             goto d__abort;
         }
 
@@ -567,7 +567,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
         BITMAPCOREHEADER BmpCoreHdr;
         iBytes = LZRead(lzHdl, (LPSTR)&BmpCoreHdr, sizeof(BmpCoreHdr)); 
         if (iBytes != sizeof(BmpCoreHdr)) {
-            TRACE("Failed to read BITMAPCOREHEADER");
+            TRACE("Failed to read BITMAPCOREHEADER\n");
             goto d__abort;
         }
 
@@ -614,7 +614,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
     // Allocate the memory for the header.
     pBmpInfo = (LPBITMAPINFO) ALLOC(iBISize);
     if (!pBmpInfo) {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         goto d__abort;
     }
 
@@ -627,7 +627,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
         iBytes = LZRead(lzHdl, (LPSTR)(((LPBYTE) pBmpInfo) + sizeof(BITMAPINFOHEADER)),
                              iColorTableSize);
         if (iBytes != iColorTableSize) {
-            TRACE("Failed to read color table");
+            TRACE("Failed to read color table\n");
             goto d__abort;
         }
     } else {
@@ -640,7 +640,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
         for (i=0; i<iColors; i++) {
             iBytes = LZRead(lzHdl, (LPSTR)&rgbt, sizeof(RGBTRIPLE));
             if (iBytes != sizeof(RGBTRIPLE)) {
-                TRACE("Failed to read RGBTRIPLE");
+                TRACE("Failed to read RGBTRIPLE\n");
                 goto d__abort;
             }
             lpRGB->rgbBlue = rgbt.rgbtBlue;
@@ -655,7 +655,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
     // and read the bits from the file.
     pBits = (BYTE*) ALLOC(iBitsSize);
     if (!pBits) {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         goto d__abort;
     }
 
@@ -665,7 +665,7 @@ BOOL ChDibBmp::Load(LZHANDLE lzHdl)
     // Read the bits.
     iBytes = LZRead(lzHdl, (LPSTR)pBits, iBitsSize);
     if (iBytes != iBitsSize) {
-        TRACE("Failed to read bits");
+        TRACE("Failed to read bits\n");
         goto d__abort;
     }
 
@@ -729,7 +729,7 @@ BOOL ChDibBmp::Load(const char* pszFileName, chuint32 flOption )
 										0)))       
 	#endif										
 	{  //
-        TRACE("Failed to open file");
+        TRACE("Failed to open file\n");
         return false;
     }
 	lzHdl = ::LZInit( hFile );
@@ -747,7 +747,7 @@ BOOL ChDibBmp::Load(const char* pszFileName, chuint32 flOption )
     CFile file;
     if (! file.Open(strFile,
                     CFile::modeRead | CFile::shareDenyWrite)) {
-        TRACE("Failed to open file");
+        TRACE("Failed to open file\n");
         return false;
     }
 
@@ -764,12 +764,12 @@ BOOL ChDibBmp::Load(WORD wResid, HINSTANCE hInstance)
     HINSTANCE hInst = (hInstance ? hInstance : AfxGetResourceHandle());
     HRSRC hrsrc = ::FindResource(hInst, MAKEINTRESOURCE(wResid), "DIB");
     if (!hrsrc) {
-        TRACE("DIB resource not found");
+        TRACE("DIB resource not found\n");
         return false;
     }
     HGLOBAL hg = LoadResource(hInst, hrsrc);
     if (!hg) {
-        TRACE("Failed to load DIB resource");
+        TRACE("Failed to load DIB resource\n");
         return false;
     }
     BYTE* pRes = (BYTE*) LockResource(hg);
@@ -856,7 +856,7 @@ BOOL ChDibBmp::SetSize( long lWidth, long lHeight )
                                   + 256 * sizeof(RGBQUAD));
     if (!pBMI) 
     {
-        TRACE("Out of memory for DIB header");
+        TRACE("Out of memory for DIB header\n");
         return false;
     }
 
@@ -867,7 +867,7 @@ BOOL ChDibBmp::SetSize( long lWidth, long lHeight )
     BYTE *pBits = (BYTE*)ALLOC(iBitsSize);
     if (!pBits) 
     {
-        TRACE("Out of memory for DIB bits");
+        TRACE("Out of memory for DIB bits\n");
         FREE(pBMI);
         return false;
     }
@@ -984,7 +984,7 @@ int ChDibBmp::GetNumClrEntries()
 BOOL ChDibBmp::MapColorsToPalette(CPalette *pPal)
 {
     if (!pPal) {
-        TRACE("No palette to map to");
+        TRACE("No palette to map to\n");
         return false;
     }
     ASSERT(m_pBMI);
@@ -1041,7 +1041,7 @@ void* ChDibBmp::GetPixelAddress(int x, int y)
     
     if ((x >= DibWidth()) 
     || (y >= DibHeight())) {
-        TRACE("Attempt to get out of range pixel address");
+        TRACE("Attempt to get out of range pixel address\n");
         return NULL;
     }
 
@@ -1485,7 +1485,7 @@ BOOL ChDibBmp::Save(CFile* fp)
     TRY {
         fp->Write(&bfh, iSize);
     } CATCH(CFileException, e) {
-        TRACE("Failed to write file header");
+        TRACE("Failed to write file header\n");
         return false;
     } END_CATCH
 
@@ -1499,7 +1499,7 @@ BOOL ChDibBmp::Save(CFile* fp)
     TRY {
         fp->Write(m_pBMI, iSize);
     } CATCH(CFileException, e) {
-        TRACE("Failed to write BITMAPINFO");
+        TRACE("Failed to write BITMAPINFO\n");
         return false;
     } END_CATCH
 
@@ -1508,7 +1508,7 @@ BOOL ChDibBmp::Save(CFile* fp)
     TRY {
         fp->Write(m_pBits, iSize);
     } CATCH(CFileException, e) {
-        TRACE("Failed to write bits");
+        TRACE("Failed to write bits\n");
         return false;
     } END_CATCH
 
@@ -1559,3 +1559,6 @@ BOOL ChDibBmp::Save(LPSTR pszFileName)
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:11  uecasm
+// Import of source tree as at version 2.53 release.
+//

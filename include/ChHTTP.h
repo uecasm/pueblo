@@ -86,6 +86,11 @@
 #define MIME_GIF					"image/gif"
 #define MIME_BMP					"image/x-bmp"
 #define MIME_JPEG					"image/jpeg"
+#define MIME_PNG					"image/png"
+#define MIME_MNG					"video/x-mng"
+#define MIME_MNG2					"video/mng"
+#define MIME_JNG					"image/x-jng"
+#define MIME_JNG2					"image/jng"
 #define MIME_MIDI					"audio/x-midi"
 #define MIME_MIDI1					"audio/x-mid"
 #define MIME_MIDI2					"audio/midi"
@@ -218,7 +223,7 @@ class CH_EXPORT_CLASS ChHTTPConn
 	public:
 		enum tagConnectionType { usingSockets, usingDDE, usingOLE, usingPlugIn };
 		enum tagMimeTypes { typeText, typeHTML, typeGIF, typeMidi, typeWave,
-							typeJPEG, typeVRML, typeBMP, typeVox, typeWorld };
+							typeJPEG, typeVRML, typeBMP, typeVox, typeWorld, typeNG };
 
 		enum tagConnOptions { connLocalState = 0x1, // All connections requested through
 														// this conn object will not be visible
@@ -315,5 +320,8 @@ class CH_EXPORT_CLASS ChHTTPConn
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:41  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// !defined( _CHHTTP_H )

@@ -49,6 +49,7 @@
 #include <ChDIBDecoder.h>
 #include <ChGIFDecoder.h>
 #include <ChJPEGDecoder.h>
+#include <ChMngImage.h>
 #include <ChPane.h>
 
 #include "ChHtmlView.h"
@@ -454,6 +455,12 @@ ChDib* ChHtmlWnd::LoadDIB( const ChString& strMimeType, const char* pstrFilename
 			}
 			//break;
 		}
+		case ChHTTPConn::typeNG :	// PNG, MNG/JNG
+		{
+			ChMngImage *pImage = new ChMngImage();
+			pImage->Load( pstrFilename );
+			return pImage;
+		}
 	}
 
 	return 0;
@@ -603,6 +610,8 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 					}
 					else
 					{						// Display broken image
+						pImage->CreateBrokenImagePlaceholder();
+						pView->UpdateObject( pImage );
 					}
 
 				}
@@ -716,6 +725,15 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 				}
 				case ChHtmlReqInfo::loadInline :
 				{  // display broken image
+					ChHtmlInlineReq*		pLoadInfo = (ChHtmlInlineReq*)pInfo;
+					ChObjInline* pImage = pLoadInfo->GetInlineData();
+					ChHtmlView *pView = GetHtmlViewByName( pLoadInfo->GetViewName() );
+
+					if ( pView && pView->GetPageNumber()  == pLoadInfo->GetViewID() )
+					{
+						pImage->CreateBrokenImagePlaceholder();
+						pView->UpdateObject( pImage );
+					}
 					break;
 				}
 				case ChHtmlReqInfo::loadBkPattern :
@@ -742,3 +760,6 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:13  uecasm
+// Import of source tree as at version 2.53 release.
+//

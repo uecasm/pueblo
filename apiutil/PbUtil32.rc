@@ -163,6 +163,7 @@ BEGIN
 END
 
 IDR_GRAYSCALE_PAL       PAL                     "res\\gray.pal"
+
 #endif    // English (New Zealand) resources
 /////////////////////////////////////////////////////////////////////////////
 

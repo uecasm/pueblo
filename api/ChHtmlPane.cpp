@@ -353,7 +353,7 @@ ChHtmlView* ChHtmlWnd::CreateView( ChHtmlPane* pInfo )
 				flPaneOptions |= paneAlignBottom;
 			}
 
-			TRACE("Creating pane");	// UE DEBUG
+			TRACE("Creating pane\n");	// UE DEBUG
 		
 			pPane = m_pPaneMgr->CreatePane( pInfo->GetName(), 0,
 											pInfo->GetWidth(),
@@ -376,7 +376,7 @@ ChHtmlView* ChHtmlWnd::CreateView( ChHtmlPane* pInfo )
 
 		if (pView)
 		{
-			TRACE("Created view");	// UE DEBUG
+			TRACE("Created view\n");	// UE DEBUG
 
 			if (pInfo->GetOptions() & ChHtmlPane::optionInternal)
 			{
@@ -456,7 +456,7 @@ ChHtmlView* ChHtmlWnd::CreateView( ChHtmlPane* pInfo )
 		rtSize.right = pInfo->GetWidth();
 		rtSize.bottom = pInfo->GetHeight();
 
-		TRACE("Couldn't create view, creating frame instead");	// UE DEBUG
+		TRACE("Couldn't create view, creating frame instead\n");	// UE DEBUG
 
 		if ( pInfo->GetOptions() & ChHtmlPane::optionSmallTitle )
 		{
@@ -850,3 +850,6 @@ void ChHtmlMiniFrame::OnSize(UINT nType, int cx, int cy)
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:09  uecasm
+// Import of source tree as at version 2.53 release.
+//

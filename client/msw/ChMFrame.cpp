@@ -71,6 +71,7 @@
 
 #include "ChMFrame.h"
 #include "ChPrefs.h"
+#include "MemDebug.h"
 
 #if defined( CH_MSW ) && defined( CH_ARCH_16 )
 	#undef AFXAPP_DATA
@@ -91,9 +92,10 @@
 
 #define PROGRESS_BAR_WIDTH			40
 
+#define CH_STATUS_COMPRESSION_PANE	1
 #define CH_STATUS_TIME_ONLINE_PANE	2
-#define CH_STATUS_TIME_PANE			2
-#define CH_STATUS_PROGRESS_PANE		3
+#define CH_STATUS_TIME_PANE			3
+#define CH_STATUS_PROGRESS_PANE		4
 
 #if defined( CH_MSW )
 
@@ -161,6 +163,7 @@ BEGIN_MESSAGE_MAP( ChMainFrame, ChPersistentFrame )
 	ON_COMMAND( ID_CONTEXT_HELP, CFrameWnd::OnContextHelp )
 	ON_COMMAND( ID_DEFAULT_HELP, CFrameWnd::OnHelpIndex )
 
+	ON_UPDATE_COMMAND_UI(ID_COMPRESSION_PANE, OnUpdateStatusText )
 	ON_UPDATE_COMMAND_UI(ID_SESSION_PANE, OnUpdateStatusText )
 	ON_UPDATE_COMMAND_UI(ID_TIME_PANE, OnUpdateStatusText )
 	ON_UPDATE_COMMAND_UI(ID_PROGRESS_PANE, OnUpdateStatusText )
@@ -201,6 +204,7 @@ static UINT BASED_CODE buttons[] =
 static UINT BASED_CODE indicators[] =
 {											// Status line indicators
 	ID_SEPARATOR,
+	ID_COMPRESSION_PANE,			// Compression type
 	ID_SESSION_PANE,						// Time online
 	ID_TIME_PANE,							// Time of day
 	ID_PROGRESS_PANE						// Progress bar
@@ -699,6 +703,7 @@ void ChMainFrame::InitStatusBar()
 	pOldFont = pDC->SelectObject(  GetAppFont() );
 	pDC->SelectObject( pOldFont );
 
+	m_wndStatusBar.SetPaneText( CH_STATUS_COMPRESSION_PANE, "" );
 	m_wndStatusBar.SetPaneText( CH_STATUS_TIME_ONLINE_PANE, "" );
 	m_wndStatusBar.SetPaneText( CH_STATUS_TIME_PANE, "" );
 	m_wndStatusBar.SetPaneText( CH_STATUS_PROGRESS_PANE, "" );
@@ -956,12 +961,6 @@ int ChMainFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 void ChMainFrame::OnSize( UINT nType, int cx, int cy )
 {
 	ChPersistentFrame::OnSize( nType, cx, cy );
-
-	if (SIZE_MINIMIZED != nType)
-	{										// Turn off flashing
-		FlashWindow( false );
-		GetPuebloCore()->EnableFlashWindow( false );
-	}
 }
 
 #endif	// defined( CH_MSW )
@@ -1067,7 +1066,7 @@ void ChMainFrame::OnSecondTick( time_t timeCurr )
 												   has requested to do so*/
 	#if defined( CH_MSW )
 	{
-		if (IsIconic() && GetPuebloCore()->IsFlashWindow())
+		if (GetPuebloCore()->IsFlashWindow())
 		{
 											// This only flashes the icon once:
 			FlashWindow( true );
@@ -1214,6 +1213,10 @@ void ChMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 		{
 			pApp->m_pMainWnd = this;
 		}
+
+		// Turn off flashing
+		FlashWindow( false );
+		GetPuebloCore()->EnableFlashWindow( false );
 	}	
 
 	ChPersistentFrame::OnActivate( nState, pWndOther, bMinimized );
@@ -1245,3 +1248,6 @@ void ChMainFrame::OnCloseWindow()
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:28  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -48,6 +48,8 @@
 #include <ChReg.h>
 
 #include "ChLicDlg.h"
+#include "PbVersion.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -121,10 +123,20 @@ BOOL ChLicenseDlg::OnInitDialog()
 	rtFrame.InflateRect( -1, -1 );
 
 	m_htmlWnd.Create( rtFrame, this, WS_VISIBLE | WS_VSCROLL );
+#ifdef UE_PRERELEASE
+	// The prerelease agreement is retrieved from a resource instead.
+	// It's much shorter, and we can't rely on having the external
+	// license file present.
+	m_htmlWnd.DisplayResource( IDR_PRERELEASE_LICENSE );
+#else
 	m_htmlWnd.DisplayFile( m_strLicenseFileName );
+#endif
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:26  uecasm
+// Import of source tree as at version 2.53 release.
+//

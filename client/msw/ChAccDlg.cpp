@@ -48,6 +48,7 @@
 #include "resource.h"
 
 #include "ChAccDlg.h"
+#include "MemDebug.h"
 
 #if defined( _DEBUG )
 
@@ -1295,3 +1296,6 @@ END_MESSAGE_MAP()
 ----------------------------------------------------------------------------*/
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:22  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -18,7 +18,7 @@ run : all
 	@start $(OUTDIR)\Pueblo.exe
 
 debug : all
-	@start td32 -sd$(PROJROOT)\modules\client\msw\chworld;$(PROJROOT)\client\msw;$(PROJROOT)\api;$(PROJROOT)\apiutil -t$(OUTDIR) $(OUTDIR)\Pueblo.exe
+	@start td32 -sd$(PROJROOT)\modules\client\msw\chworld;$(PROJROOT)\client\msw;$(PROJROOT)\api;$(PROJROOT)\apiutil -t$(OUTDIöR) $(OUTDIR)\Pueblo.exe
 
 # Include common support rules
 !include "$(PROJROOT)\Common2.mak"

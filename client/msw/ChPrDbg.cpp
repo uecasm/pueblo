@@ -46,6 +46,7 @@
 
 #include "Pueblo.h"
 #include "ChPrDbg.h"
+#include "MemDebug.h"
 
 #if defined( _DEBUG )
 	#undef THIS_FILE
@@ -139,3 +140,6 @@ END_MESSAGE_MAP()
 #endif	// defined( _DEBUG )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:52:31  uecasm
+// Import of source tree as at version 2.53 release.
+//

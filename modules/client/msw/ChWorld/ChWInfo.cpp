@@ -66,6 +66,7 @@
 
 #endif	// defined( CH_MSW )
 
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -1048,3 +1049,6 @@ bool ChWorldInfo::FindTag( std::ifstream& ifile, const char* pstrTag, chuint32& 
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:21  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -131,11 +131,15 @@ class sockasyncinfo;
 
 typedef sockinetbuf	*psockinetbuf;
 
-typedef void (CALLBACK EXPORT *ChSocketHandler)( sockinetbuf& si,
+//typedef void (CALLBACK EXPORT *ChSocketHandler)( sockinetbuf& si,
+//													chparam luEvent,
+//													int iErrorCode );
+CH_TYPEDEF_CALLBACK(void, ChSocketHandler)( sockinetbuf& si,
 													chparam luEvent,
 													int iErrorCode );
 
-typedef void (CALLBACK EXPORT *ChSocketAsyncHandler)( sockasyncinfo* pInfo );
+//typedef void (CALLBACK EXPORT *ChSocketAsyncHandler)( sockasyncinfo* pInfo );
+CH_TYPEDEF_CALLBACK(void, ChSocketAsyncHandler)( sockasyncinfo* pInfo );
 
 
 class CH_EXPORT_CLASS sockasyncinfo
@@ -1067,5 +1071,8 @@ class CH_EXPORT_CLASS sockinetbuf: public sockbuf
 #endif
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:54  uecasm
+// Import of source tree as at version 2.53 release.
+//
 
 #endif	// _CHSOCKET_H

@@ -46,6 +46,7 @@
 
 #include <ChArch.h>
 #include "ChKeyMapType.h"
+#include "MemDebug.h"
 
 #define _countof( arr )		(sizeof( arr ) / sizeof( arr[0] ))
 
@@ -197,3 +198,6 @@ void ChKeyMapType::CreateMap( ChKeyMap& keyMap )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:09  uecasm
+// Import of source tree as at version 2.53 release.
+//

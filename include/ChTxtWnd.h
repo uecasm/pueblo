@@ -374,7 +374,7 @@ class CH_EXPORT_CLASS ChTxtWnd : public ChScrollView
 		void CopyToClipboard( ) { cerr << "XXX Not copying to clipboard." << endl; };
 		#endif
 
-		void UpdateObject( ChTextObject* pObject, bool boolSizeChanged /* = false */  );
+		void UpdateObject( ChTextObject* pObject, bool boolSizeChanged = false );
 
 		// background color specifications
 		void SetBackColor( chuint32 luColor );
@@ -526,7 +526,9 @@ protected:
 
 	bool UpdateLineTable( chint32 lStartChar, chint32 lCharCount,
 							UINT fsOptions, bool* pboolChanged = 0 );
-	void ChTxtWnd::UpdateLayoutInfo( pLineData pCalc,  pChLine pNewLine, bool boolFloatLeft  );
+	void UpdateLayoutInfo( pLineData pCalc,  pChLine pNewLine, bool boolFloatLeft  );
+	void ComputeTimerInterval( ChObjInline *pInline );
+	void ComputeTimerInterval( ChDib *pDib );
 	void ComputeLineInfo(  pLineData pCalc, pChLine pNewLine );
 	void ComputeBigWord(  pLineData pCalc );
 	void ComputeLastWordInALine( pLineData pCalc, int sCurrLineWidth );
@@ -785,3 +787,6 @@ MACROS :
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:00  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -61,7 +61,7 @@
 	static char THIS_FILE[] = __FILE__;
 #endif
 
-
+#include "resource.h"
 #include <MemDebug.h>
 
 
@@ -180,49 +180,76 @@ bool ChTxtWnd::AppendObject( ChTxtObject *pTxtObj )
 	if ( pTxtObj->GetTextObject()->GetType() == ChTextObject::objectImage )
 	{
 		ChObjInline* pInline = (ChObjInline*)pTxtObj->GetTextObject();
-		ChDib* pDib = 0;
-
-		if ( (pInline->GetImageData()) 
-					&& (pDib = pInline->GetImageData()->GetImage()) 
-					&&	pDib->GetImageInfo()->boolMultiframe  )
-		{ 	// Set the timer if not present
-			UINT uExposture =  pDib->GetFrameInfo( 0 )->iExposture;
-
-			for( int i = 1; i <  pDib->GetTotalFrames(); i++ )
-			{
-				if ( uExposture > (UINT)pDib->GetFrameInfo( i )->iExposture )
-				{
-					uExposture = pDib->GetFrameInfo( i )->iExposture;
-				}
-			}
-
-			if ( uExposture == 0 )
-			{
-				uExposture = 100;
-			}
-
-
-			if ( m_idTimer )
-			{		 
-				if ( m_uExpostureTime > uExposture )
-				{
-				 	KillTimer( m_idTimer );
-					m_idTimer = 0;
-				}
-
-			}
-
-			if ( 0 == m_idTimer )
-			{
-				m_idTimer = 10;
-				m_uExpostureTime = uExposture; 
-				SetTimer( m_idTimer, uExposture, NULL );
-			}
-
-		}
+		ComputeTimerInterval( pInline );
 	}
 
 	return boolOK;
+}
+
+// This function adjusts the timeout of the animation timer
+// to fit nicely with all loaded animations.
+void ChTxtWnd::ComputeTimerInterval( ChObjInline *pInline )
+{
+	if (!pInline->GetImageData()) { return; }
+
+	ChDib *pDib;
+	if (!(pDib = pInline->GetImageData()->GetImage())) { return; }
+
+	ComputeTimerInterval(pDib);
+}
+
+void ChTxtWnd::ComputeTimerInterval(ChDib *pDib)
+{
+	if (pDib->GetImageInfo()->boolMultiframe)
+	{ 	// Set the timer if not present
+		
+		// UE: we don't have an interface to determine the frame times
+		//     for MNG animations; the animation is considerably more
+		//     complex than GIF-style animation and we have no way of
+		//     determining a concrete frame count (since it may loop
+		//     forever).
+	
+
+		//UINT uExposture = pDib->GetFrameInfo( 0 )->iExposture;
+		//TRACE1("ComputeTimerInterval: initial exposture == %d\n", uExposture);
+
+		//for( int i = 1; i < pDib->GetTotalFrames(); ++i )
+		//{
+		//	if ( uExposture > (UINT)pDib->GetFrameInfo( i )->iExposture )
+		//	{
+		//		uExposture = pDib->GetFrameInfo( i )->iExposture;
+		//	}
+		//}
+		//TRACE1("ComputeTimerInterval: final exposture == %d\n", uExposture);
+
+		//if ( uExposture == 0 )
+		//{
+		//	uExposture = 100;
+		//}
+
+		// UE: actually, can't really be stuffed trying to be efficient here, since methinks it
+		//     could in fact lead to incorrectly long frame exposition times.  So we'll just use
+		//     a simple fixed interval instead.
+		UINT uExposture = 100;		// only update at 0.1 second intervals
+
+		if ( m_idTimer )
+		{		 
+			//TRACE1("ComputeTimerInterval: current interval == %d\n", m_uExpostureTime);
+			if ( m_uExpostureTime > uExposture )
+			{
+			 	KillTimer( m_idTimer );
+				m_idTimer = 0;
+			}
+		}
+
+		if ( 0 == m_idTimer )
+		{
+			m_idTimer = 10;
+			m_uExpostureTime = uExposture; 
+			SetTimer( m_idTimer, uExposture, NULL );
+			//TRACE1("ComputeTimerInterval: Starting timer at interval == %d\n", uExposture);
+		}
+	}
 }
 
 /*----------------------------------------------------------------------------
@@ -244,44 +271,7 @@ void ChTxtWnd::UpdateObject( ChTextObject* pObject, bool boolSizeChanged /* = fa
 		return;
 	}
 	ChObjInline* pInline = (ChObjInline*)pObject;
-	ChDib* pDib = pInline->GetImageData()->GetImage();
-
-	if ( pDib->GetImageInfo()->boolMultiframe )
-	{ 	// Set the timer if not present
-		UINT uExposture =  pDib->GetFrameInfo( 0 )->iExposture;
-
-		for( int i = 1; i <  pDib->GetTotalFrames(); i++ )
-		{
-			if ( uExposture > (UINT)pDib->GetFrameInfo( i )->iExposture )
-			{
-				uExposture = pDib->GetFrameInfo( i )->iExposture;
-			}
-		}
-
-		if ( uExposture == 0 )
-		{
-			uExposture = 100;
-		}
-
-
-		if ( m_idTimer )
-		{		 
-			if ( m_uExpostureTime > uExposture )
-			{
-			 	KillTimer( m_idTimer );
-				m_idTimer = 0;
-			}
-
-		}
-
-		if ( 0 == m_idTimer )
-		{
-			m_idTimer = 10;
-			m_uExpostureTime = uExposture; 
-			SetTimer( m_idTimer, uExposture, NULL );
-		}
-
-	}
+	ComputeTimerInterval( pInline );
 
 	// find the first run using this object
 	pChStyleInfo pStyleUse 	= GetStyleTable();
@@ -803,6 +793,56 @@ void ChObjInline::ShutdownPlugin()
 	m_pPlugin = 0;
 }
 
+void ChObjInline::CreateImagePlaceholder()
+{
+	CreatePlaceholder(IDI_IMAGE);
+}
+
+void ChObjInline::CreateBrokenImagePlaceholder()
+{
+	CreatePlaceholder(IDI_IMAGE_BROKEN);
+}
+
+void ChObjInline::CreatePlaceholder(int iIconId)
+{
+	// UE: create a placeholder image for this object, to be replaced later
+	//     by the real thing.
+	ChSize size;
+	GetImageSize(size);
+	if (size.cx == 0 || size.cy == 0) { return; }
+
+	CDC *dcDesktop = CWnd::GetDesktopWindow()->GetDC();
+	CDC dcMem;
+	CBitmap bitmap;
+	dcMem.CreateCompatibleDC(dcDesktop);
+	bitmap.CreateCompatibleBitmap(dcDesktop, size.cx, size.cy);
+	CWnd::GetDesktopWindow()->ReleaseDC(dcDesktop);
+	CBitmap *oldBitmap = dcMem.SelectObject(&bitmap);
+
+	// make a budget frame rectangle
+	CRect imageRect(ChPoint(0, 0), size);
+	dcMem.FillSolidRect(&imageRect, RGB(128,128,128));
+	HICON iconImage = (HICON)::LoadImage(PuebloDLL.hModule, MAKEINTRESOURCE(iIconId), IMAGE_ICON, 16, 16, 0);
+	ASSERT(iconImage);
+	::DrawIconEx(dcMem, 3, 3, iconImage, 0, 0, 0, NULL, DI_NORMAL);
+	::DestroyIcon(iconImage);
+	dcMem.Draw3dRect(&imageRect, RGB(64,64,64), RGB(255,255,255));
+
+	ChDib *image = new ChDib();
+	image->Create(0, size.cx, size.cy, 24);
+
+	::GetDIBits(dcMem, bitmap, 0, size.cy, image->GetBitsAddress(), image->GetBitmapInfoAddress(), DIB_RGB_COLORS);
+	dcMem.SelectObject(oldBitmap);
+	bitmap.DeleteObject();
+	dcMem.DeleteDC();
+
+	//if (GetImageData() == NULL)
+	//{
+	//	SetImageData(new ChInlineImageData);
+	//}
+	ASSERT( GetImageData() );
+	GetImageData()->SetImage(image);
+}
 
 void ChObjInline::GetObjectSize( ChSize& size )
 {
@@ -1053,3 +1093,6 @@ ChSize ChObjControl::DrawObject( ChTxtWnd *pWnd, int x, int y, chuint32 luStyle,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:55:00  uecasm
+// Import of source tree as at version 2.53 release.
+//

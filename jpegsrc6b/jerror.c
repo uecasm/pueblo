@@ -1,7 +1,7 @@
 /*
  * jerror.c
  *
- * Copyright (C) 1991-1994, Thomas G. Lane.
+ * Copyright (C) 1991-1998, Thomas G. Lane.
  * This file is part of the Independent JPEG Group's software.
  * For conditions of distribution and use, see the accompanying README file.
  *
@@ -10,21 +10,24 @@
  * stderr is the right thing to do.  Many applications will want to replace
  * some or all of these routines.
  *
+ * If you define USE_WINDOWS_MESSAGEBOX in jconfig.h or in the makefile,
+ * you get a Windows-specific hack to display error messages in a dialog box.
+ * It ain't much, but it beats dropping error messages into the bit bucket,
+ * which is what happens to output to stderr under most Windows C compilers.
+ *
  * These routines are used by both the compression and decompression code.
  */
 
-// $Header$
+#ifdef USE_WINDOWS_MESSAGEBOX
+#include <windows.h>
+#define HAVE_BOOLEAN
+#endif
 
 /* this is not a core library module, so it doesn't define JPEG_INTERNALS */
-#include "headers.h"
-
 #include "jinclude.h"
 #include "jpeglib.h"
 #include "jversion.h"
 #include "jerror.h"
-
-#include <ChJpegDecoder.h>
-#include <ChExcept.h>
 
 #ifndef EXIT_FAILURE		/* define exit() codes if not provided */
 #define EXIT_FAILURE  1
@@ -43,10 +46,10 @@
 #define jpeg_std_message_table	jMsgTable
 #endif
 
-#define JMESSAGE(code,str)	str ,
+#define JMESSAGE(code,string)	string ,
 
 const char * const jpeg_std_message_table[] = {
-//#include "jerror.h"
+#include "jerror.h"
   NULL
 };
 
@@ -64,32 +67,16 @@ const char * const jpeg_std_message_table[] = {
  * or jpeg_destroy) at some point.
  */
 
-void jpeg_error_mgr::error_exit (j_common_ptr cinfo)
+METHODDEF(void)
+error_exit (j_common_ptr cinfo)
 {
   /* Always display the message */
-  output_message(cinfo);
+  (*cinfo->err->output_message) (cinfo);
 
   /* Let the memory manager delete any temp files before we die */
-  ChJPEG::jpeg_destroy(cinfo);
-  // throw exception
-	#if defined( CH_EXCEPTIONS )
-	{
-		#if defined( CH_MSW) && defined( CH_ARCH_16 )  
-		{  
-					
-			THROW( new ChJPEGEx( msg_code ));
-		}
-		#else
-		throw ChJPEGEx( msg_code );    
-		#endif
-	}
-	#else
-	{
-		//herror( "sockinetaddr::sockinetaddr -- Bad host name" );   
-		ASSERT( false );
-	}
-	#endif
+  jpeg_destroy(cinfo);
 
+  exit(EXIT_FAILURE);
 }
 
 
@@ -97,18 +84,33 @@ void jpeg_error_mgr::error_exit (j_common_ptr cinfo)
  * Actual output of an error or trace message.
  * Applications may override this method to send JPEG messages somewhere
  * other than stderr.
+ *
+ * On Windows, printing to stderr is generally completely useless,
+ * so we provide optional code to produce an error-dialog popup.
+ * Most Windows applications will still prefer to override this routine,
+ * but if they don't, it'll do something at least marginally useful.
+ *
+ * NOTE: to use the library in an environment that doesn't support the
+ * C stdio library, you may have to delete the call to fprintf() entirely,
+ * not just not use this routine.
  */
 
-void jpeg_error_mgr::output_message(j_common_ptr cinfo)
+METHODDEF(void)
+output_message (j_common_ptr cinfo)
 {
-#if 0
   char buffer[JMSG_LENGTH_MAX];
 
   /* Create the message */
-  format_message(cinfo, buffer);
+  (*cinfo->err->format_message) (cinfo, buffer);
 
-  TRACE( buffer );
-  #endif
+#ifdef USE_WINDOWS_MESSAGEBOX
+  /* Display it in a message dialog box */
+  MessageBox(GetActiveWindow(), buffer, "JPEG Library Error",
+	     MB_OK | MB_ICONERROR);
+#else
+  /* Send it to stderr, adding a newline */
+  fprintf(stderr, "%s\n", buffer);
+#endif
 }
 
 
@@ -123,25 +125,24 @@ void jpeg_error_mgr::output_message(j_common_ptr cinfo)
  * or change the policy about which messages to display.
  */
 
-void jpeg_error_mgr::emit_message (j_common_ptr cinfo, int msg_level)
+METHODDEF(void)
+emit_message (j_common_ptr cinfo, int msg_level)
 {
+  struct jpeg_error_mgr * err = cinfo->err;
 
-  if (msg_level < 0) 
-  {
+  if (msg_level < 0) {
     /* It's a warning message.  Since corrupt files may generate many warnings,
      * the policy implemented here is to show only the first warning,
      * unless trace_level >= 3.
      */
-    if (num_warnings == 0 || trace_level >= 3)
-      	output_message(cinfo);
+    if (err->num_warnings == 0 || err->trace_level >= 3)
+      (*err->output_message) (cinfo);
     /* Always count warnings in num_warnings. */
-    num_warnings++;
-  } 
-  else 
-  {
+    err->num_warnings++;
+  } else {
     /* It's a trace message.  Show it if trace_level >= msg_level. */
-    if (trace_level >= msg_level)
-      output_message(cinfo);
+    if (err->trace_level >= msg_level)
+      (*err->output_message) (cinfo);
   }
 }
 
@@ -153,30 +154,29 @@ void jpeg_error_mgr::emit_message (j_common_ptr cinfo, int msg_level)
  * Few applications should need to override this method.
  */
 
-void jpeg_error_mgr::format_message (j_common_ptr cinfo, char * buffer)
+METHODDEF(void)
+format_message (j_common_ptr cinfo, char * buffer)
 {
-#if 0	
-  int msg_code = msg_code;
+  struct jpeg_error_mgr * err = cinfo->err;
+  int msg_code = err->msg_code;
   const char * msgtext = NULL;
   const char * msgptr;
   char ch;
   boolean isstring;
 
   /* Look up message string in proper table */
-  if (msg_code > 0 && msg_code <= last_jpeg_message) 
-  {
-    msgtext = jpeg_message_table[msg_code];
-  } 
-  else if (addon_message_table != NULL &&
-	     msg_code >= first_addon_message &&
-	     msg_code <= last_addon_message) {
-    msgtext = addon_message_table[msg_code - first_addon_message];
+  if (msg_code > 0 && msg_code <= err->last_jpeg_message) {
+    msgtext = err->jpeg_message_table[msg_code];
+  } else if (err->addon_message_table != NULL &&
+	     msg_code >= err->first_addon_message &&
+	     msg_code <= err->last_addon_message) {
+    msgtext = err->addon_message_table[msg_code - err->first_addon_message];
   }
 
   /* Defend against bogus message number */
   if (msgtext == NULL) {
-    msg_parm.i[0] = msg_code;
-    msgtext = jpeg_message_table[0];
+    err->msg_parm.i[0] = msg_code;
+    msgtext = err->jpeg_message_table[0];
   }
 
   /* Check for string parameter, as indicated by %s in the message text */
@@ -191,14 +191,13 @@ void jpeg_error_mgr::format_message (j_common_ptr cinfo, char * buffer)
 
   /* Format the message into the passed buffer */
   if (isstring)
-    wsprintf(buffer, msgtext, msg_parm.s);
+    sprintf(buffer, msgtext, err->msg_parm.s);
   else
-    wsprintf(buffer, msgtext,
-	    msg_parm.i[0], msg_parm.i[1],
-	    msg_parm.i[2], msg_parm.i[3],
-	    msg_parm.i[4], msg_parm.i[5],
-	    msg_parm.i[6], msg_parm.i[7]);
-	#endif
+    sprintf(buffer, msgtext,
+	    err->msg_parm.i[0], err->msg_parm.i[1],
+	    err->msg_parm.i[2], err->msg_parm.i[3],
+	    err->msg_parm.i[4], err->msg_parm.i[5],
+	    err->msg_parm.i[6], err->msg_parm.i[7]);
 }
 
 
@@ -210,11 +209,12 @@ void jpeg_error_mgr::format_message (j_common_ptr cinfo, char * buffer)
  * this method if it has additional error processing state.
  */
 
-void jpeg_error_mgr::reset_error_mgr (j_common_ptr cinfo)
+METHODDEF(void)
+reset_error_mgr (j_common_ptr cinfo)
 {
-  num_warnings = 0;
+  cinfo->err->num_warnings = 0;
   /* trace_level is not reset since it is an application-supplied parameter */
-  msg_code = 0;	/* may be useful as a flag for "no error" */
+  cinfo->err->msg_code = 0;	/* may be useful as a flag for "no error" */
 }
 
 
@@ -228,24 +228,26 @@ void jpeg_error_mgr::reset_error_mgr (j_common_ptr cinfo)
  * after which the application may override some of the methods.
  */
 
-void jpeg_error_mgr::init_error_mgr()
+GLOBAL(struct jpeg_error_mgr *)
+jpeg_std_error (struct jpeg_error_mgr * err)
 {
-  trace_level = 0;		/* default = no tracing */
-  num_warnings = 0;	/* no warnings emitted yet */
-  msg_code = 0;		/* may be useful as a flag for "no error" */
+  err->error_exit = error_exit;
+  err->emit_message = emit_message;
+  err->output_message = output_message;
+  err->format_message = format_message;
+  err->reset_error_mgr = reset_error_mgr;
+
+  err->trace_level = 0;		/* default = no tracing */
+  err->num_warnings = 0;	/* no warnings emitted yet */
+  err->msg_code = 0;		/* may be useful as a flag for "no error" */
 
   /* Initialize message table pointers */
-  jpeg_message_table = jpeg_std_message_table;
-  last_jpeg_message = (int) JMSG_LASTMSGCODE - 1;
+  err->jpeg_message_table = jpeg_std_message_table;
+  err->last_jpeg_message = (int) JMSG_LASTMSGCODE - 1;
 
-  addon_message_table = NULL;
-  first_addon_message = 0;	/* for safety */
-  last_addon_message = 0;
-}
+  err->addon_message_table = NULL;
+  err->first_addon_message = 0;	/* for safety */
+  err->last_addon_message = 0;
 
-jpeg_error_mgr *ChJPEG::jpeg_std_error ( jpeg_error_mgr * err)
-{
-	err->init_error_mgr();
-
-  	return err;
+  return err;
 }

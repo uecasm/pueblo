@@ -45,6 +45,7 @@
 
 #include <ChImgUtil.h>
 #include <ChDibImage.h>
+#include "MemDebug.h"
 
 
 #ifdef USE_GLOBALALLOC
@@ -66,6 +67,196 @@
 
 #endif
 
+void ChDib::DrawInBuffer(CDC *pDC, int x, int y, HBRUSH hBrMask, ChDib& target)
+{
+		HDC  hDC  = pDC->GetSafeHdc();
+		HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
+
+		HBITMAP hBmpTmp = ::CreateDIBitmap( hDC, 
+										  &(target.GetBitmapInfoAddress()->bmiHeader),
+										  CBM_INIT,
+										  target.GetBitsAddress(),
+										  target.GetBitmapInfoAddress(),
+										  DIB_RGB_COLORS );
+
+		HBITMAP hOldBmp;
+		hOldBmp = (HBITMAP)::SelectObject( hDCTmp, hBmpTmp );
+	 
+		// Fill the Memdc with the mask color
+		if (hBrMask != NULL)
+		{
+			CRect rtFill( 0, 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth,
+								m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight );
+
+			::FillRect( hDCTmp, rtFill, hBrMask );
+		}
+	
+		::GetDIBits( hDCTmp, hBmpTmp, 0, 
+							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight, 
+							target.GetBitsAddress(), target.GetBitmapInfoAddress(),
+							DIB_RGB_COLORS );
+
+		::SelectObject( hDCTmp, hOldBmp );
+		::DeleteObject( hBmpTmp );
+		::DeleteDC( hDCTmp );
+}
+
+void ChDib::CreateBackgroundImage(CDC *pDC, int x, int y, COLORREF clrMask)
+{
+	m_pFrameList[m_iCurrentFrame].m_pMask = (void*)clrMask;
+
+	if (NULL == m_pFrameList[m_iCurrentFrame].m_pTransDib)
+	{
+		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
+	}
+	 
+	// create a DIB of the same size and NUM bits
+	int iColors = ChImgUtil::MaxDeviceColors();
+
+	m_pFrameList[m_iCurrentFrame].m_pTransDib->
+					Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
+							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
+						( iColors > 256 || iColors < 0 ) ? 24 :
+							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
+
+	if ( m_pFrameList[m_iCurrentFrame].
+				m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biBitCount <= 8 )
+	{	// set the color for the DIB
+		RGBQUAD * pClrTbl = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetClrTabAddress( 0 );
+
+		pClrTbl[0].rgbRed = GetRValue( clrMask );
+		pClrTbl[0].rgbGreen = GetGValue( clrMask );
+		pClrTbl[0].rgbBlue = GetBValue( clrMask );
+	}
+	else
+	{
+		HBRUSH hBrMask = ::CreateSolidBrush( clrMask );
+		DrawInBuffer(pDC, x, y, hBrMask, *m_pFrameList[m_iCurrentFrame].m_pTransDib);
+		::DeleteObject(hBrMask);
+	}
+}
+
+void ChDib::CreateBackgroundImage(CDC *pDC, int x, int y, CBrush *pbrMask)
+{
+	m_pFrameList[m_iCurrentFrame].m_pMask = pbrMask->GetSafeHandle();
+
+	if (NULL == m_pFrameList[m_iCurrentFrame].m_pTransDib)
+	{
+		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
+	}
+	 
+	// create a DIB of the same size and NUM bits
+	int iColors = ChImgUtil::MaxDeviceColors();
+	m_pFrameList[m_iCurrentFrame].m_pTransDib->
+				Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
+						 m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
+						( iColors > 256 || iColors < 0 ) ? 24 :
+						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
+
+	DrawInBuffer(pDC, x, y, *pbrMask, *m_pFrameList[m_iCurrentFrame].m_pTransDib);
+}
+
+void ChDib::CreateBackgroundImage(CDC *pDC, int x, int y, ChDib *pdibMask)
+{
+	m_pFrameList[m_iCurrentFrame].m_pMask = pdibMask;
+
+	if (NULL == m_pFrameList[m_iCurrentFrame].m_pTransDib)
+	{
+		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
+	}
+	 
+	// create a DIB of the same size and NUM bits
+	int iColors = ChImgUtil::MaxDeviceColors();
+	m_pFrameList[m_iCurrentFrame].m_pTransDib->
+				Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
+						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
+						( iColors > 256 || iColors < 0 ) ? 24 :
+						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
+
+	HDC  hDC  = pDC->GetSafeHdc();
+	HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
+
+	HBITMAP hBmpTmp = ::CreateDIBitmap( hDC, 
+									  &(m_pFrameList[m_iCurrentFrame].
+									  	m_pTransDib->GetBitmapInfoAddress()->bmiHeader),
+									  CBM_INIT,
+									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
+									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
+									  DIB_RGB_COLORS );
+
+	HBITMAP hOldBmp;
+
+	hOldBmp = (HBITMAP)::SelectObject( hDCTmp, hBmpTmp ); 
+
+	int xSrc = 0, 
+	ySrc = 0, 
+	dstWidth = pdibMask->GetWidth(), 
+	dstHeight = pdibMask->GetHeight();
+
+	if ( x < dstWidth && ( x + m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth() ) <= dstWidth )
+	{
+		xSrc = x;
+		dstWidth = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth(); 
+	}
+	else if ( dstWidth > m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth()  )
+	{
+		dstWidth = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth();
+	}
+
+	if ( y < dstHeight && ( y + m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight() ) <= dstHeight )
+	{
+		ySrc = y;
+		dstHeight = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight(); 
+	}
+	else if ( dstHeight > m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight()  )
+	{
+		dstHeight = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight();
+	}
+
+	HPALETTE hPalette = NULL;
+	if ( pdibMask->GetDIBPalette() )
+	{
+    CPalette *pPal = pdibMask->GetDIBPalette();
+		hPalette = (HPALETTE)pPal->GetSafeHandle();
+	}
+	if ( hPalette )
+	{
+		hPalette = ::SelectPalette( hDCTmp, hPalette, TRUE );
+		::RealizePalette( hDCTmp );
+	}
+
+  ::StretchDIBits( hDCTmp, 																													// Copy to tmp DC
+    				0,               																												// Destination x
+            0,               																												// Destination y
+            m_pFrameList[m_iCurrentFrame].
+              m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biWidth,								// Destination width
+            m_pFrameList[m_iCurrentFrame].
+              m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biHeight,							// Destination height
+            xSrc,                        																						// Source x
+            ySrc,                        																						// Source y
+            dstWidth,              																									// Destination width
+            dstWidth,             																									// Destination height
+						pdibMask->GetBitsAddress(),
+						pdibMask->GetBitmapInfoAddress(),
+						pdibMask->GetBitmapInfoAddress()->bmiHeader.biBitCount <= 8 ?
+						DIB_RGB_COLORS	 : 0,
+						SRCCOPY);
+
+	::GetDIBits( hDCTmp, hBmpTmp, 0, 
+						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight, 
+						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
+						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
+						DIB_RGB_COLORS );
+
+	if ( hPalette )
+	{
+		::SelectObject( hDCTmp, hPalette );
+	}
+
+	::SelectObject( hDCTmp, hOldBmp );
+	::DeleteObject( hBmpTmp );
+	::DeleteDC( hDCTmp );
+}
 
 // Draw the DIB to a given DC.
 void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans )
@@ -85,6 +276,7 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans )
 					m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
 					( iColors > 256 || iColors < 0 ) ? 24 :
 					m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
+
 
 	HDC  hDC  = pDC->GetSafeHdc();
 	HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
@@ -128,13 +320,11 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans )
 	::DeleteObject( hBmpTmp );
 	::DeleteDC( hDCTmp );
 
-
 	// copy the non-transperent bits
 	CopyBits(&osb, 0, 0, DibWidth(), DibHeight(), 0, 0, clrTrans );
 
 	// Draw the dib	
 	osb.Draw( pDC, x, y );	
-  
 }
 
 
@@ -163,76 +353,7 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans, COLORREF  clrMask )
 		
 	
 	SetTransparentColor( clrTrans );
-	m_pFrameList[m_iCurrentFrame].m_pMask 		 = (void*)clrMask;
-
-	if ( 0 == m_pFrameList[m_iCurrentFrame].m_pTransDib  )
-	{
-		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
-	}
-	 
-	// create a DIB of the same size and NUM bits
-	int iColors = ChImgUtil::MaxDeviceColors();
-
-	m_pFrameList[m_iCurrentFrame].m_pTransDib->
-					Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
-							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
-						( iColors > 256 || iColors < 0 ) ? 24 :
-							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
-
-	if ( m_pFrameList[m_iCurrentFrame].
-				m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biBitCount <= 8 )
-	{	// set the color for the DIB
-		RGBQUAD * pClrTbl = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetClrTabAddress( 0 );
-
-		pClrTbl[0].rgbRed = GetRValue( clrMask );
-		pClrTbl[0].rgbGreen = GetGValue( clrMask );
-		pClrTbl[0].rgbBlue = GetBValue( clrMask );
-
-	}
-	else
-	{
-		HDC  hDC  = pDC->GetSafeHdc();
-		HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
-
-
-		HBITMAP hBmpTmp = ::CreateDIBitmap( hDC, 
-										  &(m_pFrameList[m_iCurrentFrame].
-										  m_pTransDib->GetBitmapInfoAddress()->bmiHeader),
-										  CBM_INIT,
-										  m_pFrameList[m_iCurrentFrame].
-										  	m_pTransDib->GetBitsAddress(),
-										  m_pFrameList[m_iCurrentFrame].
-										  	m_pTransDib->GetBitmapInfoAddress(),
-										  DIB_RGB_COLORS );
-
-		HBITMAP hOldBmp;
-
-		hOldBmp = (HBITMAP)::SelectObject( hDCTmp, hBmpTmp );
-	 
-
-		// Fill the Memdc with the mask color
-
-		HBRUSH hBrMask = ::CreateSolidBrush( clrMask );
-
-		CRect rtFill( 0, 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth,
-							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight );
-
-
-		::FillRect( hDCTmp, rtFill, hBrMask );
-	
-		::DeleteObject( hBrMask );  
-
-		::GetDIBits( hDCTmp, hBmpTmp, 0, 
-							m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight, 
-							m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
-							m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
-							DIB_RGB_COLORS );
-
-		::SelectObject( hDCTmp, hOldBmp );
-		::DeleteObject( hBmpTmp );
-		::DeleteDC( hDCTmp );
-	}
-
+	CreateBackgroundImage(pDC, x, y, clrMask);
 
 	// copy the non-transperent bits
 	CopyBits( m_pFrameList[m_iCurrentFrame].m_pTransDib, 
@@ -268,56 +389,7 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans, CBrush*  pbrMask )
 		
 	
 	SetTransparentColor( clrTrans );
-	m_pFrameList[m_iCurrentFrame].m_pMask 		 = pbrMask->GetSafeHandle();
-
-	if ( 0 == m_pFrameList[m_iCurrentFrame].m_pTransDib  )
-	{
-		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
-	}
-	 
-	// create a DIB of the same size and NUM bits
-	int iColors = ChImgUtil::MaxDeviceColors();
-	m_pFrameList[m_iCurrentFrame].m_pTransDib->
-				Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
-						 m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
-						( iColors > 256 || iColors < 0 ) ? 24 :
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
-
-
-	HDC  hDC  = pDC->GetSafeHdc();
-	HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
-
-
-	HBITMAP hBmpTmp = ::CreateDIBitmap( hDC, 
-									  &(m_pFrameList[m_iCurrentFrame].
-									  	m_pTransDib->GetBitmapInfoAddress()->bmiHeader),
-									  CBM_INIT,
-									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
-									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
-									  DIB_RGB_COLORS );
-
-	HBITMAP hOldBmp;
-
-	hOldBmp = (HBITMAP)::SelectObject( hDCTmp, hBmpTmp ); 
-
-	// Fill the Memdc with the mask color
-
-	CRect rtFill( 0, 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth,
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight );
-
-	::FillRect( hDCTmp, rtFill, (HBRUSH)pbrMask->GetSafeHandle() );
-	
-
-	::GetDIBits( hDCTmp, hBmpTmp, 0, 
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight, 
-						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
-						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
-						DIB_RGB_COLORS );
-
-	::SelectObject( hDCTmp, hOldBmp );
-	::DeleteObject( hBmpTmp );
-	::DeleteDC( hDCTmp );
-
+	CreateBackgroundImage(pDC, x, y, pbrMask);
 
 	// copy the non-transperent bits
 	CopyBits( m_pFrameList[m_iCurrentFrame].m_pTransDib, 
@@ -349,118 +421,8 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans, ChDib* pdibMask )
 		return;
 	}
 		
-	
 	SetTransparentColor( clrTrans );
-	m_pFrameList[m_iCurrentFrame].m_pMask = pdibMask;
-
-	if ( 0 == m_pFrameList[m_iCurrentFrame].m_pTransDib  )
-	{
-		m_pFrameList[m_iCurrentFrame].m_pTransDib = new ChDib;		
-	}
-	 
-	// create a DIB of the same size and NUM bits
-	int iColors = ChImgUtil::MaxDeviceColors();
-	m_pFrameList[m_iCurrentFrame].
-			m_pTransDib->Create( 0, m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biWidth, 
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight,
-						( iColors > 256 || iColors < 0 ) ? 24 :
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biBitCount );
-
-
-	HDC  hDC  = pDC->GetSafeHdc();
-	HDC  hDCTmp	= ::CreateCompatibleDC( hDC );
-
-
-	HBITMAP hBmpTmp = ::CreateDIBitmap( hDC, 
-									  &(m_pFrameList[m_iCurrentFrame].
-									  	m_pTransDib->GetBitmapInfoAddress()->bmiHeader),
-									  CBM_INIT,
-									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
-									  m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
-									  DIB_RGB_COLORS );
-
-	HBITMAP hOldBmp;
-
-	hOldBmp = (HBITMAP)::SelectObject( hDCTmp, hBmpTmp ); 
-
-	int xSrc = 0, 
-	ySrc = 0, 
-	dstWidth = pdibMask->GetWidth(), 
-	dstHeight = pdibMask->GetHeight();
-
-	if ( x  < dstWidth && ( x + m_pFrameList[m_iCurrentFrame].
-								m_pTransDib->GetWidth() ) <= dstWidth )
-	{
-		xSrc = x;
-		dstWidth = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth(); 
-	}
-	else if ( dstWidth > m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth()  )
-	{
-		dstWidth = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetWidth();
-	}
-
-	if ( y  < dstHeight && ( y + m_pFrameList[m_iCurrentFrame].
-						m_pTransDib->GetHeight() ) <= dstHeight )
-	{
-		ySrc = y;
-		dstHeight = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight(); 
-	}
-	else if ( dstHeight > m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight()  )
-	{
-		dstHeight = m_pFrameList[m_iCurrentFrame].m_pTransDib->GetHeight();
-	}
-
-	HPALETTE hPalette = 0;
-
-	if ( pdibMask->GetDIBPalette() )
-	{
-    	CPalette *pPal = pdibMask->GetDIBPalette();
-		hPalette = (HPALETTE)pPal->GetSafeHandle();
-	}
-
-	if ( hPalette )
-	{
-
-		hPalette = ::SelectPalette( hDCTmp,  hPalette, true );
-		::RealizePalette( hDCTmp );
-	}
-
-    ::StretchDIBits( hDCTmp, 								// Copy to tmp DC
-    				0,               						// Destination x
-                    0,               						// Destination y
-                    m_pFrameList[m_iCurrentFrame].
-                    	m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biWidth,              // Destination width
-                    m_pFrameList[m_iCurrentFrame].
-                    	m_pTransDib->GetBitmapInfoAddress()->bmiHeader.biHeight,             // Destination height
-                    xSrc,                        				// Source x
-                    ySrc,                        				// Source y
-                    dstWidth,              				// Destination width
-                    dstWidth,             				// Destination height
-					pdibMask->GetBitsAddress(),
-					pdibMask->GetBitmapInfoAddress(),
-					pdibMask->GetBitmapInfoAddress()->bmiHeader.biBitCount <= 8 ?
-										DIB_RGB_COLORS	 : 0,
-					SRCCOPY);
-
-
-
-	::GetDIBits( hDCTmp, hBmpTmp, 0, 
-						m_pFrameList[m_iCurrentFrame].m_pBMI->bmiHeader.biHeight, 
-						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitsAddress(),
-						m_pFrameList[m_iCurrentFrame].m_pTransDib->GetBitmapInfoAddress(),
-						DIB_RGB_COLORS );
-
-	if ( hPalette )
-	{
-		::SelectObject( hDCTmp, hPalette );
-	}
-
-
-
-	::SelectObject( hDCTmp, hOldBmp );
-	::DeleteObject( hBmpTmp );
-	::DeleteDC( hDCTmp );
-
+	CreateBackgroundImage(pDC, x, y, pdibMask);
 
 	// copy the non-transperent bits
 	CopyBits( m_pFrameList[m_iCurrentFrame].m_pTransDib, 0, 0, DibWidth(), DibHeight(), 0, 0, GetTransparentColor() );
@@ -470,3 +432,6 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans, ChDib* pdibMask )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:15  uecasm
+// Import of source tree as at version 2.53 release.
+//

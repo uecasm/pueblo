@@ -1462,6 +1462,8 @@ bool ChTxtWnd::LogToFile( const char* pstrBuffer, chint32 lCount )
 				// replace objects with new lines in text mode
 				if ( m_iLogIndex < logBufferSize - 1 )
 				{
+					// TODO: if a UNIX version ever happens, this is where to strip the redundant \r from
+					//       (see note in WriteFile below).
 					m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\r' );
 					m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\n' );
 				}
@@ -1470,7 +1472,7 @@ bool ChTxtWnd::LogToFile( const char* pstrBuffer, chint32 lCount )
 
 					long iPos = GetLogFile()->tellp();
 
-					if ( iPos == WriteLogFile( m_iLogIndex, true ) )
+					if ( iPos == WriteLogFile( m_iLogIndex, false ) )		//true ) )
 					{	// unable to write to log file
 						CloseFile();
 						return false;
@@ -1483,6 +1485,8 @@ bool ChTxtWnd::LogToFile( const char* pstrBuffer, chint32 lCount )
 			{
 				if ( m_iLogIndex < logBufferSize - 1 )
 				{
+					// TODO: if a UNIX version ever happens, this is where to strip the redundant \r from
+					//       (see note in WriteFile below).
 					m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\r' );
 					m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\n' );
 				}
@@ -1501,6 +1505,8 @@ bool ChTxtWnd::LogToFile( const char* pstrBuffer, chint32 lCount )
 
 					if ( writeHTML & m_luLogOptions )
 					{
+						// TODO: if a UNIX version ever happens, this is where to strip the redundant \r from
+						//       (see note in WriteFile below).
 						m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\r' );
 						m_pstrLogBuffer[m_iLogIndex++] = TEXT( '\n' );
 					}
@@ -1530,68 +1536,68 @@ bool ChTxtWnd::LogToFile( const char* pstrBuffer, chint32 lCount )
 				else
 				{
 
-					int iLast = m_iLogIndex - 1;
+					//int iLast = m_iLogIndex - 1;
 
-					while( iLast && m_pstrLogBuffer[iLast] !=  TEXT( '\n' ) )
-					{
-						iLast--;
-					}
+					//while( iLast && m_pstrLogBuffer[iLast] !=  TEXT( '\n' ) )
+					//{
+					//	iLast--;
+					//}
 
 
-					if ( iLast )
-					{
-						iLast++;
-						if ( iPos == WriteLogFile( iLast ) )
-						{	// unable to write to log file
-							CloseFile();
-							return false;
-						}
-						if ( (m_iLogIndex - iLast) > 0 )
-						{
-							ChMemCopy( m_pstrLogBuffer, &m_pstrLogBuffer[ iLast ], m_iLogIndex - iLast );
-							m_iLogIndex = m_iLogIndex - iLast;
-						}
-						else
-						{
-							m_iLogIndex = 0;
-						}
-					}
-					else
-					{	// no new line break the char at the first white space
-						iLast = m_iLogIndex - 1;
-						while( iLast && m_pstrLogBuffer[iLast] != TEXT( ' ' ) )
-						{
-							iLast--;
-						}
-						if ( iLast )
-						{
-							iLast++;
-							if ( iPos == WriteLogFile( iLast, true ) )
+					//if ( iLast )
+					//{
+					//	iLast++;
+					//	if ( iPos == WriteLogFile( iLast ) )
+					//	{	// unable to write to log file
+					//		CloseFile();
+					//		return false;
+					//	}
+					//	if ( (m_iLogIndex - iLast) > 0 )
+					//	{
+					//		ChMemCopy( m_pstrLogBuffer, &m_pstrLogBuffer[ iLast ], m_iLogIndex - iLast );
+					//		m_iLogIndex = m_iLogIndex - iLast;
+					//	}
+					//	else
+					//	{
+					//		m_iLogIndex = 0;
+					//	}
+					//}
+					//else
+					//{	// no new line break the char at the first white space
+					//	iLast = m_iLogIndex - 1;
+					//	while( iLast && m_pstrLogBuffer[iLast] != TEXT( ' ' ) )
+					//	{
+					//		iLast--;
+					//	}
+					//	if ( iLast )
+					//	{
+					//		iLast++;
+					//		if ( iPos == WriteLogFile( iLast, true ) )
+					//		{	// unable to write to log file
+					//			CloseFile();
+					//			return false;
+					//		}
+
+					//		if ( (m_iLogIndex - iLast) > 0 )
+					//		{
+					//			ChMemCopy( m_pstrLogBuffer, &m_pstrLogBuffer[ iLast ], m_iLogIndex - iLast );
+					//			m_iLogIndex = m_iLogIndex - iLast;
+					//		}
+					//		else
+					//		{
+					//			m_iLogIndex = 0;
+					//		}
+					//	}
+					//	else
+					//	{	// no space write the complete line
+							if ( iPos == WriteLogFile( m_iLogIndex, false ) )		//true ) )
 							{	// unable to write to log file
 								CloseFile();
 								return false;
 							}
-
-							if ( (m_iLogIndex - iLast) > 0 )
-							{
-								ChMemCopy( m_pstrLogBuffer, &m_pstrLogBuffer[ iLast ], m_iLogIndex - iLast );
-								m_iLogIndex = m_iLogIndex - iLast;
-							}
-							else
-							{
-								m_iLogIndex = 0;
-							}
-						}
-						else
-						{	// no space write the complete line
-							if ( iPos == WriteLogFile( m_iLogIndex, true ) )
-							{	// unable to write to log file
-								CloseFile();
-								return false;
-							}
 							m_iLogIndex = 0;
-						}
-					}
+					//	}
+					//}
 				}
 				// copy the char
 				m_pstrLogBuffer[m_iLogIndex++] = pstrBuffer[iIndex - 1];
@@ -3436,3 +3442,6 @@ void ChTxtWnd::OnLButtonUp( chuint32 nFlags, ChPoint& point )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:55  uecasm
+// Import of source tree as at version 2.53 release.
+//

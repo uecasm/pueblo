@@ -48,6 +48,7 @@
 #include <ChArgList.h>
 #include <ChUrlMap.h>
 #include "ChWorldCmdline.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -283,3 +284,6 @@ void ChWorldCmdLine::SetWorld( const ChString& strWorldName,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:32  uecasm
+// Import of source tree as at version 2.53 release.
+//

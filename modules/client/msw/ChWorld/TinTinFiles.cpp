@@ -53,6 +53,7 @@
 #include <fstream>
 
 #include "TinTin.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -392,3 +393,6 @@ void TinTin::FormatCommand( const ChString& strCommand, const ChString& strLeft,
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:38  uecasm
+// Import of source tree as at version 2.53 release.
+//

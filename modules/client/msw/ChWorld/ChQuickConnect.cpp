@@ -51,6 +51,7 @@
 
 #include "ChWorld.h"
 #include "ChQuickConnect.h"
+#include "MemDebug.h"
 
 #ifdef _DEBUG
 	#undef THIS_FILE
@@ -194,3 +195,6 @@ void ChQuickConnect::OnChangeListPort()
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:10  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -633,9 +633,10 @@ bool ChHtmlView::DisplayFile( const char* pstrFile,	const char* pstrMimeType /* 
 			//boolSuccess = DisplayHtmlFile( pstrFile, flOptions, strURL );
 			break;
 		}
-		case ChHTTPConn::typeGIF:
+		case ChHTTPConn::typeGIF :
 		case ChHTTPConn::typeJPEG:
 		case ChHTTPConn::typeBMP :
+		case ChHTTPConn::typeNG  :
 		{  // Handle files which contain only image
 
 			ChDib *pDib = GetFrameMgr()->LoadDIB( strDocMime, pstrFile );
@@ -980,6 +981,7 @@ void ChHtmlView::LoadBkPattern( const ChString& strURL )
 void ChHtmlView::LoadInlineImage( const ChString& strURL, ChObjInline *pInLine )
 {
 	ChString strFile, strMimeType;
+
 	if ( GetFrameMgr()->GetHTTPConn()->
 			GetCachedURL( strURL, strFile, strMimeType, 0, 
 					ChHTTPConn::returnVisited ) )
@@ -1014,12 +1016,22 @@ void ChHtmlView::LoadInlineImage( const ChString& strURL, ChObjInline *pInLine )
 			}
 			else
 			{ // display broken image
+				if (pInLine->GetType() == ChTextObject::objectImage)
+				{
+					pInLine->CreateBrokenImagePlaceholder();
+				}
 			}
 		}
 	}
 	else
 	{
 		ChHtmlInlineReq* pInfo = new ChHtmlInlineReq( this, pInLine );
+
+		// UE: create placeholder image for now
+		if (pInLine->GetType() == ChTextObject::objectImage)
+		{
+			pInLine->CreateImagePlaceholder();
+		}
 
 		GetFrameMgr()->LoadURL( strURL, pInfo );
 	}
@@ -1145,3 +1157,6 @@ void ChHtmlView::ChangeCursor(tagCursors newCursor) {
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:12  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -13,6 +13,7 @@
 #include "headers.h"
 #include <ChUnzip.h>
 //#include "crypt.h"
+#include "MemDebug.h"
 
 
 //int newfile;      /* used also in file_io.c (flush()) */
@@ -1289,3 +1290,6 @@ int ChUnzip::memextract(uch *tgt, ulg tgtsize, uch *src, ulg srcsize)   /* extra
 } /* end function memextract() */
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:56:26  uecasm
+// Import of source tree as at version 2.53 release.
+//

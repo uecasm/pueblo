@@ -24,6 +24,7 @@ LINK32_OBJS= \
 	ChConnectDlg.obj \
 	ChHist.obj \
 	ChKeyMapType.obj \
+	ChMCCP.obj \
 	ChPrefsNotify.obj \
 	ChPrefsWorld.obj \
 	ChQuickConnect.obj \
@@ -40,7 +41,7 @@ LINK32_OBJS= \
 	ChWorldStream.obj \
 	Dll.obj
 
-LIBS=$(LIB_API) $(LIB_APIUTIL) $(INTDIR)\TinTin.lib
+LIBS=$(LIB_API) $(LIB_APIUTIL) $(INTDIR)\TinTin.lib $(LIB_MNG)
 
 $(OUTDIR)\modules\ChWorld.dll : $(DEF_FILE) $(RES_FILE) $(LIBS) $(LINK32_OBJS)
     $(LINK32) @&&|

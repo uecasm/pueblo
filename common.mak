@@ -20,6 +20,7 @@ CCBIN=$(MAKEDIR)
 CCROOT=$(CCBIN)\..
 MFCINCLUDE=$(CCROOT)\Include\MFC
 MFCLIB=
+MNGINCLUDE=$(PROJROOT)\libmng;$(PROJROOT)\zlib;$(PROJROOT)\jpgsrc6b;$(PROJROOT)\lcms\include
 
 !IF $(DEBUG) == 0
 OUTDIR=$(PROJROOT)\release
@@ -31,12 +32,13 @@ INTDIR=debug
 .path.i=$(INTDIR)
 .path.obj=$(INTDIR)
 .path.res=$(INTDIR)
-INCLUDE=$(PROJROOT)\Include;$(MFCINCLUDE);$(CCROOT)\Include
+INCLUDE=$(PROJROOT)\Include;$(MNGINCLUDE);$(MFCINCLUDE);$(CCROOT)\Include
 LIB=$(MFCLIB);$(CCROOT)\Lib
 
 # Compilation tools
 CPP=$(CCBIN)\bcc32.exe
 CPPPP=$(CCBIN)\cpp32.exe
+ASM=$(CCBIN)\tasm32.exe
 LIB32=$(CCBIN)\tlib.exe
 RSC=$(CCBIN)\brcc32.exe
 LINK32=$(CCBIN)\ilink32.exe
@@ -103,3 +105,4 @@ BFC=bfcs42 bfc42
 
 LIB_API=$(OUTDIR)\Pueblo32.lib
 LIB_APIUTIL=$(OUTDIR)\PbUtil32.lib
+LIB_MNG=$(OUTDIR)\libmng.lib

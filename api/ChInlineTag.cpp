@@ -216,6 +216,7 @@ void ChImgTag::ProcessArguments( pChArgList pList, int iArgCount )
 				{
 					pImage = new ChInlineImageData;
 					ASSERT( pImage );
+
 					// Insert it to our list
 					GetHtmlView()->GetImageList().Insert( urlParts.GetURL(), pImage );
 				}
@@ -245,8 +246,7 @@ void ChImgTag::ProcessArguments( pChArgList pList, int iArgCount )
 				// Load it only if it is the first request
 				if ( ppData == 0 )
 				{
-					m_pParser->LoadInline( urlParts.GetURL(),
-										pObjImg );
+					m_pParser->LoadInline( urlParts.GetURL(), pObjImg );
 				}
 			}
 		}
@@ -892,58 +892,61 @@ chint32 ChLineItemTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chint
 
 	return ChBodyElements::ProcessTag( pstrBuffer, lStart, lCount );
 
-	#if 0
+	//#if 0
 
-	// get the text into our buffer
-	while ( lStart < lCount )
-	{
-		if ( !IS_NEW_TAG( pstrBuffer[lStart] ) )
-		{
-			char strChar = pstrBuffer[lStart++];
-			if ( !(strChar== TEXT( '\r' ) || strChar == TEXT( '\n' )) )
-			{ 
+	//// get the text into our buffer
+	//while ( lStart < lCount )
+	//{
+	//	if ( !IS_NEW_TAG( pstrBuffer[lStart] ) )
+	//	{
+	//		char strChar = pstrBuffer[lStart++];
+	//		if ( !(strChar== TEXT( '\r' ) || strChar == TEXT( '\n' )) )
+	//		{ 
 
-				if ( strChar == TEXT( '&' ) )
-				{
-					if ( m_pParser->MapEntityToChar( pstrBuffer, 
-													--lStart, lCount, strChar ) )
-					{
-						m_pParser->AppendChar( strChar  );
-					}
-				}
-				else
-				{
-					m_pParser->AppendChar( strChar  );
-				}
+	//			if ( strChar == TEXT( '&' ) )
+	//			{
+	//				if ( m_pParser->MapEntityToChar( pstrBuffer, 
+	//												--lStart, lCount, strChar ) )
+	//				{
+	//					m_pParser->AppendChar( strChar  );
+	//				}
+	//			}
+	//			else
+	//			{
+	//				m_pParser->AppendChar( strChar  );
+	//			}
 
-			}
-			else if ( ( strChar == TEXT( '\r' ) ||  strChar == TEXT( '\n' ) )
-									&& m_pParser->GetLastChar() != TEXT( ' ' )  )
-			{
-				m_pParser->AppendChar( TEXT( ' ' ) );
-				// skip till the next non-white space
-				if( !(m_pParser->GetTextStyle()->GetStyle() & ChTxtWnd::textPreFormat) )
-				{
-					while ( lStart < lCount && IS_WHITE_SPACE( pstrBuffer[lStart] ) )
-					{
-						lStart++;
-					}
-				}
-			}
-		}
-		else
-		{
-			if ( m_pParser->BreakTag( pstrBuffer, lStart, lCount ) )
-			{ 
-				break;
-			}
-		}
-	}
+	//		}
+	//		else if ( ( strChar == TEXT( '\r' ) ||  strChar == TEXT( '\n' ) )
+	//								&& m_pParser->GetLastChar() != TEXT( ' ' )  )
+	//		{
+	//			m_pParser->AppendChar( TEXT( ' ' ) );
+	//			// skip till the next non-white space
+	//			if( !(m_pParser->GetTextStyle()->GetStyle() & ChTxtWnd::textPreFormat) )
+	//			{
+	//				while ( lStart < lCount && IS_WHITE_SPACE( pstrBuffer[lStart] ) )
+	//				{
+	//					lStart++;
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if ( m_pParser->BreakTag( pstrBuffer, lStart, lCount ) )
+	//		{ 
+	//			break;
+	//		}
+	//	}
+	//}
 
 
-	return lStart;			
-	#endif
+	//return lStart;			
+	//#endif
 
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:23  uecasm
+// Import of source tree as at version 2.53 release.
+//

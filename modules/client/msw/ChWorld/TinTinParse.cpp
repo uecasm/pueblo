@@ -54,6 +54,7 @@
 
 #include "TinTin.h"
 #include "World.h"
+#include "MemDebug.h"
 
 
 /*----------------------------------------------------------------------------
@@ -1019,3 +1020,6 @@ const char* TinTin::SpaceOut( const char* pstrText )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:40  uecasm
+// Import of source tree as at version 2.53 release.
+//

@@ -33,9 +33,16 @@
 
 					Wrote and designed original codebase.
 
+		 Ultra Enterprises:  Gavin Lambert
+
+		      Fixed the TEXTAREA tag so that it preserves all
+					internal whitespace (instead of stripping it), and
+					will correctly append new incoming text into the
+					field rather than replacing what was there before.
+
 ------------------------------------------------------------------------------
 
-	This file contains the implementation all body elements.
+	This file contains the implementation for all form elements.
 
 ----------------------------------------------------------------------------*/
 
@@ -360,7 +367,8 @@ chint32 ChFormSelectTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chi
 ChFormTextAreaTag::ChFormTextAreaTag(  ChHtmlParser *pParser ) : ChHtmlTag(  pParser )
 {
 	m_iTokenID = HTML_TEXTAREA;
-	m_luAttrs = attrSaveState | attrHasArguments | attrCallProcessTag | attrTrimRight;
+	m_luAttrs = attrSaveState | attrHasArguments | attrCallProcessTag | attrParseWhiteSpace;	//attrTrimRight;
+	// UE: we want to preserve internal whitespace, not trim it off!
 }
 
 void ChFormTextAreaTag::ProcessArguments( pChArgList pList, int iArgCount )
@@ -417,11 +425,11 @@ chint32 ChFormTextAreaTag::ProcessTag( const char* pstrBuffer, chint32 lStart, c
 	}
 
 
-	// skip all white space after the tag
-	while ( lStart < lCount && 	IS_WHITE_SPACE( pstrBuffer[lStart] ) )
-	{
-		lStart++;
-	}
+	//// skip all white space after the tag  (UE: no, don't, that's a bad idea!)
+	//while ( lStart < lCount && 	IS_WHITE_SPACE( pstrBuffer[lStart] ) )
+	//{
+	//	lStart++;
+	//}
 
 	while (lStart < lCount)
 	{
@@ -497,10 +505,11 @@ chint32 ChFormTextAreaTag::ProcessTag( const char* pstrBuffer, chint32 lStart, c
 	{
 		int		i = m_pParser->GetBufferIndex() - 1;
 
-		while((i >= 0) && (m_pParser->GetBuffer()[ i ] == TEXT( ' ' )))
-		{
-			i--;
-		}
+		// UE: don't skip whitespace inside the tag, it's just WRONG!
+		//while((i >= 0) && (m_pParser->GetBuffer()[ i ] == TEXT( ' ' )))
+		//{
+		//	i--;
+		//}
 		m_pParser->GetBuffer()[ i + 1 ] = 0;
 
 		ChHTMLForm*		pForm = GetHtmlView()->GetCurrentForm();
@@ -519,8 +528,13 @@ chint32 ChFormTextAreaTag::ProcessTag( const char* pstrBuffer, chint32 lStart, c
 				if (pInfo->iType == TYPE_MULTILINETEXT )
 				{
 					ChFrmEtxt*		pEtxt = (ChFrmEtxt*)pInfo->pWnd;
+					ChString			strText;
 
-					pEtxt->SetWindowText( m_pParser->GetBuffer() );
+					// UE: append new text to existing text (when the text hasn't
+					//     all arrived in a single packet)
+					pEtxt->GetWindowText(strText);
+					strText += m_pParser->GetBuffer();
+					pEtxt->SetWindowText(strText);
 				}
 			}
 			#endif
@@ -826,3 +840,6 @@ chint32 ChFormOptionTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chi
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:02  uecasm
+// Import of source tree as at version 2.53 release.
+//

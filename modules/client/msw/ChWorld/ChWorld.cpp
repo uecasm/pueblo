@@ -107,9 +107,8 @@
 
 #endif	// defined( CH_MSW )
 
+#include "MemDebug.h"
 
-//#define DebugBox(msg)	::MessageBox(0, msg, "Debug", MB_OK|MB_ICONINFORMATION)
-#define DebugBox(msg)
 
 /*----------------------------------------------------------------------------
 	Constants
@@ -459,7 +458,11 @@ void ChWorldMainInfo::DisplayWorldList()
 
 void ChWorldMainInfo::Send( const ChString& strText, bool boolEcho )
 {
-	GetWorldConnection()->SendWorldCommand( strText, boolEcho );
+	ChWorldConn *connection = GetWorldConnection();
+	if(connection != NULL)
+	{
+		connection->SendWorldCommand( strText, boolEcho );
+	}
 }
 
 
@@ -1534,7 +1537,8 @@ void ChWorldMainInfo::UpdatePreferences()
 							m_boolPauseOnDisconnect, true );
 	worldPrefsReg.ReadBool( WORLD_PREFS_PAUSE_INLINE,
 							m_boolPauseInline, true );
-	worldPrefsReg.ReadBool( WORLD_PREFS_NOTIFY, m_boolNotify, true );
+	worldPrefsReg.ReadBool( WORLD_PREFS_NOTIFY_INACTIVE, m_boolNotifyInactive, true );
+	worldPrefsReg.ReadBool( WORLD_PREFS_NOTIFY_FLASH, m_boolNotifyFlash, true );
 	worldPrefsReg.ReadBool( WORLD_PREFS_NOTIFY_ALERT, m_boolNotifyAlert,
 							false );
 	worldPrefsReg.Read( WORLD_PREFS_NOTIFY_STR, m_strNotifyMatch, "" );
@@ -1588,8 +1592,7 @@ bool ChWorldMainInfo::WantTextLines()
 {
 	bool	boolWantLines;
 
-	boolWantLines = GetCore()->GetFrameWnd()->IsIconic() &&
-					(GetNotify() || GetNotifyAlert());
+	boolWantLines = (GetNotifyFlash() || GetNotifyAlert());
 
 	boolWantLines = boolWantLines ||
 					(GetTinTin()->IsActionsDefined() &&
@@ -1604,7 +1607,7 @@ void ChWorldMainInfo::OnTextLine( const ChString& strLine )
 											/* If the user wants notification,
 												then check to see if it's
 												appropriate */
-	if (GetNotify() || GetNotifyAlert())
+	if (GetNotifyFlash() || GetNotifyAlert())
 	{
 		LookForNotify( strLine );
 	}
@@ -1620,20 +1623,25 @@ void ChWorldMainInfo::LookForNotify( const ChString& strLine ) const
 {
 	ChCore*		pCore = GetCore();
 	bool		boolIconic;
+	bool		boolInactive;
 
 	#if defined( CH_MSW )
 	{
 		boolIconic = (pCore->GetFrameWnd()->IsIconic() != FALSE);
+		boolInactive = (pCore->GetFrameWnd()->IsTopParentActive() == FALSE);
 	}
 	#else	// defined( CH_MSW )
 	{
 		TRACE( "ChWorldMainInfo::LookForNotify : "
-				"Need to confirm if app is iconic" );
+				"Need to confirm if app is iconic\n" );
 		boolIconic = false;
+		boolInactive = false;
 	}
 	#endif	// defined( CH_MSW )
 
-	if (boolIconic && !pCore->IsFlashWindow())
+	bool boolShouldNotify = boolIconic || (GetNotifyInactive() && boolInactive);
+
+	if (boolShouldNotify && !pCore->IsFlashWindow())
 	{
 											/* Do this only if we haven't
 												already notified the user */
@@ -1654,7 +1662,7 @@ void ChWorldMainInfo::LookForNotify( const ChString& strLine ) const
 
 		if (boolMatch)
 		{
-			if (GetNotify())
+			if (GetNotifyFlash())
 			{
 				pCore->EnableFlashWindow();
 			}
@@ -1800,7 +1808,7 @@ void ChWorldMainInfo::OnInvalidWorld( const ChString& strReason )
 	}
 	#elif defined( CH_UNIX )
 	{
-		TRACE( "ChWorldMainInfo::OnInvalidWorld : Need message box" );
+		TRACE( "ChWorldMainInfo::OnInvalidWorld : Need message box\n" );
 	}
 	#else
 	{
@@ -2590,6 +2598,12 @@ void ChWorldMainInfo::AddURLToList( const ChString& strURL )
 		strAbsURL = parts.GetURL();
 	}
 
+	if (strAbsURL.IsEmpty())
+	{
+		// UE: weird stuff was a-happenin'
+		strAbsURL = strURL;
+	}
+
 	ASSERT( !strAbsURL.IsEmpty() );
 
 	pstrCopy = new ChString( strAbsURL );
@@ -2876,9 +2890,9 @@ ChMain
 
 		case CH_MSG_TERM:
 		{
-			DebugBox("WORLD: Entering TERM");
+			TRACE("WORLD: Entering TERM\n");
 			delete pMainInfo;
-			DebugBox("WORLD: Deleted info");
+			TRACE("WORLD: Deleted info\n");
 			break;
 		}
 	}
@@ -2891,17 +2905,9 @@ ChMain
 	Chaco socket handler
 ----------------------------------------------------------------------------*/
 
-#ifdef _DEBUG
-extern "C" __declspec(dllimport) int __cdecl _CrtCheckMemory();
-#endif
-
 CH_IMPLEMENT_SOCKET_HANDLER( worldSocketHandler )
 {
 	ChWorldMainInfo*	pInfo = (ChWorldMainInfo*)socket.GetUserData();
-
-#ifdef _DEBUG
-	_CrtCheckMemory();
-#endif
 
 	switch( luEvent )
 	{
@@ -3131,7 +3137,7 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldGetPageCountHandler )
 		{
 			case pagePreferences:
 			{
-				iPageCount = 3;
+				iPageCount = 4;
 				break;
 			}
 
@@ -3171,29 +3177,32 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldGetPagesHandler )
 	{
 		case pagePreferences:
 		{
-			ASSERT( 3 == sCount );
+			ASSERT( 4 == sCount );
 
 			#if defined( CH_MSW )
 			{
 				ChWorldPrefsPage*		pWorldPage;
 				ChTextInputPrefsPage*	pTextInputPage;
+				ChProtocolPrefsPage*	pProtocolPage;
 				ChNotifyPrefsPage*		pNotifyPage;
 
 											// Create the pages
 
 				pWorldPage = new ChWorldPrefsPage;
 				pTextInputPage = new ChTextInputPrefsPage;
+				pProtocolPage = new ChProtocolPrefsPage;
 				pNotifyPage = new ChNotifyPrefsPage;
 
 											// Set initial data
 
-				pNotifyPage->Set( pInfo->GetNotify(), pInfo->GetNotifyAlert(),
-									pInfo->GetNotifyMatch() );
+				pNotifyPage->Set( pInfo->GetNotifyInactive(), pInfo->GetNotifyFlash(),
+									pInfo->GetNotifyAlert(), pInfo->GetNotifyMatch() );
 
 											// Return the pages
 				pPages[0] = (chparam)pWorldPage;
 				pPages[1] = (chparam)pTextInputPage;
-				pPages[2] = (chparam)pNotifyPage;
+				pPages[2] = (chparam)pProtocolPage;
+				pPages[3] = (chparam)pNotifyPage;
 			}
 			#endif	// defined( CH_MSW )
 			break;
@@ -3243,7 +3252,7 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldGetPageDataHandler )
 	{
 		case pagePreferences:
 		{
-			ASSERT( 3 == sCount );
+			ASSERT( 4 == sCount );
 
 			#if defined( CH_MSW )
 			{
@@ -3264,7 +3273,14 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldGetPageDataHandler )
 
 				if (pPages[2])
 				{
-					ChNotifyPrefsPage*	pPage = (ChNotifyPrefsPage*)pPages[2];
+					ChProtocolPrefsPage*	pPage = (ChProtocolPrefsPage*)pPages[2];
+
+					pPage->OnCommit();
+				}
+
+				if (pPages[3])
+				{
+					ChNotifyPrefsPage*	pPage = (ChNotifyPrefsPage*)pPages[3];
 
 					pPage->OnCommit();
 				}
@@ -3298,7 +3314,7 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldReleasePagesHandler )
 	{
 		case pagePreferences:
 		{
-			ASSERT( 3 == sCount );
+			ASSERT( 4 == sCount );
 
 			#if defined( CH_MSW )
 			{
@@ -3319,7 +3335,14 @@ CH_IMPLEMENT_MESSAGE_HANDLER( worldReleasePagesHandler )
 
 				if (pPages[2])
 				{
-					ChNotifyPrefsPage*	pPage = (ChNotifyPrefsPage*)pPages[2];
+					ChProtocolPrefsPage*	pPage = (ChProtocolPrefsPage*)pPages[2];
+
+					delete pPage;
+				}
+
+				if (pPages[3])
+				{
+					ChNotifyPrefsPage*	pPage = (ChNotifyPrefsPage*)pPages[3];
 
 					delete pPage;
 				}
@@ -4073,3 +4096,6 @@ FormatHint( ChString& strHint )
 // End: ***
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:28  uecasm
+// Import of source tree as at version 2.53 release.
+//

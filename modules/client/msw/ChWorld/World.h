@@ -219,7 +219,8 @@ class ChWorldMainInfo : public ChMainInfo
 
 		inline EchoState GetEchoState() const { return m_echoState; }
 
-		inline bool GetNotify() const { return m_boolNotify; }
+		inline bool GetNotifyInactive() const { return m_boolNotifyInactive; }
+		inline bool GetNotifyFlash() const { return m_boolNotifyFlash; }
 		inline bool GetNotifyAlert() const { return m_boolNotifyAlert; }
 		inline const ChString& GetNotifyMatch() const { return m_strNotifyMatch; }
 
@@ -342,9 +343,13 @@ class ChWorldMainInfo : public ChMainInfo
 					m_boolDisplayChanged = boolChanged;
 				}
 
-		inline void SetNotify( bool boolNotify )
+		inline void SetNotifyInactive( bool boolNotifyInactive )
 						{
-							m_boolNotify = boolNotify;
+							m_boolNotifyInactive = boolNotifyInactive;
+						}
+		inline void SetNotifyFlash( bool boolNotifyFlash )
+						{
+							m_boolNotifyFlash = boolNotifyFlash;
 						}
 		inline void SetNotifyAlert( bool boolNotifyAlert )
 						{
@@ -457,7 +462,8 @@ class ChWorldMainInfo : public ChMainInfo
 
 		ChString					m_strCurrentURL;
 
-		bool					m_boolNotify;
+		bool					m_boolNotifyInactive;
+		bool					m_boolNotifyFlash;
 		bool					m_boolNotifyAlert;
 		ChString					m_strNotifyMatch;
 		ChWorldCmdLine			m_worldCmdLine;
@@ -476,3 +482,6 @@ class ChWorldMainInfo : public ChMainInfo
 #endif	// !defined( _WORLD_H )
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:53:43  uecasm
+// Import of source tree as at version 2.53 release.
+//

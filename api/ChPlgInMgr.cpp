@@ -81,7 +81,7 @@ void ChPlugInMgr::Initialize()
 		if ( !::GetModuleFileName( NULL, m_strPuebloPluginDir.GetBuffer( 512 ), 512 ) )
 		{
 			m_strPuebloPluginDir.ReleaseBuffer();	
-			TRACE( "GetModuleFileName function failed !!!!" );
+			TRACE( "GetModuleFileName function failed !!!!\n" );
 		}
 
 		m_strPuebloPluginDir.ReleaseBuffer();	
@@ -501,3 +501,6 @@ PluginProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 }
 
 // $Log$
+// Revision 1.1.1.1  2003/02/03 18:54:33  uecasm
+// Import of source tree as at version 2.53 release.
+//
