@@ -51,8 +51,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #ifndef _CHSOCKET_H
 #define	_CHSOCKET_H
 
@@ -1069,10 +1067,5 @@ class CH_EXPORT_CLASS sockinetbuf: public sockbuf
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR
 #endif
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:54  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif	// _CHSOCKET_H

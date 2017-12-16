@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHJPEGDECODER_H_ )
 #define   CHJPEGDECODER_H_
 
@@ -82,10 +80,5 @@ class CH_EXPORT_CLASS ChJPEG : public ChImageDecoder
 		int 	 	m_iCurrScanLine;
 
 };
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:42  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif // CHJPEGDECODER_H_

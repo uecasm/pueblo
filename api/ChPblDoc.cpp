@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChPblDoc.h>
@@ -141,5 +139,3 @@ BOOL ChPuebloDoc::OnOpenDocument( LPCTSTR lpszPathName )
 	}
 	return true;
 }
-
-// $Log$

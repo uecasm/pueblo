@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHSCRWND_H )
 #define _CHSCRWND_H
 
@@ -192,8 +190,3 @@ class CH_EXPORT_CLASS ChScrollWnd : public ChScrollView //CWnd
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:52  uecasm
-// Import of source tree as at version 2.53 release.
-//

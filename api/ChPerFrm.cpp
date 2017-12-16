@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if defined( CH_UNIX ) && defined( CH_CLIENT )
@@ -430,5 +428,3 @@ void ChPersistentFrame::SetMessageText(const char* pstrText )
 #endif // CH_CLIENT
 }
 #endif // CH_UNIX
-
-// $Log$

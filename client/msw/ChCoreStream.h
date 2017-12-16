@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHCORESTREAM_H ))
 #define CHCORESTREAM_H
 #include <ChHttpStream.h>
@@ -155,5 +153,3 @@ class ChCoreStreamManager  :  public  ChHTTPStreamManager
 
 
 #endif // CHCORESTREAM_H
-
-// $Log$

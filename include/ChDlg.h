@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHDLG_H )
 #define _CHDLG_H
 
@@ -87,7 +85,5 @@ class CH_EXPORT_CLASS ChDialog : public CDialog
 	#undef AFXAPP_DATA
 	#define AFXAPP_DATA NEAR
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHDLG_H )

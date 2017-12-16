@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHDATA_H )
 #define _CHDATA_H
 
@@ -116,7 +114,5 @@ class CH_EXPORT_CLASS ChData
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHDATA_H )

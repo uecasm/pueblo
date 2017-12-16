@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHVERS_H ))
 #define _CHVERS_H
 
@@ -174,5 +172,3 @@ class CH_EXPORT_CLASS ChVersion : public ChStreamable
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

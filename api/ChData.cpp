@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChData.h>
 
@@ -131,5 +129,3 @@ chuint32 ChData::GetBufferPtr( chuint16 suCommand, chuint32, void**, void** )
 
 	return 0;   							// Not supported
 }
-
-// $Log$

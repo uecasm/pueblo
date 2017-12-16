@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtpCon.h>
@@ -301,5 +299,3 @@ bool ChHttpThreadMgr::ProcessShutdownEvent()
 	return !boolThreadsActive;
 
 }
-
-// $Log$

@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHTTPSTREAM_H ))
 #define CHTTPSTREAM_H
 
@@ -96,7 +94,5 @@ class CH_EXPORT_CLASS ChHTTPStreamManager
 
 	 	virtual void OnUpdateProgress( const char* pstrMsg, int iPercentComplete );
 };
-
-// $Log$
 
 #endif // (!defined( CHTTPSTREAM_H ))

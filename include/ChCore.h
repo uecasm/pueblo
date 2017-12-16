@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHCORE_H ))
 #define CHCORE_H
 
@@ -237,8 +235,3 @@ class CH_EXPORT_CLASS ChCore
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:35  uecasm
-// Import of source tree as at version 2.53 release.
-//

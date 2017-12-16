@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChUtil.h>
 
@@ -499,8 +497,3 @@ PluginProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 	}
 	return 0L;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:33  uecasm
-// Import of source tree as at version 2.53 release.
-//

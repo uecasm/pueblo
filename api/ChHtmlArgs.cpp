@@ -38,7 +38,6 @@
 	This file consists of the implementation of the ChHtmlParser .
 
 ----------------------------------------------------------------------------*/		 
-// $Header$
 
 #include "headers.h"
 
@@ -522,5 +521,3 @@ void ChHtmlParser::UpdateUserArgs( const ChString& strName, const ChString& strV
 	}
 	m_pUserArgs->AddArg( strName, strValue ); // empty the user args for this tag
 }
-
-// $Log$

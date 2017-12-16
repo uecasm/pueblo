@@ -37,8 +37,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 // Define this if this is a prerelease version; it will result in slightly
 // different version displays.
 //#define UE_PRERELEASE

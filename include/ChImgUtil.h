@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHIMGUTIL_H )
 #define _CHIMGUTIL_H
 
@@ -105,7 +103,5 @@ class CH_EXPORT_CLASS ChImgUtil
 		#endif
 
 };
-
-// $Log$
 
 #endif	// !defined( _CHIMGUTIL_H )

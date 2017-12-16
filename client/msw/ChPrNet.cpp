@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChReg.h>
@@ -325,8 +323,3 @@ void ChPrefsNetworkPage::OnCommit()
 /*----------------------------------------------------------------------------
 	ChPrefsNetworkPage message handlers
 ----------------------------------------------------------------------------*/
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:34  uecasm
-// Import of source tree as at version 2.53 release.
-//

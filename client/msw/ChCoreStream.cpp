@@ -39,8 +39,6 @@
 	methods.
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <fstream>
 #include <sys/stat.h>
@@ -487,8 +485,3 @@ void ChCoreStreamManager::DestroyStream( chparam requestData, pChHTTPStream pStr
 	// Done with the user data
 	delete 	pReq;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:26  uecasm
-// Import of source tree as at version 2.53 release.
-//

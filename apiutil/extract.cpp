@@ -8,8 +8,6 @@
 
   ---------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChUnzip.h>
 //#include "crypt.h"
@@ -1288,8 +1286,3 @@ int ChUnzip::memextract(uch *tgt, ulg tgtsize, uch *src, ulg srcsize)   /* extra
     return error;
 
 } /* end function memextract() */
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:26  uecasm
-// Import of source tree as at version 2.53 release.
-//

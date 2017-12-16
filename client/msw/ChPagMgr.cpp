@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include "ChClCore.h"
 
@@ -248,8 +246,3 @@ void ChPageManager::ReleaseModulePages( ChModulePagesInfo* pPagesInfo )
 
 	delete [] pPages;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:30  uecasm
-// Import of source tree as at version 2.53 release.
-//

@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHKEYMAP_H ))
 #define _CHKEYMAP_H
 
@@ -141,5 +139,3 @@ class CH_EXPORT_CLASS ChKeyMap : public ChStreamable
 };
 
 #endif	// !defined( _CHKEYMAP_H )
-
-// $Log$

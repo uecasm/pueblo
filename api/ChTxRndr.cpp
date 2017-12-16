@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #ifdef CH_UNIX
@@ -892,5 +890,3 @@ void ChTxtWnd::DrawBackground( CDC* pDC )
 	}
 
 }
-
-// $Log$

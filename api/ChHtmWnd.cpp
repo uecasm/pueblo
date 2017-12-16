@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ctype.h>
@@ -1333,8 +1331,3 @@ void ChHtmlWnd::OnDestroy()
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:17  uecasm
-// Import of source tree as at version 2.53 release.
-//

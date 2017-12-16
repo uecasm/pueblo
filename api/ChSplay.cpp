@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #ifdef CH_UNIX
 #include <ChTypes.h>
@@ -420,5 +418,3 @@ ChParamSplay& ChParamSplay::operator+=( const ChParamSplay &source )
 
 	return Infix( op );
 }
-
-// $Log$

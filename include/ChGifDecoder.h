@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHGIFDECODER_H_ )
 #define   CHGIFDECODER_H_
 
@@ -181,10 +179,5 @@ class CH_EXPORT_CLASS ChGifDecoder : public ChImageDecoder
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:38  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif // CHGIFDECODER_H_

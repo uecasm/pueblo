@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #define CH_MODULE_GRAPHICS_ANIMATION		"Chaco Graphics Animation module"
 #define CH_MODULE_GRAPHICS_MAZE				"Chaco VRML Module"
 #define CH_MODULE_GRAPHICS_PANE				"Chaco Graphics Pane Manager Module"
@@ -750,5 +748,3 @@ class CH_EXPORT_CLASS ChMoveCameraMsg : public ChMsg
 
 #endif	//  defined( CH_CLIENT ) && !defined(CH_VRML_PLUGIN )
 #endif	// !defined( _CHGRAPHX_H )
-
-// $Log$

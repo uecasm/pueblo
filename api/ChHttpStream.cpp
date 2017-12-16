@@ -39,8 +39,6 @@
 	methods.
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChHttpStream.h>
 #include <ChHtpCon.h>
@@ -72,5 +70,3 @@ void ChHTTPStreamManager::OnUpdateProgress( const char* pstrMsg, int iPercentCom
 {
 
 }
-
-// $Log$

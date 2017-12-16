@@ -39,9 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
-
 #if !defined( _CHDIBBMP_H )
 #define _CHDIBBMP_H
 
@@ -232,7 +229,5 @@ class ChDibBmp
     unsigned char m_BMI[1024];  // XXX This is just a placeholder
 };
 #endif // CH_UNIX
-
-// $Log$
 
 #endif	// !defined( _CHGRAPHX_H )

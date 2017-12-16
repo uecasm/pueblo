@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChReg.h>
@@ -338,8 +336,3 @@ void ChPrefsProxyPage::OnRadioManual()
 {
 	UpdateButtons();
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:32  uecasm
-// Import of source tree as at version 2.53 release.
-//

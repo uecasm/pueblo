@@ -34,8 +34,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -254,5 +252,3 @@ void ChMngImage::SetFrameDelay(DWORD msDelay)
 	m_pFrameList[0].m_frameInfo.iExposture = msDelay;
 	//TRACE1("SetFrameDelay: %d\n", msDelay);
 }
-
-// $Log$

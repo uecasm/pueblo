@@ -42,8 +42,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChUrlMap.h>
 #include <ChHTTP.h>
@@ -657,8 +655,3 @@ bool ChURLParts::MapURLToHostFile( const char* pstrURL, ChString& strHostFile )
     }
 	return true;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:01  uecasm
-// Import of source tree as at version 2.53 release.
-//

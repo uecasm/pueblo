@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChArgList.h>
@@ -694,5 +692,3 @@ void ChPlugInStream::OnLoadError( chint32 lError, const ChString& strURL )
 	New();
 	DestroyStream();
 }
-
-// $Log$

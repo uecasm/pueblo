@@ -38,8 +38,6 @@
 	Chaco SFImage decoder
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -151,8 +149,3 @@ bool ChSFImage::Create(int width, int height, int iNumComponents,
 	}
 	return true;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:18  uecasm
-// Import of source tree as at version 2.53 release.
-//

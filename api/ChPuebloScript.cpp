@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <iostream>
@@ -426,5 +424,3 @@ void ChPuebloScript::AddNameValue( bool boolAttr, ChString& strName, ChString& s
 		m_argList.AddArg( strName, strValue ); // empty the user args for this tag
 	}
 }
-
-// $Log$

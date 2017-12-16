@@ -43,8 +43,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include <string.h>
 
 #include "headers.h"
@@ -95,5 +93,3 @@ void ChConn::SendLine( const char *pstrLine ) const
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

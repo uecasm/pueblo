@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHHTPRIV_H ))
 #define _CHHTPRIV_H
 
@@ -509,5 +507,3 @@ UpdateWaitRequest( ChHTTPInfo *pHTTPInfo, const ChString strNewURL );
 #endif
 
 #endif 	// _CHHTPRIV_H
-
-// $Log$

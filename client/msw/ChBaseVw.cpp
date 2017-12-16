@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include "Pueblo.h"
 
@@ -120,8 +118,3 @@ void ChBaseView::Dump(CDumpContext& dc) const
 /*----------------------------------------------------------------------------
 	ChBaseView message handlers
 ----------------------------------------------------------------------------*/
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:22  uecasm
-// Import of source tree as at version 2.53 release.
-//

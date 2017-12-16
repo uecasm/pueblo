@@ -1557,8 +1557,3 @@ BOOL ChDibBmp::Save(LPSTR pszFileName)
     if (!bResult) AfxMessageBox("Failed to save file");
     return bResult;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:11  uecasm
-// Import of source tree as at version 2.53 release.
-//

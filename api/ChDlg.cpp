@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -132,5 +130,3 @@ int ChDialog::DoModal()
 
 	return iResult;
 }
-
-// $Log$

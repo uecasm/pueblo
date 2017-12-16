@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #ifndef __CHTLBAR_H
 #define __CHTLBAR_H
 
@@ -187,5 +185,3 @@ class ChToolBar : public CToolBar
 
 #endif  // WIN32
 #endif	// __CHTLBAR_H
-
-// $Log$

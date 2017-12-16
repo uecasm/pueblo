@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHHTMFRM_H ))
 #define _CHHTMFRM_H
 
@@ -410,5 +408,3 @@ protected:
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

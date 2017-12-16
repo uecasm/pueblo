@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChWizard.h>
@@ -2005,8 +2003,3 @@ IsCharAfterAmpersand( LPTSTR lpsz, TCHAR chFind )
 
 	return false;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:05  uecasm
-// Import of source tree as at version 2.53 release.
-//

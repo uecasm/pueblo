@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmlSettings.h>
@@ -97,5 +95,3 @@ chint32	 ChDefnTextTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chin
 	return ChBodyElements::ProcessTag( pstrBuffer, lStart, lCount );
 
 }
-
-// $Log$

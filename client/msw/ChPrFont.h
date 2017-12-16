@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPRFONT_H )
 #define _CHPRFONT_H
 
@@ -187,5 +185,3 @@ class ChPrefsColorPage : public ChPropertyPage
 };
 
 #endif	// !defined( _CHPRFONT_H )
-
-// $Log$

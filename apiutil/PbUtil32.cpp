@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <afxdllx.h>
 #include "MemDebug.h"
@@ -74,8 +72,3 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 	}
 	return 1;   // ok
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:57:08  uecasm
-// Import of source tree as at version 2.53 release.
-//

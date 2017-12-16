@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include <ChSplay.h>
 #include "ChPlgInAPI.h"
 
@@ -271,5 +269,3 @@ class ChPlugInMgr
 		static ChString 				m_strNetscapePluginDir;
 
 };
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHPLAINTAG_H )
 
 #define   CHPLAINTAG_H
@@ -73,7 +71,5 @@ class  ChMudTextTag : public  ChHtmlTag
 		virtual void 	 EndTag();
 		virtual	chint32  ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 lCount );
 };
-
-// $Log$
 
 #endif //CHPLAINTAG_H

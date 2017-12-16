@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChStrmbl.h>
@@ -749,5 +747,3 @@ bool ChTimeSpan::operator>=(ChTimeSpan span) const
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

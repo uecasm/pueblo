@@ -8,8 +8,6 @@
 
   ---------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #define FILE_IO_C
 #include <ChUnzip.h>      
@@ -1802,8 +1800,3 @@ void ChUnzip::set_file_time_and_close()
 #endif /* !MTS && !VMS */
 #endif /* ?MACOS */
 #endif /* ?DOS_OS2 */
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:32  uecasm
-// Import of source tree as at version 2.53 release.
-//

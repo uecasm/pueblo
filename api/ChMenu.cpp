@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include <string.h>
 
 #include "headers.h"
@@ -586,5 +584,3 @@ chint16 ChMenu::GetItemIndex(ChMenuItem*  pItem)
 
 	return sIndex;
 }
-
-// $Log$

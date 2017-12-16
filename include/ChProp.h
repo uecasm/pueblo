@@ -36,8 +36,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPROP_H )
 #define _CHPROP_H
 
@@ -85,5 +83,3 @@ class CH_EXPORT_CLASS ChPropertySheet : public CPropertySheet {
 };
 
 #endif	// !defined( _CHPROP_H )
-
-// $Log$

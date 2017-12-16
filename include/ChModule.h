@@ -45,8 +45,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHMODULE_H ))
 #define _CHMODULE_H
 
@@ -225,5 +223,3 @@ CH_TYPEDEF_CALLBACK( chparam, ChMsgHandler )( ChMsg& msg,
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

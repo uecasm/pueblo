@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _SOCKETXX_H )
 #define _SOCKETXX_H
 
@@ -77,7 +75,5 @@
 	#undef AFXAPP_DATA
 	#define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _SOCKETXX_H )

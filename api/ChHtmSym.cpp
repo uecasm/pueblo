@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ctype.h>
@@ -909,11 +907,3 @@ bool ChHtmlParser::BreakTag( const char* pstrBuffer, chint32& lStart, 	chint32  
 	}
 	return false;
 }
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:41  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:54:18  uecasm
-// Import of source tree as at version 2.53 release.
-//

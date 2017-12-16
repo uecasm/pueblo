@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHWTYPE_H )
 #define _CHWTYPE_H
 
@@ -117,5 +115,3 @@ class CH_EXPORT_CLASS ChWorldType : public ChStreamable
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

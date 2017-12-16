@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHDIBDECODER_H )
 #define _CHDIBDECODER_H
 
@@ -57,7 +55,5 @@ class CH_EXPORT_CLASS ChDibDecoder	: public ChImageDecoder
 	protected:
 
 };
-
-// $Log$
 
 #endif //  !defined( _CHDIBDECODER_H )

@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHMSGTYP_H ))
 #define _CHMSGTYP_H
 
@@ -1540,5 +1538,3 @@ class CH_EXPORT_CLASS ChConnectedMsg : public ChMsg
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

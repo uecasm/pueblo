@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <stdlib.h>
@@ -155,8 +153,6 @@ ChString ChVersion::Format( int iOption, int iDecimalPlaces ) const
 
 	return strVersion;
 }
-
-// $Log$
 
 // Local Variables: ***
 // tab-width:4 ***

@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHREG_H )
 #define _CHREG_H
 
@@ -185,5 +183,3 @@ class CH_EXPORT_CLASS ChRegistry
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

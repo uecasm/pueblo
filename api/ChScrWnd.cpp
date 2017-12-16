@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <afxpriv.h>
 #include <limits.h>
@@ -1169,8 +1167,3 @@ void ChScrollWnd::OnPrepareDC( CDC* pDC, CPrintInfo* pInfo )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:43  uecasm
-// Import of source tree as at version 2.53 release.
-//

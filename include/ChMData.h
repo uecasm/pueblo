@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHMDATA_H )
 #define _CHMDATA_H
  
@@ -106,7 +104,5 @@ class CH_EXPORT_CLASS ChMemData : public ChData
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHMDATA_H )

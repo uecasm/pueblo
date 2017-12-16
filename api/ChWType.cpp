@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 
 #include "headers.h"
 
@@ -210,5 +208,3 @@ void ChWorldType::Set( const ChString& strType )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

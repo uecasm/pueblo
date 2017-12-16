@@ -80,8 +80,6 @@
    module.
  */
  
-// $Header$
- 
 #include "headers.h"
 #include <ChUnzip.h>      /* must supply slide[] (uch) array and NEXTBYTE macro */
 #include "MemDebug.h"
@@ -867,8 +865,3 @@ int ChUnzip::explode()
 #undef NEXTBYTE
 #undef NEEDBITS
 #undef DUMPBITS
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:23  uecasm
-// Import of source tree as at version 2.53 release.
-//

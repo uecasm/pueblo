@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChReg.h>
@@ -206,8 +204,3 @@ void ChNameList::Load()
 	m_sCount = -1;
 	m_boolData = true;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:29  uecasm
-// Import of source tree as at version 2.53 release.
-//

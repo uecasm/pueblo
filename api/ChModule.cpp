@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChCore.h>
 #include <ChArch.h>
@@ -138,5 +136,3 @@ void ChMainInfo::UnloadClientModule( const ChModuleID& idModule ) const
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

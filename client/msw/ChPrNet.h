@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPRNET_H )
 #define _CHPRNET_H
 
@@ -134,5 +132,3 @@ class ChPrefsNetworkPage : public ChPropertyPage
 };
 
 #endif	// !defined( _CHPRNET_H )
-
-// $Log$

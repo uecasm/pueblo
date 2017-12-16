@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChExcept.h>
 
@@ -60,5 +58,3 @@ IMPLEMENT_DYNAMIC(ChJPEGEx, ChEx)
 #endif
 
 #endif	// defined( CH_EXCEPTIONS )
-
-// $Log$

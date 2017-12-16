@@ -38,8 +38,6 @@
 		ChDib class implementation
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -1012,8 +1010,3 @@ bool ChDib::SetScanLine( int iFrame, int iScanLine,
 	}
 	return true;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:14  uecasm
-// Import of source tree as at version 2.53 release.
-//

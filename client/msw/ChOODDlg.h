@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHOODDLG_H )
 #define _CHOODDLG_H
 
@@ -88,5 +86,3 @@ class ChOutOfDateDlg : public CDialog
 };
 
 #endif	// !defined( _CHOODDLG_H )
-
-// $Log$

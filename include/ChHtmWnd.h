@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHHTMLWND_H )
 #define _CHHTMLWND_H
 
@@ -414,8 +412,3 @@ class CH_EXPORT_CLASS ChHtmlWnd : public CWnd
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:40  uecasm
-// Import of source tree as at version 2.53 release.
-//

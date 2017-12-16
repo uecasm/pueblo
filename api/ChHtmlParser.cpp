@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/		 
 
-// $Header$
-
 #include "headers.h"
 
 #include <ctype.h>
@@ -1772,5 +1770,3 @@ ChFont* ChHtmlParser::GetSymbolFont( ChFont* pFont )
 
 	return( &m_symbolFont );
 }
-
-// $Log$

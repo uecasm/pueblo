@@ -43,8 +43,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChPage.h>
 
@@ -156,5 +154,3 @@ afx_msg void ChPropertyPage::OnDestroy()
 	
 	CPropertyPage::OnDestroy();
 }
-
-// $Log$

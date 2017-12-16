@@ -38,8 +38,6 @@
 	ChImgUtil class implementation
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 #if !defined(CH_STATIC_LINK)
@@ -328,8 +326,3 @@ int ChImgUtil::NumDIBColorEntries(BITMAPINFO* pBmpInfo)
 
     return iColors;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:15  uecasm
-// Import of source tree as at version 2.53 release.
-//

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHSFIMG_H_ )
 #define   CHSFIMG_H_
 
@@ -61,7 +59,5 @@ class CH_EXPORT_CLASS ChSFImage
 		ChDib*	m_dibImage;
 
 };
-
-// $Log$
 
 #endif // CHSFIMG_H_

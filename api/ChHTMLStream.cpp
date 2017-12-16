@@ -39,8 +39,6 @@
 	methods.
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChConst.h>
 #include <ChHtpCon.h>
@@ -758,11 +756,3 @@ LONG ChHtmlWnd::OnHTTPNotificaton( UINT wParam, LONG lParam )
 
 	return 0;
 }
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:41  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:54:13  uecasm
-// Import of source tree as at version 2.53 release.
-//

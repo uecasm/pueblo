@@ -43,8 +43,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <cderr.h>
@@ -212,8 +210,3 @@ void ChFileDialog::OnInitDone() {
 
 BEGIN_MESSAGE_MAP( ChFileDialog, CFileDialog )
 END_MESSAGE_MAP()
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:01  uecasm
-// Import of source tree as at version 2.53 release.
-//

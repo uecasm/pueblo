@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHDEFNTAG_H )
 
 #define   CHDEFNTAG_H
@@ -70,7 +68,5 @@ class  ChDefnTextTag : public  ChBodyElements
 		virtual	chint32	 ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 lCount ); 
 
 };
-
-// $Log$
 
 #endif // CHDEFNTAG_H

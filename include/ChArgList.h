@@ -42,8 +42,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHARGUMENTLIST_H ))
 #define _CHARGUMENTLIST_H
 
@@ -72,7 +70,5 @@ class CH_EXPORT_CLASS ChArgumentList
 		ChArgArray			m_argValue;
 		
 };
-
-// $Log$
 
 #endif // (!defined( _CHARGUMENTLIST_H ))

@@ -41,8 +41,6 @@
 ----------------------------------------------------------------------------*/
 
 
-// $Header$
-
 #if !defined( _HEADERS_H )
 #define _HEADERS_H
 
@@ -103,10 +101,5 @@
 	#error "OS not defined"
 
 #endif
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:53:46  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif	// !defined( _HEADERS_H )

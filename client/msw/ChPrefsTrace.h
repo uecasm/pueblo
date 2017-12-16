@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPREFSTRACE_H )
 #define _CHPREFSTRACE_H
 
@@ -99,5 +97,3 @@ class ChPrefsTracePage : public ChPropertyPage
 
 
 #endif	// !defined( _CHPREFSTRACE_H )
-
-// $Log$

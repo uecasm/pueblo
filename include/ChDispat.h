@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHDISPAT_H ))
 #define _CHDISPAT_H
 
@@ -104,5 +102,3 @@ class CH_EXPORT_CLASS ChDispatcher
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmWnd.h>
@@ -812,5 +810,3 @@ void  ChNOBRTag::EndTag( )
 	m_pParser->GetTextStyle()->SetStyle( luStyle );
 
 }
-
-// $Log$

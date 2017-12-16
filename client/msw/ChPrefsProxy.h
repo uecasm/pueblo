@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPREFSPROXY_H )
 #define _CHPREFSPROXY_H
 
@@ -124,5 +122,3 @@ class ChPrefsProxyPage : public ChPropertyPage
 
 
 #endif	// !defined( _CHPREFSPROXY_H )
-
-// $Log$

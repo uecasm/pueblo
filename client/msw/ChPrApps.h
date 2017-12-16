@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CH_PRAPPS_H_ )
 #define CH_PRAPPS_H_
 
@@ -147,8 +145,3 @@ class ChWebBrowserSelectFileDlg : public ChFileDialog
 
 
 #endif // CH_PRAPPS_H_
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:31  uecasm
-// Import of source tree as at version 2.53 release.
-//

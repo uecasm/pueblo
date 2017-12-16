@@ -46,8 +46,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <afxcmn.h>			// AFX common controls
@@ -1176,11 +1174,3 @@ BOOL ChComponentsAbout::OnInitDialog()
 	return TRUE;  // return true unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:42  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:52:20  uecasm
-// Import of source tree as at version 2.53 release.
-//

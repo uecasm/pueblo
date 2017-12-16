@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChKeyMap.h>
@@ -251,5 +249,3 @@ void ChKeyMap::Serialize( ChArchive& archive )
 	{
 	}
 }
-
-// $Log$

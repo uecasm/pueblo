@@ -44,8 +44,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHURLMAP_H )
 #define _CHURLMAP_H
 
@@ -123,10 +121,5 @@ class CH_EXPORT_CLASS ChURLParts
 		static const char * m_pstrScheme[maxSchemes];
 		static const int m_SchemeDefaultPort[maxSchemes];
 };
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:02  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif	// !defined( _CHURLMAP_H )

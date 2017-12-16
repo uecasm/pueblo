@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHTYPES_H )
 #define _CHTYPES_H
 
@@ -577,8 +575,3 @@ class ChString : public String
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:01  uecasm
-// Import of source tree as at version 2.53 release.
-//

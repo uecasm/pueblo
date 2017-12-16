@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHDDE_H ))
 #define _CHDDE_H
 
@@ -187,5 +185,3 @@ class CH_EXPORT_CLASS ChHTTPDDE : public ChHTTPConn
 
 };
 #endif // defined( CH_USE_DDE )
-
-// $Log$

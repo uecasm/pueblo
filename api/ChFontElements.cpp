@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmlSettings.h>
@@ -275,5 +273,3 @@ void  ChFontTag::ProcessArguments( 	pChArgList pList, int iArgCount )
 	}
 
 }
-
-// $Log$

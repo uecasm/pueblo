@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"						// Precompiled header directive
 
 #include <ChSock.h>
@@ -181,8 +179,3 @@ void sockinetbuf::EstablishSOCKSconnect( sockAddr& sa )
 		#endif
 	}
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:38  uecasm
-// Import of source tree as at version 2.53 release.
-//

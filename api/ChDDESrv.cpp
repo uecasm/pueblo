@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 //#include "grheader.h"
 #include "headers.h"
 
@@ -760,5 +758,3 @@ void CDDEConversation::Dump(CDumpContext& dc) const
 }
 
 #endif // _DEBUG
-
-// $Log$

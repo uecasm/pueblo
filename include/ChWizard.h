@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHWIZARD_H )
 #define _CHWIZARD_H
 
@@ -268,5 +266,3 @@ class CH_EXPORT_CLASS ChWizard : public CWnd
 
 
 #endif	// !defined( _CHWIZARD_H )
-
-// $Log$

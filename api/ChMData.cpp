@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChMData.h>
 #include <ChExcept.h>
@@ -415,5 +413,3 @@ void ChMemData::GrowData( chuint32 luNewLen )
 
 	ASSERT_VALID( this );
 }
-
-// $Log$

@@ -44,8 +44,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <cderr.h>
@@ -353,11 +351,3 @@ void ChWebBrowserSelectFileDlg::OnInternal()
   m_boolInternal = true;
   EndDialog( IDC_INTERNAL );
 }
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:42  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:52:31  uecasm
-// Import of source tree as at version 2.53 release.
-//

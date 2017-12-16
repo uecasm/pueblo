@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHTMLSTREAM_H ))
 #define CHTMLSTREAM_H
 
@@ -214,8 +212,6 @@ class CH_EXPORT_CLASS ChHTMLStreamManager  :  public  ChHTTPStreamManager
 		ChHtmlWnd*		m_htmlWnd;
 
 };
-
-// $Log$
 
 #endif // (!defined( CHTMLSTREAM_H ))
 

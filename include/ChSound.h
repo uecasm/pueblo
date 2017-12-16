@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHSOUND_H )
 #define _CHSOUND_H
 
@@ -64,5 +62,3 @@
 
 
 #endif	// !defined( _CHSOUND_H )
-
-// $Log$

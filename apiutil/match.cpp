@@ -12,8 +12,6 @@
 
   ---------------------------------------------------------------------------*/
 
-// $Header$
-
 #ifdef ZIPINFO
 #  undef ZIPINFO   /* make certain there is only one version of match.o */
 #endif /* ZIPINFO */

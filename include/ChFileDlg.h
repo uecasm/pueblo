@@ -43,8 +43,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CH_FILEDLG_H_ )
 #define CH_FILEDLG_H_
 
@@ -91,7 +89,5 @@ class CH_EXPORT_CLASS ChFileDialog : public CFileDialog {
 
 	DECLARE_MESSAGE_MAP()
 };
-
-// $Log$
 
 #endif // CH_FILEDLG_H_

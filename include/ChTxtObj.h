@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHTXTOBJ_H )
 #define _CHTXTOBJ_H
 
@@ -362,10 +360,5 @@ class CH_EXPORT_CLASS ChObjControl : public ChTextObject
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:58  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif // _CHTXTOBJ_H

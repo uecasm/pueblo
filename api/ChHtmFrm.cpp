@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ctype.h>
@@ -1335,5 +1333,3 @@ void ChFrmList::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

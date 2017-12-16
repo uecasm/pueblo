@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHHOOK_H ))
 #define _CHHOOK_H
 
@@ -95,7 +93,5 @@ class CH_EXPORT_CLASS ChHookManager
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHHOOK_H )

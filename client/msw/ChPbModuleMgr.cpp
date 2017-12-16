@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChReg.h>
@@ -538,8 +536,3 @@ void ChPuebloModuleManager::BuildModuleList()
 	}
 	ChUtil::CloseDirectory( pDir );
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:30  uecasm
-// Import of source tree as at version 2.53 release.
-//

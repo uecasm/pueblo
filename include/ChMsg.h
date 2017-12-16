@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHMSG_H )
 #define _CHMSG_H
 #if defined( CH_MSW ) && defined( CH_ARCH_16 )
@@ -240,5 +238,3 @@ class CH_EXPORT_CLASS ChMsg : public ChMemData
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ctype.h>
@@ -100,5 +98,3 @@ chint32	 ChHtmlTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 
 
 	return lStart;
 }
-
-// $Log$

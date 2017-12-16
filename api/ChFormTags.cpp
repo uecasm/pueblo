@@ -46,8 +46,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmWnd.h>
@@ -838,8 +836,3 @@ chint32 ChFormOptionTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chi
 
 	return lStart;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:02  uecasm
-// Import of source tree as at version 2.53 release.
-//

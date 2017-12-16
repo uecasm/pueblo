@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmWnd.h>
@@ -251,5 +249,3 @@ NPError CHPN_NewStream( NPP instance, NPMIMEType type,
 {
 	return 0;	
 }
-
-// $Log$

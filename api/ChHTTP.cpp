@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <string.h>
@@ -979,8 +977,6 @@ int	ChHttpUrlParts::GetPortNumber()
 	}
 	return  ChURLParts::GetPortNumber(); 
 }
-
-// $Log$
 
 // Local Variables: ***
 // tab-width:4 ***

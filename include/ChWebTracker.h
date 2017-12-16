@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHWEBTRACKER_H_ )
 #define _CHWEBTRACKER_H_
 
@@ -66,5 +64,3 @@ class CH_EXPORT_CLASS ChWebTracker
 };
 
 #endif // _CHWEBTRACKER_H_
-
-// $Log$

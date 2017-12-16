@@ -34,8 +34,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHMNGDECODER_H_ )
 #define   CHMNGDECODER_H_
 
@@ -81,7 +79,5 @@ class ChMngDecoder : public ChImageDecoder
 		static mng_bool MNG_DECL refresh(mng_handle hHandle, mng_uint32 iX, mng_uint32 iY, mng_uint32 iWidth, mng_uint32 iHeight);
 		static mng_bool MNG_DECL settimer(mng_handle hHandle, mng_uint32 iMsecs);
 };
-
-// $Log$
 
 #endif // defined(CHMNGDECODER_H_

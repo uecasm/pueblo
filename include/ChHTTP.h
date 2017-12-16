@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHHTTP_H )
 #define _CHHTTP_H
 
@@ -307,13 +305,5 @@ class CH_EXPORT_CLASS ChHTTPConn
 	#undef AFXAPP_DATA
 	#define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:42  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:55:41  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif	// !defined( _CHHTTP_H )

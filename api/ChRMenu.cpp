@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include <string.h>
 
 #include "headers.h"
@@ -1647,8 +1645,3 @@ DestroyAcceleratorTable( HACCEL hAccel )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:37  uecasm
-// Import of source tree as at version 2.53 release.
-//

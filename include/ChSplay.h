@@ -42,8 +42,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHSPLAY_H )
 #define _CHSPLAY_H  
 
@@ -789,7 +787,5 @@ CH_UNIX_INLINE ChSplay<K,D>& ChSplay<K,D>::operator+=( const ChSplay &source )
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif // !defined( _CHSPLAY_H )

@@ -48,8 +48,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChArch.h>
@@ -304,8 +302,3 @@ void ChClientInfo::Serialize( ChArchive& archive )
 		m_platform = (OSType)sPlatform;
 	}
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:14  uecasm
-// Import of source tree as at version 2.53 release.
-//

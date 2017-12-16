@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined ( CHPANETAG_H )
 #define CHPANETAG_H
 
@@ -57,8 +55,6 @@ class  ChPaneTag : public  ChHtmlTag
 		virtual	void  ProcessArguments( pChArgList pList, int iArgCount );
 		virtual chint32 ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 lCount );
 };
-
-// $Log$
 
 #endif //CHPANETAG_H
 

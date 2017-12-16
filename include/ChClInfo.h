@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHCLINFO_H ))
 #define _CHCLINFO_H        
 
@@ -129,10 +127,5 @@ class CH_EXPORT_CLASS ChClientInfo : public ChStreamable
 		ChString				m_strSocketsDescription;
 		static WSADATA		m_socketInfo;
 };
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:33  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif	// !defined( _CHCLINFO_H )

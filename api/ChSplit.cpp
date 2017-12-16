@@ -44,8 +44,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if !defined(CH_PUEBLO_PLUGIN)
@@ -2125,8 +2123,3 @@ void ChSplitterBanner::OnActivate( UINT nState, CWnd* pWndOther,
 
 
 #endif	// defined( CH_MSW )
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:46  uecasm
-// Import of source tree as at version 2.53 release.
-//

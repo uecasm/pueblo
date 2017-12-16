@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CH_PUEBLOSCRIPT_H_ )
 
 #define CH_PUEBLOSCRIPT_H_ 
@@ -83,5 +81,3 @@ class CH_EXPORT_CLASS ChPuebloScript
 };
 
 #endif	// !defined( CH_PUEBLOSCRIPT_H_ )
-
-// $Log$

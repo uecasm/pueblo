@@ -45,8 +45,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHABOUT_H ))
 #define _CHABOUT_H
 
@@ -400,8 +398,3 @@ class ChAbout : public ChPropertySheet
 };
 
 #endif	// !defined( _CHABOUT_H )
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:20  uecasm
-// Import of source tree as at version 2.53 release.
-//

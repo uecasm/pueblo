@@ -2,8 +2,6 @@
 #include <ChUnzip.h>
 #include "MemDebug.h"
 
-// $Header$
-
 /*---------------------------------------------------------------------------
 
   unshrink.c                     version 0.94                     26 Apr 94

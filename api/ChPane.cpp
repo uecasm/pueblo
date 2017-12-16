@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if !defined(CH_PUEBLO_PLUGIN)
@@ -1725,8 +1723,3 @@ LRESULT CALLBACK PaneFrameCallback( HWND hWnd, UINT uMsg,
 }
 
 #endif
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:28  uecasm
-// Import of source tree as at version 2.53 release.
-//

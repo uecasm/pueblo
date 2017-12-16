@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHACO_H ))
 #define _CHACO_H
 
@@ -149,5 +147,3 @@ class ChApp : public CWinApp
 };
 
 #endif	// !defined( _CHACO_H )
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if !defined(CH_PUEBLO_PLUGIN)
@@ -1526,6 +1524,3 @@ bool ChUtil::GetNextHeaderString( char* &pstrHdr, char* &pstrData, char* &pstrNe
 
 	return true;
 }
-
-
-// $Log$

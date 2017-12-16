@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHHTTPCOOKIE_H ))
 #define _CHHTTPCOOKIE_H
 
@@ -147,5 +145,3 @@ class ChHttpCookie
 };
 
 #endif // (!defined( _CHHTTPCOOKIE_H ))
-
-// $Log$

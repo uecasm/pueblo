@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHHTMLVW_H )
 #define _CHHTMLVW_H
 
@@ -389,5 +387,3 @@ class CH_EXPORT_CLASS ChHtmlView : public ChTxtWnd, public ChPaneWndMethods
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHLIST_H ))
 #define _CHLIST_H
 
@@ -1049,5 +1047,3 @@ CH_UNIX_INLINE void ChList<TYPE>::FreeNode( ChListNode<TYPE>* pNode )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -33,8 +33,6 @@
 ;
 ;------------------------------------------------------------------------------
 
-; $Header$
-
 LIBRARY      PUEBLO32
 ;DESCRIPTION  'PUEBLO32 Windows Dynamic Link Library'
 

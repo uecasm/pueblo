@@ -38,8 +38,6 @@
    ChDibPal class implementation
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -408,8 +406,3 @@ BOOL ChDibPal::Save(HMMIO hmmio)
 }
 #endif //!defined(CH_ARCH_16)
 #endif // CH_MSW
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:14  uecasm
-// Import of source tree as at version 2.53 release.
-//

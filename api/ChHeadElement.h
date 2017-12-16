@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "ChHtmlTag.h"
 
 
@@ -120,5 +118,3 @@ class  ChPageTag : public  ChHtmlTag
 			}
 		virtual	void ProcessArguments( 	pChArgList pList, int iArgCount ); 
 };
-
-// $Log$

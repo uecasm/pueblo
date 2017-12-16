@@ -44,8 +44,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"						// Precompiled header directive
 
 #include <ChSock.h>
@@ -2337,8 +2335,3 @@ WSADisplayError( int iError, const char* pstrContext )
 	ChChacoSocket::GetErrorMsg( iError, strErrorMsg );
 	TRACE2( "%s: %s", (const char*)strErrorMsg, pstrContext );
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:41  uecasm
-// Import of source tree as at version 2.53 release.
-//

@@ -36,8 +36,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <afxcmn.h>
@@ -279,5 +277,3 @@ BOOL ChPropertySheet::OnCommand(WPARAM wParam, LPARAM lParam) {
 	
 	return CPropertySheet::OnCommand(wParam, lParam);
 }
-
-// $Log$

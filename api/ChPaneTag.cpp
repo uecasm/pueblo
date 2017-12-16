@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChHtmWnd.h>
@@ -272,5 +270,3 @@ chint32 ChPaneTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 l
 {
 	return GetHtmlView()->RedirectStream( pstrBuffer, lStart, lCount );
 }
-
-// $Log$

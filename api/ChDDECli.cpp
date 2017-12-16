@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 //#include "grheader.h"
 #include "headers.h"
 
@@ -1572,5 +1570,3 @@ HDDEDATA CALLBACK _export ChacoVRMLDdeCallback(UINT type, UINT fmt,
 	//	Not handled.
 	return(NOTHING);
 }
-
-// $Log$

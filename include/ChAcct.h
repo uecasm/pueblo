@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHACCT_H ))
 #define _CHACCT_H        
 
@@ -138,7 +136,5 @@ class CH_EXPORT_CLASS ChAccountInfo : public ChStreamable
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR 
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHACCT_H )

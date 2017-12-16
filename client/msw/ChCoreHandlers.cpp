@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if defined( CH_MSW )
@@ -438,8 +436,3 @@ CH_IMPLEMENT_MESSAGE_HANDLER( coreReleasePagesHandler )
 
 	return 0;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:25  uecasm
-// Import of source tree as at version 2.53 release.
-//

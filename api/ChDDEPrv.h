@@ -38,8 +38,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if defined( CH_VRML_VIEWER )
 //#define DDE_SERVICE_NAME		"Chaco_DDE_VRML_Viewer"
 #define DDE_SERVICE_NAME		"Chaco_VRScout"
@@ -293,5 +291,3 @@ class CDDEConversation : public CObject
 	private:
 		void CommonConstruction();
 };
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -57,5 +55,3 @@ void ChStreamable::Serialize( ChArchive& )
 {
 	ASSERT( this != 0 );
 }
-
-// $Log$

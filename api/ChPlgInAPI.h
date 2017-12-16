@@ -39,10 +39,8 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 /*
- *  npapi.h $Revision$
+ *  npapi.h
  *  Netscape client plug-in API spec
  */
 
@@ -711,8 +709,6 @@ NPError WINAPI NP_Shutdown();
 typedef NPError  (WINAPI *NP_GetEntryPointsUPP)(NPPluginFuncs* pFuncs);
 typedef NPError  (WINAPI *NP_InitializeUPP)(NPNetscapeFuncs* pFuncs );
 typedef NPError  (WINAPI *NP_ShutdownUPP)();
-
-// $Log$
 
 #endif /* _NPAPI_H_ */
 

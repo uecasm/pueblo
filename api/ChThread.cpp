@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #if defined( CH_MSW )
@@ -1173,8 +1171,3 @@ UINT HTTPProcessDownload( LPVOID pData )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:50  uecasm
-// Import of source tree as at version 2.53 release.
-//

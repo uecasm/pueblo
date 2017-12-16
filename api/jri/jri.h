@@ -4,8 +4,6 @@
  * Copyright (c) 1996 Netscape Communications Corporation. All rights reserved.
  ******************************************************************************/
 
-// $Header$
-
 #ifndef JRI_H
 #define JRI_H
 

@@ -38,8 +38,6 @@
 	Chaco GIF decoder
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -911,8 +909,3 @@ short ChGifDecoder::decoder( short linewidth)
    FREE(buf);
    return(ret);
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:17  uecasm
-// Import of source tree as at version 2.53 release.
-//

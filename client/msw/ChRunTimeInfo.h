@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHRUNTIMEINFO_H )
 #define _CHRUNTIMEINFO_H
 
@@ -122,5 +120,3 @@ static void ChPtrSplayDestruct( ChModuleRunInfo* pItem )
 }  
 
 #endif	// !defined( _CHRUNTIMEINFO_H )
-
-// $Log$

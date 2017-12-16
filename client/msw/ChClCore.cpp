@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 
 #include "headers.h"
 
@@ -1120,11 +1118,3 @@ bool ChClientCore::DoRegistration()
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.2  2003/07/04 11:26:42  uecasm
-// Update to 2.60 (see help file for details)
-//
-// Revision 1.1.1.1  2003/02/03 18:52:24  uecasm
-// Import of source tree as at version 2.53 release.
-//

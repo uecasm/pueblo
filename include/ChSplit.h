@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHSPLIT_H )
 #define _CHSPLIT_H
 
@@ -426,5 +424,3 @@ class CH_EXPORT_CLASS ChSplitter
 };
 
 #endif	// !defined( _CHSPLIT_H )
-
-// $Log$

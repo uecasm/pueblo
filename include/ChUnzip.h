@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include <unzip.h>
 #include <iostream>
 #include <fstream>
@@ -355,5 +353,3 @@ class CH_EXPORT_CLASS ChUnzip
 
 
  };
-
-// $Log$

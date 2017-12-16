@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPANE_H )
 #define _CHPANE_H
 
@@ -505,7 +503,5 @@ class CH_EXPORT_CLASS ChPaneMgr
 	#undef AFXAPP_DATA
 	#define AFXAPP_DATA NEAR
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHPANE_H )

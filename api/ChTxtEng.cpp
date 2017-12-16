@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #ifdef CH_UNIX
@@ -2026,5 +2024,3 @@ HeapSize( HANDLE hHeap, chuint32 flags, void *buf )
 }
 
 #endif
-
-// $Log$

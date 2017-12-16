@@ -42,8 +42,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChArgList.h>
 
@@ -111,5 +109,3 @@ void ChArgumentList::AddArg( const ChString& strName, 	const ChString&  strValue
 	m_argName.AddTail( strName );	
 	m_argValue.AddTail( strValue );	
 }
-
-// $Log$

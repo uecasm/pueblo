@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <iostream>
 
@@ -82,5 +80,3 @@ ChMsg::ChMsg( chint32 lMessage, const ChVersion& version,
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

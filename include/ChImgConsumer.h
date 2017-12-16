@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHIMGCONSUMER_H )
 #define _CHIMGCONSUMER_H
 
@@ -93,11 +91,6 @@ class CH_EXPORT_CLASS ChImageConsumer
 	protected :
 		
 };
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:41  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif //  !defined( _CHIMGCONSUMER_H )
 

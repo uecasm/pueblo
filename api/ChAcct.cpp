@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChArch.h>
@@ -132,5 +130,3 @@ void ChAccountInfo::Serialize( ChArchive& archive )
 		m_gender = (Gender)sGender;
 	}
 }
-
-// $Log$

@@ -46,8 +46,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHRMENU_H ))
 #define CHRMENU_H
 
@@ -460,5 +458,3 @@ class CH_EXPORT_CLASS ChRMenuMgr			// exactly one of these per client app
 #endif
 
 #endif // CHRMENU_H
-
-// $Log$

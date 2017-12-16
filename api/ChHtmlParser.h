@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHHTMLPARSER_H ))
 #define _CHHTMLPARSER_H
 
@@ -393,8 +391,6 @@ class  ChHtmlParser
 
 
 };
-
-// $Log$
 
 #endif // !define _CHHTMLPARSER_H
 

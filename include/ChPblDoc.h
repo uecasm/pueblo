@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPBLDOC_H )
 #define _CHPBLDOC_H
 
@@ -101,5 +99,3 @@ class CH_EXPORT_CLASS ChPuebloDoc : public CDocument
 };
 
 #endif	// !defined( _CHPBLDOC_H )
-
-// $Log$

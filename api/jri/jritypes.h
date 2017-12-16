@@ -4,8 +4,6 @@
  * Copyright (c) 1996 Netscape Communications Corporation. All rights reserved.
  ******************************************************************************/
 
-// $Header$
-
 #ifndef JRITYPES_H
 #define JRITYPES_H
 

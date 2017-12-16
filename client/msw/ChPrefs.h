@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPREFS_H )
 #define _CHPREFS_H
 
@@ -85,8 +83,3 @@ class ChPrefs : public CPropertySheet
 };
 
 #endif	// !defined( _CHPREFS_H )
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:32  uecasm
-// Import of source tree as at version 2.53 release.
-//

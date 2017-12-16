@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHHTPCON_H )
 #define _CHHTPCON_H
 
@@ -174,7 +172,5 @@ class ChHttpUrlParts : public ChURLParts
 	#undef AFXAPP_DATA
 	#define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHHTPCON_H )

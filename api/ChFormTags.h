@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHFORMTAGS_H )
 
 #define   CHFORMTAGS_H
@@ -102,7 +100,5 @@ class  ChFormOptionTag : public  ChHtmlTag
 		virtual void ProcessArguments( pChArgList pList, int iArgCount );
 		virtual chint32 ProcessTag( const char* pstrBuffer, chint32 lStart, chint32 lCount );
 };
-
-// $Log$
 
 #endif // CHFORMTAGS_H

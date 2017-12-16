@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include "ChHtmlView.h"
@@ -393,5 +391,3 @@ void ChPageTag::ProcessArguments( pChArgList pList, int iArgCount )
 		GetHtmlView()->UnloadImages();
 	}
 }
-
-// $Log$

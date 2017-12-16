@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHNLIST_H )
 #define _CHNLIST_H
 
@@ -81,5 +79,3 @@ class ChNameList
 };
 
 #endif	// !defined( _CHNLIST_H )
-
-// $Log$

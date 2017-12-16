@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHCLCORE_H ))
 #define _CHCLCORE_H
 
@@ -268,8 +266,3 @@ class ChClientCore : public ChCore
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:25  uecasm
-// Import of source tree as at version 2.53 release.
-//

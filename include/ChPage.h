@@ -43,8 +43,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHPAGE_H ))
 #define _CHPAGE_H
 
@@ -94,5 +92,3 @@ class CH_EXPORT_CLASS ChPropertyPage : public CPropertyPage
 #endif  // !defined( CH_PUEBLO_PLUGIN )
 #endif	// !defined( CH_MSW )
 #endif	// !defined( _CHPAGE_H )
-
-// $Log$

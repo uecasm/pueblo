@@ -43,8 +43,6 @@
 	Chaco JPEG decoder
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -550,8 +548,3 @@ bool ChJPEG::put_scanline_someplace( unsigned char* buffer, int row_stride )
 	
 	return true;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:18  uecasm
-// Import of source tree as at version 2.53 release.
-//

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include "ChHtmlView.h"
@@ -306,5 +304,3 @@ chint32  ChMudTextTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chint
 
 	return lStart;
 }
-
-// $Log$

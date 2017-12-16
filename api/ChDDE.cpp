@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 //#include "grheader.h"
 #include "headers.h"
 
@@ -1196,5 +1194,3 @@ DDENotifyProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 	}
 	return DefWindowProc( hWnd, uMsg, wParam, lParam );
 }
-
-// $Log$

@@ -39,8 +39,6 @@
 	methods.
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -619,5 +617,3 @@ const char* ChHTTPConnStream::GetErrorMsg()
 	}
 	return pstrBuffer;
 }
-
-// $Log$

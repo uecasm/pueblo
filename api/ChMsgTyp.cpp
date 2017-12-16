@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <iostream>
@@ -58,5 +56,3 @@
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

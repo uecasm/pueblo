@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHWND_H ))
 #define CHWND_H
 
@@ -78,5 +76,3 @@ class ChWnd
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

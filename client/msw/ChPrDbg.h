@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHDBGPRF_H )
 #define _CHDBGPRF_H
 
@@ -96,5 +94,3 @@ class ChPrefsDebugPage : public ChPropertyPage
 
 #endif	// defined( _DEBUG )
 #endif	// !defined( _CHDBGPRF_H )
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined ( CHBODYELEMENTS_H )
 #define CHBODYELEMENTS_H
 
@@ -72,7 +70,5 @@ class  ChBodyElements : public  ChHtmlTag
 		virtual void 	 StartTag();
 		virtual void 	 EndTag();
 };
-
-// $Log$
 
 #endif //CHBODYELEMENTS_H

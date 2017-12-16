@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHSTRMBL_H ))
 #define _CHSTRMBL_H
 
@@ -76,7 +74,5 @@ class CH_EXPORT_CLASS ChStreamable
 #undef AFXAPP_DATA
 #define AFXAPP_DATA NEAR    
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHSTRMBL_H )

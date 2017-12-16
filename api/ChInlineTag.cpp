@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChUrlMap.h>
@@ -945,8 +943,3 @@ chint32 ChLineItemTag::ProcessTag( const char* pstrBuffer, chint32 lStart, chint
 	//#endif
 
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:23  uecasm
-// Import of source tree as at version 2.53 release.
-//

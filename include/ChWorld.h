@@ -41,8 +41,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHWORLD_H )
 #define _CHWORLD_H
 
@@ -58,5 +56,3 @@
 #define CH_MODULE_WORLD_BASE	"ChWorld"
 
 #endif	// !defined( _CHWORLD_H )
-
-// $Log$

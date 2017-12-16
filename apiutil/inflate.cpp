@@ -2,8 +2,6 @@
 #include <ChUnzip.h>
 #include "MemDebug.h"
 
-// $Header$
-
 /* inflate.c -- put in the public domain by Mark Adler
    version c14o, 23 August 1994 */
 
@@ -1109,8 +1107,3 @@ int ChUnzip::inflate_free()
   }
   return 0;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:36  uecasm
-// Import of source tree as at version 2.53 release.
-//

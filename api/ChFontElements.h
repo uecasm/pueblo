@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHFONTELEMENTS_H )
 
 #define   CHFONTELEMENTS_H
@@ -92,7 +90,5 @@ class  ChFontTag : public  ChBodyElements
 			}
 		virtual	void  ProcessArguments( pChArgList pList, int iArgCount );
 };
-
-// $Log$
 
 #endif // CHFONTELEMENTS_H

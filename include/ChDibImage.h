@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHDIBIMAGE_H )
 #define _CHDIBIMAGE_H
 
@@ -147,10 +145,5 @@ class CH_EXPORT_CLASS ChDib : public ChImageConsumer
 		virtual void CreateBackgroundImage(CDC *pDC, int x, int y, CBrush *pbrMask);
 		virtual void CreateBackgroundImage(CDC *pDC, int x, int y, ChDib *pdibMask);
 };
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:55:36  uecasm
-// Import of source tree as at version 2.53 release.
-//
 
 #endif //  !defined( _CHDIBIMAGE_H )

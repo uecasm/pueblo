@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include "Pueblo.h"
 
@@ -135,8 +133,3 @@ BOOL ChLicenseDlg::OnInitDialog()
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:26  uecasm
-// Import of source tree as at version 2.53 release.
-//

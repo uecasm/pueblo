@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChModule.h>
@@ -848,8 +846,3 @@ void ChHtmlMiniFrame::OnSize(UINT nType, int cx, int cy)
 							SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE );
 	
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:09  uecasm
-// Import of source tree as at version 2.53 release.
-//

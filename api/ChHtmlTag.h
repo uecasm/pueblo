@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHHTMLTAG_H )
 
 #define   CHHTMLTAG_H
@@ -113,7 +111,5 @@ class  ChHtmlTag
 		ChHtmlParser*	m_pParser;
 
 };
-
-// $Log$
 
 #endif // CHHTMLTAG_H

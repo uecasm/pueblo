@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CH_HTTPTHREADMGR_H )
 #define CH_HTTPTHREADMGR_H
 
@@ -149,7 +147,5 @@ UINT HTTPRequestThread( LPVOID pData );
 
 
 #endif //#if	defined( CH_MSW ) && defined( CH_ARCH_32 )
-
-// $Log$
 
 #endif //#if !defined( CH_HTTPTHREADMGR_H )

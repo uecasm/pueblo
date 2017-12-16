@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CH_PBMODULEMGR_H_ )
 
 #define CH_PBMODULEMGR_H_
@@ -171,5 +169,3 @@ class ChPuebloModuleManager
 
 
 #endif // CH_PBMODULEMGR_H_
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHHTMLSETTINGS_H )
 #define _CHHTMLSETTINGS_H
 
@@ -118,7 +116,5 @@ class CH_EXPORT_CLASS ChHtmlSettings
 
 		ChString			m_strProduct;
 };
-
-// $Log$
 
 #endif // _CHHTMLSETTINGS_H

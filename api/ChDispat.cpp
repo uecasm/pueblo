@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChDispat.h>
 #include <ChModule.h>
@@ -140,5 +138,3 @@ chparam ChDispatcher::Dispatch( ChMsg &msg )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHBASEVW_H )
 #define _CHBASEVW_H
 
@@ -85,5 +83,3 @@ class ChBaseView : public CView
 };
 
 #endif	// !defined( _CHBASEVW_H )
-
-// $Log$

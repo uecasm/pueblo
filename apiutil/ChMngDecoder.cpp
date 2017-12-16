@@ -34,8 +34,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -252,5 +250,3 @@ void ChMngDecoder::Reset()
 	image->SetFrameDelay(iMsecs);
 	return MNG_TRUE;
 }
-
-// $Log$

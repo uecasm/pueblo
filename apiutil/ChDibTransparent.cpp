@@ -38,8 +38,6 @@
 	Chaco GIF decoder
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -430,8 +428,3 @@ void ChDib::Draw(CDC* pDC, int x, int y, COLORREF clrTrans, ChDib* pdibMask )
 	// Draw the dib	
 	m_pFrameList[m_iCurrentFrame].m_pTransDib->ChDib::Draw( pDC, x, y );	
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:15  uecasm
-// Import of source tree as at version 2.53 release.
-//

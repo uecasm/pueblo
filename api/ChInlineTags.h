@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHINLINETAGS_H )
 
 #define   CHINLINETAGS_H
@@ -114,7 +112,5 @@ class  ChLineItemTag : public  ChBodyElements
 
 
 };
-
-// $Log$
 
 #endif // CHINLINETAGS_H

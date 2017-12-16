@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include "Pueblo.h"
@@ -136,7 +134,3 @@ void ChOutOfDateDlg::OnHelp()
 	WinHelp( 0x20000 + IDD_CLIENT_OUTDATED );
 }
 
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:52:29  uecasm
-// Import of source tree as at version 2.53 release.
-//

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChArch.h>
 #include <ChExcept.h>  
@@ -943,5 +941,3 @@ void ChArchive::Write( const void* pBuffer, chuint32 luMax )
 		m_pBufCur += luMax;
 	}
 }
-
-// $Log$

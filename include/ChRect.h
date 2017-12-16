@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHRECT_H )
 #define _CHRECT_H
 
@@ -99,5 +97,3 @@ class ChRect
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

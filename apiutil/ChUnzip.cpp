@@ -38,8 +38,6 @@
 	Implementation of unzip.
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 #include <ChUnzip.h>
@@ -1400,8 +1398,3 @@ int ChUnzip::process_local_file_hdr()    /* return PK-type error code */
     return 0;                 /* 0:  no error */
 
 } /* end function process_local_file_hdr() */
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:21  uecasm
-// Import of source tree as at version 2.53 release.
-//

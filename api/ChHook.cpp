@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChCore.h>
 
@@ -132,5 +130,3 @@ void ChHookManager::Uninstall( const ChModuleID& idModule )
 											// Remove the module ID
 	m_moduleList.Remove( pos );
 }
-
-// $Log$

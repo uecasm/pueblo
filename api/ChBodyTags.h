@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( CHBODYTAGS_H )
 #define  CHBODYTAGS_H
 
@@ -171,7 +169,5 @@ class  ChNOBRTag : public  ChBodyElements
 		virtual void 	 EndTag();
 
 };
-
-// $Log$
 
 #endif //CHBODYTAGS_H

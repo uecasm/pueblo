@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHTIME_H ))
 #define _CHTIME_H
 
@@ -175,5 +173,3 @@ class CH_EXPORT_CLASS ChTimeSpan : public ChStreamable
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHIMGDECODER_H )
 #define _CHIMGDECODER_H
 
@@ -83,7 +81,5 @@ class CH_EXPORT_CLASS ChImageDecoder
 		chuint32			m_flOptions;
 
 };
-
-// $Log$
 
 #endif //  !defined( _CHIMGDECODER_H )

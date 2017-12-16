@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHPAGMGR_H )
 #define _CHPAGMGR_H
 
@@ -87,5 +85,3 @@ class ChPageManager
 };
 
 #endif	// !defined( _CHPAGMGR_H )
-
-// $Log$

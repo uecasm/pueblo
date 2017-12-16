@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _GRHEADER_H_ ))
 #define _GRHEADER_H_
 
@@ -80,7 +78,5 @@
 CH_EXTERN_VAR AFX_EXTENSION_MODULE ChGraphicsDLL;
 
 #endif
-
-// $Log$
 
 #endif	// !defined( _GRHEADER_H_ )

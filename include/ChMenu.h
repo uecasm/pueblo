@@ -46,8 +46,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( CHMENU_H ))
 #define CHMENU_H
 
@@ -470,5 +468,3 @@ class CH_EXPORT_CLASS ChMenuMsg : public ChMsg
 #endif
 
 #endif // CHMENU_H
-
-// $Log$

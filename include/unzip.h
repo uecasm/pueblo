@@ -10,8 +10,6 @@
 
   ---------------------------------------------------------------------------*/
 
-// $Header$
-
 #ifndef __unzip_h   /* prevent multiple inclusions */
 #define __unzip_h
 

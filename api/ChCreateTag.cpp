@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 
@@ -309,8 +307,3 @@ ChHtmlTag* ChHtmlParser::CreateInstanceFromID( int iToken )
 	ASSERT( pTag );
 	return pTag;
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:53:53  uecasm
-// Import of source tree as at version 2.53 release.
-//

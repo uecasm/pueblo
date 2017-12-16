@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChList.h>
 
@@ -555,5 +553,3 @@ void ChParamList::FreeNode( ChParamNode* pNode )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

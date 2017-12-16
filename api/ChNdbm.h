@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 /*
  * Copyright (c) 1983 Regents of the University of California.
  * All rights reserved.  The Berkeley software License Agreement
@@ -48,8 +46,6 @@
  *
  *	@(#)ndbm.h	5.1 (Berkeley) 5/30/85
  */
-
-// $Header$
 
 #if !defined( _CHNDBM_H )
 #define _CHNDBM_H
@@ -141,7 +137,5 @@ dbm_store(DBM *, datum, datum, chint32);
 #define dbm_error(db)	((db)->dbm_flags & _DBM_IOERR)
 	/* use this one at your own risk! */
 #define dbm_clearerr(db)	((db)->dbm_flags &= ~_DBM_IOERR)
-
-// $Log$
 
 #endif	// !defined( _CHNDBM_H )

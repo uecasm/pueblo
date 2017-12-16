@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if (!defined( _CHMFRAME_H ))
 #define _CHMFRAME_H
 
@@ -232,5 +230,3 @@ class ChMainFrame : public ChPersistentFrame
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

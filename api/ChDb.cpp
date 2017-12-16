@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #include <ChTypes.h>
@@ -605,5 +603,3 @@ int ChDataBase::GetLastError()
 {
 	return (int)dbm_error( (pDBM)m_pDataBaseID );
 }
-
-// $Log$

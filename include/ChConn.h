@@ -43,12 +43,8 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHCONN_H )
 #define _CHCONN_H
-
-// $Header$
 
 #include <SocketXX.h>
 //#include <protocol.h>
@@ -116,5 +112,3 @@ class CH_EXPORT_CLASS ChConn : public sockinetbuf
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$

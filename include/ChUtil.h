@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHUTIL_H_ )
 #define _CHUTIL_H_
 
@@ -286,7 +284,5 @@ CH_EXTERN_LIBRARY( void )
 TrimRight( ChString& strWork );
 
 #endif
-
-// $Log$
 
 #endif	// !defined( _CHUTIL_H_ )

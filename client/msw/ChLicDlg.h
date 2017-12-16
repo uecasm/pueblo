@@ -40,8 +40,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #if !defined( _CHLICDLG_H )
 #define _CHLICDLG_H
 
@@ -88,5 +86,3 @@ class ChLicenseDlg : public CDialog
 };
 
 #endif	// !defined( _CHLICDLG_H )
-
-// $Log$

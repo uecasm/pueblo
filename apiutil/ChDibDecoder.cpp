@@ -38,8 +38,6 @@
    ChDibDecoder class implementation
 
 ----------------------------------------------------------------------------*/
-//
-// $Header$
 
 #include "headers.h"
 
@@ -391,8 +389,3 @@ bool ChDibDecoder::Load(WORD wResid, HINSTANCE hInstance)
     return GetConsumer()->Create( 0, (BITMAPINFO*)pInfoHdr, pBits);
     // Note: not required to unlock or free the resource in Win32
 }
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:56:12  uecasm
-// Import of source tree as at version 2.53 release.
-//

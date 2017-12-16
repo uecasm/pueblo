@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 #include <ChConst.h>
 #include <ChReg.h>
@@ -169,5 +167,3 @@ void ChHtmlSettings::ReadPreferences(  )
 		m_luBackColor = COLOR_DEF_BACK;	//::GetSysColor( COLOR_WINDOW );
 	}
 }
-
-// $Log$

@@ -39,8 +39,6 @@
 
 ----------------------------------------------------------------------------*/
 
-// $Header$
-
 #include "headers.h"
 
 #ifdef CH_UNIX
@@ -3440,8 +3438,3 @@ void ChTxtWnd::OnLButtonUp( chuint32 nFlags, ChPoint& point )
 // Local Variables: ***
 // tab-width:4 ***
 // End: ***
-
-// $Log$
-// Revision 1.1.1.1  2003/02/03 18:54:55  uecasm
-// Import of source tree as at version 2.53 release.
-//
