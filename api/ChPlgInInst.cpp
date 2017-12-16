@@ -477,8 +477,11 @@ ChPlugInStream::~ChPlugInStream()
 bool ChPlugInStream::New()
 {
 
-
+#ifdef _TIME32_T_DEFINED
+	m_streamHdl.lastmodified = _time32( 0 );
+#else
 	m_streamHdl.lastmodified = time( 0 );
+#endif
 
 	try
 	{

@@ -52,13 +52,13 @@
 #include <time.h>
 #include <ChClInfo.h>
 #include <ChDibDecoder.h>
+#include <ChUtilVersions.h>
 
 // only really to get version numbers, but oh well
 #ifndef __BORLANDC__
 #define HAVE_BOOLEAN
 #endif
 #define XMD_H
-#include "libmng.h"
 
 #include "ChAbout.h"
 #include "MemDebug.h"
@@ -1134,13 +1134,14 @@ void ChComponentsAbout::DisplayMNGComponents()
 {
 	ChString text, temp;
 
-	text.Format("    <li>libmng version %s\r\n", MNG_VERSION_TEXT);
+	text.Format("    <li>%s</li>\r\n", GetLibMngVersion());
 	text += "      <ul>\r\n";
-	temp.Format("      <li>zlib version %s</li>\r\n", ZLIB_VERSION);
+	temp.Format("      <li>%s</li>\r\n", GetZLibVersion());
 	text += temp;
-	temp.Format("      <li>jpeglib version %d.%d</li>\r\n", JPEG_LIB_VERSION / 10, JPEG_LIB_VERSION % 10);
+	temp.Format("      <li>%s</li>\r\n", GetJpegLibVersion());
 	text += temp;
-	text += "      <li>lcms version 1.11b</li>\r\n";
+    temp.Format("      <li>%s</li>\r\n", GetLCMSVersion());
+    text += temp;
 	text += "    </ul></li>\r\n";
 	
 	m_htmlWnd.AppendText(text);

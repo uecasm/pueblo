@@ -21,47 +21,60 @@
     The Original Code is Pueblo/UE client code, first released April 1, 2002.
 
     The Initial Developer of the Original Code is Ultra Enterprises.
-	
+
     Contributor(s):
 	--------------------------------------------------------------------------
 	   Ultra Enterprises:   Gavin Lambert
 
-					Wrote this file; it was not originally part of the Pueblo client.
+					Created this class.
 
 ------------------------------------------------------------------------------
 
-	This file consists of definitions for Pueblo/UE's resource and code files
-	to use, so that there is one central location to modify when the program
-	version changes.  It was really getting on my nerves, having to modify
-	the version number in so many places!
+	This file contains the implementation for the ChUtil32 library version provider.
 
 ----------------------------------------------------------------------------*/
 
-// Define this if this is a prerelease version; it will result in slightly
-// different version displays.
-#define UE_PRERELEASE
+// $Header$
 
-// First of all, the version info used by the program code:
-#define VERS_CLIENT_MAJOR		2
-#define VERS_CLIENT_MINOR		62
-#define VERS_CLIENT_COMMENT		"UE"
+#include "headers.h"
+#include <ChTypes.h>
 
-// And now that for the resource files:
-#define VERS_CLIENT_BINARY		2,6,2,0
-#define VERS_CLIENT_TEXT		"2.62\0"
-#define VERS_CLIENT_COMPANY		"Ultra Enterprises\0"
-#define VERS_CLIENT_COPYRIGHT	"Recompiled 2002-04,2017 by Ultra Enterprises\r\nCopyright © 1996-1998 Andromedia Incorporated\0"
-#define VERS_CLIENT_PRODUCT		"Pueblo/UE Application\0"
+// keep gif_lib happy
+#undef DrawText
 
-// The following constant enables the version check on startup; it should
-// *NOT* be switched on for any unofficial releases (as that will confuse
-// the issue, making it check against unrecognised version numbers).
-// Just leave it alone, please! :)
-//#define UE_VERSION_CHECK
+#include "zlib.h"
+#include "libmng.h"
+#include "jpeglib.h"
+#include "lcms.h"
 
-// This is just a sanity check; if we're doing a prerelease build then we
-// don't want any version checking, as it will always flag a "new version"
-// warning until the actual release has been entered into the system.
-#ifdef UE_PRERELEASE
-# undef UE_VERSION_CHECK
-#endif
+static char buffer[32];
+
+CH_GLOBAL_LIBRARY(const char *)
+GetZLibVersion()
+{
+	lstrcpy(buffer, "zlib version " ZLIB_VERSION);
+	return buffer;
+}
+
+CH_GLOBAL_LIBRARY(const char *)
+GetLibMngVersion()
+{
+	lstrcpy(buffer, "libmng version " MNG_VERSION_TEXT);
+	return buffer;
+}
+
+CH_GLOBAL_LIBRARY(const char *)
+GetJpegLibVersion()
+{
+	wsprintf(buffer, "jpeglib version %d.%d", JPEG_LIB_VERSION / 10, JPEG_LIB_VERSION % 10);
+	return buffer;
+}
+
+CH_GLOBAL_LIBRARY(const char *)
+GetLCMSVersion()
+{
+	wsprintf(buffer, "lcms version %d.%02d", LCMS_VERSION / 100, LCMS_VERSION % 100);
+	return buffer;
+}
+
+// $Log$

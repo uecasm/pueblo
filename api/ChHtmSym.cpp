@@ -390,8 +390,7 @@ CH_GLOBAL_VAR CharType aSpecialChar[] =
 
 void ChHtmlParser::InitStatics()
 {
-
-	static boolInitialized = false;
+	static bool boolInitialized = false;
 
 	if ( !boolInitialized )
 	{
@@ -406,7 +405,6 @@ void ChHtmlParser::InitStatics()
 		// Sort the attribute value table
 		SortSymbolMap( aAttrValueMap, (sizeof(aAttrValueMap)/sizeof(SymbolMap)) );
 	}
-
 }
 
 

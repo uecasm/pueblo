@@ -42,9 +42,8 @@
 
 // $Header$
 
-#include "stdlib.h"
-
 #include "headers.h"
+
 #if !defined(CH_PUEBLO_PLUGIN )
 #include "resource.h"
 #else

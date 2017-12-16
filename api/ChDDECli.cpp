@@ -360,15 +360,10 @@ int CDDEObject::EnumTopic(HSZ hszTopic)
 	{
 		if(hszTopic == m_aTopics[iCounter])	
 		{
-			break;
+			return iCounter;
 		}
 	}
-	
-	if(iCounter != m_MaxTopics)	
-	{
-		return(iCounter);
-	}
-	return(-1);
+	return -1;
 }
 
 //	Useful client/server methods.

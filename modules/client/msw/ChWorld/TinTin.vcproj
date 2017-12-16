@@ -1,169 +1,256 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="9.00"
 	Name="TinTin"
 	ProjectGUID="{F19018A1-931C-4F55-9F3D-D096824CF4AB}"
-	SccProjectName=""
-	SccLocalPath=""
-	Keyword="MFCProj">
+	RootNamespace="TinTin"
+	Keyword="MFCProj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\TinTin\$(ConfigurationName).vs"
-			IntermediateDirectory=".\TinTin\$(ConfigurationName).vs"
+			OutputDirectory=".\TinTin\$(ConfigurationName)"
+			IntermediateDirectory=".\TinTin\$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				DefaultCharIsUnsigned="TRUE"
-				UsePrecompiledHeader="2"
+				EnableFunctionLevelLinking="true"
+				DefaultCharIsUnsigned="true"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="$(IntDir)\TinTin.pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\TinTin.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
 				OutputFile="$(OutDir)\TinTin.lib"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\TinTin\$(ConfigurationName).vs"
-			IntermediateDirectory=".\TinTin\$(ConfigurationName).vs"
+			OutputDirectory=".\TinTin\$(ConfigurationName)"
+			IntermediateDirectory=".\TinTin\$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(SolutionDir)Include"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_CLIENT;CH_EXCEPTIONS"
 				RuntimeLibrary="3"
-				DefaultCharIsUnsigned="TRUE"
-				UsePrecompiledHeader="2"
+				DefaultCharIsUnsigned="true"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="$(IntDir)\TinTin.pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\TinTin.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
 				OutputFile="$(OutDir)\TinTin.lib"
-				SuppressStartupBanner="TRUE"/>
+				SuppressStartupBanner="true"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90">
+			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90"
+			>
 			<File
-				RelativePath="TinTin.h">
+				RelativePath="TinTin.h"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinAction.cpp">
+				RelativePath=".\TinTinAction.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinAlias.cpp">
+				RelativePath=".\TinTinAlias.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinFiles.cpp">
+				RelativePath=".\TinTinFiles.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinIf.cpp">
+				RelativePath=".\TinTinIf.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinInfo.cpp">
+				RelativePath=".\TinTinInfo.cpp"
+				>
 			</File>
 			<File
-				RelativePath="TinTinInfo.h">
+				RelativePath="TinTinInfo.h"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinList.cpp">
+				RelativePath=".\TinTinList.cpp"
+				>
 			</File>
 			<File
-				RelativePath="TinTinList.h">
+				RelativePath="TinTinList.h"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinMain.cpp">
+				RelativePath=".\TinTinMain.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinMisc.cpp">
+				RelativePath=".\TinTinMisc.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinParse.cpp">
+				RelativePath=".\TinTinParse.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinPath.cpp">
+				RelativePath=".\TinTinPath.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinSession.cpp">
+				RelativePath=".\TinTinSession.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinSettings.cpp">
+				RelativePath=".\TinTinSettings.cpp"
+				>
 			</File>
 			<File
-				RelativePath="TinTinSettings.h">
+				RelativePath="TinTinSettings.h"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinSubs.cpp">
+				RelativePath=".\TinTinSubs.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinTicks.cpp">
+				RelativePath=".\TinTinTicks.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinUtils.cpp">
+				RelativePath=".\TinTinUtils.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\TinTinVars.cpp">
+				RelativePath=".\TinTinVars.cpp"
+				>
 			</File>
 		</Filter>
 	</Files>

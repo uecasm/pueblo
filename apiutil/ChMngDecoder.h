@@ -41,6 +41,7 @@
 
 //#define MNG_USE_DLL
 //#define MNG_SKIP_LCMS		// it's all internal stuff anyway, we don't need it out here
+#undef HUGE
 #include <libmng.h>
 
 #include <ChImgConsumer.h>

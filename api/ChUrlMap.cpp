@@ -594,9 +594,9 @@ bool ChURLParts::MapURLToHostFile( const char* pstrURL, ChString& strHostFile )
 		return false;
 	}
 
-    const 	char* after_access = pstrURL;
+    const 	char* after_access = pstrURL, *p;
 
-    for( const char*p=pstrURL; *p; p++ )
+    for( p=pstrURL; *p; p++ )
     {
 		if ( *p==':' )
 		{

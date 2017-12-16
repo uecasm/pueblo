@@ -225,6 +225,10 @@ BOOL ChApp::InitInstance()
 	#if defined( WIN32 )
 	{
 		SetRegistryKey( CH_COMPANY_NAME );
+		// force AFX and window profile data to be stored under "Pueblo", not "Pueblo/UE"
+		free((void*)m_pszProfileName);
+		m_pszProfileName = _tcsdup(_T("Pueblo"));
+
 											/* Enable 3 dimensional control
 												appearance */
 		//Enable3dControls();		// no longer necessary

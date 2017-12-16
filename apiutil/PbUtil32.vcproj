@@ -1,34 +1,56 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="9.00"
 	Name="PbUtil32"
 	ProjectGUID="{411CE268-9B41-41A6-9B12-E517143F4160}"
-	SccProjectName=""
-	SccLocalPath=""
-	Keyword="MFCProj">
+	RootNamespace="PbUtil32"
+	Keyword="MFCProj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName).vs"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="true"
+				TypeLibraryName="$(OutDir)/PbUtil32.tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpeg-8&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL;ZLIB_INTERNAL"
 				RuntimeLibrary="3"
-				DefaultCharIsUnsigned="TRUE"
-				UsePrecompiledHeader="3"
+				DefaultCharIsUnsigned="true"
+				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\PbUtil32.pch"
 				AssemblerOutput="2"
@@ -36,62 +58,98 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\PbUtil32.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_AFXDLL;_DEBUG"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="lz32.lib winmm.lib"
 				OutputFile="$(OutDir)\PbUtil32.dll"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
-				GenerateDebugInformation="TRUE"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)\PbUtil32.pdb"
 				SubSystem="2"
 				BaseAddress="0x18000000"
-				ImportLibrary="$(OutDir)\PbUtil32.lib"/>
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(OutDir)\PbUtil32.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				MkTypLibCompatible="TRUE"
-				TypeLibraryName="$(OutDir)/PbUtil32.tlb"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;_DEBUG"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName).vs"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="true"
+				TypeLibraryName="$(OutDir)/PbUtil32.tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpeg-8&quot;;&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)\lcms\include&quot;"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_AFXEXT;CH_MSW;CH_CLIENT;CH_EXCEPTIONS;XMD_H;ZLIB_DLL;ZLIB_INTERNAL"
-				StringPooling="TRUE"
+				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				DefaultCharIsUnsigned="TRUE"
-				UsePrecompiledHeader="3"
+				EnableFunctionLevelLinking="true"
+				DefaultCharIsUnsigned="true"
+				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\PbUtil32.pch"
 				AssemblerOutput="2"
@@ -99,176 +157,242 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\PbUtil32.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_AFXDLL;NDEBUG"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="lz32.lib winmm.lib"
 				OutputFile="$(OutDir)\PbUtil32.dll"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories=""
 				ModuleDefinitionFile=".\PbUtil32.def"
 				ProgramDatabaseFile="$(OutDir)\PbUtil32.pdb"
-				GenerateMapFile="TRUE"
+				GenerateMapFile="true"
 				SubSystem="2"
 				BaseAddress="0x18000000"
-				ImportLibrary="$(OutDir)\PbUtil32.lib"/>
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="$(OutDir)\PbUtil32.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				MkTypLibCompatible="TRUE"
-				TypeLibraryName="$(OutDir)/PbUtil32.tlb"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;NDEBUG"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90">
+			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90"
+			>
 			<File
-				RelativePath=".\ChDibDecoder.cpp">
+				RelativePath=".\ChDibDecoder.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChDibImage.cpp">
+				RelativePath=".\ChDibImage.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChDibTransparent.cpp">
+				RelativePath=".\ChDibTransparent.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChDibUtl.cpp">
+				RelativePath=".\ChDibUtl.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChGIF.cpp">
+				RelativePath=".\ChGIF.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChJPEG.cpp">
+				RelativePath=".\ChJPEG.cpp"
+				>
 			</File>
 			<File
-				RelativePath="ChMngDecoder.cpp">
+				RelativePath="ChMngDecoder.cpp"
+				>
 			</File>
 			<File
-				RelativePath="ChMngImage.cpp">
+				RelativePath="ChMngImage.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChSFImage.cpp">
+				RelativePath=".\ChSFImage.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChUnzip.cpp">
+				RelativePath=".\ChUnzip.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\PbUtil32.cpp">
+				RelativePath=".\ChUtilVersions.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\headers.cpp">
+				RelativePath=".\headers.cpp"
+				>
 				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug|Win32"
+					>
 					<Tool
 						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"/>
+						UsePrecompiledHeader="1"
+					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32">
+					Name="Release|Win32"
+					>
 					<Tool
 						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"/>
+						UsePrecompiledHeader="1"
+					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\PbUtil32.cpp"
+				>
 			</File>
 			<Filter
 				Name="Compression"
-				Filter="">
+				>
 				<File
-					RelativePath=".\explode.cpp">
+					RelativePath=".\explode.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\extract.cpp">
+					RelativePath=".\extract.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\file_io.cpp">
+					RelativePath=".\file_io.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\inflate.cpp">
+					RelativePath=".\inflate.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\match.cpp">
+					RelativePath=".\match.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\unreduce.cpp">
+					RelativePath=".\unreduce.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\unshrink.cpp">
+					RelativePath=".\unshrink.cpp"
+					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="">
+			>
 			<File
-				RelativePath="..\include\ChDibDecoder.h">
+				RelativePath="..\include\ChDibDecoder.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChDibImage.h">
+				RelativePath="..\include\ChDibImage.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChGifDecoder.h">
+				RelativePath="..\include\ChGifDecoder.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChImgUtil.h">
+				RelativePath="..\include\ChImgUtil.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChJpegDecoder.h">
+				RelativePath="..\include\ChJpegDecoder.h"
+				>
 			</File>
 			<File
-				RelativePath="ChMngDecoder.h">
+				RelativePath="ChMngDecoder.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChMngImage.h">
+				RelativePath="..\include\ChMngImage.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChSFImage.h">
+				RelativePath="..\include\ChSFImage.h"
+				>
 			</File>
 			<File
-				RelativePath="..\include\ChUnzip.h">
+				RelativePath="..\include\ChUnzip.h"
+				>
 			</File>
 			<File
-				RelativePath="headers.h">
+				RelativePath="..\include\ChUtilVersions.h"
+				>
+			</File>
+			<File
+				RelativePath="headers.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="">
+			>
 			<File
-				RelativePath=".\PbUtil32.def">
+				RelativePath="res\gray.pal"
+				>
 			</File>
 			<File
-				RelativePath=".\PbUtil32.rc">
+				RelativePath=".\PbUtil32.def"
+				>
 			</File>
 			<File
-				RelativePath="res\PbUtil32.rc2">
+				RelativePath=".\PbUtil32.rc"
+				>
 			</File>
 			<File
-				RelativePath="res\gray.pal">
+				RelativePath="res\PbUtil32.rc2"
+				>
 			</File>
 			<File
-				RelativePath="resource.h">
+				RelativePath="resource.h"
+				>
 			</File>
 			<File
-				RelativePath="res\stddib.pal">
+				RelativePath="res\stddib.pal"
+				>
 			</File>
 		</Filter>
 	</Files>

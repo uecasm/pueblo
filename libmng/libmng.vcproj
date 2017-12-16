@@ -1,580 +1,806 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="9.00"
 	Name="libmng"
 	ProjectGUID="{4254B6E8-BB02-440F-87AB-FADCE11711FD}"
-	SccProjectName=""
-	SccLocalPath="">
+	RootNamespace="libmng"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName).vs"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName="$(TargetDir)$(TargetName).tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)lcms/include&quot;"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;USE_WINDOWS_MESSAGEBOX;ZLIB_DLL;ZLIB_INTERNAL"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)jpeg-8&quot;;&quot;$(SolutionDir)lcms\include&quot;"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;_USRDLL;USE_WINDOWS_MESSAGEBOX;ZLIB_DLL;ZLIB_INTERNAL;MNG_SUPPORT_DYNAMICMNG"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="$(IntDir)\$(ProjectName).pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="2"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
-				CompileAs="0"/>
+				CompileAs="0"
+				DisableSpecificWarnings="4005"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName).lib"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="_DEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName="$(TargetDir)$(TargetName).tlb"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="1033"/>
+				Culture="1033"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\$(ProjectName).lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName).vs"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName="$(TargetDir)$(TargetName).tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)lcms/include&quot;"
-				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;ZLIB_DLL;ZLIB_INTERNAL;USE_WINDOWS_MESSAGEBOX"
-				StringPooling="TRUE"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)zlib&quot;;&quot;$(SolutionDir)jpeg-8&quot;;&quot;$(SolutionDir)lcms\include&quot;"
+				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;_USRDLL;ZLIB_DLL;ZLIB_INTERNAL;USE_WINDOWS_MESSAGEBOX;MNG_SUPPORT_DYNAMICMNG"
+				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile="$(IntDir)\$(ProjectName).pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\"
 				WarningLevel="2"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"/>
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4005"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName).lib"/>
-			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="NDEBUG"
-				MkTypLibCompatible="TRUE"
-				SuppressStartupBanner="TRUE"
-				TargetEnvironment="1"
-				TypeLibraryName="$(TargetDir)$(TargetName).tlb"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="1033"/>
+				Culture="1033"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\$(ProjectName).lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="mng"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			>
 			<Filter
 				Name="Source Files"
-				Filter="">
+				>
 				<File
-					RelativePath="libmng_callback_xs.c">
+					RelativePath="libmng_callback_xs.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunk_io.c">
+					RelativePath=".\libmng_chunk_descr.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunk_prc.c">
+					RelativePath="libmng_chunk_io.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunk_xs.c">
+					RelativePath="libmng_chunk_prc.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_cms.c">
+					RelativePath="libmng_chunk_xs.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_display.c">
+					RelativePath="libmng_cms.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_dither.c">
+					RelativePath="libmng_display.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_error.c">
+					RelativePath="libmng_dither.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_filter.c">
+					RelativePath="libmng_error.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_hlapi.c">
+					RelativePath="libmng_filter.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_jpeg.c">
+					RelativePath="libmng_hlapi.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_object_prc.c">
+					RelativePath="libmng_jpeg.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_pixels.c">
+					RelativePath="libmng_object_prc.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_prop_xs.c">
+					RelativePath="libmng_pixels.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_read.c">
+					RelativePath="libmng_prop_xs.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_trace.c">
+					RelativePath="libmng_read.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_write.c">
+					RelativePath="libmng_trace.c"
+					>
 				</File>
 				<File
-					RelativePath="libmng_zlib.c">
+					RelativePath="libmng_write.c"
+					>
+				</File>
+				<File
+					RelativePath="libmng_zlib.c"
+					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Header Files"
-				Filter="">
+				>
 				<File
-					RelativePath="libmng.h">
+					RelativePath="libmng.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunk_io.h">
+					RelativePath=".\libmng_chunk_descr.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunk_prc.h">
+					RelativePath="libmng_chunk_io.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_chunks.h">
+					RelativePath="libmng_chunk_prc.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_cms.h">
+					RelativePath="libmng_chunks.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_conf.h">
+					RelativePath="libmng_cms.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_data.h">
+					RelativePath="libmng_conf.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_display.h">
+					RelativePath="libmng_data.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_dither.h">
+					RelativePath="libmng_display.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_error.h">
+					RelativePath="libmng_dither.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_filter.h">
+					RelativePath="libmng_error.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_jpeg.h">
+					RelativePath="libmng_filter.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_memory.h">
+					RelativePath="libmng_jpeg.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_object_prc.h">
+					RelativePath="libmng_memory.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_objects.h">
+					RelativePath="libmng_object_prc.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_pixels.h">
+					RelativePath="libmng_objects.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_read.h">
+					RelativePath="libmng_pixels.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_trace.h">
+					RelativePath="libmng_read.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_types.h">
+					RelativePath="libmng_trace.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_write.h">
+					RelativePath="libmng_types.h"
+					>
 				</File>
 				<File
-					RelativePath="libmng_zlib.h">
+					RelativePath="libmng_write.h"
+					>
+				</File>
+				<File
+					RelativePath="libmng_zlib.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="jpeg"
-			Filter="">
+			>
 			<Filter
 				Name="Source Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\jpgsrc6b\jcapimin.c">
+					RelativePath="..\jpeg-8\jaricom.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcapistd.c">
+					RelativePath="..\jpeg-8\jcapimin.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jccoefct.c">
+					RelativePath="..\jpeg-8\jcapistd.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jccolor.c">
+					RelativePath="..\jpeg-8\jcarith.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcdctmgr.c">
+					RelativePath="..\jpeg-8\jccoefct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jchuff.c">
+					RelativePath="..\jpeg-8\jccolor.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcinit.c">
+					RelativePath="..\jpeg-8\jcdctmgr.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcmainct.c">
+					RelativePath="..\jpeg-8\jchuff.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcmarker.c">
+					RelativePath="..\jpeg-8\jcinit.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcmaster.c">
+					RelativePath="..\jpeg-8\jcmainct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcomapi.c">
+					RelativePath="..\jpeg-8\jcmarker.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcparam.c">
+					RelativePath="..\jpeg-8\jcmaster.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcphuff.c">
+					RelativePath="..\jpeg-8\jcomapi.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcprepct.c">
+					RelativePath="..\jpeg-8\jcparam.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jcsample.c">
+					RelativePath="..\jpeg-8\jcprepct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jctrans.c">
+					RelativePath="..\jpeg-8\jcsample.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdapimin.c">
+					RelativePath="..\jpeg-8\jctrans.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdapistd.c">
+					RelativePath="..\jpeg-8\jdapimin.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdatadst.c">
+					RelativePath="..\jpeg-8\jdapistd.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdatasrc.c">
+					RelativePath="..\jpeg-8\jdarith.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdcoefct.c">
+					RelativePath="..\jpeg-8\jdatadst.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdcolor.c">
+					RelativePath="..\jpeg-8\jdatasrc.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jddctmgr.c">
+					RelativePath="..\jpeg-8\jdcoefct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdhuff.c">
+					RelativePath="..\jpeg-8\jdcolor.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdinput.c">
+					RelativePath="..\jpeg-8\jddctmgr.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdmainct.c">
+					RelativePath="..\jpeg-8\jdhuff.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdmarker.c">
+					RelativePath="..\jpeg-8\jdinput.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdmaster.c">
+					RelativePath="..\jpeg-8\jdmainct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdmerge.c">
+					RelativePath="..\jpeg-8\jdmarker.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdphuff.c">
+					RelativePath="..\jpeg-8\jdmaster.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdpostct.c">
+					RelativePath="..\jpeg-8\jdmerge.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdsample.c">
+					RelativePath="..\jpeg-8\jdpostct.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdtrans.c">
+					RelativePath="..\jpeg-8\jdsample.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jerror.c">
+					RelativePath="..\jpeg-8\jdtrans.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jfdctflt.c">
+					RelativePath="..\jpeg-8\jerror.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jfdctfst.c">
+					RelativePath="..\jpeg-8\jfdctflt.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jfdctint.c">
+					RelativePath="..\jpeg-8\jfdctfst.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jidctflt.c">
+					RelativePath="..\jpeg-8\jfdctint.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jidctfst.c">
+					RelativePath="..\jpeg-8\jidctflt.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jidctint.c">
+					RelativePath="..\jpeg-8\jidctfst.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jidctred.c">
+					RelativePath="..\jpeg-8\jidctint.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jmemmgr.c">
+					RelativePath="..\jpeg-8\jmemmgr.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jmemnobs.c">
+					RelativePath="..\jpeg-8\jmemnobs.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jquant1.c">
+					RelativePath="..\jpeg-8\jquant1.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jquant2.c">
+					RelativePath="..\jpeg-8\jquant2.c"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jutils.c">
+					RelativePath="..\jpeg-8\jutils.c"
+					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Header Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\jpgsrc6b\cderror.h">
+					RelativePath="..\jpeg-8\cderror.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\cdjpeg.h">
+					RelativePath="..\jpeg-8\cdjpeg.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jchuff.h">
+					RelativePath="..\jpeg-8\jconfig.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jconfig.h">
+					RelativePath="..\jpeg-8\jdct.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdct.h">
+					RelativePath="..\jpeg-8\jerror.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jdhuff.h">
+					RelativePath="..\jpeg-8\jinclude.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jerror.h">
+					RelativePath="..\jpeg-8\jmemsys.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jinclude.h">
+					RelativePath="..\jpeg-8\jmorecfg.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jmemsys.h">
+					RelativePath="..\jpeg-8\jpegint.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jmorecfg.h">
+					RelativePath="..\jpeg-8\jpeglib.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jpegint.h">
+					RelativePath="..\jpeg-8\jversion.h"
+					>
 				</File>
 				<File
-					RelativePath="..\jpgsrc6b\jpeglib.h">
-				</File>
-				<File
-					RelativePath="..\jpgsrc6b\jversion.h">
-				</File>
-				<File
-					RelativePath="..\jpgsrc6b\transupp.h">
+					RelativePath="..\jpeg-8\transupp.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="lcms"
-			Filter="">
+			>
 			<Filter
 				Name="Source Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\lcms\src\CMSCNVRT.C">
+					RelativePath="..\lcms\src\cmscam02.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSERR.C">
+					RelativePath="..\lcms\src\cmscam97.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSGAMMA.C">
+					RelativePath="..\lcms\src\cmscgats.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSGMT.C">
+					RelativePath="..\lcms\src\cmscnvrt.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSLUT.C">
+					RelativePath="..\lcms\src\cmserr.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSMATSH.C">
+					RelativePath="..\lcms\src\cmsgamma.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSPACK.C">
+					RelativePath="..\lcms\src\cmsgmt.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\CMSWTPNT.C">
+					RelativePath="..\lcms\src\cmsintrp.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsintrp.c">
+					RelativePath="..\lcms\src\cmsio0.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsio1.c">
+					RelativePath="..\lcms\src\cmsio1.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsmtrx.c">
+					RelativePath="..\lcms\src\cmslut.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsnamed.c">
+					RelativePath="..\lcms\src\cmsmatsh.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmspcs.c">
+					RelativePath="..\lcms\src\cmsmtrx.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmssamp.c">
+					RelativePath="..\lcms\src\cmsnamed.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsvirt.c">
+					RelativePath="..\lcms\src\cmspack.c"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\src\cmsxform.c">
+					RelativePath="..\lcms\src\cmspcs.c"
+					>
+				</File>
+				<File
+					RelativePath="..\lcms\src\cmsps2.c"
+					>
+				</File>
+				<File
+					RelativePath="..\lcms\src\cmssamp.c"
+					>
+				</File>
+				<File
+					RelativePath="..\lcms\src\cmsvirt.c"
+					>
+				</File>
+				<File
+					RelativePath="..\lcms\src\cmswtpnt.c"
+					>
+				</File>
+				<File
+					RelativePath="..\lcms\src\cmsxform.c"
+					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Header Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\lcms\include\icc34.h">
+					RelativePath="..\lcms\include\icc34.h"
+					>
 				</File>
 				<File
-					RelativePath="..\lcms\include\lcms.h">
+					RelativePath="..\lcms\include\lcms.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="zlib"
-			Filter="">
+			>
 			<Filter
 				Name="Source Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\zlib\adler32.c">
+					RelativePath="..\zlib\adler32.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\compress.c">
+					RelativePath="..\zlib\compress.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\crc32.c">
+					RelativePath="..\zlib\crc32.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\deflate.c">
+					RelativePath="..\zlib\deflate.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\gzio.c">
+					RelativePath="..\zlib\gzio.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\infback.c">
+					RelativePath="..\zlib\infback.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inffast.c">
+					RelativePath="..\zlib\inffast.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inflate.c">
+					RelativePath="..\zlib\inflate.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inftrees.c">
+					RelativePath="..\zlib\inftrees.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\trees.c">
+					RelativePath="..\zlib\trees.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\uncompr.c">
+					RelativePath="..\zlib\uncompr.c"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\zutil.c">
+					RelativePath="..\zlib\zutil.c"
+					>
 				</File>
 			</Filter>
 			<Filter
 				Name="Header Files"
-				Filter="">
+				>
 				<File
-					RelativePath="..\zlib\crc32.h">
+					RelativePath="..\zlib\crc32.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\deflate.h">
+					RelativePath="..\zlib\deflate.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inffast.h">
+					RelativePath="..\zlib\inffast.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inffixed.h">
+					RelativePath="..\zlib\inffixed.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inflate.h">
+					RelativePath="..\zlib\inflate.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\inftrees.h">
+					RelativePath="..\zlib\inftrees.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\trees.h">
+					RelativePath="..\zlib\trees.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\zconf.h">
+					RelativePath="..\zlib\zconf.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\zlib.h">
+					RelativePath="..\zlib\zlib.h"
+					>
 				</File>
 				<File
-					RelativePath="..\zlib\zutil.h">
+					RelativePath="..\zlib\zutil.h"
+					>
 				</File>
 			</Filter>
 		</Filter>

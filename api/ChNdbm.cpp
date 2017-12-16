@@ -616,7 +616,7 @@ CH_INTERN_FUNC( datum )
 makdatum(char buf[PBLKSIZ], long n)
 {
 	register short *sp;
-	register t;
+	register chint32 t;
 	datum item;
 
 	sp = (short *)buf;
@@ -712,7 +712,7 @@ CH_INTERN_FUNC( chint32 )
 delitem(char buf[PBLKSIZ], long n)
 {
 	register short *sp, *sp1;
-	register i1, i2;
+	register chint32 i1, i2;
 
 	sp = (short *)buf;
 	i2 = sp[0];

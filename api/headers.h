@@ -51,17 +51,19 @@
 	#include <afxwin.h>						// MFC core and std components
 	#include <afxext.h>						// MFC extensions
 
-	#include <winsock.h>
+	#if _MFC_VER < 0x0710
+		// MFC 7.1 includes winsock2.h automatically, and those two don't play nice
+		#include <winsock.h>
+	#endif
 
 	#if ( _MSC_VER >= 900	 )
-	#pragma warning( disable: 4237 )
-
+		#pragma warning( disable: 4237 )
 	#endif
 
 	#include <ChTypes.h>
 
 	#if !defined(CH_PUEBLO_PLUGIN) && !defined( CH_STATIC_LINK )
-	CH_EXTERN_VAR AFX_EXTENSION_MODULE	PuebloDLL;
+		CH_EXTERN_VAR AFX_EXTENSION_MODULE	PuebloDLL;
 	#endif
 
 #endif

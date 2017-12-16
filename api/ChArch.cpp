@@ -46,6 +46,9 @@
 #if defined( CH_MSW ) && defined( CH_ARCH_16 )
 #include <winsock.h>
 #endif
+#if defined( CH_MSW ) && (_MFC_VER >= 0x0710)
+	#include <winsock2.h>
+#endif
 
 #if defined( CH_UNIX )
 

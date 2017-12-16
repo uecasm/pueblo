@@ -317,9 +317,9 @@ void ChEmbedTag::ProcessArguments( pChArgList pList, int iArgCount )
 	chuint32	luAttr = ChTxtWnd::objAttrMiddle; 
 	chuint32	luStyle = ChTxtWnd::textObject; 
 	ChRect		spaceExtra( 0, 0, 0 , 0 );
+	int			i;
 
-
-	for (int i = 0; i < iArgCount; i++)
+	for (i = 0; i < iArgCount; i++)
 	{
 		switch (pList[i].iArgType)
 		{

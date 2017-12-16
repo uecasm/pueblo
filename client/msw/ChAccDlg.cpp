@@ -65,8 +65,9 @@
 											/* Determine number of elements
 												in an array (not bytes) */
 
+#ifndef _countof
 #define _countof( array )	(sizeof( array ) / sizeof( array[0] ))
-
+#endif
 
 /*----------------------------------------------------------------------------
 	ChAccountDlg class

@@ -55,16 +55,16 @@
 /*
 #define COLOR_DEF_TEXT					::GetSysColor(COLOR_BTNTEXT)
 #define COLOR_DEF_LINK		 			RGB( 0, 0, 0xFF )	   		// blue
-#define COLOR_DEF_VIST_LINK 		RGB( 0x80,0,0x80 )	   	// purple
-#define COLOR_DEF_ACTIVE_LINK		RGB( 0xFF, 0x00, 0x00)	// red
-#define COLOR_DEF_PREFETCH_LINK	RGB( 0x00, 0x80, 0x00 ) // green
+#define COLOR_DEF_VIST_LINK 			RGB( 0x80,0,0x80 )	   	// purple
+#define COLOR_DEF_ACTIVE_LINK			RGB( 0xFF, 0x00, 0x00)	// red
+#define COLOR_DEF_PREFETCH_LINK			RGB( 0x00, 0x80, 0x00 ) // green
 #define COLOR_DEF_BACK					::GetSysColor(COLOR_WINDOW)
 */
 #define COLOR_DEF_TEXT					RGB(0xC0, 0xC0, 0xC0)		// light gray
 #define COLOR_DEF_LINK		 			RGB(0x00, 0xFF, 0xFF)		// cyan
-#define COLOR_DEF_VIST_LINK			RGB(0xFF, 0x00, 0xFF)		// purple
-#define COLOR_DEF_ACTIVE_LINK		RGB(0x00, 0xFF, 0xFF)		// yellow
-#define COLOR_DEF_PREFETCH_LINK	RGB(0x00, 0xFF, 0x00)		// green
+#define COLOR_DEF_VIST_LINK				RGB(0xFF, 0x00, 0xFF)		// purple
+#define COLOR_DEF_ACTIVE_LINK			RGB(0x00, 0xFF, 0xFF)		// yellow
+#define COLOR_DEF_PREFETCH_LINK			RGB(0x00, 0xFF, 0x00)		// green
 #define COLOR_DEF_BACK					RGB(0x00, 0x00, 0x00)		// black
 
 
@@ -79,33 +79,33 @@
 #define CH_REGISTERED_USER			1
 #define CH_REGISTRATION_NOTIFIED	2
 
-#define CH_DEBUG_GROUP				"Debug"
+#define CH_DEBUG_GROUP					"Debug"
 #define CH_DEBUG_USE_LOCAL				"Use local modules"
 
-#define CH_APPS_GROUP				"Applications"
-#define	CH_APP_WEBBROWSER			"Web Browser"
-#define CH_APP_WEBBROWSER_DEF		""
-#define	CH_APP_WEBTRACKER			"WebTracker"
+#define CH_APPS_GROUP					"Applications"
+#define	CH_APP_WEBBROWSER				"Web Browser"
+#define CH_APP_WEBBROWSER_DEF			""
+#define	CH_APP_WEBTRACKER				"WebTracker"
 #define CH_APP_WEBTRACKER_DEF			0
 #define	CH_APP_DEFAULTBROWSER			"ShellDefault"
 
-#define CH_LOGIN_GROUP				"Login"
+#define CH_LOGIN_GROUP					"Login"
 #define CH_LOGIN_LAST_NAME				"Last_Login_Name"
 #define CH_LOGIN_NAMES					"Names_List"
 
-#define CH_MISC_GROUP				"Miscellaneous"
+#define CH_MISC_GROUP					"Miscellaneous"
 #define CH_MISC_LICENSE_ACCEPTED		"License Accepted"
-#define CH_MISC_TRACE_OPTIONS		"Trace Options"
+#define CH_MISC_TRACE_OPTIONS			"Trace Options"
 
-#define CH_FONT_GROUP				"Fonts"
+#define CH_FONT_GROUP					"Fonts"
 #define CH_FONT_PROPORTIONAL			"Proportional Font"
-#define CH_FONT_PROPORTIONAL_DEF			"Arial"
+#define CH_FONT_PROPORTIONAL_DEF		"Arial"
 #define CH_FONT_PROPORTIONAL_SIZE		"Proportional Point Size"
-#define CH_FONT_PROPORTIONAL_SIZE_DEF		10
+#define CH_FONT_PROPORTIONAL_SIZE_DEF	10
 #define CH_FONT_FIXED					"Fixed Font"
-#define CH_FONT_FIXED_DEF					"Terminal"
+#define CH_FONT_FIXED_DEF				"Terminal"
 #define CH_FONT_FIXED_SIZE				"Fixed Point Size"
-#define CH_FONT_FIXED_SIZE_DEF				10
+#define CH_FONT_FIXED_SIZE_DEF			10
 
 #define CH_COLOR_GROUP					"Colors"
 #define CH_COLOR_DEFAULT				0x80000000
@@ -115,7 +115,7 @@
 #define CH_COLOR_FLINK					"HTML followed links"
 #define CH_COLOR_PLINK					"HTML prefetched links"
 
-#define CH_CACHE_GROUP				"URL Cache"
+#define CH_CACHE_GROUP					"URL Cache"
 #define CH_CACHE_DIR					"CacheDir"
 #define CH_CACHE_SIZE					"CacheSize"
 #define CH_CACHE_SIZE_DEF				5000
@@ -126,33 +126,33 @@
 #define CH_CACHE_OPTION_DEF				CH_CACHE_VERIFY_PER_SESSION
 
 
-#define CH_NETWORK_GROUP			"Network"
-#define CH_MAX_CONNECTIONS			"Maximum Connections"
-#define CH_MAX_CONNECTIONS_DEF		"5"
+#define CH_NETWORK_GROUP				"Network"
+#define CH_MAX_CONNECTIONS				"Maximum Connections"
+#define CH_MAX_CONNECTIONS_DEF			"5"
 
-#define CH_PROXIES_GROUP			"Proxies"
-#define CH_PROXIES					"Use proxies?"
+#define CH_PROXIES_GROUP				"Proxies"
+#define CH_PROXIES						"Use proxies?"
 #define CH_PROXIES_DEF					false
-#define CH_HTTP_PROXY				"HTTP Proxy"
+#define CH_HTTP_PROXY					"HTTP Proxy"
 #define CH_HTTP_PROXY_DEF				""
-#define CH_HTTP_PROXY_PORT			"HTTP Proxy Port"
+#define CH_HTTP_PROXY_PORT				"HTTP Proxy Port"
 #define CH_HTTP_PROXY_PORT_DEF			0
-#define CH_FTP_PROXY				"FTP Proxy"
+#define CH_FTP_PROXY					"FTP Proxy"
 #define CH_FTP_PROXY_DEF				""
-#define CH_FTP_PROXY_PORT			"FTP Proxy Port"
+#define CH_FTP_PROXY_PORT				"FTP Proxy Port"
 #define CH_FTP_PROXY_PORT_DEF			0
-#define CH_SOCKS_PROXY				"Socks Proxy"
+#define CH_SOCKS_PROXY					"Socks Proxy"
 #define CH_SOCKS_PROXY_DEF				""
-#define CH_SOCKS_PROXY_PORT			"Socks Proxy Port"
+#define CH_SOCKS_PROXY_PORT				"Socks Proxy Port"
 #define CH_SOCKS_PROXY_PORT_DEF			1080
 
-#define CH_LAYOUT_GROUP				"Window layout"
+#define CH_LAYOUT_GROUP					"Window layout"
 #define CH_LAYOUT_SWAPPED				"Swapped panes"
 #define CH_LAYOUT_VERTICAL				"Vertical panes"
 #define CH_LAYOUT_PANE_SIZE				"Pane size %d"
-#define CH_LAYOUT_PANE_SIZE_DEF				200
+#define CH_LAYOUT_PANE_SIZE_DEF			200
 
-#define CH_DEBUG_GROUP				"Debug"
+#define CH_DEBUG_GROUP					"Debug"
 #define CH_DEBUG_USE_LOCAL				"Use local modules"		 
 
 

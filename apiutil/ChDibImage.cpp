@@ -570,6 +570,7 @@ int ChDib::GetNumClrEntries()
 // NOTE: This assumes all ChDib objects have 256 color table entries.
 BOOL ChDib::MapColorsToPalette(CPalette *pPal)
 {
+	int i;
     if (!pPal) {
         TRACE("No palette to map to\n");
         return false;
@@ -583,7 +584,7 @@ BOOL ChDib::MapColorsToPalette(CPalette *pPal)
     // to those of the reference DIB.
     BYTE imap[256];
     int iChanged = 0; // For debugging only
-    for (int i = 0; i < 256; i++) {
+    for (i = 0; i < 256; i++) {
         imap[i] = (BYTE) pPal->GetNearestPaletteIndex(
                             RGB(pctThis->rgbRed,
                                 pctThis->rgbGreen,
@@ -972,12 +973,12 @@ bool ChDib::SetColorTable( int iFrame, RGBQUAD* pColorTbl, int iColors )
 {
 	ASSERT( iFrame < m_iNumFrames );
 	
-	OutputDebugString("*** Entered ChDib::SetColorTable\r\n");
+	//OutputDebugString("*** Entered ChDib::SetColorTable\r\n");
 	
     // Note: This will probably fail for < 256 color headers.
     ChMemCopy( GetClrTabAddress( iFrame ), pColorTbl, iColors * sizeof(RGBQUAD));
 
-	OutputDebugString("*** Exited ChDib::SetColorTable\r\n");
+	//OutputDebugString("*** Exited ChDib::SetColorTable\r\n");
 
 	return true;
 } 

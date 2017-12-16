@@ -1,94 +1,151 @@
-<?xml version="1.0" encoding = "Windows-1252"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.00"
+	Version="9.00"
 	Name="Pueblo"
 	ProjectGUID="{53DD0840-6570-40B5-86D9-F879819A45FB}"
-	SccProjectName=""
-	SccLocalPath=""
-	Keyword="MFCProj">
+	RootNamespace="Pueblo"
+	Keyword="MFCProj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory=".\$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="true"
+				TypeLibraryName="$(OutDir)/Pueblo.tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="4"
-				GlobalOptimizations="TRUE"
-				EnableIntrinsicFunctions="TRUE"
-				FavorSizeOrSpeed="2"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
+				EnableIntrinsicFunctions="true"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;CH_MSW;CH_EXCEPTIONS;CH_NO_WEBTRACKER"
 				RuntimeLibrary="2"
-				DefaultCharIsUnsigned="TRUE"
+				DefaultCharIsUnsigned="true"
 				PrecompiledHeaderFile="$(IntDir)\Pueblo.pch"
 				AssemblerOutput="2"
 				AssemblerListingLocation="$(IntDir)\"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\Pueblo.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
-				CompileAs="0"/>
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_AFXDLL;NDEBUG;CH_NO_WEBTRACKER"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="wsock32.lib version.lib"
 				OutputFile="$(OutDir)\Pueblo.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
+				EnableUAC="false"
 				ProgramDatabaseFile="$(OutDir)\Pueblo.pdb"
-				GenerateMapFile="TRUE"
-				SubSystem="2"/>
+				GenerateMapFile="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				MkTypLibCompatible="TRUE"
-				TypeLibraryName="$(OutDir)/Pueblo.tlb"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;NDEBUG;CH_NO_WEBTRACKER"
-				Culture="1033"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
+				Name="VCPostBuildEventTool"
+				Description="Copying resources..."
+				CommandLine="xcopy /s /y &quot;$(ProjectDir)files\*&quot; &quot;$(TargetDir)&quot;"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory=".\$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC70.vsprops"
 			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				MkTypLibCompatible="true"
+				TypeLibraryName="$(OutDir)\Pueblo.tlb"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				OptimizeForProcessor="1"
-				AdditionalIncludeDirectories="$(SolutionDir)Include;&quot;$(SolutionDir)libmng&quot;;&quot;$(SolutionDir)jpgsrc6b&quot;;&quot;$(SolutionDir)zlib&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Include&quot;"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CH_MSW;CH_EXCEPTIONS;CH_NO_WEBTRACKER"
 				RuntimeLibrary="3"
-				DefaultCharIsUnsigned="TRUE"
-				UsePrecompiledHeader="2"
+				DefaultCharIsUnsigned="true"
+				UsePrecompiledHeader="0"
 				PrecompiledHeaderThrough="headers.h"
 				PrecompiledHeaderFile="$(IntDir)\Pueblo.pch"
 				AssemblerOutput="2"
@@ -96,216 +153,292 @@
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)\Pueblo.pdb"
 				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
+				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
-				CompileAs="0"/>
+				CompileAs="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_AFXDLL;_DEBUG;CH_NO_WEBTRACKER"
+				Culture="1033"
+				AdditionalIncludeDirectories="$(SolutionDir)Include"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/MACHINE:I386"
 				AdditionalDependencies="wsock32.lib version.lib"
 				OutputFile="$(OutDir)\Pueblo.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				GenerateDebugInformation="TRUE"
+				SuppressStartupBanner="true"
+				EnableUAC="false"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)\Pueblo.pdb"
-				GenerateMapFile="TRUE"
-				SubSystem="2"/>
+				GenerateMapFile="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				MkTypLibCompatible="TRUE"
-				TypeLibraryName="$(OutDir)\Pueblo.tlb"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_AFXDLL;_DEBUG;CH_NO_WEBTRACKER"
-				Culture="1033"
-				AdditionalIncludeDirectories="$(SolutionDir)Include"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
+				Name="VCPostBuildEventTool"
+				Description="Copying resources..."
+				CommandLine="xcopy /s /y &quot;$(ProjectDir)files\*&quot; &quot;$(TargetDir)&quot;"
+			/>
 		</Configuration>
 	</Configurations>
+	<References>
+	</References>
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90">
+			Filter="cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90"
+			>
 			<File
-				RelativePath=".\ChAbout.cpp">
+				RelativePath=".\ChAbout.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChAccDlg.cpp">
+				RelativePath=".\ChAccDlg.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChBaseVw.cpp">
+				RelativePath=".\ChBaseVw.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChClCore.cpp">
+				RelativePath=".\ChClCore.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChCoreHandlers.cpp">
+				RelativePath=".\ChCoreHandlers.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChCoreStream.cpp">
+				RelativePath=".\ChCoreStream.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChLicDlg.cpp">
+				RelativePath=".\ChLicDlg.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChMFrame.cpp">
+				RelativePath=".\ChMFrame.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChNList.cpp">
+				RelativePath=".\ChNList.cpp"
+				>
 			</File>
 			<File
-				RelativePath="ChOODDlg.cpp">
+				RelativePath="ChOODDlg.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPagMgr.cpp">
+				RelativePath=".\ChPagMgr.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPbModuleMgr.cpp">
+				RelativePath=".\ChPbModuleMgr.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrApps.cpp">
+				RelativePath=".\ChPrApps.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrDbg.cpp">
+				RelativePath=".\ChPrDbg.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrFont.cpp">
+				RelativePath=".\ChPrefs.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrNet.cpp">
+				RelativePath=".\ChPrefsProxy.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrefs.cpp">
+				RelativePath=".\ChPrefsTrace.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrefsProxy.cpp">
+				RelativePath=".\ChPrFont.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPrefsTrace.cpp">
+				RelativePath=".\ChPrNet.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChPuebloFrameMgr.cpp">
+				RelativePath=".\ChPuebloFrameMgr.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\ChRunTimeInfo.cpp">
+				RelativePath=".\ChRunTimeInfo.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\Pueblo.cpp">
+				RelativePath=".\headers.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\headers.cpp">
+				RelativePath=".\Pueblo.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="">
+			>
 			<File
-				RelativePath="ChAbout.h">
+				RelativePath="ChAbout.h"
+				>
 			</File>
 			<File
-				RelativePath="ChAccDlg.h">
+				RelativePath="ChAccDlg.h"
+				>
 			</File>
 			<File
-				RelativePath="ChBaseVw.h">
+				RelativePath="ChBaseVw.h"
+				>
 			</File>
 			<File
-				RelativePath="ChClCore.h">
+				RelativePath="ChClCore.h"
+				>
 			</File>
 			<File
-				RelativePath="ChCoreStream.h">
+				RelativePath="ChCoreStream.h"
+				>
 			</File>
 			<File
-				RelativePath="ChLicDlg.h">
+				RelativePath="ChLicDlg.h"
+				>
 			</File>
 			<File
-				RelativePath="ChMFrame.h">
+				RelativePath="ChMFrame.h"
+				>
 			</File>
 			<File
-				RelativePath="ChNList.h">
+				RelativePath="ChNList.h"
+				>
 			</File>
 			<File
-				RelativePath="ChOODDlg.h">
+				RelativePath="ChOODDlg.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPagMgr.h">
+				RelativePath="ChPagMgr.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPbModuleMgr.h">
+				RelativePath="ChPbModuleMgr.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrApps.h">
+				RelativePath="ChPrApps.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrDbg.h">
+				RelativePath="ChPrDbg.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrFont.h">
+				RelativePath="ChPrefs.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrNet.h">
+				RelativePath="ChPrefsProxy.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrefs.h">
+				RelativePath="ChPrefsTrace.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrefsProxy.h">
+				RelativePath="ChPrFont.h"
+				>
 			</File>
 			<File
-				RelativePath="ChPrefsTrace.h">
+				RelativePath="ChPrNet.h"
+				>
 			</File>
 			<File
-				RelativePath="ChRunTimeInfo.h">
+				RelativePath="ChRunTimeInfo.h"
+				>
 			</File>
 			<File
-				RelativePath="..\..\include\PbVersion.h">
+				RelativePath="headers.h"
+				>
 			</File>
 			<File
-				RelativePath="Pueblo.h">
+				RelativePath="..\..\include\PbVersion.h"
+				>
 			</File>
 			<File
-				RelativePath="headers.h">
+				RelativePath="Pueblo.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
-			Filter="">
+			>
 			<File
-				RelativePath=".\Pueblo.rc">
+				RelativePath="res\app.manifest"
+				>
 			</File>
 			<File
-				RelativePath="res\Pueblo.rc2">
+				RelativePath="res\chaco.dib"
+				>
 			</File>
 			<File
-				RelativePath="res\app.manifest">
+				RelativePath="res\idr_main.ico"
+				>
 			</File>
 			<File
-				RelativePath="res\chaco.dib">
+				RelativePath="res\idr_sho2.ico"
+				>
 			</File>
 			<File
-				RelativePath="res\idr_main.ico">
+				RelativePath=".\Pueblo.rc"
+				>
 			</File>
 			<File
-				RelativePath="res\idr_sho2.ico">
+				RelativePath="res\Pueblo.rc2"
+				>
 			</File>
 			<File
-				RelativePath="resource.h">
+				RelativePath="resource.h"
+				>
 			</File>
 			<File
-				RelativePath="res\toolbar.bmp">
+				RelativePath="res\toolbar.bmp"
+				>
 			</File>
 			<File
-				RelativePath="res\uelogo.dib">
+				RelativePath="res\uelogo.dib"
+				>
 			</File>
 		</Filter>
 	</Files>

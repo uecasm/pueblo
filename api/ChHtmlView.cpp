@@ -717,9 +717,11 @@ void ChHtmlView::DisplayResource( int iResID, chuint32 flOptions,
 
 		char*	pstrBuffer = 0;
 		bool	boolDisplayAppend = CalcDisplayAppend();
+		DWORD	dwLength = 0;
 
 		#if defined( CH_MSW )
 		{
+			dwLength = SizeofResource(hModule, hRes);
 			pstrBuffer = (char*)LockResource( hResBlock );
 		}
 		#elif defined( CH_UNIX )
@@ -727,12 +729,13 @@ void ChHtmlView::DisplayResource( int iResID, chuint32 flOptions,
 			cerr << "XXX Get pstrBuffer & iBufferLen" << __FILE__ << ":" << __LINE__ << endl;
 
 			pstrBuffer = "The code to get this text is not complete.";
+			dwLength = strlen(pstrBuffer);
 		}
 		#endif
 
 		ASSERT( pstrBuffer );
 
-		m_pParser->ParseText( pstrBuffer, strlen( pstrBuffer ) );
+		m_pParser->ParseText( pstrBuffer, dwLength );
 
 											// Did we add anything to the view ?
 

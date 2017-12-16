@@ -79,6 +79,8 @@ END
 // Icon
 //
 
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
 IDI_IMAGE               ICON                    "res\\image.ico"
 IDI_IMAGE_BROKEN        ICON                    "res\\imageb.ico"
 IDI_BOOK                ICON                    "res\\book.ico"

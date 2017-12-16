@@ -193,9 +193,9 @@ void ChTxtWnd::UpdateLayoutInfo( pLineData pCalc,  pChLine pNewLine, bool boolFl
 		else
 		{ // got to sort the layinfo
 			//find the index for the new entry
-			int iIndex = 0;
+			int i, iIndex = 0;
 
-			for( int i = pCalc->iCurrLayoutIndex ; i > 0; i-- )
+			for( i = pCalc->iCurrLayoutIndex ; i > 0; i-- )
 			{
 	   			if ( tmpEntry.iBreakY <= pLayout[i].iBreakY )
 				{
@@ -1722,14 +1722,15 @@ int ChTxtWnd::GetFont( ChFont* pFont )
 		// Index of default font is 0
 		return 0;
 	}
-	int			iEmptyFont = -1;
+	int	iEmptyFont = -1;
+	int iIndex;
 
 	// get the font information
 	LOGFONT 	logFont;
 	pFont->GetObject( sizeof(logFont), &logFont );
 
 
-	for ( int iIndex = 0; iIndex < GetFontCount(); iIndex += 1)
+	for ( iIndex = 0; iIndex < GetFontCount(); iIndex += 1)
 	{
 		if (m_pFontTbl[ iIndex ].iUseCount > 0 )
 		{

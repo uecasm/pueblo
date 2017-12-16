@@ -89,7 +89,7 @@ END
 IDR_DISCLAIMER          HTML    DISCARDABLE     "res\\idr_disc.htm"
 
 #ifdef UE_PRERELEASE
-IDR_PRERELEASE_LICENSE	HTML		DISCARDABLE			"res\\idr_prelic.htm"
+IDR_PRERELEASE_LICENSE	HTML    DISCARDABLE     "res\\idr_prelic.htm"
 #endif
 
 
