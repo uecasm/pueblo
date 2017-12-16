@@ -1,0 +1,14 @@
+*~
+*.bak
+*.user
+*.ncb
+*.suo
+Debug
+Release
+_ReSharper*
+/Install
+/PbError
+/libmng
+/jpeg-8
+/lcms
+/zlib

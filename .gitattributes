@@ -1,0 +1,26 @@
+* text=auto
+
+# Source files
+*.cpp       text
+*.h         text
+*.rc        text
+*.rc2       text
+*.def       text
+*.sln       text eol=crlf
+*.vcproj    text eol=crlf
+*.vcxproj   text eol=crlf
+*.manifest  text eol=crlf
+
+# Other text files
+*.txt       text
+*.html      text
+*.htm       text
+
+# Graphics and other binaries
+*.ico       binary
+*.cur       binary
+*.pal       binary
+*.dib       binary
+*.bmp       binary
+*.gif       binary
+*.mid       binary
